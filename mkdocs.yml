@@ -1,4 +1,4 @@
-site_name: obsidian-mkdocs template
+site_name: Cockpitdecks Documentation
 
 theme:
     name: 'material'
