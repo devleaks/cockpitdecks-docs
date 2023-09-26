@@ -1,11 +1,10 @@
-# Obsidian Notes
+Cockpitdecks is a set of python scripts to use external physical decks connected to a computer with X-Plane flight simulator.
 
-Publish your public notes with MkDocs
+External decks include the following make and models:
+- Elgato Streamdeck small, Mk.2, and XL
+- Loupedeck LoupedeckLive
+- Berhinger X-Touch Mini
 
-## Hello World!
+Cockpitdecks can be used on the same computer as X-Plane, or from a remote computer, network-connected to X-Plane.
 
-The `index.md` in the `/docs` folder is the homepage you see here.
-
-The folders in `/docs` appear as the main sections on the navigation bar.
-
-The notes appear as pages within these sections. For example, [[Note 1]] in `Topic 1`
+In Cockpitdecks, the [[Cockpit]] holds all your decks.

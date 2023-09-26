@@ -1,0 +1,59 @@
+The following resources are common to all buttons.
+
+# Colors
+Color can either be expressed by their name, [[pillow color names.png|as defined in the Python PILLOW package]], or by a tuple of 3 or 4 values, representing red, green, blue, and optionally the transparency.
+All values should be in the [0..255] range. For colors, 0 is black, 255 is pure color; for transparency, 0 is transparent, 255 is opaque.
+
+```
+    icon-color: (100, 40, 40, 200)
+    label-color: darkorange
+    text-color: mediumaquamarine
+```
+
+# Number Formatting
+Cockpitdecks uses the same convention as [python number to text formatting](https://docs.python.org/3/library/string.html#format-examples).
+
+# Fonts
+Font files need to be placed in the `deckconfig/fonts` folder.
+Font files must be either Truetype fonts (TTF) or Opentype fonts (OTF).
+The name of the file is used to designate the font.
+Fonts are loaded on start up.
+
+```
+	text-font: DIN Condensed Black.otf
+```
+
+Cockpitdeck comes with a few fonts appropriate for aeronautical use: Standard formal fonts like DIN, fancier fonts like LED fonts, icon fonts like font-awesome and weather-icon.
+For Truetype font, it is not necessary to add the `.ttf` extension. For Opentype fonts it is necessary to add the `.otf` extension.
+
+# Icons
+Icon image files need to be placed in the `deckconfig/icons` folder.
+Image files must be either JPEG images (JPG, JPEG) or Portable Network Graphic (PNG).
+The name of the file is used to designate the icon.
+Icons are loaded on start up, uniformly resized and cached for faster successsive starts.
+Typical icon size should be (square) 128 to 256 pixels. Internally, Cockpitdeck use 256 pixel icons. Icons are resized to the deck requested size upon display.
+
+```
+	icon: OFF_WHITE_FRAMED
+```
+
+# Resources
+Resources are in the `deckconfig/resources` folder.
+A few wallpaper images are used for display on idle deck.
+
+# Documentation
+Documentation of the aircraft decks can be placed in the folder `deckconfig/docs` or in the folder  `deckconfig/resources` in a textual form (including markdown), or as PDF.
+
+# Yaml
+All configuration files are Yaml formatted. Yaml is simple, structured, and readable.
+
+Yaml is loaded and interpreted by the python Yaml parser. Users must be aware that some *keywords* are sometimes interpreted by some parser. To prevent this interpretation, keywords should be placed between quotes.
+For example:
+`variable: on`
+will be interpreted as boolean value *true*.
+`variable: "on"`
+will be interpreted as string `on`.
+The following keywords have been noticeably discovered:
+on, off, true, false, yes, no (all mapped to Boolean values True or False).
+
+Cockpitdecks uses a Yaml 1.2 compliant parser ([ruamel.yaml](https://sourceforge.net/projects/ruamel-yaml/)) that refuse those interpretation as describe in the Yaml 1.2 specifications.
