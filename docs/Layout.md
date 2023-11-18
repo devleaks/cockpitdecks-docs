@@ -28,14 +28,19 @@ default-page-name: index
 
 ## Attributes
 The default value for each attribute is the value found the Cockpit attributes.
+
 `default-icon-color: blue`
 Optional. Default color to use for icon background.
+
 `default-label-color: white`
 Optional. Default color to use for layout labels.
+
 `default-label-font: DIN Medium.ttf`
 Optional. Default font to use for layout labels.
+
 `default-label-size: 13`
 Optional. Default label size.
+
 `default-homepage-name`
 Optional. Default page name in layout.
 

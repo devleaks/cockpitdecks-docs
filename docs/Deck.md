@@ -1,7 +1,9 @@
 A Deck represents a physical device connected to the computer, be it a
+
 - Elgato Stream Deck, 
 - Loupedeck Loupedeck Live, or
 - Berhinger X-Touch Mini,
+
 a device that will be used to interact with the X-Plane flight simulator.
 
 A Deck uses and displays a collection of buttons called a Page of buttons. A Deck can display different pages of buttons at different times; a button on a page can be assigned to load another page of buttons.
@@ -17,16 +19,22 @@ Decks are declared in the `config.yaml` file in the `deckconfig` folder in the `
 
 `name: StreamdeckMK2`
 Mandatory. Name of the deck.
+
 `type: streamdeck`
 Optional. Type of deck. Streamdeck, Loupedeck, or Xtouchmini.
+
 `layout: layout_folder_name`
 Optional. Name of the layout for this deck. Default to `default`.
+
 `brightness: 80`
 Optional. Overall brightness of deck. Default to 100%.
+
 `default-label-font: DIN Medium.ttf`
 Optional. Default font to use for deck. Default to DIN, which is provided with Cockpitdecks.
+
 `default-label-size: 13`
 Optional. Default label size. Cockpitdecks manipulates icon 256x256 pixels.
+
 `default-homepage-name`
 Optional. Default page name in layout. Default to `index`.
 

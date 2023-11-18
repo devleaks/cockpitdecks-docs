@@ -18,8 +18,10 @@ will not issue any warning message.
 # Common Attributes
 
 ## Managed
+
 `dataref: dataref-path`
 Path to a dataref that is interpreted to determine whether the value is *managed*.
+
 If the value is *managed*, the value can be displayed as a text string in an alternative way depending on the `text-alternate` value.
 `text-alternate: dash=4`: Represent managed value by a set of `-`. Default is 3 dashes.
 `text-alternate: dot`: Represent managed value by a single dot `•`.
@@ -44,9 +46,12 @@ If the value is *managed*, the value can be displayed as a text string in an alt
 In example above, *speed managed* mode, if `AirbusFBW/SPDmanaged` dataref value is non zero, the text will display `---`. Otherwise, it will display the air speed.
 
 ## Guard
+
 `dataref: dataref-path`
 Path to a dataref that is interpreted to determine whether the button or key is *guarded* (protected against unintentional use by a cap or lock). If *guarded*, it can be displayed in an alternative way depending on the options value.
+
 `type`: Protects the button with a full red cover (`type: full`) or a see-through grid (`type: grid`)(cover is the default).
+
 `color`: Color of the guard. Default is red for cover, and translucent red for grid.
 
 ```
@@ -66,6 +71,7 @@ Guarded buttons or keys need to be pressed twice to activate, the first activati
 An image file is loaded on the deck key if it is capable of displaying images.
 
 ## Attributes
+
 ```yaml
 icon: isi
 frame:
@@ -74,9 +80,10 @@ frame:
 	content-size: [128, 128]
 	content-offset: [64, 64]
 ```
+
 A `frame` is a special "background" image that is first loaded, and  the icon itself is laid *over* the background image. In the above example, icon `isi` will be resized to 128x128px and placed (pasted, laid over) at position (64, 64) in the frame image.
 ![[frame.png]]
-The purpose of «framed» icon is to provide a uniform icon representation (the frame) with varying inner content (the icon itself).
+The purpose of *framed* icon is to provide a uniform icon representation (the frame) with varying inner content (the icon itself).
 It is different from a textured background because it allows for icon placement and resizing before pasting over the underlying image frame.
 
 # IconText
@@ -86,13 +93,17 @@ An image file is created with a uniform background color or texture and text lai
 The text laid over the button should not be confused with the label. The text laid over is additional to the label, and can be dynamic to display a changing value like the heading of the aircraft or the amount of fuel left in a tank.
 
 ## Attributes
+
 `text-bg-color: lime`
 Background color of the image or icon where the text is displayed. Default background color is cockpit color.
+
 `text-*: value`
 Values for font, font size, color, and position of the text on the image.
 
 ## Text Substitution
+
 It is possible to use subsitution of coded string in text values:
+
 - `${dataref-path}` is replaced by the scalar value of the dataref pointed by `dataref-path`.
 - `${formula}` is replaced by the value computed in the `formula` .
 - `${state:name}` is replaced by the scalar value of the button' state `name`.
@@ -107,6 +118,7 @@ formula: 3.14 2 ${dataref-path} * *
 
 Will produce an icon with text value "` 3.14`"  text in the middle.
 # MultiIcons
+
 `multi-icons`
 
 ```yaml
@@ -114,12 +126,14 @@ multi-icons:
   - ICON_FILE_1
   - ICON_FILE_2
 ```
+
 Multiple icon files are displayed according to the value of the button.
 For example, for an OnOff activation type there may be two icons for On and Off positions; for a UpDown activation type, there may be one icon for each stop position.
 
 No attribute.
 
 # MultiTexts
+
 `multi-texts`
 
 ```yaml
@@ -135,6 +149,7 @@ No attribute.
 		  text-position: tr
 	formula: ${dataref_for_text_selection}
 ```
+
 A Multitext attributes contains a list of IconText-like attributes (a list of text block) where each text block can contain attributes like in an IconText text block.
 A single text block is selected according to the value of the button.
 
@@ -149,58 +164,68 @@ In the above example, the formula `${dataref_for_text_selection}` return 2, the 
 will be selected and displayed as a IconText.
 
 ## Attributes
+
 None
 
 ## Important Note
+
 The selection of the text block must be performed by a **formula** and not a dataref.
 When a formula is present in the attributes of a button, it is always favored over a list of datarefs, even if the list contains only one dataref. (If there a button uses multiple datarefs and there is no formula, the value that is returned for that button is a diectionary of all dataref values.)
 
 # IconAnimation
+
 ```yaml
 icon-animation:
   - ICON_FILE_1
   - ICON_FILE_2
 ```
+
 Multiple icon files are displayed in sequence automagically when the button is On.
 
 ## Attributes
+
 `icon-off: ICON_FILE_NAME`
 The icon to display when the button is Off. If there is no icon-off, the first icon in the icon-animation list is used.
+
 `speed`
 Time in second an icon is displayed before displaying the next one.
-
 # IconSide
+
 `icon-side: ICON_FILE_NAME`
 An IconSide is a special icon for LoupedeckLive devices, used on either side of the main panel. IconSide have particular display capabilities to cope with their specifics, sizes, and their positions that allow to display information regarding the nearby encoders.
 ## Attributes
+
 `labels`
 Labels that are displayed on the icon.
+
 `label-positions`
 Label anchor position expressed in percentage of the 100% height of the side image.
 
 Note: There might be similar icons to control the display of other, larger display like the Streamdeck Plus bottom LCD display.
-
 # LED
+
 `led: led
 Turns a single LED light On or Off depending on the button's value.
-
 # ColoredLED
-`led: colored`
 
+`led: colored`
 ## Attributes
+
 `color: orange`
 
 Turns a single LED light On or Off depending on the button's value. The color of the LED is determined by the color attribute.
 The `color` attribute can use a formula to determine the color (single hue value in 360° circle.)
-
 # MultiLEDs
+
 `led: multi-leds`
 MultiLeds are LED-based display that use more than one LED for reporting information.
 X-Touch Mini encoders, for example, are surrounded by 11 LED that can be lit individually.
 ![[enc-status.png]]
 ## Attributes
+
 `led-mode: fan` or `led-mode: 2`; name or number
 Valid modes are:
+
 0. Single
 1. Trim
 2. Fan
@@ -209,6 +234,7 @@ Valid modes are:
 The value of the button determine how many leds will be displayed (0 to 11).
 
 # Annunciator
+
 Annunciators are special type of button display. There is a [[Annunciator|dedicated page]] for them.
 
 ```yaml
@@ -236,5 +262,6 @@ There are [[Drawn Buttons|other dynamically drawn represetations]] for displayin
 The sky is the limit.
 
 # Representation Validity
+
 Each Representation has a `is_valid()` method that checks whether all necessary attributes or parameters are available to it and valid. If the validity function fails, a warning is reported and the button is not rendered. The inspect keyword used to verify the validity of the representation is `valid`.
 Each Representation has an `describe()` method that explains what it displays in plain English. The inspect keyword used to describe the representation is `what`.

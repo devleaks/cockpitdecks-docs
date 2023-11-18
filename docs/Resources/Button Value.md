@@ -5,12 +5,16 @@ Each value of a button is either None or a numeric value (floating point number)
 A button builds its representation from its *value*. The *value* of the button is computed from one or more dataref values returned by X-Plane and/or from some internal state variable values.
 
 # Value Sources
+
 A Button can get its value from the following sources:
+
 1. A single X-Plane *Dataref*
 2. A *formula* that combines both dataref values and/or button internal state values
+
 If no attribute determine the value of a button, it will return its internal state.
 
 ## X-Plane Dataref
+
 A *dataref* is the name of a value used by the X-Plane simulator.
 The value can be a string, integer, or float value, either a single value or an array of (same type of) values. A dataref has a name to access it. Names are organized in a folder-like structure (namespace using `/` separator). Some datarefs are read-only, some other can be written and modified.
 
@@ -27,6 +31,7 @@ A dataref is always monitored. Its value is fetched from the simulator at regula
 To explore datarefs, there is a handy X-Plane plugin called [DataRefTool](https://datareftool.com). There are also a few web pages that collect, report, and present them so that they can be searched.
 
 ## Cockpitdecks Internal Dataref
+
 Cockpitdecks manages its own set of *datarefs*.
 All datarefs that starts with a special key word are *NOT* forwarded to X-Plane but rather managed internally inside Cockpitdecks. Otherwise, they are not different from X-Plane datarefs. They can be set and used like any other datarefs.
 When a button emit an internal dataref, it's definition mention it clearly so that it can be used by other buttons.
@@ -46,6 +51,7 @@ The current default prefix for internal datarefs is `data:`.
 Internal datarefs can be used as inter-button communication, to set a value in one button, and use or read it in another one.
 
 ## Internal Button (Activation) Value
+
 When a button cannot fetch its representation from X-Plane, it is possible to use some Cockpitdecks internal variables made available through the button *state*. Each button maintain its state, a few internal variables, that can be accessed in formula.
 State variables made available to formula are listed in the [[Button Activation]] page.
 The value of the button can then be either a list of (name, value) pairs, or a single value.
@@ -55,9 +61,11 @@ The value of the button can then be either a list of (name, value) pairs, or a s
 ```
 
 # Value Normalisation
+
 The raw value acquired from a source may not be usable by a button representation. Before a raw value can be used by a representation, it needs *normalisation*. The normlaisation of a value is the process of transforming the (raw) value from the datarefs or formula in values usable for representation.
 
 ### Rounding
+
 Some dataref values are changing very rapidly over time, sometimes in insignificant changes. To prevent updating a button's state each time a value changes, a Dataref value can be rounded.
 
 ```
@@ -67,25 +75,31 @@ sim/weather/aircraft/qnh_pas 0
 Value 101308.35278 will be rounded to 101308.
 
 ### Examples of Normalisation Need
+
 - a LED can can be turned On or Off need to receive a boolean value, On or Off as an indicator to light the LED or not, while the formula combining datarefs might return a float value.
 - a switch that can have 5 different positions must receive a value between 1 and 5 to determine which position to represent. Not 0, not 6, which are invalid values for its representation.
 
 # Button with No Value
+
 Some button may not maintain any state or use any value. Example of such button are simple push button with no feedback mean.
 
 # Single Dataref Value
+
 The value of the button is determined by a single dataref value.
 
 ## Binary Value
+
 In its simple form, the value of a button is deduced from the value of a single dataref. If the value of the dataref is zero, the representation is OFF, otherwise, it is ON.
 
 ## Continuous Range Value
+
 The status of a button is deduced from the value of either a single dataref, or a formula expression.
 Ranges are used as buckets to determine in which range/bucket the value falls. Then, the number index of the range, starting with 0, is used to determine which icon to display.
 There must be a matching number of ranges and icons.
 (Note: Currently not used.)
 
 # Combining Multiple Values: Formula
+
 A Representation is driven by a *single final value*. However, it is possible to compute that final value form a list of dataref values and mathematical operations. This is done through a `formula` attribute. The formula is written in [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation), a method to write and execute operations on values. Since a formula allows for value transformation, a formula should always produce a value that is directly usable by a representation. The value of a button can be computed from data coming either from X-Plane (through dataref values) and/or from the button's internal state values.
 
 Examples of `formula`:
@@ -118,8 +132,8 @@ Examples of `formula`:
 ```
 
 Only one formula attribute can be used for a button or a annunciator part.
-
 ## Expression
+
 The *formula* for computation is expressed in *Reverse Polish Notation*.
 The result of the formula is a *numeric value* (float value that can be rounded to an integer if necessary.)
 
@@ -131,6 +145,7 @@ in RPN, we write
 We place the value we act upon first, then the operation we perform on those values.
 `
 ### Operators
+
 The following operator have been added:
 - `%`: Pushes reminder of division of last two elements, modulo.
 - `floor`: Round element to smaller interger value.
@@ -144,7 +159,9 @@ The following operator have been added:
 - `not`: Boolean not operator, insert True and False values.
 
 ## Variable Substitution
+
 In formula:
+
 - `${dataref-path}` is replaced by the scalar value (converted to float) of the dataref pointed by `dataref-path`. Example: `${sim/aircraft/fuel/tankleft}`.
 - `${state:name}` is replaced by the scalar value of the (current) button' state variable named `name`. Names of available state variables depend on the activation; each activation lists internal state variables made available through the button' state. Example: `${state:activation_count}`.
 - ~~`${button:cockpit-name:deck-name:page-name:button-name:button-variable-name}`:  Substitute de given button name by its value. Example:  `${button:Airbus A321:sd-xl:efis:apu:status:activation_count}` . If no button variable name is given, the current value of the button is returned.~~
@@ -152,18 +169,21 @@ In formula:
 In all case, if the value is not found, it is replaced by None, which translate into 0 (zero) in formula (to prevent the formula from failing to compute). If the value is not found, a warning message is reported.
 
 The following formula determine the final status On(=1) or Off(=0) from the number of times a button was pressed:
+
 ```
 formula: ${state:activation_count} 2 %
 ```
 
 
 # Multiple Button Values
+
 In case a button has multiple values, each value comes from a part of the button. Each part of the button is independant of other parts of the same button. Each part maintains its single value.
 All part values are aggregated into either a *dictionary* of values or an *array* of values that is made available at the button level.
 For example, Annunciator, or Side representation, have more than one individual values that are fetched and maintained to provide a single table (or array) of individual values.
 Another example is a button that has more than one dataref and no formula. In this case, the returned value is a dictionary of all dataref values of that button.
 
 # Button Initial Value
+
 A Button can force its first, initial value to set its startup or original state.
 
 ```
@@ -186,17 +206,21 @@ A button can have a `dataref-sets` attribute, it is a set of individual *Dataref
 ## Dataref Collection Attributes
 
 ### Name
+
 Collection name. Must be unique for Cockpitdecks.
 Attempt to register a set with an existing name will fail to register the second set.
 
 ### Datarefs
+
 List of datarefs in set.
 There is a maximum value of datarefs in a set (20). If more datarefs are requested, a warning is sent and additional datarefs are ignored.
 
 ### Time to Live
+
 How long, after all datarefs have been collected at least once (set is *completed*) does the Collector schedule the collection again for update. The set will be completed again after all datarefs have been updated *after* the collection has been requested for update.
 
 ### Array
+
 The `array` attribute is an integer value. If present, it tells that each datarefs in the `datarefs` attribute is an array of values of size `array`. All datarefs in the set must have the same array length. As a result, this attribute will lead to the creation of `array` sets, one fo each element of the array of dataref values.
 Typical arrays of values that can be requested as such are weather data like clouds or wind layers:
 
@@ -239,6 +263,7 @@ dataref-collections:
 ```
 
 ### set-dataref
+
 A dataref that is set to an incremental value each time the *set* is completed.
 
 In the above example, `data:cloud-layer-completed[2]` local dataref will be set to an incremented value each time the set of four datarefs is completed, while the value of local dataref `data:all-cloud-layers-completed` will be set to an incremented value when all three sets are completed.

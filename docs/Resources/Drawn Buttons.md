@@ -166,7 +166,7 @@ Decor icon are governed by two parameters `type` and `code`. The type is a categ
 Decor icons of type `line` display a single horizontal or vertical line, and corner angles. The `code` determine which line get drawn.
 ![[decor.png]]
 ```
-type: code
+type: line
 code: H
 ```
 
