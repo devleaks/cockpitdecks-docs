@@ -1,6 +1,7 @@
 The interaction with X-Plane is two folds.
 
 # Activation
+
 When a button is activated, Cockpitdecks will either submit a command, or ask to change the value of a writable dataref, or both.
 It will also, optionally, execute another `view` command. The purpose of the view command is to modify the focus proposed on the screen consecutively to the first command executed. For example, when the `Status` ECAM button is pressed, the `view` command changes to show the ECAM display.
 

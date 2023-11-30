@@ -255,6 +255,10 @@ annunciator:
 *Circular switches* are multi-value rotation switches or selectors.
 *Push switches* are simpler two state push button.
 
+# Deck Specific Displays
+
+Some decks have particular LCD displays. Cockpitdecks [[Larger Displays|designed specific]]  activations and representations for those.
+
 # Other Representations
 
 Above switches are special instances of dynamically drawn representations.

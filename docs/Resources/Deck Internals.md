@@ -1,7 +1,21 @@
-Cockpitdecks is designed to accommodate different deck models.
-To allow Cockpitdeck to manage a new deck model, two interfaces need to be provided.
+Cockpitdecks is designed to accommodate different deck types.
+To allow Cockpitdeck to manage a new deck type, two interfaces need to be provided.
 
-# Deck Definition
+## Glossary
+
+A Deck is a physical device. It has 
+
+- a Manufacturer
+- a Model name
+- a Serial number
+
+Inside Cockpitdecks, a Deck has the following attributes:
+
+- a **Type**, which is an internal name for a deck "model". The **Type** of a Deck explicitely describes the capabilities of the Deck (number of buttons, display capabilities, etc.)
+- a **Driver**, which is a link to the software that make the "bridge" between Cockpitdecks and the device connected to the computer.
+
+
+# Deck Types
 All buttons available for interaction are listed in a configuration file that enumerates all buttons, their interaction and display capabilities.
 Here is a configuration file for a Loupedeck Loupedecklive device.
 
@@ -9,8 +23,10 @@ Here is a configuration file for a Loupedeck Loupedecklive device.
 # This is the description of a deck's capabilities for a Loupedeck LoupedeckLive device
 #
 ---
-name: loupedeck
+type: loupedecklive
+brand: Loupedeck
 model: loupedecklive
+driver: loupedeck
 buttons:
     - name: 0
       action: push
@@ -41,6 +57,11 @@ buttons:
       repeat: 8
 ```
 
+> [!NOTE]
+> In this very special case, there will be a conflict because a portion of the screen is used twice: The `center` screen correspond to the 12 push buttons. Deck should use either one but not both. If both remain activated, Cockpitdecks will warn about illegal use of center screen for button or the opposite. Example:
+> `set_key_image: key «center»: invalid index for center display, aborting set_key_image`
+> These warnings can safely be ignored. To suppress the warning, simply comment out the portion of unused buttons.
+
 ## Configuration Attributes
 
 ### Name
@@ -67,8 +88,8 @@ Feedback ability of the button. Feedback visualisation can be:
 ### Image
 If the feedback visuallisation is an iconic image, the `image` attribute specifies the characteristics of the image (size, and eventually, position on a larger surface.)
 
-## Deck Defintion Result
-The result of a deck definition is the list of valid definitions for each button of that deck. This includes, for each button, its activation capabilities, its representation capabilties, and the list of valid index name to designate a precise button on the deck.
+## Deck Type Result
+The result of a deck definition is the list of valid definitions for each button of that deck. This includes, for each button, its activation capabilities, its representation capabilities, and the list of valid index name to designate a precise button on the deck.
 Here is an excerpt of the meta data available in the definition of a button:
 
 ```yaml
@@ -153,9 +174,9 @@ slider:
 ...
 ```
 
-The meta data is available in each button.
+The meta data is available in each individual button.
 
-# Deck Hardware Interface
+# Deck Driver (Hardware Interface)
 The second interface provided for decks is the software necessary to:
 1. Collect interactions from the device (which button has been pressed, how long?, which encoder has been turned, how fast?)
 2. Send feedback visualisation instruction to the device to reflect the state change.
@@ -175,10 +196,14 @@ Currently, this require the coding of a single python class with the following f
 - scale_icon_for_key
 - send_key_image_to_device
 - set_key_image
-*If the deck has virating capabilities*:
+*If the deck has sound and/or vibrating capabilities*:
 - vibrate
-*If the deck has button color capabilties*:
+*If the deck has lit button with color capabilities*:
 - set_button_color
+*If the deck has lit button without color capabilities*:
+- set_button_led
+*If the deck has lit button with several led capabilities* (led ramps, etc.):
+- set_button_encoder_led
 
 The following functions are also necessary and can be overwritten if necessary.
 
@@ -229,4 +254,9 @@ For deck with iconic display capabilities:
 # Other Simulator Software
 
 Cockpitdecks software has been organized in such a way that it could probably be used with other simulator software, provided some adaptation of course. Adaptation would be confined to the interaction of Cockpitdecks with the simulator software.
+
+Interaction from Cockpitdeck to simulator software:
+1. Execute command (without parameter)
+2. Change parameter (dataref) value
+3. Read parameter (dataref) value (at up to 2-5 Hz frequency)
 

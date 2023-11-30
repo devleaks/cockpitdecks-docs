@@ -10,19 +10,20 @@ Label-font=…
 Icon-background=…
 All these grouped into a style?
 May be provide default-airbus.Yaml, default-Boeing.Yaml?
+Style could simply be an includes of defaults.
 
-Make knobs airbus like (different styles)
+
 
 Make a350/a380 type tick marks on rotating knobs. LED around knob
 
 Make a icon-builder app (electron?)
 
-Abstraction of command?
-Create an abstraction for a XPlane command? (Like a dataref, but with a type.)
+Abstraction of command:
 Allow for « local » commands like change page, stop, inspect.
 Command has a list of optional/mandatory arguments, especially local commands.
 When executed, a command receive an instance of cockpit? Xplane? App?
 
+Large displays: Gently pressing on a part of the display triggers FCU mode changes like Speed/Mach, Heading/Track, or even knobs push/pull (with long press). May be vertical swipes will increase/decrease values.
 
 # Development Process
 Base idea: create a single « plugin » for all decks. Hide deck particularities, they all have buttons, encoders, led, iconic image…
@@ -41,6 +42,7 @@ Think « miniCockpit »
 Add OSC/MIDI relay type to be able to create cockpit in OSCTouch.
 Make electron app for icon design that spits out Yaml button definitions.
 Evolve towards library
+Behave similarly as TouchPortal
 
 
 ## Status
@@ -62,7 +64,3 @@ Elec volt
 Hyd Pressure
 AirCo "flow"
 Oxy?
-
-# request by batch
-
-Limit max number of datarefs to monitor.

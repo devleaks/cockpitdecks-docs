@@ -1,6 +1,6 @@
 A Deck represents a physical device connected to the computer, be it a
 
-- Elgato Stream Deck, 
+- Elgato Stream Deck,
 - Loupedeck Loupedeck Live, or
 - Berhinger X-Touch Mini,
 
