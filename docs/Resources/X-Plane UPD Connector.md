@@ -11,5 +11,3 @@ The *dataref collection loop* permanently collects data from X-Plane and notifie
 If it cannot connect to X-Plane, or if the data collection otherwise fails, a time out occurs.
 When several times out have occured, the collection process disconnects and terminates. (There is no need to monitor dataref values if we cannot collect them.) It will be restarted by the connect loop once a new connection is established.
 The *dataref collection loop* is created and managed by the `XPlaneUDP` class.
-
-We experimentally observed that there is a limit of about ~100 datarefs that can be requested from X-Plane. To request more datarefs, you can request them by batch of less than 100 datarefs and switch batches of requested datarefs at regular interval. It works very well.

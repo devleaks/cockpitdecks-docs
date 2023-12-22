@@ -67,6 +67,16 @@ The position of the label is a 2 letter code:
 1. l, c, or r for left, center, or right-justified on the image (horizontal alignment),
 2. t, m, or b, for top, middle, or bottom of the image (vertical alignment).
 
+## Button Options
+
+Regularly, buttons have additional paparemeteres.
+
+The button options parameter is a string of comma separated options. An option is either a simple string or word, or a name=value string.
+
+`options: 3dot,appearance=metal,mode=open,level=6`
+
+Options are, by nature, not indispensable to the button’s activation or rendering but rather add to it to alter behaviour or appearance.
+
 # Button Value
 A Button has a value that is maintained and used mainly for representation.
 Please head [[Button Value|here]] for details about a button's value computation.

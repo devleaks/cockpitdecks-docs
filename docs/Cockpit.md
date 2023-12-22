@@ -16,11 +16,15 @@ XPlaneAircraftFolder
   ⊢ deckconfig
     ⊢ config.yaml
     ⊢ secret.yaml
-    ⊢ icons
-    ⊢ fonts
     ⊢ resources
-      ⊢ config.yaml
-    ⊢ docs
+      ⊢ icons
+        ⊢ icon-off.png
+        ⊢ icon-on.jpg
+	  ⊢ fonts
+	    ⊢ B612-Regular.otf
+	    ⊢ DIN.ttf
+      ⊢ docs
+        ⊢ README.md
     ⊢ layout1
       ⊢ config.yaml
       ⊢ page1.yaml
@@ -34,17 +38,17 @@ XPlaneAircraftFolder
 ```
 
 The  `deckconfig` folder contains the following files and sub-folders:
-### Icons
+### Resources
+Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft.
+#### Icons
 Folder containing all icon images for that aircraft. Images should be in JPEG or PNG format. Typical icon size is 256 × 256 pixels, RGB(A). Icons are named after their file name without the extension.
-### Fonts
+#### Fonts
 Folder containing specific fonts used for that aircraft.
 Typical fonts include standard, formal font like DIN, icon fonts like FontAwesome or WeatherIcon font, or fancier font like 7-bar LED fonts. Fonts are named by their file name without extension for TrueType fonts. Open Type Fonts need to supply their extension `.otf`.
-### Resources
-Resources are other images, wallpapers, and texts used and related to that aircraft.
-### Docs
+#### Docs
 Docs folder may contain documentation files, like explanatory images, and descriptive texts. Simpler text or markdown files are preferred.
 ### Layout Folders
-Following the above folder, there will be one folder per Layout for a deck.
+Newt to the the above *resources* folder, there will be one folder per Layout for a deck.
 [[Layout|Layout folders]] are explained separately.
 
 # Config.yaml File

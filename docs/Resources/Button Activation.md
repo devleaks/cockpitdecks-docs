@@ -75,6 +75,10 @@ Push button that will carry the command as long as the button will remain presse
 
 Long press command should not be confused with auto-repeat commands. A Longpress command in one command that is executed once as long as the button remain pressed. An auto-repeat command is the same command that is executed several times at regular interval (typically once every 0.2 seconds, 5 times per second) as long as the button is pressed.
 
+> [!NOTE]
+> The Longpress command requires installation of a XPPYthon3 plugin in X-Plane to circumvent a few X-Plane UDP limitations.
+
+
 ## Attributes
 
 `command`

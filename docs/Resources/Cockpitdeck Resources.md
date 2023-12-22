@@ -14,7 +14,7 @@ All values should be in the [0..255] range. For colors, 0 is black, 255 is pure 
 Cockpitdecks uses the same convention as [python number to text formatting](https://docs.python.org/3/library/string.html#format-examples).
 
 # Fonts
-Font files need to be placed in the `deckconfig/fonts` folder.
+Font files need to be placed in the `deckconfig/resources/fonts` folder.
 Font files must be either Truetype fonts (TTF) or Opentype fonts (OTF).
 The name of the file is used to designate the font.
 Fonts are loaded on start up.
@@ -27,32 +27,43 @@ Cockpitdeck comes with a few fonts appropriate for aeronautical use: Standard fo
 For Truetype font, it is not necessary to add the `.ttf` extension. For Opentype fonts it is necessary to add the `.otf` extension.
 
 # Icons
-Icon image files need to be placed in the `deckconfig/icons` folder.
+Icon image files need to be placed in the `deckconfig/resources/icons` folder.
 Image files must be either JPEG images (JPG, JPEG) or Portable Network Graphic (PNG).
+
 The name of the file is used to designate the icon.
+
 Icons are loaded on start up, uniformly resized and cached for faster successsive starts.
-Typical icon size should be (square) 128 to 256 pixels. Internally, Cockpitdeck use 256 pixel icons. Icons are resized to the deck requested size upon display.
+Typical icon size should be (square) 128 to 256 pixels.
+
+Internally, Cockpitdeck use 256 pixel icons. Icons are resized to the deck requested size upon display.
 
 ```
 	icon: OFF_WHITE_FRAMED
 ```
 
 # Resources
+
 Resources are in the `deckconfig/resources` folder.
 A few wallpaper images are used for display on idle deck.
 
 # Documentation
+
 Documentation of the aircraft decks can be placed in the folder `deckconfig/docs` or in the folder  `deckconfig/resources` in a textual form (including markdown), or as PDF.
 
 # Yaml
+
 All configuration files are Yaml formatted. Yaml is simple, structured, and readable.
 
 Yaml is loaded and interpreted by the python Yaml parser. Users must be aware that some *keywords* are sometimes interpreted by some parser. To prevent this interpretation, keywords should be placed between quotes.
+
 For example:
+
 `variable: on`
 will be interpreted as boolean value *true*.
+
 `variable: "on"`
 will be interpreted as string `on`.
+
 The following keywords have been noticeably discovered:
 on, off, true, false, yes, no (all mapped to Boolean values True or False).
 

@@ -1,23 +1,23 @@
 Cockpitdecks is designed to accommodate different deck types.
-To allow Cockpitdeck to manage a new deck type, two interfaces need to be provided.
+To allow Cockpitdecks to manage a new deck type, two interfaces need to be provided.
 
 ## Glossary
 
 A Deck is a physical device. It has 
 
-- a Manufacturer
-- a Model name
-- a Serial number
+- a Manufacturer (`brand`))
+- a Model name (`model`)
+- a Serial number, supplied in the `secret.yaml` file.
 
 Inside Cockpitdecks, a Deck has the following attributes:
 
-- a **Type**, which is an internal name for a deck "model". The **Type** of a Deck explicitely describes the capabilities of the Deck (number of buttons, display capabilities, etc.)
-- a **Driver**, which is a link to the software that make the "bridge" between Cockpitdecks and the device connected to the computer.
+- A **Type**, which is an internal name for a deck "model". The **Type** of a Deck explicitely describes the capabilities of the Deck (number of buttons, display capabilities, etc.)
+- A **Driver**, which is a link to the software that make the "bridge" between Cockpitdecks and the device connected to the computer.
 
 
 # Deck Types
-All buttons available for interaction are listed in a configuration file that enumerates all buttons, their interaction and display capabilities.
-Here is a configuration file for a Loupedeck Loupedecklive device.
+All buttons available for interaction are listed in a configuration file that enumerates all buttons, their possible interaction and display capabilities.
+Here is a configuration file for a Loupedeck LoupedeckLive device.
 
 ```yaml
 # This is the description of a deck's capabilities for a Loupedeck LoupedeckLive device
@@ -69,6 +69,7 @@ Name of the button.
 
 ### Action
 Interaction with the button. Interaction can be:
+
 - `none`: There is no interaction with the button. It is only used for display purpose.
 - `press`: Simple press button that only reports when it is pressed (one event)
 - `push`: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.
@@ -79,6 +80,7 @@ Interaction with the button. Interaction can be:
 
 ### View
 Feedback ability of the button. Feedback visualisation can be:
+
 - none: No feedback on device, or direct feedback provided by some marks on the deck device.
 - image: Small LCD iconic image.
 - led: Simple On/Off LED light.
@@ -86,7 +88,7 @@ Feedback ability of the button. Feedback visualisation can be:
 - colored-led: A single LED that can be colored.
 
 ### Image
-If the feedback visuallisation is an iconic image, the `image` attribute specifies the characteristics of the image (size, and eventually, position on a larger surface.)
+If the feedback visuallisation is an iconic image, the `image` attribute specifies the characteristics of the image (size, and eventually, position on a larger surface.) `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
 
 ## Deck Type Result
 The result of a deck definition is the list of valid definitions for each button of that deck. This includes, for each button, its activation capabilities, its representation capabilities, and the list of valid index name to designate a precise button on the deck.
@@ -177,37 +179,60 @@ slider:
 The meta data is available in each individual button.
 
 # Deck Driver (Hardware Interface)
+
 The second interface provided for decks is the software necessary to:
+
 1. Collect interactions from the device (which button has been pressed, how long?, which encoder has been turned, how fast?)
 2. Send feedback visualisation instruction to the device to reflect the state change.
 
 This require the coding of a bridge between Cockpitdecks and the API that controls the device.
 
 Currently, this require the coding of a single python class with the following functions:
+
 **General**:
+
 - make_default_page
 - render
+
 **Interaction control**:
+
 - key_change_callback
+
+(in more recent versions of drivers, there sometimes is a callback function per interaction type: key_change_call_back, dial_change_callback, touch_callback...)
+
 **Feedback**:
+
 *If the deck has image capabilities*:
+
 - get_display_for_pil
 - create_icon_for_key
 - scale_icon_for_key
 - send_key_image_to_device
 - set_key_image
+
 *If the deck has sound and/or vibrating capabilities*:
+
 - vibrate
+
 *If the deck has lit button with color capabilities*:
+
 - set_button_color
+
 *If the deck has lit button without color capabilities*:
+
 - set_button_led
+
 *If the deck has lit button with several led capabilities* (led ramps, etc.):
+
 - set_button_encoder_led
 
 The following functions are also necessary and can be overwritten if necessary.
 
 ```python
+    def __init__(self, name: str,
+                       config: dict,
+                       cockpit: "Cockpit",
+                       device = None):
     def init(self):
     def get_id(self):
     def read_definition(self):
@@ -233,8 +258,6 @@ The following functions are also necessary and can be overwritten if necessary.
     def render(self, button: Button):
     def start(self):
     def terminate(self):
-    def __init__(self, name: str, config: dict,
-                       cockpit: "Cockpit", device = None):
 ```
 
 For deck with iconic display capabilities:
@@ -256,7 +279,8 @@ For deck with iconic display capabilities:
 Cockpitdecks software has been organized in such a way that it could probably be used with other simulator software, provided some adaptation of course. Adaptation would be confined to the interaction of Cockpitdecks with the simulator software.
 
 Interaction from Cockpitdeck to simulator software:
+
 1. Execute command (without parameter)
 2. Change parameter (dataref) value
-3. Read parameter (dataref) value (at up to 2-5 Hz frequency)
+3. Read parameter (dataref) value (at up to ~2 to 5 Hz frequency)
 

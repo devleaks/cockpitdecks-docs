@@ -5,6 +5,7 @@ An Annunciator image is build dynamically from its definition and from data comi
 Annunciator do not specify what they do, this is done by the button activation definition. Annunciator only address the representation of the button, the content of the image displayed on a deck key.
 
 On a deck, the representation of keys that accepts images can either be
+
 1. One or more icons, the icon being displayed at a given moment is determined by data provided by X-Plane,
 2. A switch, which is a dynamically built image of a switch or circular switch,
 3. An Annunciator, which is an alternate image, dynamically built from a definition and data provided by X-Plane or button status.
@@ -16,9 +17,11 @@ Annunciators exits in 3 sizes:
 2. Medium, rectangular, 5/8in × 1in, or smaller but in the 5:8 ratio.
 3. Small, rectangular, 1/2in × 1in, or smaller but in the 1:2 ratio. (Or sometimes 3:8 ratio.)
 Given the limited size of deck key images (typically less that 100 pixels), annunciator always occupy the maximum space on the key. However, the above size of the annunciator govern the aspect ratio of the image: 1:1, 5:8, 1:2.
+
 ![[annunciator-sizes.png]]
 
-##  Annunciator Type
+##  Annunciator Model
+
 Annunciator can display from 1 to 4 different data or information on a single key. Depending on the *annunciator model*, data is displayed on two rows, in two colums.
 ![[a-parts.png]]
 
@@ -27,6 +30,7 @@ Each portion of an annunciator that can be used to display information is called
 Annunciator of type F can display 4 different informations. The button underlying such an annunciator has therefore 4 distinct values.
 
 ## Annunciator Parts
+
 Each annunciator part is defined independently of the other parts.
 In a part, displayed information is either
 1. A Text, which can optionally be framed, or
@@ -115,6 +119,7 @@ The first style is *Korry* (`annunciator-style: k`), where the annunciator appea
 ![[korry.png]]![[korry-glow.png]]
 
 The second style is *Vivisun* (`annunciator-style: v`). When the annunciator is not lit, it has the color of the button (usually black) and no text is readable. When lit, displays on a Vivisun annunciator are sharp, very much like a "retina display" (high resolution display).
+
 ![[vivisun.png]]
 
 Both styles truthfully reproduce keys on decks. Combined with the adjustment of the intensity of the deck back light, they provide a real immersive experience.
@@ -128,13 +133,17 @@ Annunciators can optionally be protected by plastic cover guards.
 ### Guards as Drawn
 ![[guards.png]]
 ## Attributes
+
 `dateref`
 Dataref path to value driving the guard status (open or protected).
+
 `type`
 Cover or grid
+
 `color`
 Color of guard. Defaults to red.
 Translucent color (with alpha, or transparency channel) can be supplied.
+
 `color: (255, 0, 0, 100)`
 Is a translucent red color (r,g,b,a), a=0=transparent, a=255=full opaque.
 

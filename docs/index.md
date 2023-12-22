@@ -2,7 +2,7 @@ Cockpitdecks is a set of python scripts to use external physical decks connected
 
 External decks include the following make and models:
 
-- Elgato Streamdeck small, Mk.2, XL, and Plus
+- Elgato Stream Deck small, Mk.2, XL, and Plus
 - Loupedeck LoupedeckLive
 - Berhinger X-Touch Mini
 
