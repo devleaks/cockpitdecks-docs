@@ -7,6 +7,16 @@ Streamdeck Mk.2, XL, Mini are composed of square icon keys. Image sizes vary wit
 Streamdeck + (Plus) as 8 square keys, 4 knobs, and 1 larger LCD capable of touch interactions.
 
 
+![[streamdeckplus.png]]
+
+## Encoders
+
+Streamdeck Plus encoders are aligned at the bottom of the deck and have indices e0 to e3.
+
+## Touchscreen
+
+Streamdeck Plus has a 800x100 pixel touchscreen between the keys and the encoders.
+
 # Indices for Loupedeck Devices
 ![[loupedecklive.png]]
 ## Keys
