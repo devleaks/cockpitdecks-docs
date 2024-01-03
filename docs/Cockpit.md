@@ -118,12 +118,14 @@ XPLive: AAA0000000000000000000A0000
 ```
 
 # Global Cockpitdecks Configuration
-Configuration et customization is organized in a hierarchical way. The the top, highest level is Cockpitdecks, the application.
+Configuration et customization is organized in a **hierarchical** way. The the top, highest level is Cockpitdecks, the application.
 Under Cockpitdecks is the Cockpit. If not redefined after, all attributes defined in the Cockpit are used for all other elements.
 Under the Cockpit is the Deck. This allow to change a few parameters for each deck. For example, a given deck might have large icons, requiring the use of a large default font size.
-Under the Deck is the Layout. This allow to change a few parameters for each layout, like the background color of a panel.
+Under the Deck is the Layout. This allow to change a few parameters for each layout, like the background color of a panel. Layout parameters are melted into Deck parameters.
 Under the Layout is the Page, to control page-level specificities, like, for exemple, a specific background color or texture for a special page.
 That's it. At the "lowest" level, at the Button level, there are no default global values, just the values the button will use.
+
+![[hierarchy.png]]
 
 `deckconfig` folders reside in X-Plane aircraft folders and are specific to that aircraft.
 In addition to these aircraft specific folders, Cockpitdecks has a global configuration folder called `resources` located where the Cockpitdecks software resides.
