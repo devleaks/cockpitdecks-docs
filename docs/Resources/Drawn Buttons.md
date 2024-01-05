@@ -34,17 +34,22 @@ Switches, Circular Switches, and Push Switches have numerous attributes in commo
 ### Switches as Drawn
 ![[switches-design.png]]
 ### Options
+
 `options: 3way`
 Defines a switch with 3 positions, 2 extremities, and one middle position.
+
 `options: horizontal`
 Draws and manipulates the switch horizontally rather than vertically.
+
 `options: hexa`
 Draws an hexagonal base to mimic Airbus switch inserts and fixation instead of a round base (default).
+
 `options: invert`
 Inverts On and Off positions.
 
 # Circular Switch
 A Circular Switch is a rotating knob/switch used to represent a rotation switch. It is displayed on an image key. Circular switches are often used by Up/Down activation to cycle and bounce through the set of possible values.
+
 They can be used in replacement of multi-icons.
 
 ```
@@ -70,27 +75,28 @@ They can be used in replacement of multi-icons.
 ```
 
 ## Attributes
-Button-size
-Button-stroke-color
-Button-fill-color
-Button-underline-color
-Button-underline-width
-Needle-color
-Needle-width
-Needle-underline-color
-Needle-underline-width
-Stops
-Tick-labels
-Label-font
-Label-color
-Label-size
-Tick-color
-Tick-width
-Thik-underline-color
-Thik-underline-width
-Label-space
-Thik-Space
-Top, bottom, left, right
+
+- Button-size
+- Button-stroke-color
+- Button-fill-color
+- Button-underline-color
+- Button-underline-width
+- Needle-color
+- Needle-width
+- Needle-underline-color
+- Needle-underline-width
+- Stops
+- Tick-labels
+- Label-font
+- Label-color
+- Label-size
+- Tick-color
+- Tick-width
+- Thik-underline-color
+- Thik-underline-width
+- Label-space
+- Thik-Space
+- Top, bottom, left, right
 
 ### Circular Switch Models
 
@@ -100,12 +106,13 @@ Top, bottom, left, right
 ![[rotating-selector-design.png]]
 ![[circular-switches.png]]
 # Push Button
-`button-size`
-`button-color`
-`button-off-color`
-`witness-fill-color`
-`witness-stroke-color`
-`witness-stroke-width`
+
+- `button-size`
+- `button-color`
+- `button-off-color`
+- `witness-fill-color`
+- `witness-stroke-color`
+- `witness-stroke-width`
 
 A PushButton is a simple button that can be used to trigger a command. It can be On or Off, and it's state can be reflected graphically by adjusting its color for instance.
 
@@ -119,14 +126,19 @@ Knobs are circular rotating buttons used to set values by rotating the button cl
 So we shall just say that Knob icons can be used as simple push button, with an alternative representation.
 
 # Data
+
 A DataButton is a particular case of a display only button.
+
 ![[data.png]]
+
 A DataButton displays four informations:
+
 1. A single letter or icon from a character font, (we can use icon fonts,)
 2. A value, and optionally the trend of the value (rising, decreasing, statuquo)
 3. A unit short text (static)
 4. An optional percentage bar of the value relative to a 100% value
 5. A small text string (typically ~20 characters maximum) called the bottom line.
+
 
 ```
   - index: 4
@@ -156,21 +168,23 @@ Data button representation aims at providing a dashboard-like single value highl
 
 Decor representation displays simple connected lines to populate unused icons. They can be used to display visual helper lines that connect annunciators (bleed air, hydraulics, etc.) The idea behind Decor icons is to provide a quick alternative to blank icons when filling large decks with numerous keys.
 
-![[decor-real.jpeg]]
-
 Decor icon are governed by two parameters `type` and `code`. The type is a category of drawings. The code determine which drawing will be made in that category.
 
 ## Lines
+
 `type: line`
 
 Decor icons of type `line` display a single horizontal or vertical line, and corner angles. The `code` determine which line get drawn.
+
 ![[decor.png]]
+
 ```
 type: line
 code: H
 ```
-
+![[H.png]]
 ## Segments
+
 `type: segment`
 
 Decor icons of type `segment` display segments that are present in the `code` attribute.
@@ -182,12 +196,15 @@ code: BGNSIL0123
 ```
 will light (turn on) segments B, G, N... 3, which correspond will result in a drawing like the one proposed by the `H` code in type `line` above.
 
+![[I0123LBGNS.png]]
 ## Common Decor Attributes
 
 ### Line width
+
 `width: 10`
 Width of the line.
 ### Color
+
 `color: red`
 Color of the line.
 
@@ -209,7 +226,9 @@ If a `set-dataref` is present, the aircraft representation increases the value o
 (Please refer to the dedicated [[Weather|Weather Representation]] page.)
 
 ## METAR
+
 The WeatherButton is a special data button that displays METAR information of the station closest to the aircraft in a small, iconic representation.
+
 
 ```
   - index: 8
@@ -217,6 +236,7 @@ The WeatherButton is a special data button that displays METAR information of th
     type: weather
     station: OTHH
 ```
+
 ![[weather.png]]
 
 ## TAF
@@ -225,8 +245,6 @@ The WeatherButton is a special data button that displays METAR information of th
 
 ## Current X-Plane Weather
 
-
 ### Region
-
 
 ### Aircraft
