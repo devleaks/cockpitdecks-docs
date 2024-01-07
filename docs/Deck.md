@@ -38,7 +38,7 @@ Optional. Default label size. Cockpitdecks manipulates icon 256x256 pixels.
 `default-homepage-name`
 Optional. Default page name in layout. Default to `index`.
 
-> Note: The type of Deck defines the "device driver" that will be used to talk to the deck. If a new model of deck appears in the future, it will be necessary to design its "device driver" for Cockpitdecks to use it.
+> [!NOTE] The type of Deck defines the "device driver" that will be used to talk to the deck. If a new model of deck appears in the future, it will be necessary to design its "device driver" for Cockpitdecks to use it.
 
 # Deck Layout
 For a given aircraft, a deck has a Layout. The [[Layout]] of a deck is a collection of [[Page|Pages]] that will be used and displayed on the deck device.
