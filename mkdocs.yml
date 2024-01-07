@@ -2,7 +2,7 @@ site_name: Cockpitdecks Documentation
 
 theme:
     name: 'material'
-    logo: assets/airbus-sidestick.svg
+    logo: assets/aircraft.png
     palette:
 
     # Light mode
