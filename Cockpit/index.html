@@ -1,0 +1,1257 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Button/">
+      
+      
+        <link rel="next" href="../Deck/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Cockpit - Cockpitdecks Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Slab";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/dracula.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aircraft-configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Cockpitdecks Documentation" class="md-header__button md-logo" aria-label="Cockpitdecks Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89 2.12 9.19-1.41 1.42-3.88-7.43L9.6 17l.36 2.47-1.07 1.06-1.76-3.18-3.19-1.77L5 14.5l2.5.37L11.37 11 3.94 7.09l1.42-1.41 9.19 2.12 3.89-3.89c.56-.58 1.56-.58 2.12 0Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cockpitdecks Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cockpit
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="dracula" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cockpitdecks Documentation" class="md-nav__button md-logo" aria-label="Cockpitdecks Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89 2.12 9.19-1.41 1.42-3.88-7.43L9.6 17l.36 2.47-1.07 1.06-1.76-3.18-3.19-1.77L5 14.5l2.5.37L11.37 11 3.94 7.09l1.42-1.41 9.19 2.12 3.89-3.89c.56-.58 1.56-.58 2.12 0Z"/></svg>
+
+    </a>
+    Cockpitdecks Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Cockpit
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Cockpit
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#icons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Icons
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-folders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layout Folders
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../History/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Installation%20for%20Users%20of%20Wortelus%27%20X-Plane%20Elgato%20Stream%20Deck%20Connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation for Users of Wortelus' X Plane Elgato Stream Deck Connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Layout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Simulator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simulator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/About%20X-Plane%20UDP%20Interaction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About X Plane UDP Interaction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Animated%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Animated Buttons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Annunciator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annunciator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Button%20Activation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Activation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Button%20Activations%20for%20Developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Activations for Developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Button%20Attribute%20Default%20Values/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Attribute Values
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Button%20Index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Button%20Representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Button%20Value/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Value
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Cockpitdeck%20Resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpitdeck Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Cockpitdecks%20Internals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpitdecks Internals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Deck%20Internals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deck Internals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Drawn%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drawn Buttons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Icons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Laminar%20X-Plane%20and%20Toliss%20Specific%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X-Plane Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Larger%20Displays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Larger Displays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/To%20do/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    To do
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/Weather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/X-Plane%20Interaction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X Plane Interaction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Resources/X-Plane%20UPD%20Connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X Plane UPD Connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#icons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Icons
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fonts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-folders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Layout Folders
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<p>The Cockpit is the container entity of Cockpitdecks. <em>For a given aircraft</em>, it locates deck definitions, loads them and prepares each deck for use with X-Plane.</p>
+<h1 id="aircraft-configuration">Aircraft Configuration<a class="headerlink" href="#aircraft-configuration" title="Permanent link">&para;</a></h1>
+<p>Decks are particular to an aircraft. Cockpitdeck will look for a folder named <code>deckconfig</code> in the X-Plane folder of that aircraft.</p>
+<p>Cockpidecks will first look for a file named <code>config.yaml</code> in the <code>deckconfig</code> folder. In that file, Cockpitdecks will find all decks connected to the system and available to it. It will also find a few global parameters.</p>
+<p>Cockpidecks will also look for a file named <code>secret.yaml</code> in the <code>deckconfig</code> folder. In that file, Cockpitdeck will find information such as the serial numbers of the deck devices used. Serial numbers are needed to distinguish all decks of a similar type.</p>
+<p>Configuration files for decks are all Yaml-formatted files.</p>
+<div class="highlight"><pre><span></span><code>XPlaneAircraftFolder
+  (...)
+  ⊢ deckconfig
+    ⊢ config.yaml
+    ⊢ secret.yaml
+    ⊢ resources
+      ⊢ icons
+        ⊢ icon-off.png
+        ⊢ icon-on.jpg
+      ⊢ fonts
+        ⊢ B612-Regular.otf
+        ⊢ DIN.ttf
+      ⊢ docs
+        ⊢ README.md
+    ⊢ layout1
+      ⊢ config.yaml
+      ⊢ page1.yaml
+      ⊢ page2.yaml
+      ...
+    ...
+    ⊢ layoutN
+      ⊢ page1.yaml
+      ⊢ page2.yaml
+      ...
+</code></pre></div>
+<p>The  <code>deckconfig</code> folder contains the following files and sub-folders:</p>
+<h3 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h3>
+<p>Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft.</p>
+<h4 id="icons">Icons<a class="headerlink" href="#icons" title="Permanent link">&para;</a></h4>
+<p>Folder containing all icon images for that aircraft. Images should be in JPEG or PNG format. Typical icon size is 256 × 256 pixels, RGB(A). Icons are named after their file name without the extension.</p>
+<h4 id="fonts">Fonts<a class="headerlink" href="#fonts" title="Permanent link">&para;</a></h4>
+<p>Folder containing specific fonts used for that aircraft.<br />
+Typical fonts include standard, formal font like DIN, icon fonts like FontAwesome or WeatherIcon font, or fancier font like 7-bar LED fonts. Fonts are named by their file name without extension for TrueType fonts. Open Type Fonts need to supply their extension <code>.otf</code>.</p>
+<h4 id="docs">Docs<a class="headerlink" href="#docs" title="Permanent link">&para;</a></h4>
+<p>Docs folder may contain documentation files, like explanatory images, and descriptive texts. Simpler text or markdown files are preferred.</p>
+<h3 id="layout-folders">Layout Folders<a class="headerlink" href="#layout-folders" title="Permanent link">&para;</a></h3>
+<p>Newt to the the above <em>resources</em> folder, there will be one folder per Layout for a deck.<br />
+<a href="../Layout/">Layout folders</a> are explained separately.</p>
+<h1 id="configyaml-file">Config.yaml File<a class="headerlink" href="#configyaml-file" title="Permanent link">&para;</a></h1>
+<p>The file named <code>config.yaml</code> in the <code>deckconfig</code> folder contains declarations for each <a href="../Deck/">deck</a> that will be used and global, aircraft-level attributes.</p>
+<div class="highlight"><pre><span></span><code># Definition of decks for Toliss A321
+#
+aicraft: Toliss A321
+decks:
+  - name: XPLive
+    type: loupedeck
+    layout: live
+    brightness: 70
+# These attributes are default values at global level
+default-wallpaper-logo: Airbus-logo.png
+default-icon-color: (94, 111, 130)
+default-label-color: white
+default-label-font: DIN.ttf
+default-label-size: 14
+cockpit-color: lightblue
+</code></pre></div>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
+<p>The parameters apply to all decks for the given aircraft.</p>
+<h3 id="aircraft">aircraft<a class="headerlink" href="#aircraft" title="Permanent link">&para;</a></h3>
+<p>Optional information. The name of the aircraft for this set of deck.</p>
+<h3 id="cockpit-color">cockpit-color<a class="headerlink" href="#cockpit-color" title="Permanent link">&para;</a></h3>
+<p>Color for the cockpit. This color is used as the default background color for icons.</p>
+<h3 id="cockpit-texture">cockpit-texture<a class="headerlink" href="#cockpit-texture" title="Permanent link">&para;</a></h3>
+<p>Name of a image file (JPEG or PNG) that will be used as the (default) background of icons.<br />
+The <code>cockpit-texture</code> file will be searched at different places depending on where it is specified.<br />
+The <code>cockpit-texture</code> file can be specified at the Cockpit, Deck, Page, or Button level.<br />
+Cockpit-level default textures will be seached in the following folders (in that order):<br />
+- <code>resources</code><br />
+- <code>resources/icons</code><br />
+If the AIRCRAFT is specified, Cockpit-level textures and all other levels textures will be searched in the following folders:<br />
+- <code>AIRCRAFT/resource</code><br />
+- <code>AIRCRAFT/icons</code><br />
+If a texture is not found at a lower level, the texture of the level above is used.<br />
+If no texture is found, a uniform <code>cockpit-color</code> icon is used.</p>
+<h3 id="default-wallpaper-logo">default-wallpaper-logo<a class="headerlink" href="#default-wallpaper-logo" title="Permanent link">&para;</a></h3>
+<p>Name of image file, located in the <code>resource</code> folder, to be loaded when the deck is not used.</p>
+<h3 id="default-">default-*<a class="headerlink" href="#default-" title="Permanent link">&para;</a></h3>
+<p>Name of default values of several parameters, defined at the aircraft-level. These values will be used for all missing values. They can be raffined at Layout and Page level if necessary.<br />
+If no aircraft-level global parameter values are not provided, Cockpitdecks will use its own internal default values.</p>
+<h3 id="decks">decks<a class="headerlink" href="#decks" title="Permanent link">&para;</a></h3>
+<p>A list of deck structure, one per <a href="../Deck/">deck</a>.</p>
+<p>Yaml allow for other attributes in the file. They are ignored by Cockpitdecks. You may include other attributes like aircraft name, ICAO code, descriptions, notes, even change log of your file.</p>
+<h1 id="secretyaml-file">Secret.yaml File<a class="headerlink" href="#secretyaml-file" title="Permanent link">&para;</a></h1>
+<p>The secret.yaml file contains the serial numbers of your connected decks.<br />
+If you have more than one deck of the same type (i.e. two Streamdecks, two X-TouchMini, etc.) this file is mandatory to distinguish between the two physical devices. Otherwise, it is optional.</p>
+<div class="highlight"><pre><span></span><code># My decks and their serial numbers.
+# Format:
+# DeckName: Serial number
+# DeckName must match name given in config.yaml.
+XPLive: AAA0000000000000000000A0000
+</code></pre></div>
+<h1 id="global-cockpitdecks-configuration">Global Cockpitdecks Configuration<a class="headerlink" href="#global-cockpitdecks-configuration" title="Permanent link">&para;</a></h1>
+<p>Configuration et customization is organized in a <strong>hierarchical</strong> way. The the top, highest level is Cockpitdecks, the application.</p>
+<p>Under Cockpitdecks is the Cockpit. If not redefined after, all attributes defined in the Cockpit are used for all other elements.</p>
+<p>Under the Cockpit is the Deck. This allow to change a few parameters for each deck. For example, a given deck might have large icons, requiring the use of a large default font size.</p>
+<p>Under the Deck is the Layout. This allow to change a few parameters for each layout, like the background color of a panel. Layout parameters are melted into Deck parameters.</p>
+<p>Under the Layout is the Page, to control page-level specificities, like, for exemple, a specific background color or texture for a special page.</p>
+<p>That's it. At the "lowest" level, at the Button level, there are no default global values, just the values the button will use.<br />
+<img alt="hierarchy.png" src="../images/hierarchy.png" /><br />
+This hierarchical organisation is exploited in <a href="../Resources/Button%20Attribute%20Default%20Values/">default value lookups</a>.</p>
+<h2 id="resources-folder">Resources Folder<a class="headerlink" href="#resources-folder" title="Permanent link">&para;</a></h2>
+<p><code>deckconfig</code> folders reside in X-Plane aircraft folders and are specific to that aircraft.<br />
+In addition to these aircraft specific folders, Cockpitdecks has a global configuration folder called <code>resources</code> located where the Cockpitdecks software resides.</p>
+<p><code>resources</code> folder located where the Cockpitdecks software resides contains the following files and subfolders:</p>
+<h2 id="configyaml">config.yaml<a class="headerlink" href="#configyaml" title="Permanent link">&para;</a></h2>
+<p>This is a global level configuration file. It always is loaded first and can be overwritten by aircraft, deck, or page-specific variants.</p>
+<h2 id="icons_1">icons<a class="headerlink" href="#icons_1" title="Permanent link">&para;</a></h2>
+<p>Icons in this folder are available to all aircrafts.</p>
+<h2 id="fonts_1">fonts<a class="headerlink" href="#fonts_1" title="Permanent link">&para;</a></h2>
+<p>Fonts in this folder are available to all aircrafts.<br />
+Cockpitdecks provides a few fonts found here and there together with their respective copyright files.</p>
+<h2 id="docs_1">docs<a class="headerlink" href="#docs_1" title="Permanent link">&para;</a></h2>
+<p>A copy of Cockpitdecks documentation is included there. The documentation folder produced in the GitHub wiki of Cockpitdecks.</p>
+<h2 id="image-files">Image files<a class="headerlink" href="#image-files" title="Permanent link">&para;</a></h2>
+<p>The resource folder contains a few image files used as logos and wallpapers.<br />
+There is also an image with color names that can be used in <code>color</code> attributes.</p>
+<h2 id="iconfontspy">iconfonts.py<a class="headerlink" href="#iconfontspy" title="Permanent link">&para;</a></h2>
+<p>This file defines icon fonts. Icon fonts are fonts that are used to display iconic characters often named intuitively. Cockpitdecks comes with a copy of Font Awesome icons, and Weather Icons.</p>
+<h2 id="constantspy">constants.py<a class="headerlink" href="#constantspy" title="Permanent link">&para;</a></h2>
+<p>Defines a few constants that should never be changed. Change at your own risk.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>In summary, a Cockpit is defined for a given X-Plane aircraft.<br />
+A Cockpit contains one or more Decks. Each Deck represent a physical deck device used to interact with X-Plane. A Deck is assigned a Layout. A Layout is a collection of Pages. Each Page defines what knobs and buttons on the physical deck do, when they are turned or pushed, and what information they displays in return (through images or LEDs), information extracted from X-Plane data and behavior.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

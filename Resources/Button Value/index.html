@@ -1,0 +1,1330 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Button%20Representation/">
+      
+      
+        <link rel="next" href="../Cockpitdeck%20Resources/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Button Value - Cockpitdecks Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Slab";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/dracula.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#value-sources" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cockpitdecks Documentation" class="md-header__button md-logo" aria-label="Cockpitdecks Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89 2.12 9.19-1.41 1.42-3.88-7.43L9.6 17l.36 2.47-1.07 1.06-1.76-3.18-3.19-1.77L5 14.5l2.5.37L11.37 11 3.94 7.09l1.42-1.41 9.19 2.12 3.89-3.89c.56-.58 1.56-.58 2.12 0Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cockpitdecks Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Button Value
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="dracula" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cockpitdecks Documentation" class="md-nav__button md-logo" aria-label="Cockpitdecks Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89 2.12 9.19-1.41 1.42-3.88-7.43L9.6 17l.36 2.47-1.07 1.06-1.76-3.18-3.19-1.77L5 14.5l2.5.37L11.37 11 3.94 7.09l1.42-1.41 9.19 2.12 3.89-3.89c.56-.58 1.56-.58 2.12 0Z"/></svg>
+
+    </a>
+    Cockpitdecks Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Button/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cockpit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../History/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation%20for%20Users%20of%20Wortelus%27%20X-Plane%20Elgato%20Stream%20Deck%20Connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation for Users of Wortelus' X Plane Elgato Stream Deck Connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Layout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Simulator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simulator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../About%20X-Plane%20UDP%20Interaction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About X Plane UDP Interaction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Animated%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Animated Buttons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Annunciator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annunciator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Activation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Activation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Activations%20for%20Developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Activations for Developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Attribute%20Default%20Values/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Attribute Values
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Button Value
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Button Value
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#x-plane-dataref" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Plane Dataref
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="X-Plane Dataref">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cockpitdecks-internal-dataref" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cockpitdecks Internal Dataref
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-button-activation-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internal Button (Activation) Value
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cockpitdeck%20Resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpitdeck Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cockpitdecks%20Internals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpitdecks Internals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deck%20Internals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deck Internals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Drawn%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drawn Buttons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Icons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Laminar%20X-Plane%20and%20Toliss%20Specific%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X-Plane Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Larger%20Displays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Larger Displays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../To%20do/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    To do
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Weather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../X-Plane%20Interaction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X Plane Interaction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../X-Plane%20UPD%20Connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X Plane UPD Connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#x-plane-dataref" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Plane Dataref
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="X-Plane Dataref">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cockpitdecks-internal-dataref" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cockpitdecks Internal Dataref
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internal-button-activation-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Internal Button (Activation) Value
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<p>A Button can have 0, 1, or more than one value in the special case of <a href="../Annunciator/">annunciators</a> or side buttons. Activations and Representations of the button knows how to manage the different values.</p>
+<p>Each value of a button is either None or a numeric value (floating point number). If a button has several values, its value is a list of all individual values, each individual value being None or a number.</p>
+<p>A button builds its representation from its <em>value</em>. The <em>value</em> of the button is computed from one or more dataref values returned by X-Plane and/or from some internal state variable values.</p>
+<h1 id="value-sources">Value Sources<a class="headerlink" href="#value-sources" title="Permanent link">&para;</a></h1>
+<p>A Button can get its value from the following sources:</p>
+<ol>
+<li>A single X-Plane <em>Dataref</em></li>
+<li>A <em>formula</em> that combines both dataref values and/or button internal state values</li>
+</ol>
+<p>If no attribute determine the value of a button, it will return its internal state.</p>
+<h2 id="x-plane-dataref">X-Plane Dataref<a class="headerlink" href="#x-plane-dataref" title="Permanent link">&para;</a></h2>
+<p>A <em>dataref</em> is the name of a value used by the X-Plane simulator.<br />
+The value can be a string, integer, or float value, either a single value or an array of (same type of) values. A dataref has a name to access it. Names are organized in a folder-like structure (namespace using <code>/</code> separator). Some datarefs are read-only, some other can be written and modified.</p>
+<h4 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Dataref name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sim/cockpit/misc/barometer_setting</td>
+<td>Float</td>
+<td>Value of the atmospheric pressure at the aircraft location in inches of mercury</td>
+</tr>
+</tbody>
+</table>
+<p>There are thousands of datarefs in a running instance of X-Plane. Datarefs drive almost everything in the simulator.</p>
+<p>A dataref is always monitored. Its value is fetched from the simulator at regular internval (typically every second). When a Dataref's value has changed, all buttons that depend on that Dataref are notified to update their appearance.</p>
+<p>To explore datarefs, there is a handy X-Plane plugin called <a href="https://datareftool.com">DataRefTool</a>. There are also a few web pages that collect, report, and present them so that they can be searched.</p>
+<h2 id="cockpitdecks-internal-dataref">Cockpitdecks Internal Dataref<a class="headerlink" href="#cockpitdecks-internal-dataref" title="Permanent link">&para;</a></h2>
+<p>Cockpitdecks manages its own set of <em>datarefs</em>.<br />
+All datarefs that starts with a special key word are <em>NOT</em> forwarded to X-Plane but rather managed internally inside Cockpitdecks. Otherwise, they are not different from X-Plane datarefs. They can be set and used like any other datarefs.<br />
+When a button emit an internal dataref, it's definition mention it clearly so that it can be used by other buttons.</p>
+<div class="highlight"><pre><span></span><code>   set-dateref: Cockpitdecks/my-local-variable
+
+# in the same or another button, it can be used like so:
+
+   formula: ${Cockpitdecks/my-local-variable}
+</code></pre></div>
+<p>In the above example, the prefix <code>Cockpitdecks/</code> denotes internal datarefs.</p>
+<p>The current default prefix for internal datarefs is <code>data:</code>.</p>
+<p>Internal datarefs can be used as inter-button communication, to set a value in one button, and use or read it in another one.</p>
+<h2 id="internal-button-activation-value">Internal Button (Activation) Value<a class="headerlink" href="#internal-button-activation-value" title="Permanent link">&para;</a></h2>
+<p>When a button cannot fetch its representation from X-Plane, it is possible to use some Cockpitdecks internal variables made available through the button <em>state</em>. Each button maintain its state, a few internal variables, that can be accessed in formula.<br />
+State variables made available to formula are listed in the <a href="../Button%20Activation/">Button Activation</a> page.<br />
+The value of the button can then be either a list of (name, value) pairs, or a single value.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">formula</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nv">state</span><span class="p p-Indicator">:</span><span class="nv">button_pressed_count</span><span class="p p-Indicator">}</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod 2</span>
+</code></pre></div>
+<h1 id="value-normalisation">Value Normalisation<a class="headerlink" href="#value-normalisation" title="Permanent link">&para;</a></h1>
+<p>The raw value acquired from a source may not be usable by a button representation. Before a raw value can be used by a representation, it needs <em>normalisation</em>. The normlaisation of a value is the process of transforming the (raw) value from the datarefs or formula in values usable for representation.</p>
+<h3 id="rounding">Rounding<a class="headerlink" href="#rounding" title="Permanent link">&para;</a></h3>
+<p>Some dataref values are changing very rapidly over time, sometimes in insignificant changes. To prevent updating a button's state each time a value changes, a Dataref value can be rounded.</p>
+<div class="highlight"><pre><span></span><code>sim/weather/aircraft/qnh_pas 0
+</code></pre></div>
+<p>Value 101308.35278 will be rounded to 101308.</p>
+<h3 id="examples-of-normalisation-need">Examples of Normalisation Need<a class="headerlink" href="#examples-of-normalisation-need" title="Permanent link">&para;</a></h3>
+<ul>
+<li>a LED can can be turned On or Off need to receive a boolean value, On or Off as an indicator to light the LED or not, while the formula combining datarefs might return a float value.</li>
+<li>a switch that can have 5 different positions must receive a value between 1 and 5 to determine which position to represent. Not 0, not 6, which are invalid values for its representation.</li>
+</ul>
+<h1 id="button-with-no-value">Button with No Value<a class="headerlink" href="#button-with-no-value" title="Permanent link">&para;</a></h1>
+<p>Some button may not maintain any state or use any value. Example of such button are simple push button with no feedback mean.</p>
+<h1 id="single-dataref-value">Single Dataref Value<a class="headerlink" href="#single-dataref-value" title="Permanent link">&para;</a></h1>
+<p>The value of the button is determined by a single dataref value.</p>
+<h2 id="binary-value">Binary Value<a class="headerlink" href="#binary-value" title="Permanent link">&para;</a></h2>
+<p>In its simple form, the value of a button is deduced from the value of a single dataref. If the value of the dataref is zero, the representation is OFF, otherwise, it is ON.</p>
+<h2 id="continuous-range-value">Continuous Range Value<a class="headerlink" href="#continuous-range-value" title="Permanent link">&para;</a></h2>
+<p>The status of a button is deduced from the value of either a single dataref, or a formula expression.<br />
+Ranges are used as buckets to determine in which range/bucket the value falls. Then, the number index of the range, starting with 0, is used to determine which icon to display.<br />
+There must be a matching number of ranges and icons.<br />
+(Note: Currently not used.)</p>
+<h1 id="combining-multiple-values-formula">Combining Multiple Values: Formula<a class="headerlink" href="#combining-multiple-values-formula" title="Permanent link">&para;</a></h1>
+<p>A Representation is driven by a <em>single final value</em>. However, it is possible to compute that final value form a list of dataref values and mathematical operations. This is done through a <code>formula</code> attribute. The formula is written in <a href="https://en.wikipedia.org/wiki/Reverse_Polish_notation">Reverse Polish Notation</a>, a method to write and execute operations on values. Since a formula allows for value transformation, a formula should always produce a value that is directly usable by a representation. The value of a button can be computed from data coming either from X-Plane (through dataref values) and/or from the button's internal state values.</p>
+<p>Examples of <code>formula</code>:</p>
+<div class="highlight"><pre><span></span><code>    # Simple math (in reverse polish notation):
+    formula: ${AirbusFBW/OHPLightsATA34[8]} 2 * floor
+
+    # Constant 1; always 1; always True or On
+    formula: 1
+
+    # Insert 0 = true, 1 = false
+    formula: ${sim/cockpit2/switches/avionics_power_on} 1 - abs
+
+    # Boolean operation not
+    formula: ${sim/cockpit2/switches/avionics_power_on} not
+
+    # Boolean operation
+    formula: ${AirbusFBW/OHPLightsATA34[8]} 4 eq
+
+    # Formula used for display of a value
+    formula: ${sim/cockpit/misc/barometer_setting} 33.8639 *
+    text: ${formula}
+    text-format: &quot;{: 4.0f}&quot;
+
+    # The following two lines are equivalent; they both return the same value
+    formula: ${sim/cockpit/autopilot/vertical_velocity} 
+    dataref: sim/cockpit/autopilot/vertical_velocity
+</code></pre></div>
+<p>Only one formula attribute can be used for a button or a annunciator part.</p>
+<h2 id="expression">Expression<a class="headerlink" href="#expression" title="Permanent link">&para;</a></h2>
+<p>The <em>formula</em> for computation is expressed in <em>Reverse Polish Notation</em>.<br />
+The result of the formula is a <em>numeric value</em> (float value that can be rounded to an integer if necessary.)</p>
+<p>It is intimidating at first to write RPN formula, but once a user get use to it, it actually is equaly easy to write RPN formula and formula with parenthesis.<br />
+In a nutshell, rather than writing<br />
+<code>(8 / 2) + (4 × 5)</code><br />
+in RPN, we write<br />
+<code>8 2 / 4 5 × +</code><br />
+We place the value we act upon first, then the operation we perform on those values.<br />
+`</p>
+<h3 id="operators">Operators<a class="headerlink" href="#operators" title="Permanent link">&para;</a></h3>
+<p>The following operator have been added:<br />
+- <code>%</code>: Pushes reminder of division of last two elements, modulo.<br />
+- <code>floor</code>: Round element to smaller interger value.<br />
+- <code>ceil</code>: Round element to larger interger value.<br />
+- <code>round</code>: Last element rounded to closest integer value.<br />
+- <code>roundn</code>: Element rounded to last element of stack (forced to interger):<br />
+<code>1.2345 2 roundn =&gt; 1.23</code><br />
+- <code>abs</code>: Absolute value of last element<br />
+- <code>chs</code>: Change sign of last element<br />
+- <code>eq</code>: Test for equality of last two elements. Pushes 1 for True, 0 for False on the stack.<br />
+- <code>not</code>: Boolean not operator, insert True and False values.</p>
+<h2 id="variable-substitution">Variable Substitution<a class="headerlink" href="#variable-substitution" title="Permanent link">&para;</a></h2>
+<p>In formula:</p>
+<ul>
+<li><code>${dataref-path}</code> is replaced by the scalar value (converted to float) of the dataref pointed by <code>dataref-path</code>. Example: <code>${sim/aircraft/fuel/tankleft}</code>.</li>
+<li><code>${state:name}</code> is replaced by the scalar value of the (current) button' state variable named <code>name</code>. Names of available state variables depend on the activation; each activation lists internal state variables made available through the button' state. Example: <code>${state:activation_count}</code>.</li>
+<li><del><code>${button:cockpit-name:deck-name:page-name:button-name:button-variable-name}</code>:  Substitute de given button name by its value. Example:  <code>${button:Airbus A321:sd-xl:efis:apu:status:activation_count}</code> . If no button variable name is given, the current value of the button is returned.</del></li>
+</ul>
+<p>In all case, if the value is not found, it is replaced by None, which translate into 0 (zero) in formula (to prevent the formula from failing to compute). If the value is not found, a warning message is reported.</p>
+<p>The following formula determine the final status On(=1) or Off(=0) from the number of times a button was pressed:</p>
+<div class="highlight"><pre><span></span><code>formula: ${state:activation_count} 2 %
+</code></pre></div>
+<h1 id="multiple-button-values">Multiple Button Values<a class="headerlink" href="#multiple-button-values" title="Permanent link">&para;</a></h1>
+<p>In case a button has multiple values, each value comes from a part of the button. Each part of the button is independant of other parts of the same button. Each part maintains its single value.<br />
+All part values are aggregated into either a <em>dictionary</em> of values or an <em>array</em> of values that is made available at the button level.<br />
+For example, Annunciator, or Side representation, have more than one individual values that are fetched and maintained to provide a single table (or array) of individual values.<br />
+Another example is a button that has more than one dataref and no formula. In this case, the returned value is a dictionary of all dataref values of that button.</p>
+<h1 id="button-initial-value">Button Initial Value<a class="headerlink" href="#button-initial-value" title="Permanent link">&para;</a></h1>
+<p>A Button can force its first, initial value to set its startup or original state.</p>
+<div class="highlight"><pre><span></span><code>    initial-value: 2
+</code></pre></div>
+<p>This value is assigned as the button's current value on startup.<br />
+In case of a Button with multiple values, each value has a independant <code>initial-value</code> attribute.</p>
+<h1 id="dataref-sets">Dataref Sets<a class="headerlink" href="#dataref-sets" title="Permanent link">&para;</a></h1>
+<p>A 32 button page can quickly request more than 40 datarefs from the simulator. The simulator takes a few precious cpu cycles to pack and send datarefs. We experimentally found a limit around one hundred datarefs. The fewer requests, the better. Unless otherwise specified, Cockpitdecks request a dataref once per second. Datarefs are sent in UDP packets of about 14 values. It takes on average 2 or 3 UDP packets to get all dataref values.<br />
+To limit to number of requested datarefs at a point in time, and to allow for almost unlimited datarefs requests, Cockpitdecks has the concept of <em>Dataref Set</em>.<br />
+A Dataref Set is a limited number of datarefs that are requested from the simulator together.<br />
+The <strong>Dataref Set Collector</strong> is responsible for scheduling the collection of multiple dataref sets, one at a time.<br />
+Each dataref in a set is monitored, value changes are registered, a Dataref Set is said to be <em>completed</em> when all dataref values have been received at least once.</p>
+<p>A button can have a <code>dataref-sets</code> attribute, it is a set of individual <em>Dataref Set</em>s. The attributes of a Dataref Set are described in the following Section. A button will receive completion events for each individual set, and anither « total » completion event when all sets are completed.</p>
+<h2 id="dataref-collection-attributes">Dataref Collection Attributes<a class="headerlink" href="#dataref-collection-attributes" title="Permanent link">&para;</a></h2>
+<h3 id="name">Name<a class="headerlink" href="#name" title="Permanent link">&para;</a></h3>
+<p>Collection name. Must be unique for Cockpitdecks.<br />
+Attempt to register a set with an existing name will fail to register the second set.</p>
+<h3 id="datarefs">Datarefs<a class="headerlink" href="#datarefs" title="Permanent link">&para;</a></h3>
+<p>List of datarefs in set.<br />
+There is a maximum value of datarefs in a set (20). If more datarefs are requested, a warning is sent and additional datarefs are ignored.</p>
+<h3 id="time-to-live">Time to Live<a class="headerlink" href="#time-to-live" title="Permanent link">&para;</a></h3>
+<p>How long, after all datarefs have been collected at least once (set is <em>completed</em>) does the Collector schedule the collection again for update. The set will be completed again after all datarefs have been updated <em>after</em> the collection has been requested for update.</p>
+<h3 id="array">Array<a class="headerlink" href="#array" title="Permanent link">&para;</a></h3>
+<p>The <code>array</code> attribute is an integer value. If present, it tells that each datarefs in the <code>datarefs</code> attribute is an array of values of size <code>array</code>. All datarefs in the set must have the same array length. As a result, this attribute will lead to the creation of <code>array</code> sets, one fo each element of the array of dataref values.<br />
+Typical arrays of values that can be requested as such are weather data like clouds or wind layers:</p>
+<div class="highlight"><pre><span></span><code>set-dataref: data:all-cloud-layers-completed
+dataref-collections:
+    -
+        name: cloud-layers
+        datarefs:
+            - sim/weather/aircraft/base
+            - sim/weather/aircraft/tops
+            - sim/weather/aircraft/cloud_type
+            - sim/weather/aircraft/coverage
+        array: 3
+        set-dataref: data:cloud-layer-completed
+    -       
+</code></pre></div>
+<p>The above example will create 3 equal sets of 1 datarefs and is equivalent to the following:<br />
+Please note how sets are named after the root name above.</p>
+<div class="highlight"><pre><span></span><code>dataref-collections:
+    -
+        name: cloud-layer#0
+        datarefs:
+            - sim/weather/aircraft/cloud_type[0]
+        set-dataref: data:cloud-layer-completed[0]
+    -
+        name: cloud-layer#1
+        datarefs:
+            - sim/weather/aircraft/cloud_type[1]
+        set-dataref: data:cloud-layer-completed[1]
+    -
+        name: cloud-layer#2
+        datarefs:
+            - sim/weather/aircraft/cloud_type[2]
+        set-dataref: data:cloud-layer-completed[2]
+    -
+</code></pre></div>
+<h3 id="set-dataref">set-dataref<a class="headerlink" href="#set-dataref" title="Permanent link">&para;</a></h3>
+<p>A dataref that is set to an incremental value each time the <em>set</em> is completed.</p>
+<p>In the above example, <code>data:cloud-layer-completed[2]</code> local dataref will be set to an incremented value each time the set of four datarefs is completed, while the value of local dataref <code>data:all-cloud-layers-completed</code> will be set to an incremented value when all three sets are completed.</p>
+<blockquote>
+<p>If a Dataref Collection is too large, it simply can be split into smaller Collections.<br />
+A dataref can be part of multiple sets.</p>
+</blockquote>
+<h2 id="dataref-sets-dataref-values">Dataref Sets Dataref Values<a class="headerlink" href="#dataref-sets-dataref-values" title="Permanent link">&para;</a></h2>
+<p>Datarefs in sets are not available through the Page. They must directly be accessed through the set in the Collector. The Collector is part of the <a href="../../Simulator/">Simulator</a>.</p>
+<h4 id="access-in-page">Access in Page<a class="headerlink" href="#access-in-page" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_dataref_value</span><span class="p">(</span><span class="n">dataref_name</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="access-in-dataref-sets">Access in Dataref Sets<a class="headerlink" href="#access-in-dataref-sets" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">collector</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="n">collection_name</span><span class="p">]</span><span class="o">.</span><span class="n">datarefs</span><span class="p">[</span><span class="n">dataref_name</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="dataref-sets-collector">Dataref Sets Collector<a class="headerlink" href="#dataref-sets-collector" title="Permanent link">&para;</a></h2>
+<p>The Dataref Sets Collector fetches sets of datarefs one at a time.<br />
+It is started by the Simulator.<br />
+If no set needs updating, the Collector does nothing.<br />
+If a set is loaded for update, the Collector regularly monitor its progress. When all datarefs in the set have been updated (the set is said to be <em>completed</em>), the Collector unloads the set from update and notifies the set's owner of completion. If some dataref in the set do not get updated for a while (timeout), the Collector temporary unloads the set and schedule another set for collection. Sets are scheduled randomly with a probability that increases over time to prevent starvation (very much like UNIX nice(1)).<br />
+The Dataref Sets Collector is awaken every minute to check whether sets need updating.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

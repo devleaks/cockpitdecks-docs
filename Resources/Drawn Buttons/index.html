@@ -1,0 +1,1295 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Deck%20Internals/">
+      
+      
+        <link rel="next" href="../Examples/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Drawn Buttons - Cockpitdecks Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Slab";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/dracula.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#switch" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cockpitdecks Documentation" class="md-header__button md-logo" aria-label="Cockpitdecks Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89 2.12 9.19-1.41 1.42-3.88-7.43L9.6 17l.36 2.47-1.07 1.06-1.76-3.18-3.19-1.77L5 14.5l2.5.37L11.37 11 3.94 7.09l1.42-1.41 9.19 2.12 3.89-3.89c.56-.58 1.56-.58 2.12 0Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cockpitdecks Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Drawn Buttons
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="dracula" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cockpitdecks Documentation" class="md-nav__button md-logo" aria-label="Cockpitdecks Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89 2.12 9.19-1.41 1.42-3.88-7.43L9.6 17l.36 2.47-1.07 1.06-1.76-3.18-3.19-1.77L5 14.5l2.5.37L11.37 11 3.94 7.09l1.42-1.41 9.19 2.12 3.89-3.89c.56-.58 1.56-.58 2.12 0Z"/></svg>
+
+    </a>
+    Cockpitdecks Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Button/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cockpit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../History/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation%20for%20Users%20of%20Wortelus%27%20X-Plane%20Elgato%20Stream%20Deck%20Connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation for Users of Wortelus' X Plane Elgato Stream Deck Connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Layout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Simulator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simulator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../About%20X-Plane%20UDP%20Interaction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About X Plane UDP Interaction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Animated%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Animated Buttons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Annunciator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annunciator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Activation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Activation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Activations%20for%20Developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Activations for Developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Attribute%20Default%20Values/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Attribute Values
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Value/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Value
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cockpitdeck%20Resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpitdeck Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cockpitdecks%20Internals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpitdecks Internals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deck%20Internals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deck Internals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Drawn Buttons
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Drawn Buttons
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#switch-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switches-as-drawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switches as Drawn
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Icons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Laminar%20X-Plane%20and%20Toliss%20Specific%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X-Plane Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Larger%20Displays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Larger Displays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../To%20do/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    To do
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Weather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../X-Plane%20Interaction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X Plane Interaction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../X-Plane%20UPD%20Connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X Plane UPD Connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#switch-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switches-as-drawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switches as Drawn
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<p>A few set of special buttons are dynamically drawn based on attributes.<br />
+Attributes are numerous to allow for design flexibility, however default values will always provide a usable representation.</p>
+<p>The idea of drawn buttons came after the flexibility discovered when designing <a href="../Annunciator/">Annunciators</a>. All annunciators are drawn buttons: Texts, frames, basic icons…</p>
+<h1 id="switch">Switch<a class="headerlink" href="#switch" title="Permanent link">&para;</a></h1>
+<p>A Switch is a drawing of a two or three-way switch on an image key.<br />
+Switches are often used by On/Off activations.<br />
+They can be used in replacement of an icon.</p>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
+<p>Ticks are marks on the side of the switch to label corresponding positions. The tick underline is the visual line line that connect all ticks.</p>
+<div class="highlight"><pre><span></span><code>    switch:
+      switch-style: 3dot
+      tick-underline: true
+      tick-label-size: 36
+      tick-label-font: DIN Bold
+      tick-labels:
+        - &quot;ON&quot;
+        - &quot;MID&quot;
+        - &quot;OFF&quot;
+    options: 3way,horizontal
+</code></pre></div>
+<p>Switches, Circular Switches, and Push Switches have numerous attributes in common to control their appearance. See Circular Switches for a list.</p>
+<h3 id="switch-model">Switch Model<a class="headerlink" href="#switch-model" title="Permanent link">&para;</a></h3>
+<p><img alt="switches.png" src="../../images/switches.png" /></p>
+<h3 id="switches-as-drawn">Switches as Drawn<a class="headerlink" href="#switches-as-drawn" title="Permanent link">&para;</a></h3>
+<p><img alt="switches-design.png" src="../../images/switches-design.png" /></p>
+<h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
+<p><code>options: 3way</code><br />
+Defines a switch with 3 positions, 2 extremities, and one middle position.</p>
+<p><code>options: horizontal</code><br />
+Draws and manipulates the switch horizontally rather than vertically.</p>
+<p><code>options: hexa</code><br />
+Draws an hexagonal base to mimic Airbus switch inserts and fixation instead of a round base (default).</p>
+<p><code>options: invert</code><br />
+Inverts On and Off positions.</p>
+<h1 id="circular-switch">Circular Switch<a class="headerlink" href="#circular-switch" title="Permanent link">&para;</a></h1>
+<p>A Circular Switch is a rotating knob/switch used to represent a rotation switch. It is displayed on an image key. Circular switches are often used by Up/Down activation to cycle and bounce through the set of possible values.</p>
+<p>They can be used in replacement of multi-icons.</p>
+<div class="highlight"><pre><span></span><code>    circular-switch:
+      switch-style: normal
+      down: 20
+      left: 20
+      tick-from: 135
+      tick-to: 315
+      tick-space: 20
+      tick-underline-width: 12
+      tick-color: red
+      tick-underline-color: red
+      needle-color: lime
+      needle-length: 130
+      tick-labels:
+        - &quot;0&quot;
+        - &quot;1&quot;
+        - &quot;2&quot;
+        - &quot;3&quot;
+        - &quot;4&quot;
+        - &quot;5&quot;
+</code></pre></div>
+<h2 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Button-size</li>
+<li>Button-stroke-color</li>
+<li>Button-fill-color</li>
+<li>Button-underline-color</li>
+<li>Button-underline-width</li>
+<li>Needle-color</li>
+<li>Needle-width</li>
+<li>Needle-underline-color</li>
+<li>Needle-underline-width</li>
+<li>Stops</li>
+<li>Tick-labels</li>
+<li>Label-font</li>
+<li>Label-color</li>
+<li>Label-size</li>
+<li>Tick-color</li>
+<li>Tick-width</li>
+<li>Thik-underline-color</li>
+<li>Thik-underline-width</li>
+<li>Label-space</li>
+<li>Thik-Space</li>
+<li>Top, bottom, left, right</li>
+</ul>
+<h3 id="circular-switch-models">Circular Switch Models<a class="headerlink" href="#circular-switch-models" title="Permanent link">&para;</a></h3>
+<p><img alt="circular-switches.jpg" src="../../images/circular-switches.jpg" /></p>
+<h3 id="circular-switches-as-drawn">Circular Switches as Drawn<a class="headerlink" href="#circular-switches-as-drawn" title="Permanent link">&para;</a></h3>
+<p><img alt="rotating-selector-design.png" src="../../images/rotating-selector-design.png" /><br />
+![[circular-switches.png]]</p>
+<h1 id="push-button">Push Button<a class="headerlink" href="#push-button" title="Permanent link">&para;</a></h1>
+<ul>
+<li><code>button-size</code></li>
+<li><code>button-color</code></li>
+<li><code>button-off-color</code></li>
+<li><code>witness-fill-color</code></li>
+<li><code>witness-stroke-color</code></li>
+<li><code>witness-stroke-width</code></li>
+</ul>
+<p>A PushButton is a simple button that can be used to trigger a command. It can be On or Off, and it's state can be reflected graphically by adjusting its color for instance.</p>
+<h3 id="push-button-models">Push Button Models<a class="headerlink" href="#push-button-models" title="Permanent link">&para;</a></h3>
+<p>Later…</p>
+<h3 id="push-bottons-as-drawn">Push Bottons as Drawn<a class="headerlink" href="#push-bottons-as-drawn" title="Permanent link">&para;</a></h3>
+<p><img alt="knobs-design.png" src="../../images/knobs-design.png" /></p>
+<h1 id="knob">Knob<a class="headerlink" href="#knob" title="Permanent link">&para;</a></h1>
+<p>Knobs are circular rotating buttons used to set values by rotating the button clockwise or counterclockwise. Although they can be drawn and « turn » according to dataref values, they cannot currently be used with activations to trigger their rotation. Real, physical rotation knobs must be used instead. (Mimicking a rotation knob with a push button is a difficult task that requires awkward manipulations such as long pushes. We may later offer a possibility to allow for rotation knows on icon button, because the surface of some icon button (LoupedeckLive) reacts to touch and swipes. It would therefore be possible to detect precisely where the button was touched (left, right, up, center…) and assign activations accordingly.)<br />
+So we shall just say that Knob icons can be used as simple push button, with an alternative representation.</p>
+<h1 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h1>
+<p>A DataButton is a particular case of a display only button.</p>
+<p><img alt="data.png" src="../../images/data.png" /></p>
+<p>A DataButton displays four informations:</p>
+<ol>
+<li>A single letter or icon from a character font, (we can use icon fonts,)</li>
+<li>A value, and optionally the trend of the value (rising, decreasing, statuquo)</li>
+<li>A unit short text (static)</li>
+<li>An optional percentage bar of the value relative to a 100% value</li>
+<li>A small text string (typically ~20 characters maximum) called the bottom line.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>  - index: 4
+    name: Fuel Level
+    type: none
+    label: Fuel
+    label-size: 10
+    label-position: ct
+    data:
+      icon-name: &quot;gas-pump&quot;
+      data: 75.4256
+      data-format: &quot;{:02.0f}&quot;
+      data-font: DIN Condensed Light
+      data-size: 24
+      data-unit: &quot;%&quot;
+      data-progress: 100
+      data-trend: 0
+      dataref-rpn: ${sim/aircraft/fuel_level} 10 *
+      bottomline: Go Faster
+</code></pre></div>
+<p>Data button representation aims at providing a dashboard-like single value highlighted in a deck key image, very much like common web dashboards.</p>
+<p><img alt="dashboard.png" src="../../images/dashboard.png" /></p>
+<h1 id="decor">Decor<a class="headerlink" href="#decor" title="Permanent link">&para;</a></h1>
+<p>Decor representation displays simple connected lines to populate unused icons. They can be used to display visual helper lines that connect annunciators (bleed air, hydraulics, etc.) The idea behind Decor icons is to provide a quick alternative to blank icons when filling large decks with numerous keys.</p>
+<p>Decor icon are governed by two parameters <code>type</code> and <code>code</code>. The type is a category of drawings. The code determine which drawing will be made in that category.</p>
+<h2 id="lines">Lines<a class="headerlink" href="#lines" title="Permanent link">&para;</a></h2>
+<p><code>type: line</code></p>
+<p>Decor icons of type <code>line</code> display a single horizontal or vertical line, and corner angles. The <code>code</code> determine which line get drawn.</p>
+<p><img alt="decor.png" src="../../images/decor.png" /></p>
+<p><div class="highlight"><pre><span></span><code>type: line
+code: H
+</code></pre></div><br />
+<img alt="H.png" src="../../images/H.png" /></p>
+<h2 id="segments">Segments<a class="headerlink" href="#segments" title="Permanent link">&para;</a></h2>
+<p><code>type: segment</code></p>
+<p>Decor icons of type <code>segment</code> display segments that are present in the <code>code</code> attribute.<br />
+<img alt="segments.png" src="../../images/segments.png" /><br />
+For example:<br />
+<div class="highlight"><pre><span></span><code>type: segment
+code: BGNSIL0123
+</code></pre></div><br />
+will light (turn on) segments B, G, N... 3, which correspond will result in a drawing like the one proposed by the <code>H</code> code in type <code>line</code> above.</p>
+<p><img alt="I0123LBGNS.png" src="../../images/I0123LBGNS.png" /></p>
+<h2 id="common-decor-attributes">Common Decor Attributes<a class="headerlink" href="#common-decor-attributes" title="Permanent link">&para;</a></h2>
+<h3 id="line-width">Line width<a class="headerlink" href="#line-width" title="Permanent link">&para;</a></h3>
+<p><code>width: 10</code><br />
+Width of the line.</p>
+<h3 id="color">Color<a class="headerlink" href="#color" title="Permanent link">&para;</a></h3>
+<p><code>color: red</code><br />
+Color of the line.</p>
+<h1 id="aircraft">Aircraft<a class="headerlink" href="#aircraft" title="Permanent link">&para;</a></h1>
+<p>The aircraft representation displays the name of the aircraft (ICAO type designator) located in the dataref: <code>sim/aircraft/view/acf_ICAO</code>. All 4 (or more) characters are fetched and displayed in the icon. (We currently limit fetching the first four characters only, which should be sufficient for ICAO aircraft code designator.)</p>
+<p>The representation attribute is<br />
+<div class="highlight"><pre><span></span><code>    aircraft:
+      text-font: B612-Bold
+      text-size: 32
+</code></pre></div></p>
+<p>If a <code>set-dataref</code> is present, the aircraft representation increases the value of that dataref by one each time the aircraft name changes in the <code>sim/aircraft/view/acf_ICAO</code>. This can be used by other button or by Cockpitdecks itself to be notified of an aircraft or aircraft model change.</p>
+<h1 id="weather">Weather<a class="headerlink" href="#weather" title="Permanent link">&para;</a></h1>
+<p>(Please refer to the dedicated <a href="../Weather/">Weather Representation</a> page.)</p>
+<h2 id="metar">METAR<a class="headerlink" href="#metar" title="Permanent link">&para;</a></h2>
+<p>The WeatherButton is a special data button that displays METAR information of the station closest to the aircraft in a small, iconic representation.</p>
+<div class="highlight"><pre><span></span><code>  - index: 8
+    name: METAR
+    type: weather
+    station: OTHH
+</code></pre></div>
+<p><img alt="weather.png" src="../../images/weather.png" /></p>
+<h2 id="taf">TAF<a class="headerlink" href="#taf" title="Permanent link">&para;</a></h2>
+<p>(To do. Cycle through forecast each time button is pressed.)</p>
+<h2 id="current-x-plane-weather">Current X-Plane Weather<a class="headerlink" href="#current-x-plane-weather" title="Permanent link">&para;</a></h2>
+<h3 id="region">Region<a class="headerlink" href="#region" title="Permanent link">&para;</a></h3>
+<h3 id="aircraft_1">Aircraft<a class="headerlink" href="#aircraft_1" title="Permanent link">&para;</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

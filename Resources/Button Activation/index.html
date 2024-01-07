@@ -1,0 +1,1231 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Annunciator/">
+      
+      
+        <link rel="next" href="../Button%20Activations%20for%20Developers/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Button Activation - Cockpitdecks Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Slab";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/dracula.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#no-activation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cockpitdecks Documentation" class="md-header__button md-logo" aria-label="Cockpitdecks Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89 2.12 9.19-1.41 1.42-3.88-7.43L9.6 17l.36 2.47-1.07 1.06-1.76-3.18-3.19-1.77L5 14.5l2.5.37L11.37 11 3.94 7.09l1.42-1.41 9.19 2.12 3.89-3.89c.56-.58 1.56-.58 2.12 0Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cockpitdecks Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Button Activation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="dracula" data-md-color-primary="blue" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cockpitdecks Documentation" class="md-nav__button md-logo" aria-label="Cockpitdecks Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.56 3.91c.59.59.59 1.54 0 2.12l-3.89 3.89 2.12 9.19-1.41 1.42-3.88-7.43L9.6 17l.36 2.47-1.07 1.06-1.76-3.18-3.19-1.77L5 14.5l2.5.37L11.37 11 3.94 7.09l1.42-1.41 9.19 2.12 3.89-3.89c.56-.58 1.56-.58 2.12 0Z"/></svg>
+
+    </a>
+    Cockpitdecks Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Button/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cockpit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Deck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deck
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../History/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    History
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation%20for%20Users%20of%20Wortelus%27%20X-Plane%20Elgato%20Stream%20Deck%20Connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation for Users of Wortelus' X Plane Elgato Stream Deck Connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Layout/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Layout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Simulator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simulator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../About%20X-Plane%20UDP%20Interaction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About X Plane UDP Interaction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Animated%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Animated Buttons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Annunciator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annunciator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Button Activation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Button Activation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    <span class="md-ellipsis">
+      State
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Activations%20for%20Developers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Activations for Developers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Attribute%20Default%20Values/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Attribute Values
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Button%20Value/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Button Value
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cockpitdeck%20Resources/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpitdeck Resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cockpitdecks%20Internals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cockpitdecks Internals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deck%20Internals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deck Internals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Drawn%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drawn Buttons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simple Icons
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Laminar%20X-Plane%20and%20Toliss%20Specific%20Buttons/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X-Plane Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Larger%20Displays/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Larger Displays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../To%20do/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    To do
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Weather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Weather
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../X-Plane%20Interaction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X Plane Interaction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../X-Plane%20UPD%20Connector/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    X Plane UPD Connector
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    <span class="md-ellipsis">
+      State
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<p>In the definition of the button, the <code>type</code> attribute determine what the button will do.</p>
+<p>For a given button on a deck, the action that the button will be able to carry over is limited to a set of valid types. A push button is not capable of rotations of an encoder.</p>
+<p>Each activation below list configuration attributes and internal values it maintains. Numeric internal values are accessible as <code>${state:variable-name}</code> in formula.</p>
+<h1 id="no-activation">No Activation<a class="headerlink" href="#no-activation" title="Permanent link">&para;</a></h1>
+<p><code>type: none</code><br />
+Button with no activation are button used for <a href="../Button%20Value/">display purpose only</a>.</p>
+<h2 id="state">State<a class="headerlink" href="#state" title="Permanent link">&para;</a></h2>
+<p>In spite of having no activation, the button maintain an internal state.</p>
+<ul>
+<li><code>activation_count</code></li>
+<li><code>last_activated</code></li>
+<li><code>initial_value</code></li>
+<li><code>previous_value</code></li>
+<li><code>current_value</code></li>
+<li><code>guarded</code></li>
+<li><code>managed</code></li>
+</ul>
+<h1 id="page">Page<a class="headerlink" href="#page" title="Permanent link">&para;</a></h1>
+<p><code>type: page</code><br />
+When the button is pressed, a deck will load a page of buttons.</p>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h2>
+<p><code>page</code><br />
+Mandatory. Name of the page to load. The page must be in the Layout of the target deck.</p>
+<p><code>remote_deck</code><br />
+Optional. If present, will load the page on the target deck.</p>
+<h2 id="state_1">State<a class="headerlink" href="#state_1" title="Permanent link">&para;</a></h2>
+<p><code>page</code>: page that is currently displayed.</p>
+<h1 id="push">Push<a class="headerlink" href="#push" title="Permanent link">&para;</a></h1>
+<p><code>type: push</code><br />
+Push button.</p>
+<h2 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h2>
+<p><code>command</code><br />
+Mandatory. X-Plane command that is executed each time the button is pressed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Command is a mandatory parameter but if no command is necessary a command placeholder value can be used. Command placeholder value are any of the following string:<br />
+<code>none, noop, no-operation, no-command, do-nothing</code><br />
+They all are ignored and do not trigger any activity in X-Plane.</p>
+</div>
+<h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
+<p><code>auto-repeat</code><br />
+Auto repeat command at specified pace while the button remains pressed.</p>
+<p><code>auto-repeat</code> option accepts a couple of optional values:</p>
+<ul>
+<li><code>delay</code>: Time (in second) after which the auto-repeat starts, default to 1 second.</li>
+<li><code>speed</code>: Time (in second) between 2 executions of the command.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    options: auto-repeat=3/0.5,dot
+</code></pre></div>
+<p>Auto-repeat will start 3 second after the button was pressed, the command will auto-repeat every 0.5 seconds, twice per second. (<code>dot</code> option also set for other purpose.)</p>
+<h1 id="longpress">Longpress<a class="headerlink" href="#longpress" title="Permanent link">&para;</a></h1>
+<p><code>type: longpress</code><br />
+Push button that will carry the command as long as the button will remain pressed.</p>
+<p>Long press command should not be confused with auto-repeat commands. A Longpress command in one command that is executed once as long as the button remain pressed. An auto-repeat command is the same command that is executed several times at regular interval (typically once every 0.2 seconds, 5 times per second) as long as the button is pressed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Longpress command requires installation of a XPPYthon3 plugin in X-Plane to circumvent a few X-Plane UDP limitations.</p>
+</div>
+<h2 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h2>
+<p><code>command</code><br />
+Mandatory. X-Plane command that is executed while the button is pressed.<br />
+X-Plane will issue a <code>beginCommand</code> when the button is pressed and a <code>endCommand</code> when released.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that the use of longpress command needs the addition of a little plugin to circumvent X-Plane UDP limitations when used through UDP.</p>
+</div>
+<h1 id="onoff">OnOff<a class="headerlink" href="#onoff" title="Permanent link">&para;</a></h1>
+<p><code>type: onoff</code><br />
+Push button.</p>
+<h2 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h2>
+<p><code>commands</code><br />
+Optional pair of X-Plane commands that are executed alternatively. Two commands must be supplied, but the same command can be provided twice.</p>
+<p><code>set-dataref</code><br />
+Optional dataref to set On(=1) or Off (=0).</p>
+<p>Either attribute can be set or both. In the latter case, the command is first executed and then the dataref is set.</p>
+<h1 id="updown">UpDown<a class="headerlink" href="#updown" title="Permanent link">&para;</a></h1>
+<p><code>type: updown</code><br />
+Cycle Up and Down button.</p>
+<h2 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h2>
+<p><code>commands</code><br />
+X-Plane commands that are executed when pushes increase value, and when pushes descrease value.</p>
+<p><code>stops=3</code><br />
+Number of stop values. For example: Stops=3 will give 0-1-2-1-0 cycles, with 3 stops 0, 1, and 2.</p>
+<p><code>initial-value</code><br />
+If an initial value is supplied, it's sign indicated how the value will evolve.<br />
+For example, if the initial value is 1, the next value will be 2 (go up). If the initial value is -1, the initial value will be set to 1, but the next value will be zero (go down).</p>
+<p><code>set-dataref</code><br />
+Optional dataref to set the value of the current stop.</p>
+<p>Very much like On/Off activation either <code>commands</code> or <code>set-dataref</code> can be supplied or both.</p>
+<h1 id="encoder">Encoder<a class="headerlink" href="#encoder" title="Permanent link">&para;</a></h1>
+<p><code>Type: encoder</code><br />
+An Encoder is a rotating knob or dial with <em>steps</em>. Steps are often materialised by a little sound or a slight resistance in the rotation.</p>
+<h2 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h2>
+<p><code>commands</code><br />
+An Encoder has two commands, one that is executed for each step while turning clockwise, and one for each step when turning counter-clockwise.</p>
+<h2 id="state_2">State<a class="headerlink" href="#state_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>rotation_clockwise</code>: number of times/clicks the encoder was turned clockwise.</li>
+<li><code>rotation_counterclockwise</code>: same.</li>
+</ul>
+<h1 id="encoderpush">EncoderPush<a class="headerlink" href="#encoderpush" title="Permanent link">&para;</a></h1>
+<p><code>type: encoder-push</code><br />
+An EncoderPush is the combination of an Encoder and a push button.</p>
+<h2 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h2>
+<p><code>commands</code><br />
+An EncoderPush has 3 commands:</p>
+<ol>
+<li>First command gets executed when it is pushed</li>
+<li>Second command gets executed when encoder is turned clockwise</li>
+<li>Third command gets executed when encoder is turned counterclockwise</li>
+</ol>
+<h1 id="encoderonoff">EncoderOnOff<a class="headerlink" href="#encoderonoff" title="Permanent link">&para;</a></h1>
+<p><code>type: encoder-push</code><br />
+An EncoderOnOff is the combination of an Encoder and an OnOff button.</p>
+<h2 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h2>
+<p><code>commands</code><br />
+An EncoderPush has 4 commands:</p>
+<ol>
+<li>First command gets executed when it is OFF, to turn it ON</li>
+<li>Second command gets executed when it is ON, to turn it OFF</li>
+<li>Third command gets executed when encoder is turned clockwise</li>
+<li>Fourth command gets executed when encoder is turned counterclockwise</li>
+</ol>
+<p><code>options: dual</code><br />
+With option <code>dual</code>, the activation uses two more commands.</p>
+<ol>
+<li>First command gets executed when it is OFF, to turn it ON</li>
+<li>Second command gets executed when it is ON, to turn it OFF</li>
+<li>Third command gets executed when encoder is turned clockwise and ON</li>
+<li>Fourth command gets executed when encoder is turned counterclockwise and ON</li>
+<li>Third command gets executed when encoder is turned clockwise and OFF</li>
+<li>Fourth command gets executed when encoder is turned counterclockwise and OFF.</li>
+</ol>
+<h1 id="encoderlongpush">EncoderLongPush<a class="headerlink" href="#encoderlongpush" title="Permanent link">&para;</a></h1>
+<p><code>commands</code><br />
+An EncoderLongPush has 4 commands:</p>
+<ol>
+<li>First command  gets executed when encoder is turned clockwise</li>
+<li>Second command gets executed when encoder is turned counterclockwise</li>
+<li>Third command gets executed when encoder is turned clockwise <em>and pushed</em></li>
+<li>Fourth command gets executed when encoder is turned counterclockwise <em>and pushed</em></li>
+</ol>
+<h1 id="encodervalue">EncoderValue<a class="headerlink" href="#encodervalue" title="Permanent link">&para;</a></h1>
+<p><code>type: encoder-push</code><br />
+An EncoderValue is an Encoder that increases or decrease an internal value each time it is rotated clockwise or counterclockwise. The value can be written to an X-Plane dataref or used for other pruposes.</p>
+<h2 id="attributes_8">Attributes<a class="headerlink" href="#attributes_8" title="Permanent link">&para;</a></h2>
+<p><code>initial-value</code><br />
+Initial value. Default to 0.</p>
+<p><code>step</code><br />
+Amount of value increase or decrease.</p>
+<p><code>stepxl</code><br />
+Alternate value for step increase or decrease. If the encoder is capable of push action, the push action will switch between the <code>step</code> and <code>stepxl</code> values.</p>
+<p><code>min</code><br />
+Minimal value.</p>
+<p><code>max</code><br />
+Maximal value.</p>
+<p><code>formula</code><br />
+Optional. Formula to transform the <code>${state:button-value}</code> <em>before</em> it is sent to the dataref.</p>
+<p><code>set-dataref</code><br />
+Optional dataref to set to the value of the computed value. The value is sent right away, after each encoder activation.</p>
+<h1 id="slider">Slider<a class="headerlink" href="#slider" title="Permanent link">&para;</a></h1>
+<p><code>type: slider</code><br />
+A Slider is a one dimensional cursor that produces a continuous value within a range. The value can be written to an X-Plane dataref, directly, or after a computation.</p>
+<h2 id="attributes_9">Attributes<a class="headerlink" href="#attributes_9" title="Permanent link">&para;</a></h2>
+<p><code>set-dataref</code><br />
+Optional. Dataref to write the value to, if present.</p>
+<p><code>formula</code><br />
+Optional. Formula to transform the <code>${state:button-value}</code> (value produced by the slider) <em>before</em> it is sent to the dataref.</p>
+<h1 id="swipe">Swipe<a class="headerlink" href="#swipe" title="Permanent link">&para;</a></h1>
+<p><code>type: swipe</code><br />
+A Swipe is a 2 dimensional movement of a finger on a surface. The event produced consists of the start and end positions of the finger relative to the surface (x, y) and timing information (time stamp).</p>
+<p>(Currently not used.)</p>
+<p>The Swipe event has no attribute.</p>
+<h2 id="state_3">State<a class="headerlink" href="#state_3" title="Permanent link">&para;</a></h2>
+<p>The event of a swipe is complex. The entire event is available as <code>last_event</code>.<br />
+The event has the following structure:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ts_start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123.456</span>
+<span class="nt">ts_end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">135.246</span>
+<span class="nt">pos_start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(23, 48)</span>
+<span class="nt">pos_end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">(78, 42)</span>
+</code></pre></div>
+<h1 id="button-activations-for-developers">Button Activations for Developers<a class="headerlink" href="#button-activations-for-developers" title="Permanent link">&para;</a></h1>
+<p>Reload, Stop, or Inspect are <a href="../Button%20Activations%20for%20Developers/">special activations for developer</a>.<br />
+These activations are normally not used during regular operations.</p>
+<h1 id="activation-validity">Activation Validity<a class="headerlink" href="#activation-validity" title="Permanent link">&para;</a></h1>
+<p>Each Activation has a <code>is_valid()</code> method that checks whether all necessary attributes or parameters are available to it. The inspect keyword to trigger button validity inspection is <code>valid</code>.<br />
+Each Activation also has a <code>describe()</code> method that displays and explains what it does. The inspect keyword for displaying activation description is <code>desc</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
