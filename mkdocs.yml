@@ -7,7 +7,7 @@ theme:
 
     # Light mode
     - media: "(prefers-color-scheme: light)"
-      scheme: default
+      scheme: dracula
       primary: light blue
       accent: amber
       toggle:
@@ -16,7 +16,7 @@ theme:
 
     # Dark mode
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+      scheme: dracula
       primary: blue
       accent: orange
       toggle:
