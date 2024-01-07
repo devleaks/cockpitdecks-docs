@@ -2,29 +2,42 @@ site_name: Cockpitdecks Documentation
 
 theme:
     name: 'material'
-    logo: images/keylogo.png
+
+    font:
+      text: Roboto Slab
+
+    icon:
+      logo: material/airplane
+
     palette:
 
     # Light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: light blue
-      accent: amber
+      primary: blue
+      accent: orange
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
 
     # Dark mode
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+      scheme: dracula
       primary: blue
       accent: orange
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
 
+extra_css:
+  - stylesheets/dracula.css
+
 # Extensions
 markdown_extensions:
+
+  - nl2br
+  - admonition
+  - pymdownx.details
   - footnotes
   # - attr_list
   - pymdownx.arithmatex:
@@ -51,7 +64,8 @@ markdown_extensions:
 
 plugins:
   - search
-  - roamlinks 
+  - roamlinks
+  - callouts
 
 
 extra_javascript:
