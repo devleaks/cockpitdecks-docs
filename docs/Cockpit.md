@@ -164,7 +164,7 @@ This file defines icon fonts. Icon fonts are fonts that are used to display icon
 Defines a few constants that should never be changed. Change at your own risk.
 
 
-> [!SUMMARY]
+> [!abstract]
 > In summary, a Cockpit is defined for a given X-Plane aircraft.
 > A Cockpit contains one or more Decks. Each Deck represent a physical deck device used to interact with X-Plane. A Deck is assigned a Layout. A Layout is a collection of Pages. Each Page defines what knobs and buttons on the physical deck do, when they are turned or pushed, and what information they displays in return (through images or LEDs), information extracted from X-Plane data and behavior.
 > 
