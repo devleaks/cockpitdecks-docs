@@ -40,7 +40,7 @@ $ pip install streamdeck
 To have Cockpitdecks manage Loupedeck devices, add
 ```
 $ pip install
-git+https://github.com/devleaks/python-loupedeck-loupedecklive.git
+git+https://github.com/devleaks/python-loupedeck-live.git
 ```
 
 To have Cockpitdecks manage Touch Mini devices, add
