@@ -28,6 +28,43 @@ theme:
   pymdownx:
     sponsor: "https://github.com/sponsors/facelessuser"
 
+nav:
+  - Home:
+      - Cockpitdecks: index.md
+      - Installation: installation.md
+      - History: History.md
+      - To do: Resources/To do.md
+  - Cockpitdecks:
+      - Cockpit: Cockpit.md
+      - Deck: Deck.md
+      - Layout: Layout.md
+      - Page: Page.md
+      - Button: Simulator.md
+      - Buttons:
+          - Button Index: Resources/Button Index.md
+          - Button Value: Resources/Button Value.md
+          - Button Attributes: Resources/Button Attribute Default Values.md
+          - Button Activation:
+              - Button Activation: Resources/Button Activation.md
+              - Activation for Cockpitdecks Developers: Resources/Button Activations for Developers.md
+          - Button Representation:
+              - Button Representation: Resources/Button Representation.md
+              - Animated Buttons: Resources/Animated Buttons.md
+              - Annuinciators: Resources/Annunciator.md
+              - Drawn Buttons: Resources/Drawn Buttons.md
+              - Weather Representations: Resources/Weather.md
+              - Larger Displays: Resources/Larger Displays.md
+              - Toliss Airbus Specific Buttons: Resources/Laminar X-Plane and Toliss Specific Buttons.md
+              - Resources: Resources/Cockpitdeck Resources.md
+      - Simulator:
+          - Simulator: Simulator.md
+          - X-Plane Interaction: Resources/X-Plane Interaction.md
+          - X-Plane UDP Interaction: Resources/About X-Plane UDP Interaction.md
+          - X-Plane UPD Connector: Resources/X-Plane UPD Connector.md
+          - Deck Internals: Resources/Deck Internals.md
+          - Notes: Resources/Cockpitdecks Internals.md
+      - Examples: Resources/Examples.md
+
 # Extensions
 markdown_extensions:
   - markdown.extensions.toc:
