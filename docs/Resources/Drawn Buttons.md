@@ -105,7 +105,7 @@ They can be used in replacement of multi-icons.
 ### Circular Switches as Drawn
 ![[rotating-selector-design.png]]
 ![[circular-switches.png]]
-# Push Button
+# Push Button and Knob
 
 - `button-size`
 - `button-color`
@@ -119,7 +119,7 @@ A PushButton is a simple button that can be used to trigger a command. It can be
 ### Push Button Models
 Later…
 
-### Push Bottons as Drawn
+### Push Buttons and Knob as Drawn
 ![[knobs-design.png]]
 # Knob
 Knobs are circular rotating buttons used to set values by rotating the button clockwise or counterclockwise. Although they can be drawn and « turn » according to dataref values, they cannot currently be used with activations to trigger their rotation. Real, physical rotation knobs must be used instead. (Mimicking a rotation knob with a push button is a difficult task that requires awkward manipulations such as long pushes. We may later offer a possibility to allow for rotation knows on icon button, because the surface of some icon button (LoupedeckLive) reacts to touch and swipes. It would therefore be possible to detect precisely where the button was touched (left, right, up, center…) and assign activations accordingly.)
