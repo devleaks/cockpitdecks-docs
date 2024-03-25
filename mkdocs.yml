@@ -1,65 +1,161 @@
 site_name: Cockpitdecks Documentation
 
 theme:
-    name: material
-    font:
-      text: Roboto Slab
-    icon:
-      logo: material/airplane
-    palette:
-    # Light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: blue
-      accent: orange
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-    # Dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: dracula
-      primary: blue
-      accent: orange
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
+  name: material # Must use Material theme
+  # custom_dir: docs/theme # If you have overrides, specify where to find them
+  icon:
+    logo: material/airplane
+  palette:
+    scheme: dracula # This is how to enables the Dracula theme for dark. For light, it will use default Material with some tweaks.
+    primary: deep purple # Primary colors
+    accent: orange # accent color
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - announce.dismiss
+    - navigation.tabs
+    - navigation.top
+    - navigation.instant
+    - navigation.indexes
+    - toc.follow
+    - content.tabs.link
+    - search.share
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.code.annotations
+  pymdownx:
+    sponsor: "https://github.com/sponsors/facelessuser"
 
 # Extensions
 markdown_extensions:
-  - nl2br
-  - admonition
-  - pymdownx.details
-  - footnotes
-  - pymdownx.arithmatex:
-      generic: true
+  - markdown.extensions.toc:
+      slugify: !!python/object/apply:pymdownx.slugs.slugify { kwds: { case: lower } }
+      permalink: ""
+  - markdown.extensions.admonition:
+  - markdown.extensions.smarty:
+      smart_quotes: false
+  - pymdownx.betterem:
+  - markdown.extensions.attr_list:
+  - markdown.extensions.def_list:
+  - markdown.extensions.tables:
+  - markdown.extensions.abbr:
+  - markdown.extensions.footnotes:
+  - markdown.extensions.md_in_html:
+  - pymdownx.superfences:
+      preserve_tabs: true
+      custom_fences:
+        # Mermaid diagrams
+        - name: diagram
+          class: diagram
+          format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: math
+          class: arithmatex
+          format:
+            !!python/object/apply:pymdownx.arithmatex.arithmatex_fenced_format { kwds: { mode: generic, tag: pre } }
+        # - name: md-render
+        #   class: md-render
+        #   format: !!python/name:tools.pymdownx_md_render.md_sub_render
+  - pymdownx.highlight:
+      extend_pygments_lang:
+        - name: php-inline
+          lang: php
+          options:
+            startinline: true
+        - name: pycon3
+          lang: pycon
+          options:
+            python3: true
+      linenums_style: pymdownx-inline
+  - pymdownx.magiclink:
+      repo_url_shortener: true
+      repo_url_shorthand: true
+      social_url_shorthand: true
+      social_url_shortener: true
+      user: facelessuser
+      repo: pymdown-extensions
+      normalize_issue_symbols: true
+  - pymdownx.tilde:
+  - pymdownx.caret:
+  - pymdownx.smartsymbols:
+  - pymdownx.escapeall:
+      hardbreak: True
+      nbsp: True
   - pymdownx.tasklist:
       custom_checkbox: true
-  - def_list
-  - pymdownx.critic
-  - pymdownx.caret
-  - pymdownx.keys
-  - pymdownx.mark
-  - pymdownx.tilde
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - toc:
-      permalink: true
+  - pymdownx.progressbar:
+  - pymdownx.arithmatex:
+      generic: true
+      block_tag: "pre"
+  - pymdownx.mark:
+  - pymdownx.striphtml:
+  - pymdownx.keys:
+      separator: "\uff0b"
+  - pymdownx.details:
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.saneheaders:
+  - pymdownx.blocks.admonition:
+      types:
+        - new
+        - settings
+        - note
+        - abstract
+        - info
+        - tip
+        - success
+        - question
+        - warning
+        - failure
+        - danger
+        - bug
+        - example
+        - quote
+  - pymdownx.blocks.details:
+      types:
+        - name: details-new
+          class: new
+        - name: details-settings
+          class: settings
+        - name: details-note
+          class: note
+        - name: details-abstract
+          class: abstract
+        - name: details-info
+          class: info
+        - name: details-tip
+          class: tip
+        - name: details-success
+          class: success
+        - name: details-question
+          class: question
+        - name: details-warning
+          class: warning
+        - name: details-failure
+          class: failure
+        - name: details-danger
+          class: danger
+        - name: details-bug
+          class: bug
+        - name: details-example
+          class: example
+        - name: details-quote
+          class: quote
+  - pymdownx.blocks.html:
+  - pymdownx.blocks.definition:
+  - pymdownx.blocks.tab:
+      alternate_style: True
+      combine_header_slug: True
+      slugify: !!python/object/apply:pymdownx.slugs.slugify { kwds: { case: lower } }
 
 plugins:
   - search
   - roamlinks
   - callouts
-
-extra:
-  generator: false
-
-extra_css:
-  - stylesheets/dracula.css
+  - mkdocs_pymdownx_material_extras
+  - git-revision-date-localized:
+      fallback_to_build_date: true
 
 extra_javascript:
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  - https://unpkg.com/mermaid/dist/mermaid.min.js 
+  - https://unpkg.com/mermaid/dist/mermaid.min.js
