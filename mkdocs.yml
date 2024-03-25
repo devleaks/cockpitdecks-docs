@@ -1,5 +1,11 @@
 site_name: Cockpitdecks Documentation
 
+site_url: https://devleaks.github.io/cockpitdecks
+repo_url: https://github.com/devleaks/cockpitdecks
+site_description: Documentation for Cockpitdecks X-Plane Plugin
+copyright: |
+  Copyright &copy; 2023 - 2024 <a href="https://github.com/devleaks"  target="_blank" rel="noopener">Pierre M</a>
+
 theme:
   name: material # Must use Material theme
   # custom_dir: docs/theme # If you have overrides, specify where to find them
