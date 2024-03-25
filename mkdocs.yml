@@ -37,7 +37,7 @@ theme:
 nav:
   - Home:
       - Cockpitdecks: index.md
-      - Installation: installation.md
+      - Installation: Installation.md
       - History: History.md
       - To do: Resources/To do.md
   - Cockpitdecks:
