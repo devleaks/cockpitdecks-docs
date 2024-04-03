@@ -70,6 +70,10 @@ nav:
           - Deck Internals: Resources/Deck Internals.md
           - Notes: Resources/Cockpitdecks Internals.md
       - Examples: Resources/Examples.md
+      - Extending:
+          - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
+          - Adding new deck models: Extending/New Deck.md
+          - New interactions: Extending/New Interactions.md
 
 # Extensions
 markdown_extensions:
