@@ -44,6 +44,7 @@ Make electron app for icon design that spits out Yaml button definitions.
 Evolve towards library
 Behave similarly as TouchPortal
 
+MAKE ASYNCHRONOUS. Should have been designed asynchronous at the first place. However, a migration/evolution is clearly doable.
 
 ## Status
 Should be easy for software developer.

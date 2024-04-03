@@ -75,22 +75,23 @@ Interaction with the button. Interaction can be:
 - `push`: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.
 - `swipe`: A surface swipe event, with a starting touch and a raise events.
 - `encoder`: A rotating encoder, that can turn both clockwise and counter-clockwise
-- `encoder-push`: An encoder couple to a push button.
+- `encoder-push`: An encoder coupled to a push button.
 - `cursor`: A linear cursor (straight or circular) delivering values in a finite range.
 
 ### View
 Feedback ability of the button. Feedback visualisation can be:
 
-- none: No feedback on device, or direct feedback provided by some marks on the deck device.
-- image: Small LCD iconic image.
-- led: Simple On/Off LED light.
-- multi-leds: Several, single color, LED on a ramp.
-- colored-led: A single LED that can be colored.
+- `none`: No feedback on device, or direct feedback provided by some marks on the deck device.
+- `image`: Small LCD iconic image.
+- `led`: Simple On/Off LED light.
+- `colored-led`: A single LED that can be colored.
+- `multi-leds`: Several, single color, LED on a ramp.
 
 ### Image
-If the feedback visuallisation is an iconic image, the `image` attribute specifies the characteristics of the image (size, and eventually, position on a larger surface.) `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
+If the feedback visualisation is an iconic image, the `image` attribute specifies the characteristics of the image (size, and eventually, offset position on a larger surface.) `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
 
 ## Deck Type Result
+
 The result of a deck definition is the list of valid definitions for each button of that deck. This includes, for each button, its activation capabilities, its representation capabilities, and the list of valid index name to designate a precise button on the deck.
 Here is an excerpt of the meta data available in the definition of a button:
 
