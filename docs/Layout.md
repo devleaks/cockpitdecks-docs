@@ -1,6 +1,6 @@
 For a given deck, a Layout is a collection of *Pages* that will be displayed on that deck.
 A Layout is a folder, inside the `deckconfig` main folder.
-The Layout is named and addessed by the name of the folder.
+The Layout is named and addressed by the name of the folder.
 
 Layouts were created to cope with different deck models. If you have a set of 30 commands, you can display them all on a 32 key deck. But you have to make two pages of buttons on a 16 key deck. Same button definitions, but two *layouts*.
 
@@ -15,7 +15,7 @@ The Layout folder contains the following files:
 ```
 
 # Config.yaml
-The `config.yaml` file inside a layout folder defines Layout-level attributes.
+The `config.yaml` file inside a layout folder defines Layout-level attributes. The file is optional.
 
 ```
 # This is at layout level
@@ -47,7 +47,7 @@ Optional. Default page name in layout.
 The default value of some attributes (like font, colors, and sizes) is fetched at the Cockpit level if they are not specified at the Layout level.
 
 # Pages
-Other files in the folder are considered as [[Page|Pages]] in the layout.
+Other files in the folder are considered to be [[Page|Pages]] in the layout.
 
 # Default Layout
-If a deck has no layout specified, Cockpitdeck will generate one with one default page that will display a logo image on the deck and use the first available push button to toggle X-Plane Map On or Off.
+If a deck has no layout specified, Cockpitdeck will generate one with one default page that will display a logo image on the deck (if it isi capable of displaying images...) and use the first available push button to toggle X-Plane Map On or Off.

@@ -1,4 +1,5 @@
 A *button* is the general term for a key, knob, rotary encoder, slider cursor, or even touch surface on a deck. On a given deck, each element that can be pressed, turned, or slid is a *button*.
+
 The *Button Definition* is a list of parameters that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button. Here is an example of button definition:
 
 ```
@@ -16,9 +17,13 @@ buttons:
       animation-speed: 2.0
 ```
 
-The following section describe common button definition attributes.
-The button *Activation* page describes attributes specific to what a button will trigger or do when used.
-The button *Representation* page describes attributes specific to the *rendering* of the button on the deck.
+The above definition creates a button named MATER WARNING, that will be placed at position 2 on the deck. The button can be pushed, and when pushed, it will trigger the command `sim/annunciator/clear_master_warning`. The button will display the status of the `AirbusFBW/MasterWarn` value in the simulator. The button is an animation. If the value in the simulator is true (i.e. not zero), the animation will run and display a blinking red text message. The text will blink at a rate of 2 seconds. If the value is false, the button will not display anything.
+
+The following section describe button definition attributes that are common to all buttons, what ever they do and represent.
+
+The button *Activation* page describes attributes specific to *what a button will trigger or do* when used.
+
+The button *Representation* page describes attributes specific to the *feedback* given by the button on the deck, be it an iconic image to display, a led to turn on or off, or a sound to emit.
 
 # Button (Common) Attributes
 
@@ -53,16 +58,16 @@ The label of a button is a short reminder of what the button does. The text of t
 Note: The Button *Label* should not be confused with Button Text. The Label exist for all buttons, and is displayed according to its attributes if the underlying button is capable. The text of the label is defined as a button attribute and is static (cannot be changed dynamically).
 The Button *Text* is a text that is part of the Button representation.
 
-#### Label Color
+### Label Color
 See [[Cockpitdeck Resources#Colors|Colors]].
 
-#### Label Font
+### Label Font
 See [[Cockpitdeck Resources#Fonts|Fonts]].
 
-#### Label Size
+### Label Size
 In pixels. Internally, Cockpitdecks uses 256 × 256 pixel images.
 
-#### Label Position
+### Label Position
 The position of the label is a 2 letter code:
 1. l, c, or r for left, center, or right-justified on the image (horizontal alignment),
 2. t, m, or b, for top, middle, or bottom of the image (vertical alignment).
@@ -78,10 +83,12 @@ The button options parameter is a string of comma separated options. An option i
 Options are, by nature, not indispensable to the button’s activation or rendering but rather add to it to alter behaviour or appearance.
 
 # Button Value
+
 A Button has a value that is maintained and used mainly for representation.
 Please head [[Button Value|here]] for details about a button's value computation.
 
 ## Button Initial Value
+
 A Button can force its first, initial value to set its startup or original state.
 
 ```
@@ -92,9 +99,10 @@ This value is assigned as the button's current value on startup.
 In case of a Button with multiple values, each value has a independant `initial-value` attribute in its own attribute section.
 
 # Button State
+
 Each button maintain its internal state: How many times it is pressed, released, turned clockwise or counter-clockwise, what is it current value, its previous, or last value. State information can be used by Button designer to control the button behavior and its representation.
 
-1. activation_count (number of time button was pressed.)
+1. activation_count (number of time button was «used»)
 2. current_value
 3. previous_value
 

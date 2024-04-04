@@ -13,6 +13,7 @@ Each [[Page]]  define the set of buttons on the deck device, what each button do
 In addition to the Pages it contains, a Deck defines deck-level attributes, such as the overall brightness of the device, or how to fill unused or undefined buttons.
 
 # Definition
+
 Decks are declared in the `config.yaml` file in the `deckconfig` folder in the `decks` attribute. The `decks` attributes contains one or more decks as defined by the following attributes:
 
 ## Deck Attributes
@@ -41,7 +42,9 @@ Optional. Default page name in layout. Default to `index`.
 > [!NOTE] The type of Deck defines the "device driver" that will be used to talk to the deck. If a new model of deck appears in the future, it will be necessary to design its "device driver" for Cockpitdecks to use it.
 
 # Deck Layout
-For a given aircraft, a deck has a Layout. The [[Layout]] of a deck is a collection of [[Page|Pages]] that will be used and displayed on the deck device.
+
+For a given aircraft, a deck has a Layout. The [[Layout]] of a deck is a collection of [[Page|Pages]] that will be used and displayed on the deck device for that aircraft.
+
 A Layout is a folder in the `deckconfig` folder.
 
 ```
