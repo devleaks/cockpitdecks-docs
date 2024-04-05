@@ -28,7 +28,7 @@ The Deck will search for a `default-label-color` in its attributes. If it finds 
 
 Finally, the Cockpit will return a `default-label-color`. If there is no value for the `default-label-color`, Cockpitdecks will issue an error. It simply means that there is no default value for that attribute and that a value *must* be supplied by the user in the definition of the button.
 
-## Day / Night (or light / dark) Theme
+# Day / Night (or light / dark) Theme
 
 Cockpitdecks attempts to provide a day and a night *theme*. The attribute `cockpit` can be set to `day` (or `light`) or `night`(or `dark`).
 

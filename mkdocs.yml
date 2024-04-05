@@ -45,7 +45,7 @@ nav:
       - Deck: Deck.md
       - Layout: Layout.md
       - Page: Page.md
-      - Button: Simulator.md
+      - Button: Button.md
       - Buttons:
           - Button Index: Resources/Button Index.md
           - Button Value: Resources/Button Value.md

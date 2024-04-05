@@ -28,6 +28,7 @@ The button *Representation* page describes attributes specific to the *feedback*
 # Button (Common) Attributes
 
 ## Button Index
+
 Each «Button» on a deck is designated by its [[Button Index|Index]].
 On a given Page, the Index of a button must be unique on that Page since it addresses a very precise key, knob or slider on the deck.
 Depending on the model of deck, buttons have  [[Button Index|coded named index]].
@@ -35,16 +36,19 @@ On a simple deck with a number of similar keys, the index of a button is its ord
 The Index of a button is a mandatory parameter of the Button definition. There is no default value.
 
 ## Button Name
+
 Optional. A button can be named.
 The name of a button on a page must be unique. If more than one button have the same name, an error is reported and the definition of the button is ignored.
 If no name is provided, a unique, long, technical name is created from deck name, page name, and index.
 
 ## Button Type
+
 Mandatory. The type of a button defines what the button will do and how it will be used.
 
 The [[Button Activation|button activation]] describe button-type specific attributes. In other words, depending on the value of the type attribute, other button defining attributes will be expected.
 
 ## Button Label
+
 The label of a button is a short reminder of what the button does. The text of the label is laid over the button image if any. The labelling of a button uses the following attributes:
 
 ```
@@ -59,15 +63,19 @@ Note: The Button *Label* should not be confused with Button Text. The Label exis
 The Button *Text* is a text that is part of the Button representation.
 
 ### Label Color
+
 See [[Cockpitdeck Resources#Colors|Colors]].
 
 ### Label Font
+
 See [[Cockpitdeck Resources#Fonts|Fonts]].
 
 ### Label Size
+
 In pixels. Internally, Cockpitdecks uses 256 × 256 pixel images.
 
 ### Label Position
+
 The position of the label is a 2 letter code:
 1. l, c, or r for left, center, or right-justified on the image (horizontal alignment),
 2. t, m, or b, for top, middle, or bottom of the image (vertical alignment).

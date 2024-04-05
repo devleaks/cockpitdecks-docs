@@ -82,33 +82,41 @@ cockpit-color: lightblue
 ```
 
 ## Attributes
-The parameters apply to all decks for the given aircraft.
+The parameters apply to all decks for the given aircraft. Each individual deck will have the possibility to redefine these values if necessary.
 
 ### aircraft
+
 Optional information. The name of the aircraft for this set of deck.
 
 ### cockpit-color
+
 Color for the cockpit. This color is used as the default background color for icons.
 ### cockpit-texture
+
 Name of a image file (JPEG or PNG) that will be used as the (default) background of icons.
 The `cockpit-texture` file will be searched at different places depending on where it is specified.
 The `cockpit-texture` file can be specified at the Cockpit, Deck, Page, or Button level.
 Cockpit-level default textures will be seached in the following folders (in that order):
+
 - `resources`
 - `resources/icons`
+
 If the AIRCRAFT is specified, Cockpit-level textures and all other levels textures will be searched in the following folders:
+
 - `AIRCRAFT/resource`
 - `AIRCRAFT/icons`
-If a texture is not found at a lower level, the texture of the level above is used.
+
 If no texture is found, a uniform `cockpit-color` icon is used.
 ### default-wallpaper-logo
+
 Name of image file, located in the `resource` folder, to be loaded when the deck is not used.
 
 ### default-*
+
 Name of default values of several parameters, defined at the aircraft-level. These values will be used for all missing values. They can be raffined at Layout and Page level if necessary.
 If no aircraft-level global parameter values are not provided, Cockpitdecks will use its own internal default values.
-
 ### decks
+
 A list of deck structure, one per [[Deck|deck]].
 
 Yaml allow for other attributes in the file. They are ignored by Cockpitdecks. You may include other attributes like aircraft name, ICAO code, descriptions, notes, even change log of your file.
@@ -128,50 +136,57 @@ XPLive: AAA0000000000000000000A0000
 
 # Global Cockpitdecks Configuration
 
-Configuration et customization is organized in a **hierarchical** way. The the top, highest level is Cockpitdecks, the application.
+In addition to the above, aircraft specific, definitions, Cockpitdecks contains in its core, a default configuration used as a fall back if no value is found at the aircraft specific level. These global core configuration is found in a `resources` folder inside Cockpitdecks software package. This folder should never be changed since it affects the entire Cockpitdecks application.
 
-Under Cockpitdecks is the Cockpit. If not redefined after, all attributes defined in the Cockpit are used for all other elements.
+## Attribute Value Lookup
 
-Under the Cockpit is the Deck. This allow to change a few parameters for each deck. For example, a given deck might have large icons, requiring the use of a large default font size.
+Configuration et customization is organized in a [[Button Attribute Default Values#Attribute Hierarchical Lookup|hierarchical]] way. The the top, highest level is Cockpitdecks, the application. Cockpitdecks has default values for all attributes used in the application.
 
-Under the Deck is the Layout. This allow to change a few parameters for each layout, like the background color of a panel. Layout parameters are melted into Deck parameters.
+Under Cockpitdecks is the Cockpit. The Cockpit has the ability to redefine some attribute if necessary. For instance, it is possible to define a uniform cockpit texture or color for all decks.
+
+Under the Cockpit is the Deck. This allow to change a few parameters for each deck. For example, a given deck might have large icons, requiring the use of a larger default font size.
+
+Under the Deck is the Layout. This allow to change default values for a layout, like the background color of a panel. Layout default values overwrite Deck default values.
 
 Under the Layout is the Page, to control page-level specificities, like, for exemple, a specific background color or texture for a special page.
 
-That's it. At the "lowest" level, at the Button level, there are no default global values, just the values the button will use.
+That's it. At the lowest level, at the Button level, there is no default value, just the value the button will use. For example, a button will look for `text-color`, if no value is found in its attributes, it will search in its parent entity, the page, for a `default-text-color`.
 
 ![[hierarchy.png|200]]
-
-This hierarchical organisation is exploited in [[Button Attribute Default Values|default value lookups]].
-
 ## Resources Folder
 
 `deckconfig` folders reside in X-Plane aircraft folders and are specific to that aircraft.
 In addition to these aircraft specific folders, Cockpitdecks has a global configuration folder called `resources` located where the Cockpitdecks software resides.
 
 `resources` folder located where the Cockpitdecks software resides contains the following files and subfolders:
-
 ## config.yaml
+
 This is a global level configuration file. It always is loaded first and can be overwritten by aircraft, deck, or page-specific variants.
 
 ## icons
+
 Icons in this folder are available to all aircrafts.
 
 ## fonts
+
 Fonts in this folder are available to all aircrafts.
 Cockpitdecks provides a few fonts found here and there together with their respective copyright files.
 
 ## docs
+
 A copy of Cockpitdecks documentation is included there. The documentation folder produced in the GitHub wiki of Cockpitdecks.
 
 ## Image files
+
 The resource folder contains a few image files used as logos and wallpapers.
 There is also an image with color names that can be used in `color` attributes.
 
 ## iconfonts.py
+
 This file defines icon fonts. Icon fonts are fonts that are used to display iconic characters often named intuitively. Cockpitdecks comes with a copy of Font Awesome icons, and Weather Icons.
 
 ## constants.py
+
 Defines a few constants that should never be changed. Change at your own risk.
 
 
