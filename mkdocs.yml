@@ -8,7 +8,7 @@ copyright: |
 
 theme:
   name: material # Must use Material theme
-  # custom_dir: docs/theme # If you have overrides, specify where to find them
+  custom_dir: docs/.theme # If you have overrides, specify where to find them
   icon:
     logo: material/airplane
   palette:
@@ -33,7 +33,13 @@ theme:
     - content.code.annotations
   pymdownx:
     sponsor: "https://github.com/sponsors/facelessuser"
-
+#
+# Dracula is a dark theme only. Dracula can't stand the light.
+#
+# ###############################################
+#
+# Navigation, headings
+#
 nav:
   - Home:
       - Cockpitdecks: index.md
@@ -75,7 +81,37 @@ nav:
           - Adding new deck models: Extending/New Deck.md
           - New interactions: Extending/New Interactions.md
 
+# ###############################################
+#
+# Plugins
+#
+plugins:
+  - search
+  - roamlinks
+  - callouts
+  - charts
+  - tags
+  - markmap:
+      base_path: docs
+      encoding: utf-8
+      file_extension: .mm.md
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["src"]
+          # options:
+          #   show_source: false
+
+# ###############################################
+#
 # Extensions
+#
+# Note: Some extensions have been commented out because unused.
+#       Restoring some extension may require added appropriate
+#       python package.
+#
 markdown_extensions:
   - nl2br
   - markdown.extensions.toc:
@@ -95,27 +131,49 @@ markdown_extensions:
       preserve_tabs: true
       custom_fences:
         # Mermaid diagrams
-        - name: diagram
+        # Please recall that fence must match Obsidian mermaid plugin
+        - name: mermaid
           class: diagram
           format: !!python/name:pymdownx.superfences.fence_code_format
-        - name: math
-          class: arithmatex
-          format:
-            !!python/object/apply:pymdownx.arithmatex.arithmatex_fenced_format { kwds: { mode: generic, tag: pre } }
-        # - name: md-render
-        #   class: md-render
-        #   format: !!python/name:tools.pymdownx_md_render.md_sub_render
+            # - name: math
+            #   class: arithmatex
+            #   format:
+            #     !!python/object/apply:pymdownx.arithmatex.arithmatex_fenced_format { kwds: { mode: generic, tag: pre } }
+            # - name: md-render
+            #   class: md-render
+            #   format: !!python/name:tools.pymdownx_md_render.md_sub_render
+
+            # Vega Lite charts
+            #
+            # Please recall that fence must match Vega/Vega-Lite Obsidian
+            # plugin https://github.com/Justin-J-K/obsidian-vega
+            # (In above Obsidian plugin, fences cannot be changed.)
+
+
+        - name: vega-lite
+          class: vegalite
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite # Vega-Lite charts
+
+
+        - name: vega
+          class: vegalite
+          format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite # Vega charts
+
+
   - pymdownx.highlight:
       extend_pygments_lang:
-        - name: php-inline
-          lang: php
-          options:
-            startinline: true
+        - name: js
+          lang: js
         - name: pycon3
           lang: pycon
           options:
             python3: true
       linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite:
+      custom_inline:
+        - name: math
+          class: arithmatex
+          format: !!python/object/apply:pymdownx.arithmatex.arithmatex_inline_format { kwds: { mode: generic } }
   - pymdownx.magiclink:
       repo_url_shortener: true
       repo_url_shorthand: true
@@ -127,19 +185,30 @@ markdown_extensions:
   - pymdownx.tilde:
   - pymdownx.caret:
   - pymdownx.smartsymbols:
+  # - pymdownx.emoji:
+  #     emoji_index: !!python/name:material.extensions.emoji.twemoji
+  #     emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.escapeall:
       hardbreak: True
       nbsp: True
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.progressbar:
-  - pymdownx.arithmatex:
-      generic: true
-      block_tag: "pre"
+  # - pymdownx.arithmatex:
+  #     generic: true
+  #     block_tag: "pre"
   - pymdownx.mark:
   - pymdownx.striphtml:
-  - pymdownx.keys:
-      separator: "\uff0b"
+  # - pymdownx.snippets:
+  #     base_path:
+  #       - docs/src/markdown/.snippets
+  #       - LICENSE.md
+  #       - SECURITY.md
+  #     auto_append:
+  #       - refs.md
+  #     check_paths: true
+  # - pymdownx.keys:
+  #     separator: "\uff0b"
   - pymdownx.details:
   - pymdownx.tabbed:
       alternate_style: true
@@ -196,17 +265,23 @@ markdown_extensions:
       alternate_style: True
       combine_header_slug: True
       slugify: !!python/object/apply:pymdownx.slugs.slugify { kwds: { case: lower } }
+  # - tools.collapse_code:
+  #     expand_text: ""
+  #     collapse_text: ""
 
-plugins:
-  - search
-  - roamlinks
-  - callouts
-  - mkdocs_pymdownx_material_extras
-  - git-revision-date-localized:
-      fallback_to_build_date: true
-
+# ###############################################
+#
+# Extras
+#
 extra_javascript:
+  - assets/js/extra-loader.js
+  - assets/js/material-extra-3rdparty.js
+  - assets/js/material-extra-theme.js
   - https://unpkg.com/mermaid/dist/mermaid.min.js
+  - https://cdn.jsdelivr.net/npm/vega@5
+  - https://cdn.jsdelivr.net/npm/vega-lite@5
+  - https://cdn.jsdelivr.net/npm/vega-embed@6
 
 extra_css:
-  - theme/assets/css/dracula-colors.css
+  - assets/css/extra.css
+  - assets/css/dracula-colors.css

@@ -1,0 +1,74 @@
+/* Devleaks personal preference for heading and emphasis
+ * (matches some Obsidian Dracula Theme at https://draculatheme.com/contribute)
+ *
+ * Last updated: 25-MAR-2024
+ *
+ */
+.md-typeset strong {
+    color: RGB(255, 184, 108);
+}
+.md-typeset em {
+    font-weight: bolder;
+    color: RGB(80, 250, 123);
+}
+.md-typeset i {
+    color: RGB(80, 250, 123);
+}
+.md-typeset b {
+    color: rgb(255, 202, 128);
+}
+.md-typeset del {
+    color: rgb(255, 149, 128);
+}
+.md-typeset mark {
+    background-color: RGBA(139, 233, 253, 0.8);
+    color: RGB(68, 71, 90);
+}
+.md-typeset code {
+    color: RGB(255, 184, 108) !important;
+}
+.md-typeset h1 {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: RGB(189, 147, 249);
+}
+.md-typeset h2 {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: RGB(255, 184, 108);
+}
+.md-typeset h3 {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: RGB(80, 250, 123);
+}
+.md-typeset h4 {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: RGB(255, 85, 85);
+}
+.md-typeset h5 {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: RGB(241, 250, 140) !important;
+}
+.md-typeset h6 {
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    color: RGB(139, 233, 253);
+}
+.md-footer-copyright {
+    font-size: x-small;
+}

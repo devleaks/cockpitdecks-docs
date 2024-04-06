@@ -41,11 +41,22 @@ Optional. A button can be named.
 The name of a button on a page must be unique. If more than one button have the same name, an error is reported and the definition of the button is ignored.
 If no name is provided, a unique, long, technical name is created from deck name, page name, and index.
 
+```yaml
+   index: e3
+```
+
 ## Button Type
 
 Mandatory. The type of a button defines what the button will do and how it will be used.
 
 The [[Button Activation|button activation]] describe button-type specific attributes. In other words, depending on the value of the type attribute, other button defining attributes will be expected.
+
+For example, if the value of a button type is `page` to change a page on a deck, it is expected to find the attribute named `page`  which contains the name of the page to switch to when pressed:
+
+```Yaml
+    type: page
+    page: another-page
+```
 
 ## Button Label
 
@@ -86,7 +97,9 @@ Regularly, buttons have additional paparemeteres.
 
 The button options parameter is a string of comma separated options. An option is either a simple string or word, or a name=value string.
 
-`options: 3dot,appearance=metal,mode=open,level=6`
+```Yaml
+    options: 3dot,appearance=metal,mode=open,level=6
+```
 
 Options are, by nature, not indispensable to the button’s activation or rendering but rather add to it to alter behaviour or appearance.
 
@@ -94,7 +107,6 @@ Options are, by nature, not indispensable to the button’s activation or render
 
 A Button has a value that is maintained and used mainly for representation.
 Please head [[Button Value|here]] for details about a button's value computation.
-
 ## Button Initial Value
 
 A Button can force its first, initial value to set its startup or original state.
