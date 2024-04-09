@@ -1,8 +1,8 @@
 site_name: Cockpitdecks Documentation
 
-site_url: https://devleaks.github.io/cockpitdecks
+site_url: https://devleaks.github.io/cockpitdecks-docs/
 repo_url: https://github.com/devleaks/cockpitdecks
-site_description: Documentation for Cockpitdecks X-Plane Plugin
+site_description: Documentation for Cockpitdecks X-Plane Application and Plugin
 copyright: |
   Copyright &copy; 2023 - 2024 <a href="https://github.com/devleaks"  target="_blank" rel="noopener">Pierre M</a>
 
