@@ -58,11 +58,11 @@ nav:
           - Button Attributes: Resources/Button Attribute Default Values.md
           - Button Activation:
               - Button Activation: Resources/Button Activation.md
-              - Activation for Cockpitdecks Developers: Resources/Button Activations for Developers.md
+              - Activation for Developers: Resources/Button Activations for Developers.md
           - Button Representation:
               - Button Representation: Resources/Button Representation.md
               - Animated Buttons: Resources/Animated Buttons.md
-              - Annuinciators: Resources/Annunciator.md
+              - Annunciators: Resources/Annunciator.md
               - Drawn Buttons: Resources/Drawn Buttons.md
               - Weather Representations: Resources/Weather.md
               - Larger Displays: Resources/Larger Displays.md
@@ -80,6 +80,8 @@ nav:
           - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
           - Adding new deck models: Extending/New Deck.md
           - New interactions: Extending/New Interactions.md
+      - Installation:
+          - Installation: Installation.md
 
 # ###############################################
 #
