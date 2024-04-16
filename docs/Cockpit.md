@@ -63,7 +63,7 @@ Next to the the above *resources* folder, there will be one folder per Layout fo
 
 The file named `config.yaml` in the `deckconfig` folder contains declarations for each [[Deck|deck]] that will be used and global, aircraft-level attributes.
 
-```
+```yaml
 # Definition of decks for Toliss A321
 #
 aicraft: Toliss A321
@@ -126,7 +126,7 @@ Yaml allow for other attributes in the file. They are ignored by Cockpitdecks. Y
 The secret.yaml file contains the serial numbers of your connected decks.
 If you have more than one deck of the same type (i.e. two Streamdecks, two X-TouchMini, etc.) this file is mandatory to distinguish between the two physical devices. Otherwise, it is optional.
 
-```
+```yaml
 # My decks and their serial numbers.
 # Format:
 # DeckName: Serial number

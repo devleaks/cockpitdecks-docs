@@ -6,7 +6,7 @@ A deck displays one Page of buttons and allow end-users to press those buttons t
 
 A Page contains the following attributes:
 
-```
+```yaml
 name: Index
 buttons:
   - index: knobTL

@@ -6,7 +6,7 @@ If more than one representation is found, or a representation that is not valid 
 
 If no Representation is found, a warning message is reported and the button is assumed having no representation. For example, a X-Touch Mini slider has no representation. To suppress the warning message, the `representation` attribute can be used and set to `false`.
 
-```
+```yaml
   - index: slider
     name: SLIDER
     type: slider
@@ -26,7 +26,7 @@ If the value is *managed*, the value can be displayed as a text string in an alt
 `text-alternate: dash=4`: Represent managed value by a set of `-`. Default is 3 dashes.
 `text-alternate: dot`: Represent managed value by a single dot `•`.
 
-```
+```yaml
   - index: 0
     type: none
     name: FCU Airspeed display
@@ -54,7 +54,7 @@ Path to a dataref that is interpreted to determine whether the button or key is 
 
 `color`: Color of the guard. Default is red for cover, and translucent red for grid.
 
-```
+```yaml
     label: RAM AIR
     guard:
       type: grid

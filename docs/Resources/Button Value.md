@@ -36,7 +36,7 @@ Cockpitdecks manages its own set of *datarefs*.
 All datarefs that starts with a special key word are *NOT* forwarded to X-Plane but rather managed internally inside Cockpitdecks. Otherwise, they are not different from X-Plane datarefs. They can be set and used like any other datarefs.
 When a button emit an internal dataref, it's definition mention it clearly so that it can be used by other buttons.
 
-```
+```yaml
    set-dateref: Cockpitdecks/my-local-variable
 
 # in the same or another button, it can be used like so:
@@ -104,7 +104,7 @@ A Representation is driven by a *single final value*. However, it is possible to
 
 Examples of `formula`:
 
-```
+```yaml
 	# Simple math (in reverse polish notation):
 	formula: ${AirbusFBW/OHPLightsATA34[8]} 2 * floor
 

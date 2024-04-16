@@ -12,7 +12,7 @@ They can be used in replacement of an icon.
 
 Ticks are marks on the side of the switch to label corresponding positions. The tick underline is the visual line line that connect all ticks.
 
-```
+```yaml
     switch:
       switch-style: 3dot
       tick-underline: true
@@ -23,7 +23,6 @@ Ticks are marks on the side of the switch to label corresponding positions. The 
         - "MID"
         - "OFF"
     options: 3way,horizontal
-
 ```
 
 Switches, Circular Switches, and Push Switches have numerous attributes in common to control their appearance. See Circular Switches for a list.
@@ -140,7 +139,7 @@ A DataButton displays four informations:
 5. A small text string (typically ~20 characters maximum) called the bottom line.
 
 
-```
+```yaml
   - index: 4
     name: Fuel Level
     type: none
@@ -178,7 +177,7 @@ Decor icons of type `line` display a single horizontal or vertical line, and cor
 
 ![[decor.png]]
 
-```
+```yaml
 type: line
 code: H
 ```
@@ -190,7 +189,7 @@ code: H
 Decor icons of type `segment` display segments that are present in the `code` attribute.
 ![[segments.png]]
 For example:
-```
+```yaml
 type: segment
 code: BGNSIL0123
 ```
@@ -213,7 +212,7 @@ Color of the line.
 The aircraft representation displays the name of the aircraft (ICAO type designator) located in the dataref: `sim/aircraft/view/acf_ICAO`. All 4 (or more) characters are fetched and displayed in the icon. (We currently limit fetching the first four characters only, which should be sufficient for ICAO aircraft code designator.)
 
 The representation attribute is
-```
+```yaml
     aircraft:
       text-font: B612-Bold
       text-size: 32
@@ -230,7 +229,7 @@ If a `set-dataref` is present, the aircraft representation increases the value o
 The WeatherButton is a special data button that displays METAR information of the station closest to the aircraft in a small, iconic representation.
 
 
-```
+```yaml
   - index: 8
     name: METAR
     type: weather

@@ -7,7 +7,7 @@ While some Representations remain highly generic, like graphical representation 
 
 # Live Weather
 
-```
+```yaml
 live-weather
 	station: LFBO
 	update: 30  # minutes
@@ -18,7 +18,7 @@ Reports the current live weather for the closest Metar location. (Closest to the
 
 # Real Weather
 
-```
+```yaml
 real-weather
 	mode: region
 ```
@@ -31,7 +31,7 @@ There are two *modes*: `aircraft` and `region`.
 
 # XP Weather
 
-```
+```yaml
 xp-weather
 	mode: region
 ```

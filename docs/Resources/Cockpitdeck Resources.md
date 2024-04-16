@@ -4,7 +4,7 @@ The following resources are common to all buttons.
 Color can either be expressed by their name, [[pillow color names.png|as defined in the Python PILLOW package]], or by a tuple of 3 or 4 values, representing red, green, blue, and optionally the transparency.
 All values should be in the [0..255] range. For colors, 0 is black, 255 is pure color; for transparency, 0 is transparent, 255 is opaque.
 
-```
+```yaml
     icon-color: (100, 40, 40, 200)
     label-color: darkorange
     text-color: mediumaquamarine
@@ -19,7 +19,7 @@ Font files must be either Truetype fonts (TTF) or Opentype fonts (OTF).
 The name of the file is used to designate the font.
 Fonts are loaded on start up.
 
-```
+```yaml
 	text-font: DIN Condensed Black.otf
 ```
 
@@ -37,7 +37,7 @@ Typical icon size should be (square) 128 to 256 pixels.
 
 Internally, Cockpitdeck use 256 pixel icons. Icons are resized to the deck requested size upon display.
 
-```
+```yaml
 	icon: OFF_WHITE_FRAMED
 ```
 

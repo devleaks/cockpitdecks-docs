@@ -6,68 +6,104 @@ Cockpitdecks uses the appropriate method to hide the complexity of accessing the
 
 Cockpitdecks communicates with X-Plane through the network UDP protocol. This offers the advantage that Cockpitdecks and X-Plane do not necessarily need to run on the same computer, as long as both computer are on the same local network.
 
-Through UDP ports, X-Plane reports some internal paramater values (called datarefs), and accepts commands to execute.
+Through UDP ports, X-Plane reports some internal parameter values (called datarefs), and accepts commands to execute.
 
-### X-Plane Helper Plugin
+Never ever forget that in the UDP protocol, there is no guarantee of delivery, ordering, or duplicate protection.
+# Installation
+
+Cockpitdecks is a regular python application and will run with python 3.10, or newer.
+It is recommended to create a virtual environment and run Cockpitdecks within that environment. A set of packages need to be installed in that environment before Cockpitdecks can run.
+
+1. Create a directory and download Cockpitdecks software from github.
+4. Create a python environment.
+2. Switch to that environment.
+3. Install necessary python packages.
+4. Test run Cockpitdecks without X-Plane.
+5. Install optional Deck Helper plugin in X-Plane
+6. Download and install aircraft deck configurations and layout.
+7. Start Cockpitdeck application.
+8. Start X-Plane.
+9. Enjoy all your deck devices activated in X-Plane.
+
+## Install Software
+
+### Install Cockpitdecks Software
+
+Create a new folder, in that folder:
+
+```shell
+$ git checkout https://github.com/devleaks/cockpitdecks.git
+```
+
+Create a new python environment and activate it.
+
+### Install Python Packages
+
+This packages are required by Cockpitdecks.
+
+```shell
+$ pip install ruamel.yaml pillow
+```
+
+Optionally, if you would like to use Weather or METAR buttons, add the following packages:
+
+```
+$ pip install avwx-engine scipy suntime timezonefinder
+```
+
+### Install Deck Devices Drivers
+
+To have Cockpitdecks manage Streamdeck devices, add
+```shell
+$ pip install streamdeck
+```
+
+To have Cockpitdecks manage Loupedeck devices, add
+```shell
+$ pip install
+git+https://github.com/devleaks/python-loupedeck-live.git
+```
+
+To have Cockpitdecks manage Touch Mini devices, add
+```shell
+$ pip install
+git+https://github.com/devleaks/python-berhinger-xtouchmini.git
+```
+
+### Install Cockpitdecks Helper Plugin
+
 Some commands cannot be executed directly through UDP. For exemples, commands that have a start and an end cannot be started or ended though UDP. It is an X-Plane UDP limitation.
 To circumvent this, Cockpitdeck provides a small python plugin called the Cockpitdecks Helper plugin, that need to be installed into X-Plane to allow for start and end commands. The Cockpitdecks Helper plugin will execute start and end commands on behalf of the Cockpitdecks application. Cockpitdecks Helper plugin just need to be installed and will provide its services to Cockpitdecks. This plugin does not take any resource, it only adds and removes commands each time an aircraft is loaded.
 The Cockpitdecks Helper Plugin works automatically, reads `deckconfig` configuration and creates a pair of (beginCommand, endCommand) for each *long press* command.
 Cockpitdecks Helper Plugin is written in the python language. So it needs the [XPPython3](https://xppython3.readthedocs.io/) X-Plane plugin installed. XPPython3 plugin allow for execution of python code inside X-Plane.
 The Cockpitdecks Helper plugin is not necessary if Cockpitdecks is installed as an X-Plane python plugin. (See below.)
 
-# Installation
-
-Cockpitdecks is a regular python application and will run with python 3.10, not newer if you use XTouchMidi devices.
-It is recommended to create a virtual environment and run Cockpitdecks from that environement. A set of packages need to be installed in that environment before Cockpitdecks can run. Create a new folder, in that folder:
-
-```shell
-$ git checkout https://github.com/devleaks/cockpitdecks.git
-$ pip install ruamel.yaml pillow
-```
-
-If the [[Drawn Buttons#Weather|Weather/Metar]] button representation is necessary, add
-```
-$ pip install avwx-engine scipy suntime timezonefinder
-```
-
-### Deck Devices
-
-To have Cockpitdecks manage Streamdeck devices, add
-```
-$ pip install streamdeck
-```
-
-To have Cockpitdecks manage Loupedeck devices, add
-```
-$ pip install
-git+https://github.com/devleaks/python-loupedeck-live.git
-```
-
-To have Cockpitdecks manage Touch Mini devices, add
-```
-$ pip install
-git+https://github.com/devleaks/python-berhinger-xtouchmini.git
-```
- 
-
-### Cockpitdecks Helper Plugin
 To execute long press commands, the Cockpitdecks Helper plugin needs to be installed in XPPython3 PythonPlugins folder.
 
-```
+```shell
 ... /X-Plane 12/resources/plugins/PythonPlugins/PI_decks_helper.py
 ```
 
-## Usage
+# Usage
 
-### Disconnect OEM Applications
+## Disconnect OEM Applications
 
 First, you have to completely stop (quit completely) original manufacturer deck configuration applications. They take exclusive access to the device and that prevents Cockpitdecks from finding and using them.
 
-### Start Cockpitdecks
+## Start Cockpitdecks
+
+### Test Start Cockpitdecks
+
+If your decks are connected, and all drivers properly installed, you can test start Cockpidecks by simply launching the application without aircraft folder specified. Cockpitdecks will use default values for everything and set up each deck such as the first key can be used to toggle X-Plane map on or off.
+
+```shell
+$ python bin/cockpitdecks_udp_start.py
+```
+
 
 To start Cockpitdecks, use the `cockpitdecks_udp_start.py` script by supplying the X-Plane aircraft folder where deck confit resides. Start the python script and supply the folder name where `deckconfig` folder resides.
 
-```sh
+```shell
 $ python cockpitdecks_udp_start.py "/Applications/X-Plane 12/Aircraft/Extra Aircraft/Toliss A321"
 ```
 

@@ -72,7 +72,7 @@ Each part is addressed by the name of the part: A0, B0, B1, etc. The content is 
 
 # Part Definition
 
-```
+```yaml
 		 B0:
 			color: lime
 	        led: bars

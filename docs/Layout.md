@@ -17,7 +17,7 @@ The Layout folder contains the following files:
 # Config.yaml
 The `config.yaml` file inside a layout folder defines Layout-level attributes. The file is optional.
 
-```
+```yaml
 # This is at layout level
 default-icon-color: (94, 111, 130)
 default-label-color: blue

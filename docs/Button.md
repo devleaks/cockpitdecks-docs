@@ -2,7 +2,7 @@ A *button* is the general term for a key, knob, rotary encoder, slider cursor, o
 
 The *Button Definition* is a list of parameters that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button. Here is an example of button definition:
 
-```
+```yaml
 buttons:
   - index: 2
     name: MASTER WARNING
@@ -53,7 +53,7 @@ The [[Button Activation|button activation]] describe button-type specific attrib
 
 For example, if the value of a button type is `page` to change a page on a deck, it is expected to find the attribute named `page`  which contains the name of the page to switch to when pressed:
 
-```Yaml
+```yaml
     type: page
     page: another-page
 ```
@@ -62,7 +62,7 @@ For example, if the value of a button type is `page` to change a page on a deck,
 
 The label of a button is a short reminder of what the button does. The text of the label is laid over the button image if any. The labelling of a button uses the following attributes:
 
-```
+```yaml
     label: SHORT TITLE
     label-color: white
     label-size: 24
@@ -97,7 +97,7 @@ Regularly, buttons have additional paparemeteres.
 
 The button options parameter is a string of comma separated options. An option is either a simple string or word, or a name=value string.
 
-```Yaml
+```yaml
     options: 3dot,appearance=metal,mode=open,level=6
 ```
 
@@ -111,7 +111,7 @@ Please head [[Button Value|here]] for details about a button's value computation
 
 A Button can force its first, initial value to set its startup or original state.
 
-```
+```yaml
 	initial-value: 2
 ```
 
