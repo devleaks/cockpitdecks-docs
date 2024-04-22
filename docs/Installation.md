@@ -115,6 +115,11 @@ If Cockpitdecks fails to connect to X-Plane or notices it does no longer receive
 
 The *aircraft folder* (Toliss A321) where cockpitdecks tries to find a `deckconfig` folder can be anywhere, it does not need to be in the X-Plane aircraft folder. However, the `deckconfig` folder must be in the X-Plane aircraft folder for the Cockpitdecks Helper Plugin. (For Unix technical people, a symbolic link does the trick.)
 
+## Install Aircraft Config
+
+Duane, a Cockpitdecks aficionado has realized several configurations for several aircrafts.
+You can [find them here](https://github.com/dlicudi/cockpitdecks-configs), download them and install them in your aircraft folder.
+
 # Troubleshooting
 
 To report an issue with Cockpitdecks, you should always include the `XPPython3.log` file created in the X-Plane folder. Cockpitdecks also create a `cockpitdecks.log` files with more information.

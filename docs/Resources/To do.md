@@ -2,30 +2,23 @@ Isolate a framework that register and observe datarefs, make a better tool than 
 Evolve towards a XPPython UDP library.
 When dataref(s) meet conditions, events are triggered.
 Usable for observation, data collection, even « co-pilot » type of interaction: if this then that.
-Better isolate activation / representation.
-
-What about grouping all default-* into a *style*? Using one indirection like
-Normal-font=…
-Label-font=…
-Icon-background=…
-All these grouped into a style?
-May be provide default-airbus.Yaml, default-Boeing.Yaml?
-Style could simply be an includes of defaults.
-
-
 
 Make a350/a380 type tick marks on rotating knobs. LED around knob
 
-Make a icon-builder app (electron?)
+Make a icon-builder app (electron?) very much like TouchPortal... So don't do it.
 
-Abstraction of command:
+### Abstraction of command
+
 Allow for « local » commands like change page, stop, inspect.
 Command has a list of optional/mandatory arguments, especially local commands.
 When executed, a command receive an instance of cockpit? Xplane? App?
 
-Large displays: Gently pressing on a part of the display triggers FCU mode changes like Speed/Mach, Heading/Track, or even knobs push/pull (with long press). May be vertical swipes will increase/decrease values.
+### Large displays
+
+Gently pressing on a part of the display triggers FCU mode changes like Speed/Mach, Heading/Track, or even knobs push/pull (with long press). May be vertical swipes will increase/decrease values.
 
 # Development Process
+
 Base idea: create a single « plugin » for all decks. Hide deck particularities, they all have buttons, encoders, led, iconic image…
 Base: extend wortelus idea to several deck types.
 Yaml is most readable, structured, text based config language.
@@ -37,6 +30,7 @@ Workaround: Remain outside of simulator process, communicate with UDP
 
 
 ## Dreams
+
 Add Saitek Panels (HIDAPI)
 Think « miniCockpit »
 Add OSC/MIDI relay type to be able to create cockpit in OSCTouch.
@@ -45,14 +39,17 @@ Evolve towards library
 Behave similarly as TouchPortal
 
 MAKE ASYNCHRONOUS. Should have been designed asynchronous at the first place. However, a migration/evolution is clearly doable.
-
+(Should have been created asynch from the start? no locking mechanism foreseen...)
 ## Status
+
 Should be easy for software developer.
 Installation not easy if not familiar with Python eco-system.
 Configuration through Yaml files.
 Need to hunt for datarefs and commands in X-Plane (using DataRefTool for example.)
 
 # Dashboard
+
+Create a page with dashboard-like icons:
 
 To, From
 Dist from takeoff, ATD
@@ -65,3 +62,5 @@ Elec volt
 Hyd Pressure
 AirCo "flow"
 Oxy?
+
+The sky is the limit...

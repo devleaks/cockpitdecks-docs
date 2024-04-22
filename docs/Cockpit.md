@@ -25,12 +25,12 @@ XPlaneAircraftFolder
     ⊢ resources
       ⊢ icons
         ⊢ icon-off.png
-        ⊢ icon-on.jpg
-	  ⊢ fonts
-	    ⊢ B612-Regular.otf
-	    ⊢ DIN.ttf
+      ⊢ fonts
+        ⊢ B612-Regular.otf
+        ⊢ DIN.ttf
       ⊢ docs
         ⊢ README.md
+      ⊢ other-resource.py
     ⊢ layout1
       ⊢ config.yaml
       ⊢ page1.yaml

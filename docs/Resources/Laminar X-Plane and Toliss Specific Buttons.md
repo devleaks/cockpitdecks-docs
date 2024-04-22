@@ -3,8 +3,8 @@
 
 X-Plane weather is flexible and proposed with several variant. We designed a few set of X-Plane specific button representation to present these data sets.
 
-- Weather from external source (Metar, TAF)
-- Weather from X-Plane (from global items like Metar)
+- Weather from external source (METAR, TAF)
+- Weather from X-Plane (from global items like METAR)
 - Weather informations from X-Plane (from clouds and wind *layers*)
 
 # Toliss Airbus Aircrafts
