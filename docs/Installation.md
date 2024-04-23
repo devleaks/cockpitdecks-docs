@@ -84,6 +84,12 @@ To execute long press commands, the Cockpitdecks Helper plugin needs to be insta
 ... /X-Plane 12/resources/plugins/PythonPlugins/PI_decks_helper.py
 ```
 
+To fetch string-typed datarefs, the [[String Datarefs|String Dataref UDP Poster]] needs to be installed in XPPython3 PythonPlugins folder.
+
+```shell
+... /X-Plane 12/resources/plugins/PythonPlugins/PI_string_dataref_upd.py
+```
+
 # Usage
 
 ## Disconnect OEM Applications
