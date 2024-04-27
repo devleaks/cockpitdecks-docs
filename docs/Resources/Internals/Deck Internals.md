@@ -29,31 +29,31 @@ model: loupedecklive
 driver: loupedeck
 buttons:
     - name: 0
-      action: push
-      view: image
+      activation: push
+      representation: image
       image: [90, 90, 0, 0]
       repeat: 12
     - name: left
-      action: swipe
-      view: image
+      activation: swipe
+      representation: image
       image: [60, 270, 0, 0]
     - name: right
-      action: swipe
-      view: image
+      activation: swipe
+      representation: image
       image: [60, 270, 420, 0]
     - name: center
-      action: swipe
-      view: image
+      activation: swipe
+      representation: image
       image: [360, 270, 60, 0]
     - name: 0
       prefix: e
-      action: encoder-push
-      view: none
+      activation: [encoder, push]
+      representation: none
       repeat: 6
     - name: 0
       prefix: b
       action: push
-      view: colored-led
+      representation: colored-led
       repeat: 8
 ```
 
@@ -64,10 +64,40 @@ buttons:
 
 ## Configuration Attributes
 
-### Name
-Name of the button.
+### Model
 
-### Action
+Keyword used for identifying the deck model.
+
+### Driver
+
+Keyword identifying the deck software driver class.
+
+### Buttons
+
+A list of button types, each ButtonType leading to one or more individual buttons identified by their index, built from the `prefix`, `repeat`, and `name` attribute. See below.
+#### Name
+
+Name of the button type.
+
+The name of the button type can either be its real name, like `touchscreen` when there is a single button with that name, or an integer value to build another name from its `prefix` and (interger) name value.
+
+Example
+
+```yaml
+name: touchscreen
+```
+
+In this case, the name of the button will be `touchscreen` and that name needs to be unique for the deck type.
+
+```yaml
+name: 5
+prefix: k
+repeat: 4
+```
+
+In the later case, names of buttons will be: `k5`, `k6`, `k7`, and `k8`.
+
+#### Actions
 Interaction with the button. Interaction can be:
 
 - `none`: There is no interaction with the button. It is only used for display purpose.
@@ -75,109 +105,27 @@ Interaction with the button. Interaction can be:
 - `push`: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.
 - `swipe`: A surface swipe event, with a starting touch and a raise events.
 - `encoder`: A rotating encoder, that can turn both clockwise and counter-clockwise
-- `encoder-push`: An encoder coupled to a push button.
+- `encoder-push`: An encoder and a push button combined in one feature. The button can be pushed, turned, released, etc. all *simultaneously*.
 - `cursor`: A linear cursor (straight or circular) delivering values in a finite range.
 
-### View
-Feedback ability of the button. Feedback visualisation can be:
+#### Feedback
+Feedback ability of the button. Feedback can be:
 
 - `none`: No feedback on device, or direct feedback provided by some marks on the deck device.
 - `image`: Small LCD iconic image.
 - `led`: Simple On/Off LED light.
 - `colored-led`: A single LED that can be colored.
 - `multi-leds`: Several, single color, LED on a ramp.
+- `vibrate`: emit a buzzer sound.
+- `sound`: emit a sound.
 
-### Image
-If the feedback visualisation is an iconic image, the `image` attribute specifies the characteristics of the image (size, and eventually, offset position on a larger surface.) `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
+#### Image
+If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image (size, and eventually, offset position on a larger surface.) `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
 
-## Deck Type Result
+## Deck Type
 
 The result of a deck definition is the list of valid definitions for each button of that deck. This includes, for each button, its activation capabilities, its representation capabilities, and the list of valid index name to designate a precise button on the deck.
-Here is an excerpt of the meta data available in the definition of a button:
-
-```yaml
-...
-'2':
-  index: '2'
-  _index: 2
-  action: push
-  view: image
-  activations:
-  - page
-  - reload
-  - inspect
-  - stop
-  - push
-  - longpress
-  - onoff
-  - updown
-  representations:
-  - icon
-  - text
-  - icon-color
-  - multi-icons
-  - multi-texts
-  - icon-animate
-  - side
-  - data
-  - annunciator
-  - annunciator-animate
-  - switch
-  - circular-switch
-  - push-switch
-  - ftg
-  - weather
-  image: [90, 90, 0, 0]
-...
-e0:
-  index: e0
-  _index: 0
-  action: encoder-push
-  view: none
-  activations:
-  - page
-  - reload
-  - inspect
-  - stop
-  - push
-  - longpress
-  - onoff
-  - updown
-  - encoder
-  - encoder-push
-  - encoder-onoff
-  - encoder-value
-  - knob
-  representations:
-  - icon
-  - text
-  - icon-color
-  - multi-icons
-  - multi-texts
-  - icon-animate
-  - side
-  - data
-  - annunciator
-  - annunciator-animate
-  - switch
-  - circular-switch
-  - push-switch
-  - ftg
-  - weather
-...
-slider:
-  index: slider
-  _index: 0
-  action: slider
-  view: none
-  activations:
-  - slider
-  representations:
-  - none
-...
-```
-
-The meta data is available in each individual button.
+The meta data is available in each individual button in the `_defs` attribute
 
 # Deck Driver (Hardware Interface)
 
@@ -285,3 +233,34 @@ Interaction from Cockpitdeck to simulator software:
 2. Change parameter (dataref) value
 3. Read parameter (dataref) value (at up to ~2 to 5 Hz frequency)
 
+
+# Algorithm for Deck Definition
+
+(wip)
+
+## Goal
+
+When parsing a button definitions, determine its activation and its representation.
+
+Given the button index, determine from the deck's definition for that index what the button is capable of (action, feedback)
+
+Check whether the button is capable of the activation in its definition from the action capabilities
+
+Check whether the button is capable of the representation in its definition from its feedback capabilities
+
+Deck capabilities is announced in terms of individual buttons, and for each button:
+
+action: what it can do, see above
+feedback (formely views): what it can show/express as feedback, see above also.
+
+## Algorithm
+
+### Parsing Deck Definition
+
+For each button,
+
+Determine the actions the button is capable of (there can be more than one, e.g. push and encode)
+
+Determine the feedback type (image, led, sound...). Ideally, there might be more than one.
+
+Q: If a deck is capable of emitting sound, it is a the deck level, not the button level, so sound should be treated at the deck level.

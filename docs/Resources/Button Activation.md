@@ -4,6 +4,9 @@ For a given button on a deck, the action that the button will be able to carry o
 
 Each activation below list configuration attributes and internal values it maintains. Numeric internal values are accessible as `${state:variable-name}` in formula.
 
+Each activation is designed to handle one or more [[Events]] action name. For example a EncodePush activation is capable of handling both PressEvent and EncoderEvent.
+This capability is provided by the `_required_deck_capability` class attributes which contains one or more deck capabilities the activation is ready to handle.
+
 # No Activation
 `type: none`
 Button with no activation are button used for [[Button Value|display purpose only]].

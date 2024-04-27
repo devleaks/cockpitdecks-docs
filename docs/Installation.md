@@ -78,7 +78,15 @@ The Cockpitdecks Helper Plugin works automatically, reads `deckconfig` configura
 Cockpitdecks Helper Plugin is written in the python language. So it needs the [XPPython3](https://xppython3.readthedocs.io/) X-Plane plugin installed. XPPython3 plugin allow for execution of python code inside X-Plane.
 The Cockpitdecks Helper plugin is not necessary if Cockpitdecks is installed as an X-Plane python plugin. (See below.)
 
-To execute long press commands, the Cockpitdecks Helper plugin needs to be installed in XPPython3 PythonPlugins folder.
+Cockpitdecks XPPython3 plugins are located in the
+
+```sh
+cockpitdecks/resources/xppython3-plugins
+```
+
+folder. There are 2 single files.
+
+To execute long press commands, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder.
 
 ```shell
 ... /X-Plane 12/resources/plugins/PythonPlugins/PI_decks_helper.py
