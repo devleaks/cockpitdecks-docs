@@ -1,70 +1,60 @@
-Cockpitdecks is designed to accommodate different deck types.
-To allow Cockpitdecks to manage a new deck type, two interfaces need to be provided.
+Deck Internals explains how user interactions on a physical deck device enter Cockpitdecks.
 
-## Glossary
+# How Deck User Interactions Enter Cockpitdecks
 
-A Deck is a physical device. It has 
+When a user want to use a deck with Cockpitdecks, it is necessary to have a python package available to interact with it.
 
-- a Manufacturer (`brand`))
-- a Model name (`model`)
-- a Serial number, supplied in the `secret.yaml` file.
+By design and coïncidence, all three deck brands currently proceed with similar means.
 
-Inside Cockpitdecks, a Deck has the following attributes:
+The python package that interfaces the physical deck to the python language request to supply and install a callback function, with a proper interface.
 
-- A **Type**, which is an internal name for a deck "model". The **Type** of a Deck explicitely describes the capabilities of the Deck (number of buttons, display capabilities, etc.)
-- A **Driver**, which is a link to the software that make the "bridge" between Cockpitdecks and the device connected to the computer.
+The function, that we supply, is called each time an interaction occurs on the physical deck device.
 
+When Cockpitdecks is started, its scans for available devices, and check whether the interfacing software package is available. If it is, it installs its own callback function into the python package for that deck. From that moment on, each time something occurs on the deck device, Cockpitdecks' callback function gets called.
 
-# Deck Types
-All buttons available for interaction are listed in a configuration file that enumerates all buttons, their possible interaction and display capabilities.
-Here is a configuration file for a Loupedeck LoupedeckLive device.
+In that callback function, Cockpitdecks tries to spend a minimum time. From the data it receives, it creates an [[Event]] with all necessary data and enqueues it for later processing by Cockpitdecks.
+
+The Event contains information about the deck, of course, but also the precise button, knob, encoder, slider, screen... that was used and what type of interaction occurred (pushed, turned, swiped...)
+
+# Deck Description
+
+A deck is presented to Cockpitdecks through a deck definition file. The deck definition file describes the deck capabilities:
+- How many buttons,
+- How many dials, if they can be turned, or pushed
+- Feedback screen icons
+- Feedback LED
+- Ability to emit vibration or sound
+
+## Deck Defintion
+Here is for example, a configuration file for a Loupedeck LoupedeckLive device.
 
 ```yaml
 # This is the description of a deck's capabilities for a Loupedeck LoupedeckLive device
 #
 ---
-type: loupedecklive
-brand: Loupedeck
-model: loupedecklive
-driver: loupedeck
+type: Stream Deck +
+driver: streamdeck
 buttons:
-    - name: 0
-      activation: push
-      representation: image
-      image: [90, 90, 0, 0]
-      repeat: 12
-    - name: left
-      activation: swipe
-      representation: image
-      image: [60, 270, 0, 0]
-    - name: right
-      activation: swipe
-      representation: image
-      image: [60, 270, 420, 0]
-    - name: center
-      activation: swipe
-      representation: image
-      image: [360, 270, 60, 0]
-    - name: 0
-      prefix: e
-      activation: [encoder, push]
-      representation: none
-      repeat: 6
-    - name: 0
-      prefix: b
-      action: push
-      representation: colored-led
-      repeat: 8
+  - name: 0
+    action: push
+    feedback: image
+    image: [96, 96, 0, 0]
+    repeat: 8
+  - name: 0
+    prefix: e
+    action: [encoder, push]
+    feedback: none
+    repeat: 4
+  # touchscreen in streamdeck package vocabulary
+  - name: touchscreen
+    action: swipe
+    feedback: image
+    image: [800, 100, 0, 0]
 ```
 
-> [!NOTE]
-> In this very special case, there will be a conflict because a portion of the screen is used twice: The `center` screen correspond to the 12 push buttons. Deck should use either one but not both. If both remain activated, Cockpitdecks will warn about illegal use of center screen for button or the opposite. Example:
-> `set_key_image: key «center»: invalid index for center display, aborting set_key_image`
-> These warnings can safely be ignored. To suppress the warning, simply comment out the portion of unused buttons.
+## Definition Attributes
 
-## Configuration Attributes
-
-### Model
+### Type
 
 Keyword used for identifying the deck model.
 
@@ -105,8 +95,9 @@ Interaction with the button. Interaction can be:
 - `push`: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.
 - `swipe`: A surface swipe event, with a starting touch and a raise events.
 - `encoder`: A rotating encoder, that can turn both clockwise and counter-clockwise
-- `encoder-push`: An encoder and a push button combined in one feature. The button can be pushed, turned, released, etc. all *simultaneously*.
 - `cursor`: A linear cursor (straight or circular) delivering values in a finite range.
+
+ACtion can ba a single interaction or an array of interactions like `[encore, push]` if a button combines both ways of interacting with it.
 
 #### Feedback
 Feedback ability of the button. Feedback can be:
@@ -119,13 +110,76 @@ Feedback ability of the button. Feedback can be:
 - `vibrate`: emit a buzzer sound.
 - `sound`: emit a sound.
 
+
+> [!NOTE] Trick
+> If a deck has a vibrate capability, it is advisable to declare it as a separate button of interaction, and use that button like any other. Vibrate is a feedback mechanism.
+
+
 #### Image
 If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image (size, and eventually, offset position on a larger surface.) `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
 
 ## Deck Type
 
-The result of a deck definition is the list of valid definitions for each button of that deck. This includes, for each button, its activation capabilities, its representation capabilities, and the list of valid index name to designate a precise button on the deck.
-The meta data is available in each individual button in the `_defs` attribute
+The above definition file is read by a Deck Type class.
+The Deck Type class is responsible for providing information about the deck's capabilities, but also to control them. For example, given a button definition in Cockpitdecks, the Deck Type class can validate the button definition, ensuring that the button specified by its index is capable of the requested activation and representation.
+# Event Processing
+
+From the parameter supplied in the callback function, Cockpitdecks determine the type of interaction that occurred (pushed, turned, swiped...). For that interaction, an Event of a precise type is created, with all detailed parameters available to it. The callback function does not execute the activition but rather enqueues the event for later processing.
+
+In Cockpitdecks, another 
+# Activation
+
+The activation is the piece of code that will process the event.
+
+```python
+class Push(Activation):
+    """
+    Defines a Push activation.
+    The supplied command is executed each time a button is pressed.
+    """
+    ACTIVATION_NAME = "push"
+    REQUIRED_DECK_ACTIONS = DECK_ACTIONS.PUSH
+```
+
+Activation usually leads to either
+- one or more command sent to the simulator for execution
+- internal changes of the deck, like loading a new page of buttons
+- or both
+
+# Representation
+
+```python
+class Icon(Representation):
+
+    REPRESENTATION_NAME = "icon"
+    REQUIRED_DECK_FEEDBACKS = DECK_FEEDBACK.IMAGE
+
+    def __init__(self, config: dict, button: "Button"):
+        Representation.__init__(self, config=config, button=button)
+
+```
+
+Similarly, when a Representation code is created, it must mention its identification keyword `REPRESENTATION_NAME` that will be searched in the button definition attribute.
+
+The `REQUIRED_DECK_FEEDBACKS` determine which of the deck's definition `feedback` type is requested to be able to use the Representation().
+
+# Button Definition
+
+The `ACTIVATION_NAME` is the string that the button definition must use to trigger that activation (`type` attribute):
+
+```yaml
+  - index: 1
+    name: MASTER CAUTION
+    type: push
+    command: sim/annunciator/clear_master_caution
+    annunciator:
+      text: "MASTER\nCAUT"
+      text-color: darkorange
+      text-font: DIN Condensed Black.otf
+      text-size: 72
+      dataref: AirbusFBW/MasterCaut
+    vibrate: RUMBLE5
+```
 
 # Deck Driver (Hardware Interface)
 
@@ -147,7 +201,11 @@ Currently, this require the coding of a single python class with the following f
 
 - key_change_callback
 
-(in more recent versions of drivers, there sometimes is a callback function per interaction type: key_change_call_back, dial_change_callback, touch_callback...)
+In some drivers, there sometimes is a callback function per interaction type:
+
+- key_change_call_back,
+- dial_change_callback
+- touch_callback...
 
 **Feedback**:
 
@@ -222,45 +280,3 @@ For deck with iconic display capabilities:
     def get_image_size(self, index):
     def _send_key_image_to_device(self, key, image):
 ```
-
-# Other Simulator Software
-
-Cockpitdecks software has been organized in such a way that it could probably be used with other simulator software, provided some adaptation of course. Adaptation would be confined to the interaction of Cockpitdecks with the simulator software.
-
-Interaction from Cockpitdeck to simulator software:
-
-1. Execute command (without parameter)
-2. Change parameter (dataref) value
-3. Read parameter (dataref) value (at up to ~2 to 5 Hz frequency)
-
-
-# Algorithm for Deck Definition
-
-(wip)
-
-## Goal
-
-When parsing a button definitions, determine its activation and its representation.
-
-Given the button index, determine from the deck's definition for that index what the button is capable of (action, feedback)
-
-Check whether the button is capable of the activation in its definition from the action capabilities
-
-Check whether the button is capable of the representation in its definition from its feedback capabilities
-
-Deck capabilities is announced in terms of individual buttons, and for each button:
-
-action: what it can do, see above
-feedback (formely views): what it can show/express as feedback, see above also.
-
-## Algorithm
-
-### Parsing Deck Definition
-
-For each button,
-
-Determine the actions the button is capable of (there can be more than one, e.g. push and encode)
-
-Determine the feedback type (image, led, sound...). Ideally, there might be more than one.
-
-Q: If a deck is capable of emitting sound, it is a the deck level, not the button level, so sound should be treated at the deck level.

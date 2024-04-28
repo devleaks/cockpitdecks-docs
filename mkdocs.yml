@@ -81,7 +81,6 @@ nav:
           - Cockpitdecks Internals:
               - Cockpitdecks Internals: Resources/Internals/Cockpitdecks Internals.md
               - Deck Internals: Resources/Internals/Deck Internals.md
-              - X-Plane UPD Connector: Resources/X-Plane UPD Connector.md
               - X-Plane UDP Interaction: Resources/About X-Plane UDP Interaction.md
       - Installation:
           - Requirements: Requirements.md

@@ -5,6 +5,8 @@ Cockpitdecks threads are often created in start() procedures and terminated in t
 
 In addition, each deck has its own, internal, mechanism to capture user interactions.
 
+![[architecture.svg|600]]
+
 # Threads for Execution of Actions
 
 As today, *things that occurs on a deck* are captured by a lower level computer software module. In the case of Cockpitdecks and its Streamdeck, Loupedeck and Berhinger devices, each of those lower level software module is designed to use a user-provided callback function that is called each time something occurs on the deck. That's how event enters Cockpitdecks.
