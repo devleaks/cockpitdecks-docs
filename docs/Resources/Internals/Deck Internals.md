@@ -32,24 +32,35 @@ Here is for example, a configuration file for a Loupedeck LoupedeckLive device.
 # This is the description of a deck's capabilities for a Loupedeck LoupedeckLive device
 #
 ---
-type: Stream Deck +
-driver: streamdeck
+type: LoupedeckLive
+driver: loupedeck
 buttons:
   - name: 0
     action: push
     feedback: image
-    image: [96, 96, 0, 0]
-    repeat: 8
+    image: [90, 90, 0, 0]
+    repeat: 12
+  - name: left
+    action: swipe
+    feedback: image
+    image: [60, 270, 0, 0]
+  - name: right
+    action: swipe
+    feedback: image
+    image: [60, 270, 420, 0]
   - name: 0
     prefix: e
     action: [encoder, push]
     feedback: none
-    repeat: 4
-  # touchscreen in streamdeck package vocabulary
-  - name: touchscreen
-    action: swipe
-    feedback: image
-    image: [800, 100, 0, 0]
+    repeat: 6
+  - name: 0
+    prefix: b
+    action: push
+    feedback: colored-led
+    repeat: 8
+  - name: buzzer
+    action: none
+    feedback: vibrate
 ```
 
 ## Definition Attributes
@@ -108,7 +119,6 @@ Feedback ability of the button. Feedback can be:
 - `colored-led`: A single LED that can be colored.
 - `multi-leds`: Several, single color, LED on a ramp.
 - `vibrate`: emit a buzzer sound.
-- `sound`: emit a sound.
 
 
 > [!NOTE] Trick
@@ -167,7 +177,7 @@ The `REQUIRED_DECK_FEEDBACKS` determine which of the deck's definition `feedback
 
 The `ACTIVATION_NAME` is the string that the button definition must use to trigger that activation (`type` attribute):
 
-```yaml
+```yaml hl_lines="3"
   - index: 1
     name: MASTER CAUTION
     type: push
