@@ -141,7 +141,7 @@ In Cockpitdecks, another
 
 The activation is the piece of code that will process the event.
 
-```python
+```python hl_lines="6"
 class Push(Activation):
     """
     Defines a Push activation.
@@ -158,15 +158,15 @@ Activation usually leads to either
 
 # Representation
 
-```python
-class Icon(Representation):
-
-    REPRESENTATION_NAME = "icon"
-    REQUIRED_DECK_FEEDBACKS = DECK_FEEDBACK.IMAGE
-
+```python hl_lines="6"
+class Annunciator(DrawBase):
+    """
+    All annunciators are based on this class.
+    See docs for subtypes and models. 
+    """
+    REPRESENTATION_NAME = "annunciator"
     def __init__(self, config: dict, button: "Button"):
-        Representation.__init__(self, config=config, button=button)
-
+        self.button = button
 ```
 
 Similarly, when a Representation code is created, it must mention its identification keyword `REPRESENTATION_NAME` that will be searched in the button definition attribute.
@@ -177,7 +177,7 @@ The `REQUIRED_DECK_FEEDBACKS` determine which of the deck's definition `feedback
 
 The `ACTIVATION_NAME` is the string that the button definition must use to trigger that activation (`type` attribute):
 
-```yaml hl_lines="3"
+```yaml hl_lines="3,5"
   - index: 1
     name: MASTER CAUTION
     type: push
@@ -251,6 +251,7 @@ The following functions are also necessary and can be overwritten if necessary.
                        cockpit: "Cockpit",
                        device = None):
     def init(self):
+
     def get_id(self):
     def read_definition(self):
     def get_button_value(self, name):
@@ -265,14 +266,15 @@ The following functions are also necessary and can be overwritten if necessary.
     def make_default_page(self, b: str = None):
     def get_index_prefix(self, index):
     def get_index_numeric(self, index):
-    def valid_indices(self):
-    def valid_activations(self, index = None):
-    def valid_representations(self, index = None):
-    def key_change_callback(self, deck, key, state):
     def key_change_processing(self, deck, key, state):
     def print_page(self, page: Page):
     def fill_empty(self, key):
+
+    # proc that gets installed in driver software
+    def key_change_callback(self, deck, key, state):
+    # proc that produces the feedback through driver software
     def render(self, button: Button):
+
     def start(self):
     def terminate(self):
 ```
