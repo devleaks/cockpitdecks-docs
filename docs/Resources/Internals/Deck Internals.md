@@ -177,7 +177,7 @@ The `REQUIRED_DECK_FEEDBACKS` determine which of the deck's definition `feedback
 
 The `ACTIVATION_NAME` is the string that the button definition must use to trigger that activation (`type` attribute):
 
-```yaml hl_lines="3,5"
+```yaml hl_lines="3 5"
   - index: 1
     name: MASTER CAUTION
     type: push
