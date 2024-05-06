@@ -81,9 +81,7 @@ nav:
               - Cockpitdecks Internals: Extending/Internals/Cockpitdecks Internals.md
               - Deck Internals: Extending/Internals/Deck Internals.md
               - To Do: Extending/Internals/To do.md
-  - Installation:
-      - Requirements: "Installation/#installation-requirements"
-      - Installation: Installation.md
+  - Installation: Installation.md
 
 # ###############################################
 #
