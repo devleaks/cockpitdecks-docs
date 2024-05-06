@@ -12,7 +12,7 @@ The function, that we supply, is called each time an interaction occurs on the p
 
 When Cockpitdecks is started, its scans for available devices, and check whether the interfacing software package is available. If it is, it installs its own callback function into the python package for that deck. From that moment on, each time something occurs on the deck device, Cockpitdecks' callback function gets called.
 
-In that callback function, Cockpitdecks tries to spend a minimum time. From the data it receives, it creates an [[Event]] with all necessary data and enqueues it for later processing by Cockpitdecks.
+In that callback function, Cockpitdecks tries to spend a minimum time. From the data it receives, it creates an [[Events|Event]] with all necessary data and enqueues it for later processing by Cockpitdecks.
 
 The Event contains information about the deck, of course, but also the precise button, knob, encoder, slider, screen... that was used and what type of interaction occurred (pushed, turned, swiped...)
 

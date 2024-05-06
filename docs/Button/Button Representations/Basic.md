@@ -137,7 +137,7 @@ The `color` attribute can use a formula to determine the color (single hue value
 
 # Deck Specific Displays
 
-Some decks have particular LCD displays. Cockpitdecks [[Larger Displays|designed specific]]  activations and representations for those.
+Some decks have particular LCD displays. Cockpitdecks [[Deck Specific#Larger Displays|designed specific]]  activations and representations for those.
 
 # Other Representations
 

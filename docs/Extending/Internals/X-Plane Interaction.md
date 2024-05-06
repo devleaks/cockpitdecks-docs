@@ -51,4 +51,4 @@ We experimentally observed that there is a performance limit of about ~100 datar
 
 To request more datarefs, you can request them by batch of less than 100 datarefs and switch batches of requested datarefs at regular interval. It works very well.
 
-Cockpitdecks created a dataref batch collector.
+Cockpitdecks created a [[Dataref Sets|dataref batch collector]].
