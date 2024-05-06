@@ -1,5 +1,11 @@
 A *button* is the general term for a key, knob, rotary encoder, slider cursor, or even touch surface on a deck. On a given deck, each element that can be pressed, turned, or slid is a *button*.
 
+For a given deck, all buttons that are available and/or displayed at a moment in time are on the same *Page*, the collection of buttons currently usable on that deck. Hence, in the definition of a page, there is a mandatory `buttons` attributes that lists all buttons on that page.
+
+In that list, each button is defined by a list of attributes that will determine what it does and how it appears on the deck. The list of attributes that define a button is called a Button Definition.
+
+# Button Definition
+
 The *Button Definition* is a list of parameters that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button. Here is an example of button definition:
 
 ```yaml
@@ -19,23 +25,24 @@ buttons:
 
 The above definition creates a button named MATER WARNING, that will be placed at position 2 on the deck. The button can be pushed, and when pushed, it will trigger the command `sim/annunciator/clear_master_warning`. The button will display the status of the `AirbusFBW/MasterWarn` value in the simulator. The button is an animation. If the value in the simulator is true (i.e. not zero), the animation will run and display a blinking red text message. The text will blink at a rate of 2 seconds. If the value is false, the button will not display anything.
 
-The following section describe button definition attributes that are common to all buttons, what ever they do and represent.
+The following Sections describe button definition attributes that are common to all buttons, what ever they do and represent.
 
 The button *Activation* page describes attributes specific to *what a button will trigger or do* when used.
 
 The button *Representation* page describes attributes specific to the *feedback* given by the button on the deck, be it an iconic image to display, a led to turn on or off, or a sound to emit.
 
-# Button (Common) Attributes
+# Common Button Attributes
 
-## Button Index
+## Index
+
+**Mandatory**. There is no default value.
 
 Each «Button» on a deck is designated by its [[Button Index|Index]].
 On a given Page, the Index of a button must be unique on that Page since it addresses a very precise key, knob or slider on the deck.
 Depending on the model of deck, buttons have  [[Button Index|coded named index]].
 On a simple deck with a number of similar keys, the index of a button is its ordering number: 0, 1, 2... until the number of keys is reached. On a more complex deck, with button and knobs, knobs may be indexed with name like knob0, knob1, knob2... until the number of knobs is reached.
-The Index of a button is a mandatory parameter of the Button definition. There is no default value.
 
-## Button Name
+## Name
 
 Optional. A button can be named.
 The name of a button on a page must be unique. If more than one button have the same name, an error is reported and the definition of the button is ignored.
@@ -43,11 +50,14 @@ If no name is provided, a unique, long, technical name is created from deck name
 
 ```yaml
    index: e3
+   name: Baro Setting
 ```
 
-## Button Type
+## Type
 
-Mandatory. The type of a button defines what the button will do and how it will be used.
+**Mandatory**.
+
+The type of a button defines what the button will do and how it will be used.
 
 The [[Button Activation|button activation]] describe button-type specific attributes. In other words, depending on the value of the type attribute, other button defining attributes will be expected.
 
@@ -58,7 +68,7 @@ For example, if the value of a button type is `page` to change a page on a deck,
     page: another-page
 ```
 
-## Button Label
+## Label
 
 The label of a button is a short reminder of what the button does. The text of the label is laid over the button image if any. The labelling of a button uses the following attributes:
 
@@ -75,11 +85,11 @@ The Button *Text* is a text that is part of the Button representation.
 
 ### Label Color
 
-See [[Cockpitdeck Resources#Colors|Colors]].
+See [[Resources#Colors|Colors]].
 
 ### Label Font
 
-See [[Cockpitdeck Resources#Fonts|Fonts]].
+See [[Resources#Fonts|Fonts]].
 
 ### Label Size
 
@@ -91,9 +101,9 @@ The position of the label is a 2 letter code:
 1. l, c, or r for left, center, or right-justified on the image (horizontal alignment),
 2. t, m, or b, for top, middle, or bottom of the image (vertical alignment).
 
-## Button Options
+## Options
 
-Regularly, buttons have additional paparemeteres.
+Regularly, buttons have additional parameters.
 
 The button options parameter is a string of comma separated options. An option is either a simple string or word, or a name=value string.
 
@@ -107,6 +117,7 @@ Options are, by nature, not indispensable to the button’s activation or render
 
 A Button has a value that is maintained and used mainly for representation.
 Please head [[Button Value|here]] for details about a button's value computation.
+
 ## Button Initial Value
 
 A Button can force its first, initial value to set its startup or original state.
@@ -116,17 +127,17 @@ A Button can force its first, initial value to set its startup or original state
 ```
 
 This value is assigned as the button's current value on startup.
-In case of a Button with multiple values, each value has a independant `initial-value` attribute in its own attribute section.
+In case of a Button with multiple values, each value has a separate `initial-value` attribute in its own attribute list.
 
 # Button State
 
-Each button maintain its internal state: How many times it is pressed, released, turned clockwise or counter-clockwise, what is it current value, its previous, or last value. State information can be used by Button designer to control the button behavior and its representation.
+Each button maintain an internal state: How many times it is pressed, released, turned clockwise or counter-clockwise, what is it current value, its previous, or last value, when it was last used or refreshed, etc.. State information can be accessed by Button designer to control the button behavior and its representation.
 
 1. activation_count (number of time button was «used»)
 2. current_value
 3. previous_value
 
-*(Please refer to button activations, each activation type returns its own set of state values.)*
+*(Please refer to [[Button Activation|button activations]], each activation type returns its own set of particular state values.)*
 
 # Button Activation
 
@@ -147,7 +158,7 @@ When a button is created, internal meta data are set first. Second, the Activati
 Each button has a validity function that ensures that all necessary attributes are provided in its definition. If the activation of the button is not valid, its activation function will never be triggered, because of missing or misconfigurated parameters. If its representation is not valid, it will not be rendered on the deck.
 If a button is not valid, a small red triangle appears in the lower right corner of the key icon if the button is capable of representing it. A small blue triangle appears in the lower right corner of the key icon if Cockpitdecks suspect the button is a placeholder.
 
-# Button Description and Inpection
+# Button Description and Inspection
 
 Each button has an `describe()` method that prints in plain English what the button does and what it renders on the deck.
 

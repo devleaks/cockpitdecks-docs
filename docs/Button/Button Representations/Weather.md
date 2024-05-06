@@ -4,6 +4,15 @@ These Representations, together with accompanying custom [[Cockpitdecks Internal
 
 While some Representations remain highly generic, like graphical representation of METAR at the closest station, some others are highly specific like those that represent X-Plane simulated weather.
 
+# X-Plane Weather
+
+X-Plane weather is flexible and proposed with several variant. We designed a few set of X-Plane specific button representation to present these data sets.
+
+- Weather from external source (METAR, TAF)
+- Weather from X-Plane (from global items like METAR)
+- Weather informations from X-Plane (from clouds and wind *layers*)
+
+In addition, X-Plane weather can be regional or global.
 
 # Live Weather
 

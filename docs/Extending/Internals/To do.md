@@ -38,8 +38,6 @@ Make electron app for icon design that spits out Yaml button definitions.
 Evolve towards library
 Behave similarly as TouchPortal
 
-MAKE ASYNCHRONOUS. Should have been designed asynchronous at the first place. However, a migration/evolution is clearly doable.
-(Should have been created asynch from the start? no locking mechanism foreseen...)
 ## Status
 
 Should be easy for software developer.
@@ -64,3 +62,20 @@ AirCo "flow"
 Oxy?
 
 The sky is the limit...
+
+
+# Refactor
+
+(suppress Collector? that does not work very well?)
+Redo StringIcon so that it uses string udp fetches
+May be make string fetch part of Simulator and not FMA() (i.e. more generic)
+Get notified with string is updated through listener, etc.
+
+Idea: Make Streamdeck+ touchscreen either 4 x (200x100) buttons with icon, or 8 x (100x100) icons
+
+Suppress options: ?
+
+Trigger push event on PRESS not on RELEASE (or add an option to force it)
+This is because PRESS event have no release event.
+
+redo string collector to collect dataref-string attributes, that can be on any button, e;g.aircraft, FMA, etc.

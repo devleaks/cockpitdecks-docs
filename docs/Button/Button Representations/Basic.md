@@ -1,70 +1,10 @@
-The Representation of a button determine how it will be displayed on the deck device.
-The representation depends on the capabilities of the button on the deck. There is a list of valid representations or a given button on a deck. A image or icon cannot be displayed on a LED-only button.
 
-The first attribute mentioned in each section below determines the type of Representation (`icon`, `text`, `multi-icons`, etc.)
-If more than one representation is found, or a representation that is not valid for the given button, a warning message is reported and the button does not render anything.
-
-If no Representation is found, a warning message is reported and the button is assumed having no representation. For example, a X-Touch Mini slider has no representation. To suppress the warning message, the `representation` attribute can be used and set to `false`.
-
-```yaml
-  - index: slider
-    name: SLIDER
-    type: slider
-    representation: false
-```
-
-will not issue any warning message.
-
-# Common Attributes
-
-## Managed
-
-`dataref: dataref-path`
-Path to a dataref that is interpreted to determine whether the value is *managed*.
-
-If the value is *managed*, the value can be displayed as a text string in an alternative way depending on the `text-alternate` value.
-`text-alternate: dash=4`: Represent managed value by a set of `-`. Default is 3 dashes.
-`text-alternate: dot`: Represent managed value by a single dot `•`.
-
-```yaml
-  - index: 0
-    type: none
-    name: FCU Airspeed display
-    label: SPD
-    text: ${sim/cockpit2/autopilot/airspeed_dial_kts_mach}
-    text-format: "{:3.2f}"
-    text-color: khaki
-    text-size: 24
-    text-font: Seven Segment.ttf
-    text-position: cm
-    text-bg-color: (40, 40, 40)
-    managed:
-        dataref: AirbusFBW/SPDmanaged
-        text-alternate: dash
-```
-
-In example above, *speed managed* mode, if `AirbusFBW/SPDmanaged` dataref value is non zero, the text will display `---`. Otherwise, it will display the air speed.
-
-## Guard
-
-`dataref: dataref-path`
-Path to a dataref that is interpreted to determine whether the button or key is *guarded* (protected against unintentional use by a cap or lock). If *guarded*, it can be displayed in an alternative way depending on the options value.
-
-`type`: Protects the button with a full red cover (`type: full`) or a see-through grid (`type: grid`)(cover is the default).
-
-`color`: Color of the guard. Default is red for cover, and translucent red for grid.
-
-```yaml
-    label: RAM AIR
-    guard:
-      type: grid
-      color: black
-      dataref: ckpt/ramair/cover
-      # 0=closed, 1=opened
-```
-
-Guarded buttons or keys need to be pressed twice to activate, the first activation lifts the guard, the second one acts normally. To replace the guard, a long press of more than 2 seconds is necessary to replace (close) the guard. (Make sure long press lasts 2 seconds or more, otherwise the button will be activated!)
-
+- [[Basic#Icon]]
+- [[Basic#MultiIcons]]
+- [[Basic#IconText]]
+- [[Basic#MultiTexts]]
+- [[Basic#LED]]
+- [[Basic#ColoredLED]]
 # Icon
 
 `icon: ICON_FILE_NAME`
@@ -171,40 +111,10 @@ None
 
 The selection of the text block must be performed by a **formula** and not a dataref.
 When a formula is present in the attributes of a button, it is always favored over a list of datarefs, even if the list contains only one dataref. (If there a button uses multiple datarefs and there is no formula, the value that is returned for that button is a diectionary of all dataref values.)
-
-# IconAnimation
-
-```yaml
-icon-animation:
-  - ICON_FILE_1
-  - ICON_FILE_2
-```
-
-Multiple icon files are displayed in sequence automagically when the button is On.
-
-## Attributes
-
-`icon-off: ICON_FILE_NAME`
-The icon to display when the button is Off. If there is no icon-off, the first icon in the icon-animation list is used.
-
-`speed`
-Time in second an icon is displayed before displaying the next one.
-# IconSide
-
-`icon-side: ICON_FILE_NAME`
-An IconSide is a special icon for LoupedeckLive devices, used on either side of the main panel. IconSide have particular display capabilities to cope with their specifics, sizes, and their positions that allow to display information regarding the nearby encoders.
-## Attributes
-
-`labels`
-Labels that are displayed on the icon.
-
-`label-positions`
-Label anchor position expressed in percentage of the 100% height of the side image.
-
-Note: There might be similar icons to control the display of other, larger display like the Streamdeck Plus bottom LCD display.
 # LED
 
 `led: led
+
 Turns a single LED light On or Off depending on the button's value.
 # ColoredLED
 
@@ -215,37 +125,7 @@ Turns a single LED light On or Off depending on the button's value.
 
 Turns a single LED light On or Off depending on the button's value. The color of the LED is determined by the color attribute.
 The `color` attribute can use a formula to determine the color (single hue value in 360° circle.)
-# MultiLEDs
 
-`led: multi-leds`
-MultiLeds are LED-based display that use more than one LED for reporting information.
-X-Touch Mini encoders, for example, are surrounded by 11 LED that can be lit individually.
-![[enc-status.png]]
-## Attributes
-
-`led-mode: fan` or `led-mode: 2`; name or number
-Valid modes are:
-
-0. Single
-1. Trim
-2. Fan
-3. Spread
-
-The value of the button determine how many leds will be displayed (0 to 11).
-
-# Annunciator
-
-Annunciators are special type of button display. There is a [[Annunciator|dedicated page]] for them.
-
-```yaml
-annunciator:
-  text: "MASTER\nWARN"
-  color: red
-  font: DIN Condensed Black.otf
-  text-size: 72
-  dataref-rpn: AirbusFBW/MasterWarn
-  options: blink
-```
 
 # Switches
 

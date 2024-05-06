@@ -15,6 +15,7 @@ The Layout folder contains the following files:
 ```
 
 # Config.yaml
+
 The `config.yaml` file inside a layout folder defines Layout-level attributes. The file is optional.
 
 ```yaml
@@ -27,6 +28,7 @@ default-page-name: index
 ```
 
 ## Attributes
+
 The default value for each attribute is the value found the Cockpit attributes.
 
 `default-icon-color: blue`
@@ -47,7 +49,9 @@ Optional. Default page name in layout.
 The default value of some attributes (like font, colors, and sizes) is fetched at the Cockpit level if they are not specified at the Layout level.
 
 # Pages
+
 Other files in the folder are considered to be [[Page|Pages]] in the layout.
 
 # Default Layout
-If a deck has no layout specified, Cockpitdeck will generate one with one default page that will display a logo image on the deck (if it isi capable of displaying images...) and use the first available push button to toggle X-Plane Map On or Off.
+
+If a deck has no layout specified, Cockpitdecks will generate one with one default page that will display a logo image on the deck (if it is capable of displaying images...) and use the first available push button to toggle X-Plane Map On or Off.

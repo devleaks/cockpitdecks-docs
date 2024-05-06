@@ -1,14 +1,13 @@
 
-# Button Attribute Values
-
 Buttons are defined by a list of attributes.
 
 Some attributes are unique to a button, very specific, and cannot have default values like, for exemple, the button index or a button label attribute.
 
 Some other attributes are used by numerous buttons, like for example the *color* of the label. These common attributes benefit from a sophisticated default value lookup.
+
 # Attribute Hierarchical Lookup
 
-Before we can look up at the attribute evaluation method, we must notice that all objects we manipulate in Cockpitdecks are hierarchically organized.
+Before we can look up at the attribute evaluation method, we must notice that all objects we manipulate in Cockpitdecks are organized in a hierarchical way.
 
 1. A the highest, top level sits the Cockpit.
 2. The Cockpit holds all Decks available to the simulator.
@@ -20,7 +19,8 @@ Before we can look up at the attribute evaluation method, we must notice that al
 This hierarchy is very important.
 
 As an example, let us find the value of the `label-color`.
-First, the button will perform a direct lookup in its attribute. If it finds a  `label-color` it will use it. If it does not find it, it will as its `default-label-color`. The button will then ask its parent entity for the `default-label-color`.
+
+First, the button will perform a direct lookup in its attribute. If it finds a  `label-color` in its attribute, it will use it. If it does not find it, it will as its `default-label-color`. The button will then ask its parent entity for the `default-label-color`.
 
 So the Page will search for a `default-label-color` in its attributes. If it finds it, it will use it. If it does not find it, it ask its parent entity.
 
@@ -58,6 +58,7 @@ In `night` mode, the default value `dark-default-label-color` value is first sea
 # Notes About Configuration Values Melting
 
 Sometimes, configuration values can be specified at different level for a given entity.
+
 ## Cockpitdecks (Application), Cockpits
 
 At the highest level, a Cockpit will start with a set of default values provided in its code.

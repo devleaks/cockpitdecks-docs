@@ -1,6 +1,6 @@
 A Deck represents a physical device connected to the computer, be it a
 
-- Elgato Stream Deck,
+- Elgato Stream Deck (several models supported),
 - Loupedeck Loupedeck Live, or
 - Berhinger X-Touch Mini,
 
@@ -10,25 +10,30 @@ A Deck uses and displays a collection of buttons called a Page of buttons. A Dec
 
 Each [[Page]]  define the set of buttons on the deck device, what each button does when pressed or turned, and how it will appear on the deck device. The collection of pages that can be installed on a deck is called the [[Layout]] of the deck.
 
-In addition to the Pages it contains, a Deck defines deck-level attributes, such as the overall brightness of the device, or how to fill unused or undefined buttons.
+In addition to the Layout and the Pages it contains, a Deck defines deck-level attributes, such as the overall brightness of the device, or how to fill unused or undefined buttons.
 
-# Definition
+# Deck Definition
 
 Decks are declared in the `config.yaml` file in the `deckconfig` folder in the `decks` attribute. The `decks` attributes contains one or more decks as defined by the following attributes:
 
 ## Deck Attributes
 
 `name: StreamdeckMK2`
-Mandatory. Name of the deck.
+**Mandatory**. Name of the deck. Must match the entry in secret.yaml file, it any.
 
-`type: streamdeck`
-Optional. Type of deck. Streamdeck, Loupedeck, or Xtouchmini.
+`type: Stream Deck XL`
+**Mandatory**. Type of deck. This points at a very precise deck brand and model. The value must match one of the deck types Cockpitdecks recognizes.
 
-`layout: layout_folder_name`
-Optional. Name of the layout for this deck. Default to `default`.
+The types of deck models Cockpitdecks recognizes is displayed upon startup of the Cockpitdecks application.
 
 `brightness: 80`
-Optional. Overall brightness of deck. Default to 100%.
+Optional. Overall brightness of deck. Default to 100%. It might be necessary to adjust brightness at night or in low light environment.
+
+`layout: layout_folder_name`
+Optional. Name of the layout for this deck. Default to name value `default`. See the next Section for more information.
+
+`default-homepage-name`
+Optional. Default page name in layout. Default to `index`.
 
 `default-label-font: DIN Medium.ttf`
 Optional. Default font to use for deck. Default to DIN, which is provided with Cockpitdecks.
@@ -36,10 +41,7 @@ Optional. Default font to use for deck. Default to DIN, which is provided with C
 `default-label-size: 13`
 Optional. Default label size. Cockpitdecks manipulates icon 256x256 pixels.
 
-`default-homepage-name`
-Optional. Default page name in layout. Default to `index`.
-
-> [!NOTE] The type of Deck defines the "device driver" that will be used to talk to the deck. If a new model of deck appears in the future, it will be necessary to design its "device driver" for Cockpitdecks to use it.
+Please note that other default values can be set at the deck level. Please refer to the button common attributes for a list of values that can have default at the deck level.
 
 # Deck Layout
 

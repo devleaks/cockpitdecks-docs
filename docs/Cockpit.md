@@ -1,6 +1,6 @@
-The Cockpit is the main container entity of Cockpitdecks.
+The Cockpit is the *Maestro* of the Cockpitdecks application.
 
-*For a given aircraft*, it locates deck definitions, loads them and prepares each deck for use with X-Plane. If aircraft is changed in X-Plane, Cockpitdecks is notified and loads the newly loaded aircraft definitions, if any.
+It starts up the entire Cockpitdecks application. It establishes connection to the simulator, scans for existing decks connected to the computer, and load the aircraft configuration files. It listen to interactions that occur on the decks and listen to simulator changes to reflect deck statuses. It also monitors with aircraft is currently loaded in the simulator, and if the user changes aircraft, it loads the new configuration if any.
 
 # Aircraft Configuration
 
@@ -10,15 +10,15 @@ If a `deckconfig` folder is found in the folder of the aircraft currently used, 
 
 Cockpidecks will also look for a file named `secret.yaml` in the `deckconfig` folder. In that file, Cockpitdeck will find information such as the serial numbers of the deck devices used. Serial numbers are needed to distinguish all decks of a similar type.
 
-Configuration files for decks are all Yaml-formatted files.
+All configuration files for decks are all Yaml-formatted files. Yaml file contains a structured list of name, value pairs. The name is referred to as an *attribute*. The *value* can be almost anything: A number, a string, a list of things, or a list of other attributes.
 
 # Deckconfig Folder
 
-Here is the overall structure of the files in the `deckconfig` folder.
+Here is the overall structure of the files and sub-folders inside the `deckconfig` folder.
 
-```
-XPlaneAircraftFolder
-  (...)
+``` hi  hl_lines="3"
+<X-Plane Aircraft Folder>
+  (.. aircraft files ..)
   ⊢ deckconfig
     ⊢ config.yaml
     ⊢ secret.yaml
@@ -44,22 +44,17 @@ XPlaneAircraftFolder
 ```
 
 The  `deckconfig` folder contains the following files and sub-folders:
-## Resources
-Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft.
-### Icons
-Folder containing all icon images for that aircraft. Images should be in JPEG or PNG format. Typical icon size is 256 × 256 pixels, RGB(A). Icons are named after their file name without the extension.
-### Fonts
-Folder containing specific fonts used for that aircraft.
-Typical fonts include standard, formal font like DIN, icon fonts like FontAwesome or WeatherIcon font, or fancier font like 7-bar LED fonts. Fonts are named by their file name without extension for TrueType fonts. Open Type Fonts need to supply their extension `.otf`.
-### Docs
-Docs folder may contain documentation files, like explanatory images, and descriptive texts. Simpler text or markdown files are preferred.
-## Layout Folders
 
-Next to the the above *resources* folder, there will be one folder per Layout for a deck.
+| Name         | Description                                                                                                                       | Note |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| config.yaml  | Main configuration file                                                                                                           |      |
+| secreat.yaml | Serial numbers of decks used by Cockpitdecks                                                                                      |      |
+| resources    | Resource files used by this configuration. Resources are icons, fonts, images, etc.                                               |      |
+| layout       | A Layout is a folder that contains what is displayed on a deck. There can be as many Layout Folder as necessary for this aircraft |      |
+| docs         | Documentation relative to this aircraft and configuration                                                                         |      |
+|              |                                                                                                                                   |      |
 
-[[Layout|Layout folders]] are explained separately.
-
-# Config.yaml File
+# config.yaml File
 
 The file named `config.yaml` in the `deckconfig` folder contains declarations for each [[Deck|deck]] that will be used and global, aircraft-level attributes.
 
@@ -82,6 +77,7 @@ cockpit-color: lightblue
 ```
 
 ## Attributes
+
 The parameters apply to all decks for the given aircraft. Each individual deck will have the possibility to redefine these values if necessary.
 
 ### aircraft
@@ -91,6 +87,7 @@ Optional information. The name of the aircraft for this set of deck.
 ### cockpit-color
 
 Color for the cockpit. This color is used as the default background color for icons.
+
 ### cockpit-texture
 
 Name of a image file (JPEG or PNG) that will be used as the (default) background of icons.
@@ -107,6 +104,7 @@ If the AIRCRAFT is specified, Cockpit-level textures and all other levels textur
 - `AIRCRAFT/icons`
 
 If no texture is found, a uniform `cockpit-color` icon is used.
+
 ### default-wallpaper-logo
 
 Name of image file, located in the `resource` folder, to be loaded when the deck is not used.
@@ -115,15 +113,16 @@ Name of image file, located in the `resource` folder, to be loaded when the deck
 
 Name of default values of several parameters, defined at the aircraft-level. These values will be used for all missing values. They can be raffined at Layout and Page level if necessary.
 If no aircraft-level global parameter values are not provided, Cockpitdecks will use its own internal default values.
+
 ### decks
 
 A list of deck structure, one per [[Deck|deck]].
 
 Yaml allow for other attributes in the file. They are ignored by Cockpitdecks. You may include other attributes like aircraft name, ICAO code, descriptions, notes, even change log of your file.
 
-# Secret.yaml File
+# secret.yaml File
 
-The secret.yaml file contains the serial numbers of your connected decks.
+The `secret.yaml` file contains the serial numbers of your connected decks.
 If you have more than one deck of the same type (i.e. two Streamdecks, two X-TouchMini, etc.) this file is mandatory to distinguish between the two physical devices. Otherwise, it is optional.
 
 ```yaml
@@ -134,63 +133,25 @@ If you have more than one deck of the same type (i.e. two Streamdecks, two X-Tou
 XPLive: AAA0000000000000000000A0000
 ```
 
-# Global Cockpitdecks Configuration
+# Resources
 
-In addition to the above, aircraft specific, definitions, Cockpitdecks contains in its core, a default configuration used as a fall back if no value is found at the aircraft specific level. These global core configuration is found in a `resources` folder inside Cockpitdecks software package. This folder should never be changed since it affects the entire Cockpitdecks application.
+Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft.
 
-## Attribute Value Lookup
+## Icons
 
-Configuration et customization is organized in a [[Button Attribute Default Values#Attribute Hierarchical Lookup|hierarchical]] way. The the top, highest level is Cockpitdecks, the application. Cockpitdecks has default values for all attributes used in the application.
+Folder containing all icon images for that aircraft. Images should be in JPEG or PNG format. Typical icon size is 256 × 256 pixels, RGB(A). Icons are named after their file name without the extension.
 
-Under Cockpitdecks is the Cockpit. The Cockpit has the ability to redefine some attribute if necessary. For instance, it is possible to define a uniform cockpit texture or color for all decks.
+## Fonts
 
-Under the Cockpit is the Deck. This allow to change a few parameters for each deck. For example, a given deck might have large icons, requiring the use of a larger default font size.
+Folder containing specific fonts used for that aircraft.
+Typical fonts include standard, formal font like DIN, icon fonts like FontAwesome or WeatherIcon font, or fancier font like 7-bar LED fonts. Fonts are named by their file name without extension for TrueType fonts. Open Type Fonts need to supply their extension `.otf`.
 
-Under the Deck is the Layout. This allow to change default values for a layout, like the background color of a panel. Layout default values overwrite Deck default values.
+## Docs
 
-Under the Layout is the Page, to control page-level specificities, like, for exemple, a specific background color or texture for a special page.
+Docs folder may contain documentation files, like explanatory images, and descriptive texts. Simpler text or markdown files are preferred.
 
-That's it. At the lowest level, at the Button level, there is no default value, just the value the button will use. For example, a button will look for `text-color`, if no value is found in its attributes, it will search in its parent entity, the page, for a `default-text-color`.
+# Layout Folders
 
-![[hierarchy.png|200]]
-## Resources Folder
+Next to the the above *resources* folder, there will be one folder per Layout for a deck.
 
-`deckconfig` folders reside in X-Plane aircraft folders and are specific to that aircraft.
-In addition to these aircraft specific folders, Cockpitdecks has a global configuration folder called `resources` located where the Cockpitdecks software resides.
-
-`resources` folder located where the Cockpitdecks software resides contains the following files and subfolders:
-## config.yaml
-
-This is a global level configuration file. It always is loaded first and can be overwritten by aircraft, deck, or page-specific variants.
-
-## icons
-
-Icons in this folder are available to all aircrafts.
-
-## fonts
-
-Fonts in this folder are available to all aircrafts.
-Cockpitdecks provides a few fonts found here and there together with their respective copyright files.
-
-## docs
-
-A copy of Cockpitdecks documentation is included there. The documentation folder produced in the GitHub wiki of Cockpitdecks.
-
-## Image files
-
-The resource folder contains a few image files used as logos and wallpapers.
-There is also an image with color names that can be used in `color` attributes.
-
-## iconfonts.py
-
-This file defines icon fonts. Icon fonts are fonts that are used to display iconic characters often named intuitively. Cockpitdecks comes with a copy of Font Awesome icons, and Weather Icons.
-
-## constants.py
-
-Defines a few constants that should never be changed. Change at your own risk.
-
-
-> [!SUMMARY]
-> In summary, a Cockpit is defined for a given X-Plane aircraft.
-> A Cockpit contains one or more Decks. Each Deck represent a physical deck device used to interact with X-Plane. A Deck is assigned a Layout. A Layout is a collection of Pages. Each Page defines what knobs and buttons on the physical deck do, when they are turned or pushed, and what information they displays in return (through images or LEDs), information extracted from X-Plane data and behavior.
-> 
+[[Layout|Layout folders]] are explained separately.

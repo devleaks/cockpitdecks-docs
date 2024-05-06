@@ -23,7 +23,7 @@ A small file defines the deck layout and capabilities, what is available through
 # This is the description of a deck's capabilities for a Elgato Streamdeck Plus device
 #
 ---
-type: streamdeck-plus
+type: Streamdeck Plus
 brand: Streamdeck
 model: Plus
 driver: streamdeck
@@ -47,9 +47,13 @@ buttons:
 
 Through this file, Cockpitdecks is capable to determine that there are 8 (repeat) LCD buttons, named `0`.. `7`, capable of being pushed (action), and capable of displaying a 96x96 pixel image (view, image). Similarly, there are 4 encoders and a swipe screen.
 
-### Type, brand, model, driver
+### Type
 
-These attribute define the deck in Cockpitdecks, its name, model, capabilities (through the buttons attribute).
+Name the precise deck model. Referenced in config.yaml file to tell which deck is connected to the system.
+
+### Driver
+
+Name of the driver software inside Cockpitdecks.
 
 ### Button Capabilities
 
@@ -63,7 +67,9 @@ The following **actions** have been identified and are available in Cockpitdecks
 
 - `push`: ability to press a button, optionally pushing a long time,
 - `encoder`
-- `encoder-push`
+- `press`
+- `longpress`
+- `touch`
 - `swipe`
 
 #### Views
@@ -72,9 +78,8 @@ Similarly, decks defined the following **view** interactions:
 
 - `image`
 - `led`
-- `multi-led`
-- `encoder-led`
 - `colored-led`
+- `encoder-led`
 
 #### Name, Repeat, and Prefix
 
@@ -84,6 +89,9 @@ Prefix is used to distinghish button capabilities. If a button has, for example,
 #### Image
 
 The image attribute sets the image size for the button, and offset if the image is a portion of a larger display.
+
+#### Vibrate
+
 
 # Deck «Driver»
 

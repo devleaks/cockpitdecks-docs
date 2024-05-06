@@ -42,33 +42,43 @@ If the connection breaks, it restarts its attempts to connect.
 
 When there is no connection to X-Plane, Cockpitdecks works as expected, however, no command get issued to X-Plane, and no dataref value gets collected, hence, no deck icon gets updated to reflect the state changes.
 
-# Naming Conventions, etc.
-## Default Values
+# Internal Datarefs
 
-When a value can be used by numerous variants and propose a default value, all "parents" object will propose the value as `default-...`. However, in the leaf object where the value is used, the `default-` part disappears from naming:
-Deck or Page parent objects have `default-icon-color` attribute, while leaf Button that actually use the icon color has `icon-color` attribute.
-
-# Drawn Buttons
-
-It all started with simple annunciators! Most buttons are not static images but rather  drawn on the fly(!) from attributes in their definition (text, options, sizes…) and dataref values. This allow for extreme flexibility. The basic, simple image processing/drawing package used (Python Pillow) is the limit. It allows for stylish glow and lightly readable display when the button is in its off state (called *Korry* style).
-Unstoppable after the design of annunciators, rotating switches and simpler push buttons where also created with drawings to replace static images, together with labels around them. It does not always appear like in the cockpit, but close enough and it does the work. But above all, it no longer is necessary to crop screen dump images and end up with a zillion icon images to reflect different states, or button positions, the price to pay is to adjust a few parameters in the definition of the button.
-
-# Internal « Datarefs »
-
-Datarefs whose name starts with `local:` behave like any other datarefs but are neither forwarded to X-Plane, nor read from it. They can be set, read, etc. like any other datarefs allowing for a kind of *inter-button communication*: one button sets it, another one adjust its appearance based on it, even buttons on another deck!
+Datarefs whose name starts with a prefix (currently `local:`) behave like any other datarefs but are neither forwarded to X-Plane, nor read from it. They can be set, read, etc. like any other datarefs allowing for a kind of *inter-button communication*: one button sets it, another one adjust its appearance based on it, even buttons on another deck!
 
 Truly, the sky is the limit. Enjoy.
 
-# Dataref Collector
 
-The DrefCollector is an Activation meant to be used for collecting large amount of slow changing datarefs like, typically, weather information.
-Weather in X-Plane uses no less that 200 datarefs that could be fetched to provide information about the weather around the aircraft.
-The DrefCollector splits the large collection of dataref in batches of a limited size and fetch those datarefs batch after batch. Ultimately, when all batches have been fetched, the entire collection is ready to be used.
-The DrefCollector is monitored periodically for batches that do not get updated frequently.
-DrefCollector exposes all datarefs it fetched in a `dref_collection` attribute.
-# Weather Viewer
+# Internal Resource Folder
 
-The WeatherViewer is a Representation that uses all weather-related datarefs to provide weather information to pilots.
-(The Weather Viewer uses the DrefCollector activation.)
+In addition to aircraft specific definitions, Cockpitdecks contains in its core, a default configuration used as a fall back if no value is found at the aircraft specific level. These global core configuration is found in a `resources` folder inside Cockpitdecks software package. This folder should never be changed since it affects the entire Cockpitdecks application. It contains the following files and subfolders:
 
-[[Laminar X-Plane and Toliss Specific Buttons|More...]]
+## config.yaml
+
+This is a global level configuration file. It always is loaded first and can be overwritten by aircraft, deck, or page-specific variants.
+
+## icons
+
+Icons in this folder are available to all aircrafts.
+
+## fonts
+
+Fonts in this folder are available to all aircrafts.
+Cockpitdecks provides a few fonts found here and there together with their respective copyright files.
+
+## docs
+
+A copy of Cockpitdecks documentation is included there. The documentation folder produced in the GitHub wiki of Cockpitdecks.
+
+## Image files
+
+The resource folder contains a few image files used as logos and wallpapers.
+There is also an image with color names that can be used in `color` attributes.
+
+## iconfonts.py
+
+This file defines icon fonts. Icon fonts are fonts that are used to display iconic characters often named intuitively. Cockpitdecks comes with a copy of Font Awesome icons, and Weather Icons.
+
+## constants.py
+
+Defines a few constants that should never be changed. Change at your own risk.

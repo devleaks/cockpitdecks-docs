@@ -2,16 +2,37 @@ In the definition of the button, the `type` attribute determine what the button 
 
 For a given button on a deck, the action that the button will be able to carry over is limited to a set of valid types. A push button is not capable of rotations of an encoder.
 
-Each activation below list configuration attributes and internal values it maintains. Numeric internal values are accessible as `${state:variable-name}` in formula.
+When interaction occurs on a button on a deck, Cockpitdecks creates a typed Event, and passes it for activation.
 
-Each activation is designed to handle one or more [[Events]] action name. For example a EncodePush activation is capable of handling both PressEvent and EncoderEvent.
-This capability is provided by the `_required_deck_capability` class attributes which contains one or more deck capabilities the activation is ready to handle.
+Each activation is designed to handle one or more [[Events]] types. For example a EncodePush activation is capable of handling both PressEvent and EncoderEvent. What is does with those event is left to the activation.
+
+This file list all activations that are currently available in Cockpitdecks. For each activation, we present its name or keyword by which it must be referred to, the *attributes* it expects to work properly, the type of *events* it expects, and internal *state values* it maintains.
+
+- [[Button Activation#No Activation]]
+- [[Button Activation#Page]]
+- [[Button Activation#Push]]
+- [[Button Activation#Longpress]]
+- [[Button Activation#OnOff]]
+- [[Button Activation#Encoder]]
+- [[Button Activation#EncoderPush]]
+- [[Button Activation#EncoderOnOff]]
+- [[Button Activation#EncoderLongPush]]
+- [[Button Activation#EncoderValue]]
+- [[Button Activation#]]
+- [[Button Activation#Swipe]]
 
 # No Activation
+
 `type: none`
+
 Button with no activation are button used for [[Button Value|display purpose only]].
 
-## State
+## Events
+
+Any event can be handed over to the No Activation, since it will not be used.
+
+## State Values
+
 In spite of having no activation, the button maintain an internal state.
 
 - `activation_count`
@@ -25,6 +46,7 @@ In spite of having no activation, the button maintain an internal state.
 # Page
 
 `type: page`
+
 When the button is pressed, a deck will load a page of buttons.
 
 ## Attributes
@@ -35,13 +57,18 @@ Mandatory. Name of the page to load. The page must be in the Layout of the targe
 `remote_deck`
 Optional. If present, will load the page on the target deck.
 
-## State
+## Events
+
+PushEvent and PressEvent can trigger the Page activation.
+
+## State Values
 
 `page`: page that is currently displayed.
 
 # Push
 
 `type: push`
+
 Push button.
 
 ## Attributes
@@ -53,7 +80,10 @@ Mandatory. X-Plane command that is executed each time the button is pressed.
 > Command is a mandatory parameter but if no command is necessary a command placeholder value can be used. Command placeholder value are any of the following string:
 > `none, noop, no-operation, no-command, do-nothing`
 > They all are ignored and do not trigger any activity in X-Plane.
-> 
+
+## Events
+
+PushEvent. Please note that PushEvent consists of 2 distinct events, a pressed event, and a release event, when the button is pressed or released respectively.
 
 ## Options
 
@@ -74,6 +104,7 @@ Auto-repeat will start 3 second after the button was pressed, the command will a
 # Longpress
 
 `type: longpress`
+
 Push button that will carry the command as long as the button will remain pressed.
 
 Long press command should not be confused with auto-repeat commands. A Longpress command in one command that is executed once as long as the button remain pressed. An auto-repeat command is the same command that is executed several times at regular interval (typically once every 0.2 seconds, 5 times per second) as long as the button is pressed.
@@ -81,6 +112,11 @@ Long press command should not be confused with auto-repeat commands. A Longpress
 > [!NOTE]
 > The Longpress command requires installation of a XPPYthon3 plugin in X-Plane to circumvent a few X-Plane UDP limitations.
 
+## Events
+
+PushEvent
+
+Only PushEvent can be used to trigger Longpress Activation since both press and release events are necessary to estimate the timing between both events.
 
 ## Attributes
 
@@ -94,7 +130,12 @@ X-Plane will issue a `beginCommand` when the button is pressed and a `endCommand
 # OnOff
 
 `type: onoff`
+
 Push button.
+
+## Events
+
+PushEvent, PressEvent, LongPressEvent
 
 ## Attributes
 
@@ -138,7 +179,7 @@ An Encoder is a rotating knob or dial with *steps*. Steps are often materialised
 `commands`
 An Encoder has two commands, one that is executed for each step while turning clockwise, and one for each step when turning counter-clockwise.
 
-## State
+## State Values
 
 - `rotation_clockwise`: number of times/clicks the encoder was turned clockwise.
 - `rotation_counterclockwise`: same.
@@ -243,7 +284,7 @@ A Swipe is a 2 dimensional movement of a finger on a surface. The event produced
 
 The Swipe event has no attribute.
 
-## State
+## State Values
 
 The event of a swipe is complex. The entire event is available as `last_event`.
 The event has the following structure:
@@ -264,3 +305,7 @@ These activations are normally not used during regular operations.
 
 Each Activation has a `is_valid()` method that checks whether all necessary attributes or parameters are available to it. The inspect keyword to trigger button validity inspection is `valid`.
 Each Activation also has a `describe()` method that displays and explains what it does. The inspect keyword for displaying activation description is `desc`.
+
+# New Activations
+
+It always is possible to create new activations by [[Extending Cockpitdecks|extending Cockpitdecks]].

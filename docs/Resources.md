@@ -1,6 +1,7 @@
 The following resources are common to all buttons.
 
 # Colors
+
 Color can either be expressed by their name, [[pillow color names.png|as defined in the Python PILLOW package]], or by a tuple of 3 or 4 values, representing red, green, blue, and optionally the transparency.
 All values should be in the [0..255] range. For colors, 0 is black, 255 is pure color; for transparency, 0 is transparent, 255 is opaque.
 
@@ -11,9 +12,11 @@ All values should be in the [0..255] range. For colors, 0 is black, 255 is pure 
 ```
 
 # Number Formatting
+
 Cockpitdecks uses the same convention as [python number to text formatting](https://docs.python.org/3/library/string.html#format-examples).
 
 # Fonts
+
 Font files need to be placed in the `deckconfig/resources/fonts` folder.
 Font files must be either Truetype fonts (TTF) or Opentype fonts (OTF).
 The name of the file is used to designate the font.
@@ -27,6 +30,7 @@ Cockpitdeck comes with a few fonts appropriate for aeronautical use: Standard fo
 For Truetype font, it is not necessary to add the `.ttf` extension. For Opentype fonts it is necessary to add the `.otf` extension.
 
 # Icons
+
 Icon image files need to be placed in the `deckconfig/resources/icons` folder.
 Image files must be either JPEG images (JPG, JPEG) or Portable Network Graphic (PNG).
 
@@ -40,11 +44,6 @@ Internally, Cockpitdeck use 256 pixel icons. Icons are resized to the deck reque
 ```yaml
 	icon: OFF_WHITE_FRAMED
 ```
-
-# Resources
-
-Resources are in the `deckconfig/resources` folder.
-A few wallpaper images are used for display on idle deck.
 
 # Documentation
 

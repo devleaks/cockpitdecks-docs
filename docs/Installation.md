@@ -14,16 +14,24 @@ Never ever forget that in the UDP protocol, there is no guarantee of delivery, o
 Cockpitdecks is a regular python application and will run with python 3.10, or newer.
 It is recommended to create a virtual environment and run Cockpitdecks within that environment. A set of packages need to be installed in that environment before Cockpitdecks can run.
 
-1. Create a directory and download Cockpitdecks software from github.
-4. Create a python environment.
-2. Switch to that environment.
-3. Install necessary python packages.
-4. Test run Cockpitdecks without X-Plane.
-5. Install optional Deck Helper plugin in X-Plane
-6. Download and install aircraft deck configurations and layout.
-7. Start Cockpitdeck application.
-8. Start X-Plane.
-9. Enjoy all your deck devices activated in X-Plane.
+1. Check Installation Requirements
+2. Create a directory and download Cockpitdecks software from github.
+3. Create a python environment.
+4. Switch to that environment.
+5. Install necessary python packages.
+6. Test run Cockpitdecks without X-Plane.
+7. Install optional Deck Helper plugin in X-Plane
+8. Download and install aircraft deck configurations and layout.
+9. Start Cockpitdeck application.
+10. Start X-Plane.
+11. Enjoy all your deck devices activated in X-Plane.
+
+
+# Installation Requirements
+
+(to do.)
+
+# Installation Process
 
 ## Install Software
 
@@ -42,7 +50,7 @@ Create a new python environment and activate it.
 This packages are required by Cockpitdecks.
 
 ```shell
-$ pip install ruamel.yaml pillow
+$ pip install ruamel.yaml pillow cairosvg
 ```
 
 Optionally, if you would like to use Weather or METAR buttons, add the following packages:
@@ -76,7 +84,6 @@ Some commands cannot be executed directly through UDP. For exemples, commands th
 To circumvent this, Cockpitdeck provides a small python plugin called the Cockpitdecks Helper plugin, that need to be installed into X-Plane to allow for start and end commands. The Cockpitdecks Helper plugin will execute start and end commands on behalf of the Cockpitdecks application. Cockpitdecks Helper plugin just need to be installed and will provide its services to Cockpitdecks. This plugin does not take any resource, it only adds and removes commands each time an aircraft is loaded.
 The Cockpitdecks Helper Plugin works automatically, reads `deckconfig` configuration and creates a pair of (beginCommand, endCommand) for each *long press* command.
 Cockpitdecks Helper Plugin is written in the python language. So it needs the [XPPython3](https://xppython3.readthedocs.io/) X-Plane plugin installed. XPPython3 plugin allow for execution of python code inside X-Plane.
-The Cockpitdecks Helper plugin is not necessary if Cockpitdecks is installed as an X-Plane python plugin. (See below.)
 
 Cockpitdecks XPPython3 plugins are located in the
 
@@ -92,10 +99,10 @@ To execute long press commands, the **Cockpitdecks Helper** plugin needs to be i
 ... /X-Plane 12/resources/plugins/PythonPlugins/PI_decks_helper.py
 ```
 
-To fetch string-typed datarefs, the [[String Datarefs|String Dataref UDP Poster]] needs to be installed in XPPython3 PythonPlugins folder.
+To fetch string-typed datarefs, the [[Complement Plugin - String Datarefs|String Dataref UDP Poster]] needs to be installed in XPPython3 PythonPlugins folder.
 
 ```shell
-... /X-Plane 12/resources/plugins/PythonPlugins/PI_string_dataref_upd.py
+... /X-Plane 12/resources/plugins/PythonPlugins/PI_string_dataref_udp.py
 ```
 
 # Usage

@@ -8,19 +8,35 @@ Another simple animation consists of making an icon «blink» on or off. A more 
 
 Animations are automatic. They should not be confused with button appearance updates that occur automagically when underlying button values change.
 
-Most of the time, the value button determine if the animation runs. When the value of the button is On, the animation runs. When Off, the animation does not run and may displays an alternate representation. 
+Most of the time, the value button determine if the animation runs. When the value of the button is On, the animation runs. When Off, the animation does not run and may displays an alternate representation.
 
-# Icon-Based Animation
+- [[Animation#IconAnimation]]
+- 
+
+# IconAnimation
 
 An icon-based animation is a procedure that changes the icon to display at regular internal.
 
 The icon to display is specified through its index value in the list of icons available to the button (through the `multi-icons` attribute).
 
-`icon-off`: When not running, an alternate icon can be displayed.
+```yaml
+icon-animation:
+  - ICON_FILE_1
+  - ICON_FILE_2
+```
+
+Multiple icon files are displayed in sequence automagically when the button is On.
+## Attributes
+
+`icon-off: ICON_FILE_NAME`
+The icon to display when the button is Off. If there is no icon-off, the first icon in the icon-animation list is used.
+
+`speed`
+Time in second an icon is displayed before displaying the next one.
 
 # Blinking Animation
 
-A blinking annimation is an procedure that forces some of all part of a Representation alternatively On and Off and provoque a rendering update after changes, leading to a blinking button effect.
+A blinking animation is an procedure that forces some of all part of a Representation alternatively On and Off and provoque a rendering update after changes, leading to a blinking button effect.
 
 In this case, the animation controls and changes the value of the button, switching between On and Off states. The representation changes accordingly.
 
