@@ -132,6 +132,15 @@ If the feedback visualisation is an `image`, the `image` attribute specifies the
 
 The above definition file is read by a Deck Type class.
 The Deck Type class is responsible for providing information about the deck's capabilities, but also to control them. For example, given a button definition in Cockpitdecks, the Deck Type class can validate the button definition, ensuring that the button specified by its index is capable of the requested activation and representation.
+
+## Installed Deck Types
+
+On startup, Cockpitdecks will report which deck types are available:
+
+```
+INFO: loaded 8 deck types ('Stream Deck XL', 'Stream Deck Neo', 'LoupedeckLive', 'Streamdeck', 'Stream Deck Original', 'Stream Deck Mini', 'X-Touch Mini', 'Stream Deck +')
+```
+
 # Event Processing
 
 From the parameter supplied in the callback function, Cockpitdecks determine the type of interaction that occurred (pushed, turned, swiped...). For that interaction, an Event of a precise type is created, with all detailed parameters available to it. The callback function does not execute the activition but rather enqueues the event for later processing.
@@ -292,3 +301,15 @@ For deck with iconic display capabilities:
     def get_image_size(self, index):
     def _send_key_image_to_device(self, key, image):
 ```
+
+## Installed Deck Drivers
+
+On startup, Cockpitdecks will report which drivers are installed:
+
+```
+INFO MainThread cockpit.py:scan_devices:238: drivers installed for streamdeck 0.9.5, loupedeck 1.4.5, xtouchmini 1.3.6; scanning..
+INFO MainThread cockpit.py:scan_devices:247: found 3 streamdeck
+INFO MainThread cockpit.py:scan_devices:247: found 1 loupedeck
+INFO MainThread cockpit.py:scan_devices:247: found 0 xtouchmini
+```
+
