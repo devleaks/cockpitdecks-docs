@@ -1,10 +1,13 @@
 For a given deck, a Layout is a collection of *Pages* that will be displayed on that deck.
+
 A Layout is a folder, inside the `deckconfig` main folder.
+
 The Layout is named and addressed by the name of the folder.
 
 Layouts were created to cope with different deck models. If you have a set of 30 commands, you can display them all on a 32 key deck. But you have to make two pages of buttons on a 16 key deck. Same button definitions, but two *layouts*.
 
 # Layout Folder
+
 The Layout folder contains the following files:
 
 ```
@@ -32,18 +35,23 @@ default-page-name: index
 The default value for each attribute is the value found the Cockpit attributes.
 
 `default-icon-color: blue`
+
 Optional. Default color to use for icon background.
 
 `default-label-color: white`
+
 Optional. Default color to use for layout labels.
 
 `default-label-font: DIN Medium.ttf`
+
 Optional. Default font to use for layout labels.
 
 `default-label-size: 13`
+
 Optional. Default label size.
 
 `default-homepage-name`
+
 Optional. Default page name in layout.
 
 The default value of some attributes (like font, colors, and sizes) is fetched at the Cockpit level if they are not specified at the Layout level.

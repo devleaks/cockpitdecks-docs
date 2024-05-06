@@ -91,8 +91,11 @@ Color for the cockpit. This color is used as the default background color for ic
 ### cockpit-texture
 
 Name of a image file (JPEG or PNG) that will be used as the (default) background of icons.
+
 The `cockpit-texture` file will be searched at different places depending on where it is specified.
+
 The `cockpit-texture` file can be specified at the Cockpit, Deck, Page, or Button level.
+
 Cockpit-level default textures will be seached in the following folders (in that order):
 
 - `resources`
@@ -112,6 +115,7 @@ Name of image file, located in the `resource` folder, to be loaded when the deck
 ### default-*
 
 Name of default values of several parameters, defined at the aircraft-level. These values will be used for all missing values. They can be raffined at Layout and Page level if necessary.
+
 If no aircraft-level global parameter values are not provided, Cockpitdecks will use its own internal default values.
 
 ### decks
@@ -123,6 +127,7 @@ Yaml allow for other attributes in the file. They are ignored by Cockpitdecks. Y
 # secret.yaml File
 
 The `secret.yaml` file contains the serial numbers of your connected decks.
+
 If you have more than one deck of the same type (i.e. two Streamdecks, two X-TouchMini, etc.) this file is mandatory to distinguish between the two physical devices. Otherwise, it is optional.
 
 ```yaml
@@ -144,6 +149,7 @@ Folder containing all icon images for that aircraft. Images should be in JPEG or
 ## Fonts
 
 Folder containing specific fonts used for that aircraft.
+
 Typical fonts include standard, formal font like DIN, icon fonts like FontAwesome or WeatherIcon font, or fancier font like 7-bar LED fonts. Fonts are named by their file name without extension for TrueType fonts. Open Type Fonts need to supply their extension `.otf`.
 
 ## Docs

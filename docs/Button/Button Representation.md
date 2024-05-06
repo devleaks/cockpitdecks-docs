@@ -1,4 +1,5 @@
 The Representation of a button determine how it will be displayed on the deck device.
+
 The representation depends on the capabilities of the button on the deck. There is a list of valid representations or a given button on a deck. A image or icon cannot be displayed on a LED-only button.
 
 In the button definitions, the presence of a *specific attribute* with determine how the button gets represented on the deck. The name of that attribute is the key word of the representation. For example:
@@ -20,7 +21,6 @@ If no Representation is found, a warning message is reported and the button is a
 ```
 
 will not issue any warning message.
-
 
 # Representations
 
@@ -46,14 +46,12 @@ Here is a list of currently available, general purpose representations.
 	- [[Drawn Buttons#Data]]
 	- [[Drawn Buttons#Decor]]
 
-
 ## More complex button representations
 
 - [[Animation]]
 - [[Weather]]
 - Other
 	- Aircraft
-
 
 ## Deck specific displays and representations
 
@@ -72,10 +70,13 @@ Here is a list of currently available, general purpose representations.
 ## Managed
 
 `dataref: dataref-path`
+
 Path to a dataref that is interpreted to determine whether the value is *managed*.
 
 If the value is *managed*, the value can be displayed as a text string in an alternative way depending on the `text-alternate` value.
+
 `text-alternate: dash=4`: Represent managed value by a set of `-`. Default is 3 dashes.
+
 `text-alternate: dot`: Represent managed value by a single dot `•`.
 
 ```yaml hl_lines="12-14"
@@ -100,6 +101,7 @@ In example above, *speed managed* mode, if `AirbusFBW/SPDmanaged` dataref value 
 ## Guard
 
 `dataref: dataref-path`
+
 Path to a dataref that is interpreted to determine whether the button or key is *guarded* (protected against unintentional use by a cap or lock). If *guarded*, it can be displayed in an alternative way depending on the options value.
 
 `type`: Protects the button with a full red cover (`type: full`) or a see-through grid (`type: grid`)(cover is the default).
@@ -121,7 +123,6 @@ Guarded buttons or keys need to be pressed twice to activate, the first activati
 > Make sure long press lasts 2 seconds or more, otherwise the button will be activated!
 
 # Representation Validity
-
 
 > [!NOTE] Development Notes
 > For developer only

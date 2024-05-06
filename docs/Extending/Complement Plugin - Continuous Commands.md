@@ -1,10 +1,8 @@
-
 To circumvent limitations of UDP, a plugin is necessary to execute commands that require to be activated for a long time (like long push commands).
 
 For each long push command, the plugin will create a pair of commands that will be issued at the beginning of the command, and at the end.
 
 The plugin scans deckconfig folder for button definitions that contain `longpress`activation. It then creates a pair of commands for the command specified in the command attribute.
-
 
 ```yaml hi_lines="9"
   - index: 27

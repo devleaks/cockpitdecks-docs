@@ -23,7 +23,9 @@ fill-empty-keys: true
 ### name
 
 Name of the Page. Superceedes the file name. Case sensitive.
+
 If no name is given, the name of the page is the page file name (without the `.Yaml ` extension.)
+
 For a given layout, all pages must have different names, otherwise an error is reported, and the page with the same name is ignored.
 
 ### buttons
@@ -34,6 +36,7 @@ A list of button definitions. Please refer to the [[Button]] Section for details
 ### includes
 
 Includes is a list of other pages to include in this page.
+
 Included pages are first merged inside the main page, and then submitted for display and use.
 
 ### default-*
@@ -53,4 +56,5 @@ The `buttons` attributes contains all [[Button|button definitions]].
 # Default Page
 
 If no Page is found in the Layout folder, Cockpit deck will create a default page which consists of a logo displayed on the deck (if the deck is capable of displaying images...).
+
 The first available button will be programmed to toggle the X-Plane Map On or Off.

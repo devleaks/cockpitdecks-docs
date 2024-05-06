@@ -1,4 +1,3 @@
-
 Buttons are defined by a list of attributes.
 
 Some attributes are unique to a button, very specific, and cannot have default values like, for exemple, the button index or a button label attribute.

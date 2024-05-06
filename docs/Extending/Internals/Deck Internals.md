@@ -19,6 +19,7 @@ The Event contains information about the deck, of course, but also the precise b
 # Deck Description
 
 A deck is presented to Cockpitdecks through a deck definition file. The deck definition file describes the deck capabilities:
+
 - How many buttons,
 - How many dials, if they can be turned, or pushed
 - Feedback screen icons
@@ -26,6 +27,7 @@ A deck is presented to Cockpitdecks through a deck definition file. The deck def
 - Ability to emit vibration or sound
 
 ## Deck Defintion
+
 Here is for example, a configuration file for a Loupedeck LoupedeckLive device.
 
 ```yaml
@@ -76,6 +78,7 @@ Keyword identifying the deck software driver class.
 ### Buttons
 
 A list of button types, each ButtonType leading to one or more individual buttons identified by their index, built from the `prefix`, `repeat`, and `name` attribute. See below.
+
 #### Name
 
 Name of the button type.
@@ -99,6 +102,7 @@ repeat: 4
 In the later case, names of buttons will be: `k5`, `k6`, `k7`, and `k8`.
 
 #### Actions
+
 Interaction with the button. Interaction can be:
 
 - `none`: There is no interaction with the button. It is only used for display purpose.
@@ -111,6 +115,7 @@ Interaction with the button. Interaction can be:
 ACtion can ba a single interaction or an array of interactions like `[encore, push]` if a button combines both ways of interacting with it.
 
 #### Feedback
+
 Feedback ability of the button. Feedback can be:
 
 - `none`: No feedback on device, or direct feedback provided by some marks on the deck device.
@@ -120,17 +125,17 @@ Feedback ability of the button. Feedback can be:
 - `multi-leds`: Several, single color, LED on a ramp.
 - `vibrate`: emit a buzzer sound.
 
-
 > [!NOTE] Trick
 > If a deck has a vibrate capability, it is advisable to declare it as a separate button of interaction, and use that button like any other. Vibrate is a feedback mechanism.
 
-
 #### Image
+
 If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image (size, and eventually, offset position on a larger surface.) `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
 
 ## Deck Type
 
 The above definition file is read by a Deck Type class.
+
 The Deck Type class is responsible for providing information about the deck's capabilities, but also to control them. For example, given a button definition in Cockpitdecks, the Deck Type class can validate the button definition, ensuring that the button specified by its index is capable of the requested activation and representation.
 
 ## Installed Deck Types
@@ -145,7 +150,8 @@ INFO: loaded 8 deck types ('Stream Deck XL', 'Stream Deck Neo', 'LoupedeckLive',
 
 From the parameter supplied in the callback function, Cockpitdecks determine the type of interaction that occurred (pushed, turned, swiped...). For that interaction, an Event of a precise type is created, with all detailed parameters available to it. The callback function does not execute the activition but rather enqueues the event for later processing.
 
-In Cockpitdecks, another 
+In Cockpitdecks, another
+
 # Activation
 
 The activation is the piece of code that will process the event.
@@ -161,6 +167,7 @@ class Push(Activation):
 ```
 
 Activation usually leads to either
+
 - one or more command sent to the simulator for execution
 - internal changes of the deck, like loading a new page of buttons
 - or both
@@ -307,9 +314,8 @@ For deck with iconic display capabilities:
 On startup, Cockpitdecks will report which drivers are installed:
 
 ```
-INFO MainThread cockpit.py:scan_devices:238: drivers installed for streamdeck 0.9.5, loupedeck 1.4.5, xtouchmini 1.3.6; scanning..
-INFO MainThread cockpit.py:scan_devices:247: found 3 streamdeck
-INFO MainThread cockpit.py:scan_devices:247: found 1 loupedeck
-INFO MainThread cockpit.py:scan_devices:247: found 0 xtouchmini
+INFO: drivers installed for streamdeck 0.9.5, loupedeck 1.4.5, xtouchmini 1.3.6; scanning..
+INFO: found 3 streamdeck
+INFO: found 1 loupedeck
+INFO: found 1 xtouchmini
 ```
-

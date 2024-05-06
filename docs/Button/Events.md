@@ -1,5 +1,5 @@
-
 Events are entities created by decks to report which interaction occurred on the physical device.
+
 Events are created by callback functions to enter Cockpitdecks processing.
 
 Events have a type that identifies the interaction.
@@ -11,9 +11,13 @@ Base class for events.
 ## Attributes
 
 `deck`: Related [[Deck|deck]] where interaction occured.
+
 `button`: Related button [[Button Index|index]].
+
 `action`: [[Deck Internals#Action|Deck action name]].
+
 `timestamp`: Time of creation of event.
+
 `is_processed`: Whether event has run or not.
 
 ## Common Functions
@@ -21,7 +25,9 @@ Base class for events.
 ### run(just_do_it: bool = False)
 
 Run the event.
+
 If just_do_it is False, enqueue the Event.
+
 Otherwise, execute the activation.
 
 ### handling()
@@ -65,7 +71,9 @@ The long time event occurs experimentally after roughly 600 milliseconds. It is 
 # TouchEvent
 
 `x`: x-position of the event (horizontal)
+
 `y`: y-position of the event (vertical)
+
 `start`: Timestamp of touch event
 
 # SwipeEvent
@@ -73,6 +81,7 @@ The long time event occurs experimentally after roughly 600 milliseconds. It is 
 A Swipe event is either an event on its own, or the combination of two Touch event.
 
 In the latter case, the first Touch event is the start of the swipe.
+
 The second one being the end of the swipe, and must be supplied the first event as an argument. In this case, the swipe() method will return a Swipe event that combine them both.
 
 > [!WARNING] Streamdeck Touch and Swipe Events

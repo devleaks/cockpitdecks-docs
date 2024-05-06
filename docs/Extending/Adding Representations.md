@@ -1,7 +1,7 @@
-
 # Core Button
 
 The core [[Button]] class is designed to isolate deck key specifics in two attribute classes:
+
 1. Activation, that represents the user's interaction with the deck, and
 2. Representation, that expresses what the deck communicates back to the user.
 

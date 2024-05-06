@@ -9,9 +9,11 @@ Cockpitdecks communicates with X-Plane through the network UDP protocol. This of
 Through UDP ports, X-Plane reports some internal parameter values (called datarefs), and accepts commands to execute.
 
 Never ever forget that in the UDP protocol, there is no guarantee of delivery, ordering, or duplicate protection.
+
 # Installation
 
 Cockpitdecks is a regular python application and will run with python 3.10, or newer.
+
 It is recommended to create a virtual environment and run Cockpitdecks within that environment. A set of packages need to be installed in that environment before Cockpitdecks can run.
 
 1. Check Installation Requirements
@@ -25,7 +27,6 @@ It is recommended to create a virtual environment and run Cockpitdecks within th
 9. Start Cockpitdeck application.
 10. Start X-Plane.
 11. Enjoy all your deck devices activated in X-Plane.
-
 
 # Installation Requirements
 
@@ -62,17 +63,20 @@ $ pip install avwx-engine scipy suntime timezonefinder
 ### Install Deck Devices Drivers
 
 To have Cockpitdecks manage Streamdeck devices, add
+
 ```shell
 $ pip install streamdeck
 ```
 
 To have Cockpitdecks manage Loupedeck devices, add
+
 ```shell
 $ pip install
 git+https://github.com/devleaks/python-loupedeck-live.git
 ```
 
 To have Cockpitdecks manage Touch Mini devices, add
+
 ```shell
 $ pip install
 git+https://github.com/devleaks/python-berhinger-xtouchmini.git
@@ -81,8 +85,11 @@ git+https://github.com/devleaks/python-berhinger-xtouchmini.git
 ### Install Cockpitdecks Helper Plugin
 
 Some commands cannot be executed directly through UDP. For exemples, commands that have a start and an end cannot be started or ended though UDP. It is an X-Plane UDP limitation.
+
 To circumvent this, Cockpitdeck provides a small python plugin called the Cockpitdecks Helper plugin, that need to be installed into X-Plane to allow for start and end commands. The Cockpitdecks Helper plugin will execute start and end commands on behalf of the Cockpitdecks application. Cockpitdecks Helper plugin just need to be installed and will provide its services to Cockpitdecks. This plugin does not take any resource, it only adds and removes commands each time an aircraft is loaded.
+
 The Cockpitdecks Helper Plugin works automatically, reads `deckconfig` configuration and creates a pair of (beginCommand, endCommand) for each *long press* command.
+
 Cockpitdecks Helper Plugin is written in the python language. So it needs the [XPPython3](https://xppython3.readthedocs.io/) X-Plane plugin installed. XPPython3 plugin allow for execution of python code inside X-Plane.
 
 Cockpitdecks XPPython3 plugins are located in the
@@ -121,7 +128,6 @@ If your decks are connected, and all drivers properly installed, you can test st
 $ python bin/cockpitdecks_udp_start.py
 ```
 
-
 To start Cockpitdecks, use the `cockpitdecks_udp_start.py` script by supplying the X-Plane aircraft folder where deck confit resides. Start the python script and supply the folder name where `deckconfig` folder resides.
 
 ```shell
@@ -131,7 +137,9 @@ $ python cockpitdecks_udp_start.py "/Applications/X-Plane 12/Aircraft/Extra Airc
 Cockpitdecks will look for `deckconfig` folder in the aircraft folder and start.
 
 Cockpitdecks will repetitively try to connect to X-Plane. If it fails to connect, it infinitely tries again until it succeeds. If not connected, decks will load but no command will be issued to X-Plane and no data will come from X-Plane to update decks.
+
 When Cocpiktdecks successfully connects to X-Plane, it refreshes all pages by *reloading* them to reflect the state of the aircraft on the decks.
+
 If Cockpitdecks fails to connect to X-Plane or notices it does no longer receive dataref values from X-Plane, it will again repetitively try to connect to it until it succeeds.
 
 The *aircraft folder* (Toliss A321) where cockpitdecks tries to find a `deckconfig` folder can be anywhere, it does not need to be in the X-Plane aircraft folder. However, the `deckconfig` folder must be in the X-Plane aircraft folder for the Cockpitdecks Helper Plugin. (For Unix technical people, a symbolic link does the trick.)
@@ -139,6 +147,7 @@ The *aircraft folder* (Toliss A321) where cockpitdecks tries to find a `deckconf
 ## Install Aircraft Config
 
 Duane, a Cockpitdecks aficionado has realized several configurations for several aircrafts.
+
 You can [find them here](https://github.com/dlicudi/cockpitdecks-configs), download them and install them in your aircraft folder.
 
 # Troubleshooting

@@ -1,4 +1,3 @@
-
 Cockpitdecks can be extended in several directions.
 
 # New Button Appearances
@@ -22,4 +21,3 @@ Core class [[Simulator]] can also be extended to connect Cockpitdecks to another
 # Tools for Developers
 
 Cockpitdecks incudes a few [[Button Activations for Developers|developer specific activations]] that can be used to introspect Cockpitdecks while running.
-

@@ -24,7 +24,6 @@ live-weather
 
 Reports the current live weather for the closest Metar location. (Closest to the current aircraft location.)
 
-
 # Real Weather
 
 ```yaml
@@ -33,10 +32,10 @@ real-weather
 ```
 
 Provides the Real weather currently installed into X-Plane in a short, Metar-like summary.
+
 This is done by fetching a limited set of values from the weather-related datarefs (temperature, pressure, wind, weather conditions...)
 
 There are two *modes*: `aircraft` and `region`.
-
 
 # XP Weather
 

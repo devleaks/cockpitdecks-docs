@@ -1,4 +1,3 @@
-
 Cockpitdecks proceeds by starting autonomous threads of execution that monitor different aspects of the interaction of decks with X-Plane.
 
 Cockpitdecks threads are often created in start() procedures and terminated in terminate() procedures. Communication with the thread is performed through synchronous Queues.
@@ -32,9 +31,10 @@ Inside the simulator, another thread of execution receives the dataref value cha
 ![[dataref updates.svg]]
 
 Each dataref maintains a list of buttons that use/rely on it, and each of those buttons gets notified of the change to adjust. Each button receiWhen a button receives the message that one of its dataref has changed, it can adjust its internal state, and if it is currently rendered on a deck, adjust its display.
+
 # Thread for Connection to X-Plane
 
-In the Simulator, a thread permanently monitors the connection of Cockpitdecks to X-Plane. When there is no connection, the thread attempt to initiate a new connection until it succeeds. 
+In the Simulator, a thread permanently monitors the connection of Cockpitdecks to X-Plane. When there is no connection, the thread attempt to initiate a new connection until it succeeds.
 
 When a new connection is created, it immediately request dataref updates and update all decks with all dataref values.
 
@@ -47,7 +47,6 @@ When there is no connection to X-Plane, Cockpitdecks works as expected, however,
 Datarefs whose name starts with a prefix (currently `local:`) behave like any other datarefs but are neither forwarded to X-Plane, nor read from it. They can be set, read, etc. like any other datarefs allowing for a kind of *inter-button communication*: one button sets it, another one adjust its appearance based on it, even buttons on another deck!
 
 Truly, the sky is the limit. Enjoy.
-
 
 # Internal Resource Folder
 
@@ -64,6 +63,7 @@ Icons in this folder are available to all aircrafts.
 ## fonts
 
 Fonts in this folder are available to all aircrafts.
+
 Cockpitdecks provides a few fonts found here and there together with their respective copyright files.
 
 ## docs
@@ -73,6 +73,7 @@ A copy of Cockpitdecks documentation is included there. The documentation folder
 ## Image files
 
 The resource folder contains a few image files used as logos and wallpapers.
+
 There is also an image with color names that can be used in `color` attributes.
 
 ## iconfonts.py

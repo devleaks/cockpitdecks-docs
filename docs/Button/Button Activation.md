@@ -52,9 +52,11 @@ When the button is pressed, a deck will load a page of buttons.
 ## Attributes
 
 `page`
+
 Mandatory. Name of the page to load. The page must be in the Layout of the target deck.
 
 `remote_deck`
+
 Optional. If present, will load the page on the target deck.
 
 ## Events
@@ -74,6 +76,7 @@ Push button.
 ## Attributes
 
 `command`
+
 Mandatory. X-Plane command that is executed each time the button is pressed.
 
 > [!NOTE]
@@ -88,6 +91,7 @@ PushEvent. Please note that PushEvent consists of 2 distinct events, a pressed e
 ## Options
 
 `auto-repeat`
+
 Auto repeat command at specified pace while the button remains pressed.
 
 `auto-repeat` option accepts a couple of optional values:
@@ -121,7 +125,9 @@ Only PushEvent can be used to trigger Longpress Activation since both press and 
 ## Attributes
 
 `command`
+
 Mandatory. X-Plane command that is executed while the button is pressed.
+
 X-Plane will issue a `beginCommand` when the button is pressed and a `endCommand` when released.
 
 > [!NOTE]
@@ -140,9 +146,11 @@ PushEvent, PressEvent, LongPressEvent
 ## Attributes
 
 `commands`
+
 Optional pair of X-Plane commands that are executed alternatively. Two commands must be supplied, but the same command can be provided twice.
 
 `set-dataref`
+
 Optional dataref to set On(=1) or Off (=0).
 
 Either attribute can be set or both. In the latter case, the command is first executed and then the dataref is set.
@@ -150,21 +158,27 @@ Either attribute can be set or both. In the latter case, the command is first ex
 # UpDown
 
 `type: updown`
+
 Cycle Up and Down button.
 
 ## Attributes
 
 `commands`
+
 X-Plane commands that are executed when pushes increase value, and when pushes descrease value.
 
 `stops=3`
+
 Number of stop values. For example: Stops=3 will give 0-1-2-1-0 cycles, with 3 stops 0, 1, and 2.
 
 `initial-value`
+
 If an initial value is supplied, it's sign indicated how the value will evolve.
+
 For example, if the initial value is 1, the next value will be 2 (go up). If the initial value is -1, the initial value will be set to 1, but the next value will be zero (go down).
 
 `set-dataref`
+
 Optional dataref to set the value of the current stop.
 
 Very much like On/Off activation either `commands` or `set-dataref` can be supplied or both.
@@ -172,11 +186,13 @@ Very much like On/Off activation either `commands` or `set-dataref` can be suppl
 # Encoder
 
 `Type: encoder`
+
 An Encoder is a rotating knob or dial with *steps*. Steps are often materialised by a little sound or a slight resistance in the rotation.
 
 ## Attributes
 
 `commands`
+
 An Encoder has two commands, one that is executed for each step while turning clockwise, and one for each step when turning counter-clockwise.
 
 ## State Values
@@ -187,11 +203,13 @@ An Encoder has two commands, one that is executed for each step while turning cl
 # EncoderPush
 
 `type: encoder-push`
+
 An EncoderPush is the combination of an Encoder and a push button.
 
 ## Attributes
 
 `commands`
+
 An EncoderPush has 3 commands:
 
 1. First command gets executed when it is pushed
@@ -201,11 +219,13 @@ An EncoderPush has 3 commands:
 # EncoderOnOff
 
 `type: encoder-push`
+
 An EncoderOnOff is the combination of an Encoder and an OnOff button.
 
 ## Attributes
 
 `commands`
+
 An EncoderPush has 4 commands:
 
 1. First command gets executed when it is OFF, to turn it ON
@@ -214,6 +234,7 @@ An EncoderPush has 4 commands:
 4. Fourth command gets executed when encoder is turned counterclockwise
 
 `options: dual`
+
 With option `dual`, the activation uses two more commands.
 
 1. First command gets executed when it is OFF, to turn it ON
@@ -223,10 +244,10 @@ With option `dual`, the activation uses two more commands.
 5. Third command gets executed when encoder is turned clockwise and OFF
 6. Fourth command gets executed when encoder is turned counterclockwise and OFF.
 
-
 # EncoderLongPush
 
 `commands`
+
 An EncoderLongPush has 4 commands:
 
 1. First command  gets executed when encoder is turned clockwise
@@ -237,47 +258,59 @@ An EncoderLongPush has 4 commands:
 # EncoderValue
 
 `type: encoder-push`
+
 An EncoderValue is an Encoder that increases or decrease an internal value each time it is rotated clockwise or counterclockwise. The value can be written to an X-Plane dataref or used for other pruposes.
 
 ## Attributes
 
 `initial-value`
+
 Initial value. Default to 0.
 
 `step`
+
 Amount of value increase or decrease.
 
 `stepxl`
+
 Alternate value for step increase or decrease. If the encoder is capable of push action, the push action will switch between the `step` and `stepxl` values.
 
 `min`
+
 Minimal value.
 
 `max`
+
 Maximal value.
 
 `formula`
+
 Optional. Formula to transform the `${state:button-value}` *before* it is sent to the dataref.
 
 `set-dataref`
+
 Optional dataref to set to the value of the computed value. The value is sent right away, after each encoder activation.
 
 # Slider
 
 `type: slider`
+
 A Slider is a one dimensional cursor that produces a continuous value within a range. The value can be written to an X-Plane dataref, directly, or after a computation.
 
 ## Attributes
 
 `set-dataref`
+
 Optional. Dataref to write the value to, if present.
 
 `formula`
+
 Optional. Formula to transform the `${state:button-value}` (value produced by the slider) *before* it is sent to the dataref.
 
 # Swipe
 
 `type: swipe`
+
 A Swipe is a 2 dimensional movement of a finger on a surface. The event produced consists of the start and end positions of the finger relative to the surface (x, y) and timing information (time stamp).
 
 (Currently not used.)
@@ -287,6 +320,7 @@ The Swipe event has no attribute.
 ## State Values
 
 The event of a swipe is complex. The entire event is available as `last_event`.
+
 The event has the following structure:
 
 ```yaml
@@ -299,11 +333,13 @@ pos_end: (78, 42)
 # Button Activations for Developers
 
 Reload, Stop, or Inspect are [[Button Activations for Developers|special activations for developer]].
+
 These activations are normally not used during regular operations.
 
 # Activation Validity
 
 Each Activation has a `is_valid()` method that checks whether all necessary attributes or parameters are available to it. The inspect keyword to trigger button validity inspection is `valid`.
+
 Each Activation also has a `describe()` method that displays and explains what it does. The inspect keyword for displaying activation description is `desc`.
 
 # New Activations

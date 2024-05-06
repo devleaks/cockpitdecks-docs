@@ -1,7 +1,7 @@
-
 Adding a new deck model can be very simple or very difficult, depending on the deck's capabilities and software already available to access it (through the python language).
 
 Cockpitdecks does its best at isolating deck specifics into
+
 - configuration files
 - device (deck) drivers classes
 
@@ -58,11 +58,14 @@ Name of the driver software inside Cockpitdecks.
 ### Button Capabilities
 
 Button capabilities are modeled in two categories:
+
 1. Actions, which specifies what a button is capable of,
 2. View, which specifies what a button can show as a feedback to the user.
 
 #### Actions
+
 `
+
 The following **actions** have been identified and are available in Cockpitdecks:
 
 - `push`: ability to press a button, optionally pushing a long time,
@@ -84,6 +87,7 @@ Similarly, decks defined the following **view** interactions:
 #### Name, Repeat, and Prefix
 
 Name and repeat will determine the index name of the buttons.
+
 Prefix is used to distinghish button capabilities. If a button has, for example, encoder and push capabilities, the push capabilties will use name `0` (name only), the corresponding encoder will be named `e0` (prefix + name).
 
 #### Image
@@ -92,7 +96,6 @@ The image attribute sets the image size for the button, and offset if the image 
 
 #### Vibrate
 
-
 # Deck «Driver»
 
 ## Deck to Computer Interaction
@@ -100,10 +103,13 @@ The image attribute sets the image size for the button, and offset if the image 
 Depending on the button's action that is triggered, the deck will programmatically generate an Event. The type and content of the Event will depend on the action type.
 
 `push`: produces an event with the identifier of the button that was pressed, and a flag indicating that the button was pressed or release.
+
 `encoder`: will produce an Event of type encoder, with the identifier of the encoder, and a flag telling whether the encoder was turned clockwise or counter-clockwise.
+
 `swipe`: will produce a complex swipe Event, with the position of the start of the swipe, the end of the swipe and some timing information (timestamps of start and end of swipe).
 
 Technically speaking, the deck will start a thread to listen to incoming events. Events will be decoded (which key was pressed, when, how, etc.) and presented to Cockpitdecks for handling.
+
 Depending on the device driver's hardware access, events will either be presented directly to Cockpitdecks, or through a FIFO queue: Driver enqueues events, Cockpitdecks dequeues events.
 
 ## Computer to Deck Interaction

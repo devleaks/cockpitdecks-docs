@@ -11,7 +11,7 @@ Animations are automatic. They should not be confused with button appearance upd
 Most of the time, the value button determine if the animation runs. When the value of the button is On, the animation runs. When Off, the animation does not run and may displays an alternate representation.
 
 - [[Animation#IconAnimation]]
-- 
+-
 
 # IconAnimation
 
@@ -26,12 +26,15 @@ icon-animation:
 ```
 
 Multiple icon files are displayed in sequence automagically when the button is On.
+
 ## Attributes
 
 `icon-off: ICON_FILE_NAME`
+
 The icon to display when the button is Off. If there is no icon-off, the first icon in the icon-animation list is used.
 
 `speed`
+
 Time in second an icon is displayed before displaying the next one.
 
 # Blinking Animation
