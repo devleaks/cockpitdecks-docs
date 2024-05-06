@@ -5,7 +5,7 @@ To add a new activation to Cockpitdecks, the developer has to create a new Activ
 
 file.
 
-```yaml hi_lines="3-4"
+```python hi_lines="3-4"
 class SpecialAction(Activation):
 
     ACTIVATION_NAME = "special-action"

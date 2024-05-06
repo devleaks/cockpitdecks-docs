@@ -69,7 +69,7 @@ nav:
       - Examples: Extending/Examples.md
       - Extending:
           - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
-          - Adding rpresentations: Extending/Adding Representations.md
+          - Adding representations: Extending/Adding Representations.md
           - Adding activations: Extending/Adding Activations.md
           - Activation for developers: Extending/Button Activations for Developers.md
           - Adding new deck models: Extending/Adding New Deck Models.md
