@@ -82,7 +82,7 @@ nav:
               - Deck Internals: Extending/Internals/Deck Internals.md
               - To Do: Extending/Internals/To do.md
   - Installation:
-      - Requirements: "Installation.md#Installation Requirements"
+      - Requirements: "Installation/#installation-requirements"
       - Installation: Installation.md
 
 # ###############################################
