@@ -4,7 +4,7 @@ For each long push command, the plugin will create a pair of commands that will 
 
 The plugin scans deckconfig folder for button definitions that contain `longpress`activation. It then creates a pair of commands for the command specified in the command attribute.
 
-```yaml hi_lines="9"
+```yaml hl_lines="9"
   - index: 27
     type: long-press
     label: "APU\nTEST"

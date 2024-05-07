@@ -31,7 +31,7 @@ To add a new representation to Cockpitdecks, the developer has to create a new R
 
 file.
 
-```python hi_lines="3-4"
+```python hl_lines="3-4"
 class SpecialtyIcon(Representation):
 
     REPRESENTATION_NAME = "specialty-icon"
@@ -44,7 +44,7 @@ class SpecialtyIcon(Representation):
 
 In the button definition:
 
-```yaml hi_lines="4"
+```yaml hl_lines="4"
 	index: 42
 	name: SPECIAL_ICON
 	type: push
