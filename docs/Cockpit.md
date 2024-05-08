@@ -1,6 +1,6 @@
 The Cockpit is the *Maestro* of the Cockpitdecks application.
 
-It starts up the entire Cockpitdecks application. It establishes connection to the simulator, scans for existing decks connected to the computer, and load the aircraft configuration files. It listen to interactions that occur on the decks and listen to simulator changes to reflect deck statuses. It also monitors with aircraft is currently loaded in the simulator, and if the user changes aircraft, it loads the new configuration if any.
+It starts up the entire Cockpitdecks application. It establishes connection to the simulator, scans for existing decks connected to the computer, and load the aircraft configuration files. It listen to interactions that occur on the decks and listen to simulator changes to reflect deck statuses. It also monitors which aircraft is currently loaded in the simulator, and if the user changes aircraft, it loads the new configuration if any.
 
 # Aircraft Configuration
 

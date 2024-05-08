@@ -16,6 +16,7 @@ If no attribute determine the value of a button, it will return its internal sta
 ## X-Plane Dataref
 
 A *dataref* is the name of a value used by the X-Plane simulator.
+
 The value can be a string, integer, or float value, either a single value or an array of (same type of) values. A dataref has a name to access it. Names are organized in a folder-like structure (namespace using `/` separator). Some datarefs are read-only, some other can be written and modified.
 
 #### Examples
@@ -33,7 +34,9 @@ To explore datarefs, there is a handy X-Plane plugin called [DataRefTool](https:
 ## Cockpitdecks Internal Dataref
 
 Cockpitdecks manages its own set of *datarefs*.
+
 All datarefs that starts with a special key word are *NOT* forwarded to X-Plane but rather managed internally inside Cockpitdecks. Otherwise, they are not different from X-Plane datarefs. They can be set and used like any other datarefs.
+
 When a button emit an internal dataref, it's definition mention it clearly so that it can be used by other buttons.
 
 ```yaml
@@ -53,14 +56,15 @@ Internal datarefs can be used as inter-button communication, to set a value in o
 ## Internal Button (Activation) Value
 
 When a button cannot fetch its representation from X-Plane, it is possible to use some Cockpitdecks internal variables made available through the button *state*. Each button maintain its state, a few internal variables, that can be accessed in formula.
+
 State variables made available to formula are listed in the [[Button Activation]] page.
+
 The value of the button can then be either a list of (name, value) pairs, or a single value.
 
 Numeric internal values are accessible as `${state:variable-name}` in formula.
 
-
 ```yaml
-	formula: {state:button_pressed_count} mod 2
+	formula: {state:button_pressed_count} 2 mod
 ```
 
 # Value Normalisation
@@ -97,8 +101,11 @@ In its simple form, the value of a button is deduced from the value of a single 
 ## Continuous Range Value
 
 The status of a button is deduced from the value of either a single dataref, or a formula expression.
+
 Ranges are used as buckets to determine in which range/bucket the value falls. Then, the number index of the range, starting with 0, is used to determine which icon to display.
+
 There must be a matching number of ranges and icons.
+
 (Note: Currently not used.)
 
 # Combining Multiple Values: Formula
@@ -108,52 +115,55 @@ A Representation is driven by a *single final value*. However, it is possible to
 Examples of `formula`:
 
 ```yaml
-	# Simple math (in reverse polish notation):
-	formula: ${AirbusFBW/OHPLightsATA34[8]} 2 * floor
+# Simple math (in reverse polish notation):
+formula: ${AirbusFBW/OHPLightsATA34[8]} 2 * floor
 
-	# Constant 1; always 1; always True or On
-	formula: 1
-	
-	# Insert 0 = true, 1 = false
-	formula: ${sim/cockpit2/switches/avionics_power_on} 1 - abs
+# Constant 1; always 1; always True or On
+formula: 1
 
-	# Boolean operation not
-	formula: ${sim/cockpit2/switches/avionics_power_on} not
+# Insert 0 = true, 1 = false
+formula: ${sim/cockpit2/switches/avionics_power_on} 1 - abs
 
-	# Boolean operation
-	formula: ${AirbusFBW/OHPLightsATA34[8]} 4 eq
-	
-	# Formula used for display of a value
-	formula: ${sim/cockpit/misc/barometer_setting} 33.8639 *
-    text: ${formula}
-    text-format: "{: 4.0f}"
+# Boolean operation not
+formula: ${sim/cockpit2/switches/avionics_power_on} not
 
-	# The following two lines are equivalent; they both return the same value
-	formula: ${sim/cockpit/autopilot/vertical_velocity}	
-	dataref: sim/cockpit/autopilot/vertical_velocity
+# Boolean operation
+formula: ${AirbusFBW/OHPLightsATA34[8]} 4 eq
 
+# Formula used for display of a value
+formula: ${sim/cockpit/misc/barometer_setting} 33.8639 *
+text: ${formula}
+text-format: "{: 4.0f}"
+
+# The following two lines are equivalent; they both return the same value
+formula: ${sim/cockpit/autopilot/vertical_velocity}	
+dataref: sim/cockpit/autopilot/vertical_velocity
 ```
 
 Only one formula attribute can be used for a button or a annunciator part.
 
 ## Expression
 
-The *formula* for computation is expressed in *Reverse Polish Notation*.
-The result of the formula is a *numeric value* (float value that can be rounded to an integer if necessary.)
+The *formula* for computation is expressed in *Reverse Polish Notation*. The result of the formula is a *numeric value* (float value that can be rounded to an integer if necessary.) It is intimidating at first to write RPN formula, but once a user get use to it, it actually is equaly easy to write RPN formula and formula with parenthesis. In a nutshell, rather than writing:
 
-It is intimidating at first to write RPN formula, but once a user get use to it, it actually is equaly easy to write RPN formula and formula with parenthesis.
-In a nutshell, rather than writing
-`(8 / 2) + (4 × 5)`
-in RPN, we write
-`8 2 / 4 5 × +`
+```
+(8 / 2) + (4 × 5)
+```
+
+in RPN, we write:
+
+```
+8 2 / 4 5 × +
+```
+
 We place the value we act upon first, then the operation we perform on those values.
-`
 
 ### Operators
 
 The following operator have been added:
-- `%`: Pushes reminder of division of last two elements, modulo.
-- `floor`: Round element to smaller interger value.
+
+- `%` or `mod`: Pushes reminder of division of last two elements, modulo.
+- `floor`: Round element to smaller integer value.
 - `ceil`: Round element to larger interger value.
 - `round`: Last element rounded to closest integer value.
 - `roundn`: Element rounded to last element of stack (forced to interger):
@@ -161,7 +171,7 @@ The following operator have been added:
 - `abs`: Absolute value of last element
 - `chs`: Change sign of last element
 - `eq`: Test for equality of last two elements. Pushes 1 for True, 0 for False on the stack.
-- `not`: Boolean not operator, insert True and False values.
+- `not`: Boolean not operator, insert 1 if it was 0 or 0 otherwise.
 
 ## Variable Substitution
 
@@ -182,8 +192,11 @@ formula: ${state:activation_count} 2 %
 # Multiple Button Values
 
 In case a button has multiple values, each value comes from a part of the button. Each part of the button is independent of other parts of the same button. Each part maintains its single value.
+
 All part values are aggregated into either a *dictionary* or an *array* of values that is made available at the button level.
+
 For example, Annunciator, or Side representation, have more than one individual values that are fetched and maintained to provide a single table (or array) of individual values.
+
 Another example is a button that has more than one dataref and no formula. In this case, the returned value is a dictionary of all dataref values of that button.
 
 # Button Initial Value
@@ -195,4 +208,5 @@ A Button can force its first, initial value to set its startup or original state
 ```
 
 This value is assigned as the button's current value on startup.
+
 In case of a Button with multiple values, each value has a separate `initial-value` attribute.

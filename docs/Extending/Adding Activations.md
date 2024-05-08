@@ -16,8 +16,8 @@ class SpecialAction(Activation):
 
 In the button definition:
 
-```yaml hl_lines="4"
+```yaml hl_lines="3"
 	index: 42
-	name: SPECIAL_ACTION
+	name: ULTIMATE
 	type: special-action
 ```
