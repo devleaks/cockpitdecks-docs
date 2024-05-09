@@ -112,6 +112,7 @@ To fetch string-typed datarefs, the [[Complement Plugin - String Datarefs|String
 ... /X-Plane 12/resources/plugins/PythonPlugins/PI_string_dataref_udp.py
 ```
 
+See [[String Datarefs]] for details about this plugin.
 # Usage
 
 ## Disconnect OEM Applications

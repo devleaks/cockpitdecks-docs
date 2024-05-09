@@ -31,6 +31,10 @@ A dataref is always monitored. Its value is fetched from the simulator at regula
 
 To explore datarefs, there is a handy X-Plane plugin called [DataRefTool](https://datareftool.com). There are also a few web pages that collect, report, and present them so that they can be searched.
 
+## X-Plane / Cockpitdecks String Dataref
+
+Please refer to [[String Datarefs|this Section]] for string datarefs.
+
 ## Cockpitdecks Internal Dataref
 
 Cockpitdecks manages its own set of *datarefs*.
