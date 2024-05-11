@@ -1,6 +1,7 @@
 Cockpitdecks extensively uses X-Plane UDP for communicating with the simulator. X-Plane UDP suffers from shortcomings, one being its inability to collect several values of an array at once. Values need to be fetched one a a time, which can be not only tedious but also have an impact on performance by requesting numerous single values.
 
-We reasonably established a empiric limit around 50 to 80 individual datarefs values before it has a significant impact not only on X-Plane but also on Cockpitdecks.
+> [!NOTE] UDP Dataref Emission and Performance
+> We reasonably established a empiric limit around 50 to 80 individual datarefs values before it has a significant impact not only on X-Plane but also on Cockpitdecks.
 
 To circumvent this limitation, Cockpitdecks provides a simple mechanism to fetch entire arrays at once. However, this mechanism has voluntarily be limited to arrays of bytes, i.e. character strings. (But the mechanism could be used to fetch arrays of numeric values as well.)
 
@@ -24,6 +25,31 @@ text-size: 18
 Given the particular nature and treatment of string datarefs, they have to be explicitely defined with a specific `string-datarefs` attribute which expects a list of datarefs of type string as a value.
 
 These datarefs will be collected by Cockpitdecks’ custom mechanism and can then be used like any other datarefs.
+
+## Important Note
+
+A string dataref must be declared first with an explicit `string-datarefs`  attribute.
+
+If Cockpitdecks first encounter a statement like this:
+
+```yaml
+text: ${some/dataref}
+```
+
+it will create a reference to a non string dataref `some/dataref`.
+
+It Cockpitdecks later finds a definition
+
+```yaml
+strings-daterefs: [ some/dataref ]
+```
+
+it will not create a string dataref, because an earlier definition of the same dataref declared it as a non string dataref. The solution is to never forget to explicitely declare string datarefs as they occur:
+
+```yaml
+strings-daterefs: [ some/dataref ]
+text: ${some/dateref}
+```
 
 # XPPython3 Plugin
 

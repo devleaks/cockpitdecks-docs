@@ -6,7 +6,7 @@ In addition, each deck has its own, internal, mechanism to capture user interact
 
 ![[architecture.svg|600]]
 
-# Threads for Execution of Actions
+## Execution of Actions
 
 As today, *things that occurs on a deck* are captured by a lower level computer software module. In the case of Cockpitdecks and its Streamdeck, Loupedeck and Berhinger devices, each of those lower level software module is designed to use a user-provided callback function that is called each time something occurs on the deck. That's how event enters Cockpitdecks.
 
@@ -20,17 +20,15 @@ Inside Cockpitdecks' Cockpit, a thread of execution receives the event from the 
 
 The action is executed in a separate thread of execution from those of the lower level physical interactions. Should execution of the action fail, the thread of execution of the capture is not affected.
 
-# Thread for Dataref Monitoring
+## Dataref Monitoring
 
 There is a similar mechanism for dataref values capture and processing.
 
-In the Simulator entity, a thread monitors datarefs by collecting them as they arrive on UDP port. It compare each value with the last one captured and enqueue a "value changed" event into the **Dataref Update Queue** if it was updated.
+In the Simulator entity, a thread monitors datarefs by collecting them as they arrive on UDP port. It compare each value with the last one captured and enqueue a "value changed" event into the **Event Queue** if it was updated.
 
-Inside the simulator, another thread of execution receives the dataref value changed events and submit them for processing.
+![[dataref updates.svg|500]]
 
-![[dataref updates.svg]]
-
-Each dataref maintains a list of buttons that use/rely on it, and each of those buttons gets notified of the change to adjust. Each button receiWhen a button receives the message that one of its dataref has changed, it can adjust its internal state, and if it is currently rendered on a deck, adjust its display.
+Each dataref maintains a list of buttons that use/rely on it, and each of those buttons gets notified of the change to adjust. When a button receives the message that one of its dataref has changed, it can adjust its internal state, and if it is currently rendered on a deck, adjust its display.
 
 # Thread for Connection to X-Plane
 

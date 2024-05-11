@@ -80,4 +80,4 @@ Trigger push event on PRESS not on RELEASE (or add an option to force it)
 
 This is because PRESS event have no release event.
 
-redo string collector to collect dataref-string attributes, that can be on any button, e;g.aircraft, FMA, etc.
+Check aircraft changed event (based on acf_ICAO?)
