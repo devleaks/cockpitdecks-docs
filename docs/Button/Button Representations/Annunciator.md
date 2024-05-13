@@ -102,7 +102,11 @@ The part definition must contain either a `text` attribute or a `led` attribute.
 
 A part is either lit or not, On or Off. Either status can be represented by supplying background and foreground colors.
 
-![[a-status.png]]
+![[a-status.png|600]]
+
+> [!NOTE] About Off Color
+> When off, Vivisun style annunciators remain **black** what ever is asked for dimmed or off-color.
+> When off, Korry style annunciator will exhibit either a dimmed representation of the text (or LED, or what ever is displayed) or a "off-color" representation of it.
 
 ## Attributes
 
