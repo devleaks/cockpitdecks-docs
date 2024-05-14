@@ -100,6 +100,8 @@ The part definition must contain either a `text` attribute or a `led` attribute.
 
 ## Status On - Off
 
+Each part of a Annunciator has its own value. The value of a part is computed like [[Button Value|the value of a Button]], from datarefs and/or formula.
+
 A part is either lit or not, On or Off. Either status can be represented by supplying background and foreground colors.
 
 ![[a-status.png|600]]
@@ -126,11 +128,17 @@ A part is either lit or not, On or Off. Either status can be represented by supp
 
 ### Led
 
-### Data Value
+## Part Data Value
 
-#### Dataref
+Each part of a Annunciator has its own value. The value of a part is computed like [[Button Value|the value of a Button]], from datarefs and/or formula.
 
-#### Formula
+### Dataref
+
+Single dataref used for value.
+
+### Formula
+
+Formula used to determine the value of the part.
 
 ## Annunciator Style
 
@@ -142,7 +150,7 @@ The first style is *Korry* (`annunciator-style: k`), where the annunciator appea
 
 The second style is *Vivisun* (`annunciator-style: v`). When the annunciator is not lit, it has the color of the button (usually black) and no text is readable. When lit, displays on a Vivisun annunciator are sharp, very much like a "retina display" (high resolution display).
 
-![[vivisun.png]]
+![[vivisun.png|200]]
 
 Both styles truthfully reproduce keys on decks. Combined with the adjustment of the intensity of the deck back light, they provide a real immersive experience.
 
