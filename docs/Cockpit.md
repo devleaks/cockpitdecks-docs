@@ -61,7 +61,7 @@ The file named `config.yaml` in the `deckconfig` folder contains declarations fo
 ```yaml
 # Definition of decks for Toliss A321
 #
-aicraft: Toliss A321
+aicraft: Toliss 
 decks:
   - name: XPLive
     type: loupedeck

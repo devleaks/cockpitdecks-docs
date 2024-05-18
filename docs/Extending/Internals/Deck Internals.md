@@ -146,6 +146,18 @@ On startup, Cockpitdecks will report which deck types are available:
 INFO: loaded 8 deck types ('Stream Deck XL', 'Stream Deck Neo', 'LoupedeckLive', 'Streamdeck', 'Stream Deck Original', 'Stream Deck Mini', 'X-Touch Mini', 'Stream Deck +')
 ```
 
+## Deck Definition
+
+For a given aircraft, when listing decks available to it, it is mandatory to specify the deck type whici will permit Cockpitdecks to determine the capabilities of the deck.
+
+```yaml hl_lines="3"
+decks:
+  - name: XPLive
+    type: loupedeck
+    layout: live
+    brightness: 70
+```
+
 # Event Processing
 
 From the parameter supplied in the callback function, Cockpitdecks determine the type of interaction that occurred (pushed, turned, swiped...). For that interaction, an Event of a precise type is created, with all detailed parameters available to it. The callback function does not execute the activition but rather enqueues the event for later processing.
