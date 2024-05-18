@@ -1,4 +1,4 @@
-In addition to real physical deck, Cockpitdecks offers simple decks rendered on the screen where cockpitdecks runs.
+In addition to real physical deck, Cockpitdecks offers simple decks rendered on the graphical screen where cockpitdecks runs.
 
 This can be very handy to design layout for deck a developer does not necessary owns.
 
