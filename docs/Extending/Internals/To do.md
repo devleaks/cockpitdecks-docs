@@ -81,3 +81,44 @@ Trigger push event on PRESS not on RELEASE (or add an option to force it)
 This is because PRESS event have no release event.
 
 Check aircraft changed event (based on acf_ICAO?)
+
+# Virtual decks
+
+Add little protocol to stop virtual decks when cockptdecks exit? (optional)
+
+On startup of cockpitdecks, check that virtual deck is available, if not do not use it.
+
+When virtual deck starts, it should send a message to tell Cockpitdecks, in reply, cockpitdecks should redraw the page on that deck.
+
+Startup of CD 
+
+CD check VD exists, if not does not start it
+
+Startup of VD
+
+Send hello to CD.
+
+If CD receives hello, initiate and start deck
+
+On end of CD:
+
+Send bye to VD
+
+On end of VD:
+
+Send bye to CD, CD disable deck
+
+Example: send `deckname:instruction`
+Instruction can be a *int* code for simplicity.
+# New Representations
+
+First, as image:
+
+Colored led (image of a colored led), rect, square or round
+(This is a text button visible if dref on or off. Text can be any icon.)
+
+Multi-leds: Ramp of leds (all same led, stacked horiz or vert) (image of…)
+Alternative to ramp: leds on arc from -120° to +120° like xtouch encoders
+This can be a cursor being filled. As many led as pixels on icon (limit)
+
+Example ramp on side of LoupedeckLive or on touchscreen of sd+.

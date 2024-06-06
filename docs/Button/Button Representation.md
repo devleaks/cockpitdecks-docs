@@ -35,7 +35,7 @@ Here is a list of currently available, general purpose representations.
 - [[Basic#LED]]
 - [[Basic#ColoredLED]]
 
-## Drawn representations
+## Drawn Representations
 
 - [[Annunciator]]
 - [[Switches]]
@@ -46,14 +46,14 @@ Here is a list of currently available, general purpose representations.
 	- [[Drawn Buttons#Data]]
 	- [[Drawn Buttons#Decor]]
 
-## More complex button representations
+## More complex Button Representations
 
 - [[Animation]]
 - [[Weather]]
 - Other
 	- Aircraft
 
-## Deck specific displays and representations
+## Deck Specific Displays and Representations
 
 - [[Deck Specific#EncoderLEDs]]
 - [[Deck Specific#IconSide]]
