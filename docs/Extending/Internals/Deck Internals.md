@@ -16,6 +16,32 @@ In that callback function, Cockpitdecks tries to spend a minimum time. From the 
 
 The Event contains information about the deck, of course, but also the precise button, knob, encoder, slider, screen... that was used and what type of interaction occurred (pushed, turned, swiped...)
 
+All deck specific files are under the `decks` folder inside Cockpitdecks code.
+
+## Folder Organisation
+
+The deck folder is organized as follow: (between parenthesis, the content of the folder or file.)
+
+```
+decks
+	resources (accessory files)
+		templates (Jinja2 templates and web deck background images)
+			index.j2
+			deck.j2
+			webdeckbg.png
+		decktype.py (Deck Type class)
+		deckdefinition.yaml (Deck types, one file per type)
+		...
+		virtualdeck.py (Virtual Deck implementation class)
+		virtualdeckmanager.py (Virtual Deck Manager implementation class)
+		virtualdeckui.py (Virtual Deck impl. class with rendering in pyglet)
+		...
+	loupedeck.py (main drivers for each type of deck)
+	...
+	virtualdeck.py
+	xtouchmini.py
+```
+
 # Deck Description
 
 A deck is presented to Cockpitdecks through a deck definition file. The deck definition file describes the deck capabilities:

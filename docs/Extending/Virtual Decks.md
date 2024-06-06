@@ -103,22 +103,58 @@ To start web decks, it is advised to first start Cockpitdecks so that web decks 
 $ python bin/webdeck_start.py
 ```
 
+Web Decks are automatically and dynamically discovered when Cockpitdecks runs. (The nature of coding of *pyglet* does unfortunately not allow a similar, dynamic mechanism for Virtual Decks.)
+
 Recall, to start Cockpitdecks:
 
 ```sh
 $ python bin/cockpitdecks_upd_start.py aircrafts/A321
 ```
 
+Virtual Decks and Web Decks are started in their own processes that does not interfere with Cockpitdecks. In both case, a global application loop run to handle interactions.
+
+For Virtual Decks, piglet main loop runs:
+
+```python
+VirtualDeckManagerUI.run(interval=0.8)  # seconds
+```
+
+For Web Decks, Flask app runs:
+
+```python
+app = Flask(__name__, template_folder=TEMPLATE_FOLDER)
+...
+app.run(host=APP_HOST[0], port=APP_HOST[1])	
+```
+
 # Virtual Decks Internals
+
+## Virtual Decks
 
 *Virtual Decks* are developed thanks to the [pyglet](https://pyglet.readthedocs.io/en/latest/) python user interface package.
 
 This package runs thanks to a loop the capture events on windows it manages. Usuallly, this loop runs as often as 60 times a second. There is not such need of fast interaction with virtual decks. Cockpitdecks asks the loop to run no more than 2 to 4 times a second. This can be adjusted in the virtual deck manager.
 
+![[virtual decks.svg|600]]
+
 ```python
 	VirtualDeckManagerUI.run(interval=0.8)  # seconds
 ```
 
+## Web Decks
+
 *Web Decks* are designed with simple standard web features, are rendered on an HTML Canvas, uses standard events to report interaction through basic JavaScript functions.
 A Proxy application is necessary between Cockpitdecks and the browser to convert TCP/IP socket requests into WebSocket requests that can be understood by browsers.
 The application that serves them is a very simple Flask application (2 routes) with 2 simple Ninja2 templates. The Flask application also runs the WebSocket proxy.
+
+![[webdecks.svg|600]]
+
+See [[Deck Internals#Folder Organisation]].
+
+### Web Deck List (Web Deck Home Page)
+
+![[webdeck-list.png]]
+
+### Web Deck Example (Including Background Image)
+
+![[webdeck-example.png]]
