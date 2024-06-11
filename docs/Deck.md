@@ -72,6 +72,6 @@ XPlaneAircraftFolder
 
 The deck definition should contain a `layout` attribute that indicates which layout will be used for that deck. The default layout name, if not indicated is `default`. If no layout is found for the deck, a default, minimal layout is created.
 
-# Virtual Decks
+# Web Decks
 
-No deck? [[Virtual Decks|We got you covered]].
+No deck? [[Web Decks|We got you covered]].

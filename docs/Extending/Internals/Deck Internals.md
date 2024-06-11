@@ -30,7 +30,10 @@ decks
 			deck.j2
 			webdeckbg.png
 		decktype.py (Deck Type class)
+		...
 		deckdefinition.yaml (Deck types, one file per type)
+		...
+		virtualdeckdefinition.yaml (Deck types, one file per type)
 		...
 		virtualdeck.py (Virtual Deck implementation class)
 		virtualdeckmanager.py (Virtual Deck Manager implementation class)
@@ -188,7 +191,7 @@ decks:
 
 From the parameter supplied in the callback function, Cockpitdecks determine the type of interaction that occurred (pushed, turned, swiped...). For that interaction, an Event of a precise type is created, with all detailed parameters available to it. The callback function does not execute the activition but rather enqueues the event for later processing.
 
-In Cockpitdecks, another
+In Cockpitdecks, another thread of execution reads events from the queue and perform the required action. This cleanly separate event collection and event "execution" in two separate process threads.
 
 # Activation
 

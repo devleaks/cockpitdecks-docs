@@ -51,7 +51,7 @@ Create a new python environment and activate it.
 This packages are required by Cockpitdecks.
 
 ```shell
-$ pip install ruamel.yaml pillow cairosvg flask pyglet tabulate simple_websocket
+$ pip install ruamel.yaml pillow cairosvg pyglet tabulate flask simple_websocket
 ```
 
 Optionally, if you would like to use Weather or METAR buttons, add the following packages:
