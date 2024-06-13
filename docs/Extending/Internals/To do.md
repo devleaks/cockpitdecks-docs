@@ -122,3 +122,7 @@ Alternative to ramp: leds on arc from -120° to +120° like xtouch encoders
 This can be a cursor being filled. As many led as pixels on icon (limit)
 
 Example ramp on side of LoupedeckLive or on touchscreen of sd+.
+
+# Web Decks
+
+For representations like colored leds, leds, encoder leds, draw them in CD and send image to web decks

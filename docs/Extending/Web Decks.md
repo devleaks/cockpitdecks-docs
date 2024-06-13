@@ -6,7 +6,7 @@ This is very handy to design layout for deck a developer does not necessary owns
 
 Virtual decks need to be declared at two places:
 
-1. [[Deck Internals|Definition of the deck]], number of buttons, icon size, and layout of buttons. This allows Cockpitdecks to determine the virtual deck capabilities and key arrangement for drawing, like any other real physical deck.
+1. [[Deck Internals|Definition of the deck]], number of buttons, icon sizes, and layout of buttons. This allows Cockpitdecks to determine the virtual deck capabilities and key arrangement for drawing, like any other real physical deck.
 2. *Use of the deck*, like any regular deck, with its Layout and is configuring parameters. To use a web deck it must appear in the list of decks in the `deckconfig/config.yaml` file of an aircraft.
 
 Web Decks communicate with Cockpitdecks through Websockets. A WebSocket proxy server control Interactions between Web Decks and Cockpitdecks.
@@ -16,8 +16,9 @@ Web Decks communicate with Cockpitdecks through Websockets. A WebSocket proxy se
 Virtual decks are declared like any other deck. Their driver must be `virtualdeck`.
 
 ```yaml hl_lines="2 9 "
-type: Virtual Deck 3×2
+name: Virtual Deck 3×2
 driver: virtualdeck
+buttons:
     - index: 0
       type: key
       position: [55, 25]
@@ -30,19 +31,45 @@ driver: virtualdeck
 background:
   color: "#222"
   image: loupedeck.live.png
+  size: [800, 600]
   overlays:
-    - type: text
-      text: Hello, world
+    - text: Hello, world
       position: [840, 40]
       font: anexistingwebfontalreadyloaded
       size: 20
       color: white
-    - type: image
-      image: logo-transparent.png
+    - image: logo-transparent.png
       position: [840, 40]
 ```
 
+## Deck Type Definition Attributes
+
+### Name
+
+Name of virtual web deck type.
+
+### Driver
+
+Driver of virtual deck type. Must be `virtualdeck`.
+
+### Buttons
+
+List of Deck Type Button Definition Block.
+
+See below.
+
+### Background
+
 For web decks, the mandatory `background` sets the appearance of the deck in a web page.
+
+As feedback, Web Decks display images as provided by Cockpitdecks. Even is a deck button has a complex representation, an image of it will be built be Cockpitdecks and sent for display on the web deck.
+
+## Deck Type Button Definition Block
+
+A Deck Type Button Definition Block is
+
+- either the definition of a single button,
+- or the definition of a list of buttons of similar types organized in an array.
 
 Web decks can have the following types of interactive buttons:
 
@@ -51,7 +78,88 @@ Web decks can have the following types of interactive buttons:
 3. Touchscreen (pressed, swiped)
 4. Slider (slid between 2 range values)
 
-As feedback, Web Decks display images as provided by Cockpitdecks. Even is a deck button has a complex representation, an image of it will be built be Cockpitdecks and sent for display on the web deck.
+### Single Button Definition
+
+```yaml
+name: Virtual Deck
+driver: virtualdeck
+buttons:
+  - name: left
+    action: [push, swipe]
+    feedback: image
+    dimension: [52, 270]
+    layout:
+      offset: [96, 78]
+    options: corner_radius=4
+```
+
+#### Name
+
+Name of button
+
+#### Action
+
+List of possible action of button
+
+#### Feedback
+
+List of possible feedback of button
+
+#### Dimension
+
+Dimension of button.
+
+If dimension is an array of 2 values, it is the width and height of a rectangular button.
+
+If the dimension is a single value, it is the radius of a circular shaped button.
+
+#### Options
+
+Comma-separated list of options, a single option can either be a name=value, or just a name, in which case the value is assumed to be True.
+
+`options: count=8,active`
+
+sets options `count`to value 8, and `active` to True.
+
+#### Layout
+
+Layout of the buttons on the web deck canvas.
+
+##### Offset
+
+##### Spacing
+
+Buttons will be arranged at regular interval, starting from Offset, with supplied spacing between the buttons.
+
+### Multiple Button Definition
+
+```yaml
+name: Virtual Deck
+driver: virtualdeck
+buttons:
+  - name: 0
+    prefix: e
+    repeat: [1, 3]
+    action: [encoder, push]
+    dimension: 27
+    layout:
+      offset: [45, 115]
+      spacing: [0, 41]
+  - name: 3
+    prefix: e
+    repeat: [1, 3]
+    action: [encoder, push]
+    dimension: 27
+    layout:
+      offset: [624, 115]
+      spacing: [0, 41]
+```
+
+#### Repeat
+
+Number of time the same button is replicated along width (x) and height (y) axis.
+
+If only one value is supplied, it is supposed to be `[value, 1]` array. For vertical layout, specify `[1, value]` instead.
 
 # Web Deck usage
 
@@ -73,7 +181,7 @@ The same virtual deck definition can be used more than once to create similar de
 decks:
   - name: Vdeck2
     type: Virtual Deck 3×2
-    layout: test versioN
+    layout: test version
 ```
 
 If several virtual decks are running, it is necessary, like other decks, to specify its serial number in the secret.yaml file.
