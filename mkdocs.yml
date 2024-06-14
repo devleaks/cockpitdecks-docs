@@ -73,7 +73,7 @@ nav:
           - Adding activations: Extending/Adding Activations.md
           - Activation for developers: Extending/Button Activations for Developers.md
           - Adding new deck models: Extending/Adding New Deck Models.md
-          - Virtual decks: Extending/Virtual Decks.md
+          - Virtual « web decks »: Extending/Web Decks.md
           - Cockpitdecks Internals:
               - History: History.md
               - Simulator:
