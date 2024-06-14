@@ -15,7 +15,7 @@ Web Decks communicate with Cockpitdecks through Websockets. A WebSocket proxy se
 
 Virtual decks are declared like any other deck. Their driver must be `virtualdeck`.
 
-```yaml hl_lines="2 9 "
+```yaml
 name: Virtual Deck 3×2
 driver: virtualdeck
 buttons:
