@@ -13,7 +13,7 @@ Web Decks communicate with Cockpitdecks through Websockets. A WebSocket proxy se
 
 # Web Deck Definition
 
-Virtual decks are declared like any other deck. Their driver must be `virtualdeck`.
+Virtual decks are defined like any other deck. Their driver must be `virtualdeck`. Also, the contains a few additional attributes to display them on a HTML web Canvas.
 
 ```yaml
 name: Virtual Deck 3×2
@@ -42,128 +42,15 @@ background:
       position: [840, 40]
 ```
 
-## Deck Type Definition Attributes
+Please refer to the [[Deck Internals]] for references on how to create and declare web decks.
 
-### Name
+# Web Deck Usage
 
-Name of virtual web deck type.
-
-### Driver
-
-Driver of virtual deck type. Must be `virtualdeck`.
-
-### Buttons
-
-List of Deck Type Button Definition Block.
-
-See below.
-
-### Background
-
-For web decks, the mandatory `background` sets the appearance of the deck in a web page.
-
-As feedback, Web Decks display images as provided by Cockpitdecks. Even is a deck button has a complex representation, an image of it will be built be Cockpitdecks and sent for display on the web deck.
-
-## Deck Type Button Definition Block
-
-A Deck Type Button Definition Block is
-
-- either the definition of a single button,
-- or the definition of a list of buttons of similar types organized in an array.
-
-Web decks can have the following types of interactive buttons:
-
-1. Keys (simple press, long press, etc.)
-2. Encoders (turned clockwise, counter clockwise)
-3. Touchscreen (pressed, swiped)
-4. Slider (slid between 2 range values)
-
-### Single Button Definition
-
-```yaml
-name: Virtual Deck
-driver: virtualdeck
-buttons:
-  - name: left
-    action: [push, swipe]
-    feedback: image
-    dimension: [52, 270]
-    layout:
-      offset: [96, 78]
-    options: corner_radius=4
-```
-
-#### Name
-
-Name of button
-
-#### Action
-
-List of possible action of button
-
-#### Feedback
-
-List of possible feedback of button
-
-#### Dimension
-
-Dimension of button.
-
-If dimension is an array of 2 values, it is the width and height of a rectangular button.
-
-If the dimension is a single value, it is the radius of a circular shaped button.
-
-#### Options
-
-Comma-separated list of options, a single option can either be a name=value, or just a name, in which case the value is assumed to be True.
-
-`options: count=8,active`
-
-sets options `count`to value 8, and `active` to True.
-
-#### Layout
-
-Layout of the buttons on the web deck canvas.
-
-##### Offset
-
-##### Spacing
-
-Buttons will be arranged at regular interval, starting from Offset, with supplied spacing between the buttons.
-
-### Multiple Button Definition
-
-```yaml
-name: Virtual Deck
-driver: virtualdeck
-buttons:
-  - name: 0
-    prefix: e
-    repeat: [1, 3]
-    action: [encoder, push]
-    dimension: 27
-    layout:
-      offset: [45, 115]
-      spacing: [0, 41]
-  - name: 3
-    prefix: e
-    repeat: [1, 3]
-    action: [encoder, push]
-    dimension: 27
-    layout:
-      offset: [624, 115]
-      spacing: [0, 41]
-```
-
-#### Repeat
-
-Number of time the same button is replicated along width (x) and height (y) axis.
-
-If only one value is supplied, it is supposed to be `[value, 1]` array. For vertical layout, specify `[1, value]` instead.
-
-# Web Deck usage
+## Web Deck Declaration
 
 To use a web deck for a given aircraft, it need to be declared in the list of decks available for that aircraft.
+
+###  `deckconfig/config.yaml`
 
 ```yaml
 # Definition of decks for Toliss A321
@@ -184,27 +71,31 @@ decks:
     layout: test version
 ```
 
-If several virtual decks are running, it is necessary, like other decks, to specify its serial number in the secret.yaml file.
+Web decks include their name in the messages they send to Cockpitdecks. This allows Cockpitdecks to identify the deck that sent the message.
 
-> [!WARNING] Serial Number of Virtual Decks
-> The serial number of virtual decks must be specified in the secret.yaml file.
+### `deckconfig/secret.yaml`
+
+If several virtual web decks are running, it is necessary, like other decks, to specify their serial numbers in the secret.yaml file.
+
+> [!NOTE] Serial Number of Virtual Web Decks
+> The serial number of virtual decks must be specified in the secret.yaml file. It can be any number or string, but it must be different for each virtual web deck.
 
 ```yaml 
-Vdeck2: 7702
-Vdeck1: 7701
+Vdeck1: deck1
+Vdeck2: deck2
 ```
 
-Web decks include their name in the messages they send to Cockpitdecks. This allows Cockpitdecks to identify the deck that sent the message.
+## Web Deck Server
 
 Web Decks can run on another computer than the one running X-Plane and/or Cockpitdecks.
 
-To start web decks, it is advised to first start Cockpitdecks so that web decks can be discovered, then simply issue:
+To start the web decks server application, it is advised to first start Cockpitdecks so that web decks can be discovered, then simply issue:
 
 ```sh
 $ python bin/webdeck_start.py
 ```
 
-Web Decks are automatically and dynamically discovered when Cockpitdecks runs.
+Virtual Web Decks are automatically and dynamically discovered when Cockpitdecks runs.
 
 Recall, to start Cockpitdecks:
 
@@ -214,20 +105,16 @@ $ python bin/cockpitdecks_upd_start.py aircrafts/A321
 
 Web Decks are started in their own processes that does not interfere with Cockpitdecks.
 
-# Virtual Web Decks Internals
-
-*Web Decks* are designed with simple standard web features, are rendered on an HTML Canvas, uses standard events to report interaction through basic JavaScript functions.
-A Proxy application is necessary between Cockpitdecks and the browser to convert TCP/IP socket requests into WebSocket requests that can be understood by browsers.
-The application that serves them is a very simple Flask application (2 routes) with 2 simple Ninja2 templates. The Flask application also runs the WebSocket proxy.
-
-![[webdecks.svg|600]]
-
-See [[Deck Internals#Folder Organisation]].
+If interested, please refer to the [[Deck Internals#Virtual Web Decks Internals|Virtual Web Deck Internals]].
 
 ### Web Deck List (Web Deck Home Page)
 
+When started, the virtual web decks server offers a Welcome page with all virtual web decks available to the user. Selecting a deck starts it in another web navigator window.
+
 ![[webdeck-list.png]]
 
-### Web Deck Example (Including Background Image)
+### Web Deck Example
+
+Here is a virtual web deck, carefully designed to represent an existing Elgato Stream Deck MK.2 deck. Cheaper.
 
 ![[webdeck-example.png]]

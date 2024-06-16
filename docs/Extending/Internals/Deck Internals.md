@@ -1,8 +1,11 @@
-Deck Internals explains how user interactions on a physical deck device enter Cockpitdecks.
+Deck Internals explains how Cockpitdecks discovers about miscellaneous deck hardware capabilities and how user interactions on a physical deck device enter Cockpitdecks.
+
+> [!WARNING] Work In Progress
+> This important file is under DEEP re-writing.
 
 # How Deck User Interactions Enter Cockpitdecks
 
-When a user want to use a deck with Cockpitdecks, it is necessary to have a python package available to interact with it.
+When a user want to use a deck with Cockpitdecks, it is necessary to have a python package available to interact with it. This python package is not provided by Cockpitdecks but by other developers how bridged the physical deck hardware with the python language.
 
 By design and coïncidence, all three deck brands currently proceed with similar means.
 
@@ -10,25 +13,31 @@ The python package that interfaces the physical deck to the python language requ
 
 The function, that we supply, is called each time an interaction occurs on the physical deck device.
 
-When Cockpitdecks is started, its scans for available devices, and check whether the interfacing software package is available. If it is, it installs its own callback function into the python package for that deck. From that moment on, each time something occurs on the deck device, Cockpitdecks' callback function gets called.
+When Cockpitdecks is started, its scans for available devices, and check whether the interfacing software package is available. If it is, it installs its own callback function into the python package for that deck. From that moment on, each time something occurs on the physical deck device, Cockpitdecks' callback function gets called.
 
 In that callback function, Cockpitdecks tries to spend a minimum time. From the data it receives, it creates an [[Events|Event]] with all necessary data and enqueues it for later processing by Cockpitdecks.
 
-The Event contains information about the deck, of course, but also the precise button, knob, encoder, slider, screen... that was used and what type of interaction occurred (pushed, turned, swiped...)
+The Event contains information about the deck, of course, but also the precise button, knob, encoder, slider, screen... that was used and what type of interaction occurred (pushed, turned, swiped...) All that information is in the Event and the Event is sent to Cockpitdecks. That's how physical deck interaction enters Cockpitdecks.
 
-All deck specific files are under the `decks` folder inside Cockpitdecks code.
+Cockpitdecks runs a specific routine that listen to events that enter through the queue. Cockpitdecks instruct the event to *run*. That's how and when actions are actually performed, like sending a command to X-Plane or changing the value of a dataref.
 
-## Folder Organisation
+In the overall software organisation of Cockpitdecks, everything related to decks is confined in a `decks` folder.
 
-The deck folder is organized as follow: (between parenthesis, the content of the folder or file.)
+# Decks Folder Organisation
+
+The `decks` folder is organized as follow: (between parenthesis, the content of the folder or file.)
 
 ```
 decks
 	resources (accessory files)
-		templates (Jinja2 templates and web deck background images)
+		templates (Jinja2 templates)
 			index.j2
 			deck.j2
-			webdeckbg.png
+		assets (Web Deck assets)
+			decks (Web Deck specific assets)
+				images (Web Deck background images)
+			images (Web Applicatioin images and icons)
+			js (Interaction and display software in JavaScript)
 		decktype.py (Deck Type class)
 		...
 		deckdefinition.yaml (Deck types, one file per type)
@@ -41,13 +50,15 @@ decks
 		...
 	loupedeck.py (main drivers for each type of deck)
 	...
-	virtualdeck.py
-	xtouchmini.py
+	virtualdeck.py (main drivers for all virtual decks)
+	xtouchmini.py (main drivers for each type of deck)
 ```
 
-# Deck Description
+# Deck Type
 
-A deck is presented to Cockpitdecks through a deck definition file. The deck definition file describes the deck capabilities:
+Cockpitdecks discovers about deck capabilities through a Deck Type structure.
+
+A deck is presented to Cockpitdecks through a deck definition file called a Deck Type. The deck definition file describes the deck capabilities:
 
 - How many buttons,
 - How many dials, if they can be turned, or pushed
@@ -55,15 +66,23 @@ A deck is presented to Cockpitdecks through a deck definition file. The deck def
 - Feedback LED
 - Ability to emit vibration or sound
 
-## Deck Defintion
+## Installed Deck Types
 
-Here is for example, a configuration file for a Loupedeck LoupedeckLive device.
+On startup, Cockpitdecks will report which deck types are available:
+
+```
+INFO: loaded 8 deck types ('Stream Deck XL', 'Stream Deck Neo', 'LoupedeckLive', 'Streamdeck', 'Stream Deck Original', 'Stream Deck Mini', 'X-Touch Mini', 'Stream Deck +')
+```
+
+## Deck Definition
+
+Here is for example, a deck configuration file for a Loupedeck LoupedeckLive device.
 
 ```yaml
 # This is the description of a deck's capabilities for a Loupedeck LoupedeckLive device
 #
 ---
-type: LoupedeckLive
+name: LoupedeckLive
 driver: loupedeck
 buttons:
   - name: 0
@@ -96,58 +115,80 @@ buttons:
 
 ## Definition Attributes
 
-### Type
+### Name
 
-Keyword used for identifying the deck model.
+Name used inside Cockpitdecks to identifying the deck model.
 
 ### Driver
 
-Keyword identifying the deck software driver class.
+Keyword identifying the deck software driver class. (See main drivers class above.)
+
+### Background
+
+The `background` attribute is an optional attribute only used by virtual decks. It specifies a background color and/or image to use for virtual web deck representation. See exemple below.
 
 ### Buttons
 
+The `Buttons` contains a list of *Deck Button Type Block* descriptions.
+
+This attribute is named Buttons, with Button having the same meaning as in Cockpitdecks. A Deck Type Button is a generic term for all possible means of interaction on the deck:
+
+1. Keys to press,
+2. Encoders to turn,
+3. Touchscreens to tap or swipe
+4. Cursors to slide
+
 A list of button types, each ButtonType leading to one or more individual buttons identified by their index, built from the `prefix`, `repeat`, and `name` attribute. See below.
+
+### Deck Type Button Block
+
+A Deck Type Button Block defines either a single button, or a group of similar buttons. For example, if a deck has a special, unique, «Escape» button, it can be defined alone in a Deck Type Button Block. Similarly, if a deck consist of a grid of regularly spaced 6 by 4 keys that are all the same, they can also be defined in a single Deck Type Button Block.
 
 #### Name
 
 Name of the button type.
 
-The name of the button type can either be its real name, like `touchscreen` when there is a single button with that name, or an integer value to build another name from its `prefix` and (interger) name value.
+The name of the button type is
 
-Example
+- either the final name of the button, like `touchscreen`, when there is a single button with that name on the deck,
+- or an *integer value* that will be used to build the button names, in the case the block defines a sets of identical buttons.
+
+##### Examples
+
+In the case of a single button, the name of the button will be `touchscreen` and that name needs to be unique for the deck type.
 
 ```yaml
 name: touchscreen
 ```
 
-In this case, the name of the button will be `touchscreen` and that name needs to be unique for the deck type.
+In the case of a set of identical buttons, the name of the button will be built from other attributes:
 
 ```yaml
 name: 5
 prefix: k
-repeat: 4
+repeat: [4, 3]
 ```
 
-In the later case, names of buttons will be: `k5`, `k6`, `k7`, and `k8`.
+Names of buttons will be: `k5`, `k6`, `k7`, ... `k16`.
 
 #### Actions
 
 Interaction with the button. Interaction can be:
 
-- `none`: There is no interaction with the button. It is only used for display purpose.
+- `none`: There is no interaction with the button. It is only used for display purpose. (`none` interaction can be omitted.)
 - `press`: Simple press button that only reports when it is pressed (one event)
 - `push`: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.
 - `swipe`: A surface swipe event, with a starting touch and a raise events.
 - `encoder`: A rotating encoder, that can turn both clockwise and counter-clockwise
 - `cursor`: A linear cursor (straight or circular) delivering values in a finite range.
 
-ACtion can ba a single interaction or an array of interactions like `[encore, push]` if a button combines both ways of interacting with it.
+Action can ba a single interaction or an array of interactions like `[encore, push]` if a button combines both ways of interacting with it.
 
 #### Feedback
 
 Feedback ability of the button. Feedback can be:
 
-- `none`: No feedback on device, or direct feedback provided by some marks on the deck device.
+- `none`: No feedback on device, or direct feedback provided by some marks on the deck device. (`none` feedback can be omitted.)
 - `image`: Small LCD iconic image.
 - `led`: Simple On/Off LED light.
 - `colored-led`: A single LED that can be colored.
@@ -157,43 +198,101 @@ Feedback ability of the button. Feedback can be:
 > [!NOTE] Trick
 > If a deck has a vibrate capability, it is advisable to declare it as a separate button of interaction, and use that button like any other. Vibrate is a feedback mechanism.
 
-#### Image
+#### Repeat
 
-If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image (size, and eventually, offset position on a larger surface.) `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
+In case of a set if identical buttons, `repeat` if the number of time the same button is replicated along width (x) and height (y) axis.
 
-## Deck Type
+If only one value is supplied, it is supposed to be `[value, 1]` array. For vertical layout, specify `[1, value]` instead.
 
-The above definition file is read by a Deck Type class.
+### Deck Type Button Block - Complement for Virtual Web Decks
 
-The Deck Type class is responsible for providing information about the deck's capabilities, but also to control them. For example, given a button definition in Cockpitdecks, the Deck Type class can validate the button definition, ensuring that the button specified by its index is capable of the requested activation and representation.
+The above Deck Type Button Block attributes are necessary for all decks, both physical and virtual decks. Virtual Decks also contain an additional series of attributes that drive the drawing of the deck in a web navigator window.
 
-## Installed Deck Types
+> [!NOTE] Web Deck Drawings
+> For simplicity, Web Deck Drivers are drawn on an HTML Canvas, which is a pixel-driven drawing space. Web Decks are drawn with images and drawing instructions that use the pixel as a unit for display.
 
-On startup, Cockpitdecks will report which deck types are available:
+Web decks can have the following types of interactive buttons:
 
+1. Keys (simple press, long press, etc.)
+2. Encoders (turned clockwise, counter clockwise)
+3. Touchscreen (pressed, swiped)
+4. Slider (slid between 2 range values)
+
+> [!NOTE] Background Deck Type Attribute
+> Please read above in this page the `background` Deck Type attribute used to specify a background image to use for virtual web deck display.
+
+#### Dimension
+
+The dimension attribute can be a single integer value or a list of two values.
+
+It determine the size of the button has drawn on the Web deck.
+
+If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image. `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
+
+#### Layout
+
+Layout of the buttons on the web deck canvas.
+##### Offset
+
+##### Spacing
+
+Buttons will be arranged at regular interval, starting from Offset, with supplied spacing between the buttons. Button sizes are specified in the Dimension attribute.
+#### Options
+
+Comma-separated list of options, a single option can either be a name=value, or just a name, in which case the value is assumed to be True.
+
+`options: count=8,active`
+
+sets options `count`to value 8, and `active` to True. `active` is equivalent to `active=true`.
+
+### Examples of Deck Type Button Definition Block
+
+#### Single Button Definition
+
+```yaml
+name: Virtual Deck
+driver: virtualdeck
+buttons:
+  - name: left
+    action: [push, swipe]
+    feedback: image
+    dimension: [52, 270]
+    layout:
+      offset: [96, 78]
+    options: corner_radius=4
 ```
-INFO: loaded 8 deck types ('Stream Deck XL', 'Stream Deck Neo', 'LoupedeckLive', 'Streamdeck', 'Stream Deck Original', 'Stream Deck Mini', 'X-Touch Mini', 'Stream Deck +')
+
+#### Multiple Button Definition
+
+```yaml
+name: Virtual Deck
+driver: virtualdeck
+buttons:
+  - name: 0
+    prefix: e
+    repeat: [1, 3]
+    action: [encoder, push]
+    dimension: 27
+    layout:
+      offset: [45, 115]
+      spacing: [0, 41]
+  - name: 3
+    prefix: e
+    repeat: [1, 3]
+    action: [encoder, push]
+    dimension: 27
+    layout:
+      offset: [624, 115]
+      spacing: [0, 41]
 ```
 
-## Deck Definition
+# Deck Event Processing
 
-For a given aircraft, when listing decks available to it, it is mandatory to specify the deck type whici will permit Cockpitdecks to determine the capabilities of the deck.
-
-```yaml hl_lines="3"
-decks:
-  - name: XPLive
-    type: loupedeck
-    layout: live
-    brightness: 70
-```
-
-# Event Processing
-
-From the parameter supplied in the callback function, Cockpitdecks determine the type of interaction that occurred (pushed, turned, swiped...). For that interaction, an Event of a precise type is created, with all detailed parameters available to it. The callback function does not execute the activition but rather enqueues the event for later processing.
+From the parameter supplied in the callback function, Cockpitdecks determine the type of interaction that occurred (pushed, turned, swiped...). For that interaction, an Event of a precise type is created, with all detailed parameters available to it. The callback function does not execute the activation but rather enqueues the event for later processing.
 
 In Cockpitdecks, another thread of execution reads events from the queue and perform the required action. This cleanly separate event collection and event "execution" in two separate process threads.
 
-# Activation
+## Activation
 
 The activation is the piece of code that will process the event.
 
@@ -213,7 +312,7 @@ Activation usually leads to either
 - internal changes of the deck, like loading a new page of buttons
 - or both
 
-# Representation
+## Representation
 
 ```python hl_lines="6"
 class Annunciator(DrawBase):
@@ -230,7 +329,7 @@ Similarly, when a Representation code is created, it must mention its identifica
 
 The `REQUIRED_DECK_FEEDBACKS` determine which of the deck's definition `feedback` type is requested to be able to use the Representation().
 
-# Button Definition
+## Button Definition
 
 The `ACTIVATION_NAME` is the string that the button definition must use to trigger that activation (`type` attribute):
 
@@ -248,7 +347,7 @@ The `ACTIVATION_NAME` is the string that the button definition must use to trigg
     vibrate: RUMBLE5
 ```
 
-# Deck Driver (Hardware Interface)
+## Deck Driver (Hardware Interface)
 
 The second interface provided for decks is the software necessary to:
 
@@ -360,3 +459,11 @@ INFO: found 3 streamdeck
 INFO: found 1 loupedeck
 INFO: found 1 xtouchmini
 ```
+
+# Virtual Web Decks Internals
+
+*Web Decks* are designed with simple standard web features, are rendered on an HTML Canvas, uses standard events to report interaction through basic JavaScript functions.
+A Proxy application is necessary between Cockpitdecks and the browser to convert TCP/IP socket requests into WebSocket requests that can be understood by browsers.
+The application that serves them is a very simple Flask application (2 routes) with 2 simple Ninja2 templates. The Flask application also runs the WebSocket proxy.
+
+![[webdecks.svg|600]]
