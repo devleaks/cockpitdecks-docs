@@ -71,7 +71,18 @@ A deck is presented to Cockpitdecks through a deck definition file called a Deck
 On startup, Cockpitdecks will report which deck types are available:
 
 ```
-INFO: loaded 8 deck types ('Stream Deck XL', 'Stream Deck Neo', 'LoupedeckLive', 'Streamdeck', 'Stream Deck Original', 'Stream Deck Mini', 'X-Touch Mini', 'Stream Deck +')
+INFO: loaded 15 deck types (
+Virtual Streamdeck Mini, Virtual Streamdeck MK.2, Streamdeck +,
+Virtual LoupedeckLive, Stream Deck XL, Stream Deck Neo,
+Virtual Streamdeck XL, LoupedeckLive, Streamdeck, Virtual X-Touch Mini,
+Stream Deck Original, Stream Deck Mini, X-Touch Mini, Stream Deck +,
+Virtual XKeys 80), 6 are virtual deck types
+INFO: drivers installed for streamdeck 0.9.5, xtouchmini 1.3.6; scanning..
+INFO: found 0 streamdeck
+INFO: found 0 xtouchmini
+...
+INFO: found 1 virtual deck(s)
+INFO: added virtual deck LoupedeckLive, serial None)
 ```
 
 ## Deck Definition
@@ -232,11 +243,13 @@ If the feedback visualisation is an `image`, the `image` attribute specifies the
 #### Layout
 
 Layout of the buttons on the web deck canvas.
+
 ##### Offset
 
 ##### Spacing
 
 Buttons will be arranged at regular interval, starting from Offset, with supplied spacing between the buttons. Button sizes are specified in the Dimension attribute.
+
 #### Options
 
 Comma-separated list of options, a single option can either be a name=value, or just a name, in which case the value is assumed to be True.
@@ -467,3 +480,57 @@ A Proxy application is necessary between Cockpitdecks and the browser to convert
 The application that serves them is a very simple Flask application (2 routes) with 2 simple Ninja2 templates. The Flask application also runs the WebSocket proxy.
 
 ![[webdecks.svg|600]]
+
+## Web Decks Initialisation Sequence
+
+On startup Cockpitdecks sends code 4 to Proxy.
+
+On shutdown Cockpitdecks sends code 5 to Proxy.
+
+When Proxy receives code 4 it requests web deck list to Cockpitdecks by sending code 3.
+
+When Proxy receives code 3 it receives web deck list and It sends code 1 to all connected decks.
+
+When Proxy receives code 4, it sends code 2 to all connected decks.
+
+When Cockpitdecks receives code 3 it sends web deck list to Proxy.
+
+When web deck receives 1 from Proxy it knows Cockpitdecks is started.
+
+When web deck receives 2 from Proxy it knows Cockpitdecks is terminated.
+
+When web deck starts, it sends code 1 to Proxy.
+
+When Proxy receives code 1 from web deck it sends code 1 to Cockpitdecks
+
+When Cockpitdecks receives code 1 from a deck it provokes a page reload for that deck
+
+## Web Deck Messages
+
+*Code*, **event**, and string length are all integer values.
+
+Meta data is a python dictionary serialized into JSON (mostly name, value pairs).
+
+All strings are UTF-8 and are converted to bytes for transfer.
+
+### Cockpitdecks to Web Deck Messages
+
+#### Send code
+
+(code, deck-name-length, 0, content-length, meta-data-length, deck name, '', content, meta data)
+
+#### Send Image
+
+It can be a key image, or a «hardware» image.
+
+(code, deck-name-length, key-name-length, content-length, meta-data-length, deck name, key name, IMAGE, meta data)
+
+### Web Decks to Cockpitdecks Messages
+
+#### Send code
+
+(*code*, 0, deck-name-length, 0, meta-data-length, deck name, '', meta data)
+
+#### Send Event
+
+(*code*, **event**, deck-name-length, key-name-length, meta-data-length, deck name, key name, meta data)
