@@ -118,3 +118,72 @@ When started, the virtual web decks server offers a Welcome page with all virtua
 Here is a virtual web deck, carefully designed to represent an existing Elgato Stream Deck MK.2 deck. Cheaper.
 
 ![[webdeck-example.png]]
+
+### Web Deck Example (Complex)
+
+This example shows that there is no limit on background and deck type definition if you are patient and meticulous. Here is a fully working exemple of Toliss A321neo Overhead Panel virtualized with Cockpitdecks.
+
+#### Deck Type
+
+```yaml hl_lines="4,10"
+name: Virtual A321neo Overhead
+driver: virtualdeck
+buttons:
+  - name: apumaster
+    action: push
+    feedback: image
+    dimension: [40, 40]
+    layout:
+      offset: [560, 855]
+  - name: apustart
+    action: push
+    feedback: image
+    dimension: [40, 40]
+    layout:
+      offset: [560, 918]
+background:
+  color: black
+  image: a321neo.overhead.png
+```
+
+#### Deckconfig.yaml
+
+```yaml hl_lines="2,16"
+buttons:
+  - index: apumaster
+    name: APUMASTER
+    type: push
+    annunciator:
+      size: full
+      model: B
+      parts:
+        B1:
+          text: "ON"
+          color: deepskyblue
+          framed: true
+          size: 60
+          formula: ${AirbusFBW/APUMaster}
+    command: toliss_airbus/apucommands/MasterToggle
+  - index: apustart
+    name: APUSTART
+    type: push
+    annunciator:
+      size: full
+      model: B
+      parts:
+        B0:
+          text: AVAIL
+          color: lime
+          formula: ${AirbusFBW/APUAvail}
+        B1:
+          text: "ON"
+          color: deepskyblue
+          framed: true
+          size: 60
+          formula: ${AirbusFBW/APUStarter}
+    command: toliss_airbus/apucommands/StarterToggle
+```
+
+![[webdeck-a321.png]]
+
+Pay attention to the center lower annunciator, lightly white-framed. They are produced by Cockpitdecks and reflect the status of Toliss' annunciators.

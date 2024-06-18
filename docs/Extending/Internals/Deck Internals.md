@@ -153,7 +153,7 @@ A list of button types, each ButtonType leading to one or more individual button
 
 ### Deck Type Button Block
 
-A Deck Type Button Block defines either a single button, or a group of similar buttons. For example, if a deck has a special, unique, «Escape» button, it can be defined alone in a Deck Type Button Block. Similarly, if a deck consist of a grid of regularly spaced 6 by 4 keys that are all the same, they can also be defined in a single Deck Type Button Block.
+A Deck Type Button Block defines either a single button, or a group of identical buttons. For example, if a deck has a special, unique, «Escape» button, it can be defined alone in a Deck Type Button Block. Similarly, if a deck consist of a grid of regularly spaced 6 by 4 keys that are all the same, they can also be defined in a single Deck Type Button Block.
 
 #### Name
 
@@ -204,6 +204,7 @@ Feedback ability of the button. Feedback can be:
 - `led`: Simple On/Off LED light.
 - `colored-led`: A single LED that can be colored.
 - `multi-leds`: Several, single color, LED on a ramp.
+- `encoder-leds`: Special encoder led ramp for X-Touch Mini (4 modes)
 - `vibrate`: emit a buzzer sound.
 
 > [!NOTE] Trick
