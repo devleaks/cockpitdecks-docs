@@ -347,7 +347,7 @@ The `REQUIRED_DECK_FEEDBACKS` determine which of the deck's definition `feedback
 
 The `ACTIVATION_NAME` is the string that the button definition must use to trigger that activation (`type` attribute):
 
-```yaml hl_lines="3 5"
+```yaml
   - index: 1
     name: MASTER CAUTION
     type: push
@@ -477,61 +477,67 @@ INFO: found 1 xtouchmini
 # Virtual Web Decks Internals
 
 *Web Decks* are designed with simple standard web features, are rendered on an HTML Canvas, uses standard events to report interaction through basic JavaScript functions.
-A Proxy application is necessary between Cockpitdecks and the browser to convert TCP/IP socket requests into WebSocket requests that can be understood by browsers.
 The application that serves them is a very simple Flask application (2 routes) with 2 simple Ninja2 templates. The Flask application also runs the WebSocket proxy.
 
 ![[webdecks.svg|600]]
 
 ## Web Decks Initialisation Sequence
 
-On startup Cockpitdecks sends code 4 to Proxy.
-
-On shutdown Cockpitdecks sends code 5 to Proxy.
-
-When Proxy receives code 4 it requests web deck list to Cockpitdecks by sending code 3.
-
-When Proxy receives code 3 it receives web deck list and It sends code 1 to all connected decks.
-
-When Proxy receives code 4, it sends code 2 to all connected decks.
-
-When Cockpitdecks receives code 3 it sends web deck list to Proxy.
-
-When web deck receives 1 from Proxy it knows Cockpitdecks is started.
-
-When web deck receives 2 from Proxy it knows Cockpitdecks is terminated.
-
-When web deck starts, it sends code 1 to Proxy.
-
-When Proxy receives code 1 from web deck it sends code 1 to Cockpitdecks
-
-When Cockpitdecks receives code 1 from a deck it provokes a page reload for that deck
-
 ## Web Deck Messages
-
-*Code*, **event**, and string length are all integer values.
 
 Meta data is a python dictionary serialized into JSON (mostly name, value pairs).
 
-All strings are UTF-8 and are converted to bytes for transfer.
+It can contain any arbitrary serialisable items.
 
 ### Cockpitdecks to Web Deck Messages
 
 #### Send code
 
-(code, deck-name-length, 0, content-length, meta-data-length, deck name, '', content, meta data)
+```py
+{
+    "code": code,
+    "deck": name,
+    "meta": {
+        "ts": datetime.now().timestamp()
+    }
+}
+```
 
 #### Send Image
 
 It can be a key image, or a «hardware» image.
 
-(code, deck-name-length, key-name-length, content-length, meta-data-length, deck name, key name, IMAGE, meta data)
+```py
+{
+    "code": code,
+    "deck": name,
+    "key": key,
+    "image": base64.encodebytes(content).decode("ascii"),
+    "meta": {
+        "ts": datetime.now().timestamp()
+    }
+}
+```
 
 ### Web Decks to Cockpitdecks Messages
 
 #### Send code
 
-(*code*, 0, deck-name-length, 0, meta-data-length, deck name, '', meta data)
+```js
+{
+    "code": code,
+    "deck": name,
+}
+```
 
 #### Send Event
 
-(*code*, **event**, deck-name-length, key-name-length, meta-data-length, deck name, key name, meta data)
+```js
+{
+	"code": 0,
+	"deck": deck,
+	"key": key,
+	"event": value,
+	"data": dat
+}
+```

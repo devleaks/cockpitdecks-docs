@@ -85,34 +85,15 @@ Vdeck1: deck1
 Vdeck2: deck2
 ```
 
-## Web Deck Server
+## Web Deck Application Server
 
-Web Decks can run on another computer than the one running X-Plane and/or Cockpitdecks.
-
-To start the web decks server application, it is advised to first start Cockpitdecks so that web decks can be discovered, then simply issue:
-
-```sh
-$ python bin/webdeck_start.py
-```
-
-Virtual Web Decks are automatically and dynamically discovered when Cockpitdecks runs.
-
-Recall, to start Cockpitdecks:
-
-```sh
-$ python bin/cockpitdecks_upd_start.py aircrafts/A321
-```
-
-Web Decks are started in their own processes that does not interfere with Cockpitdecks.
-
-If interested, please refer to the [[Deck Internals#Virtual Web Decks Internals|Virtual Web Deck Internals]].
+The Web Deck application server is automagically started when Cockpitdecks starts if there are web decks to serve.
 
 ### Web Deck List (Web Deck Home Page)
 
 When started, the virtual web decks server offers a Welcome page with all virtual web decks available to the user. Selecting a deck starts it in another web navigator window.
 
 ![[webdeck-list.png]]
-
 ### Web Deck Example
 
 Here is a virtual web deck, carefully designed to represent an existing Elgato Stream Deck MK.2 deck. Cheaper.
