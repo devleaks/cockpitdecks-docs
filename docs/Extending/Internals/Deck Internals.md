@@ -391,11 +391,7 @@ In some drivers, there sometimes is a callback function per interaction type:
 
 *If the deck has image capabilities*:
 
-- get_display_for_pil
-- create_icon_for_key
-- scale_icon_for_key
-- send_key_image_to_device
-- set_key_image
+See list below.
 
 *If the deck has sound and/or vibrating capabilities*:
 
@@ -416,51 +412,66 @@ In some drivers, there sometimes is a callback function per interaction type:
 The following functions are also necessary and can be overwritten if necessary.
 
 ```python
-    def __init__(self, name: str,
-                       config: dict,
-                       cockpit: "Cockpit",
-                       device = None):
-    def init(self):
+    def __init__(self, name: str, config: dict, cockpit: "Cockpit", device=None)
+    def set_deck_type(self)
 
-    def get_id(self):
-    def read_definition(self):
-    def get_button_value(self, name):
-    def set_defaults(self, config: dict, base):
-    def load_layout_config(self, fn):
-    def inspect(self, what: str = None):
-    def load(self):
-    def change_page(self, page: str = None):
-    def reload_page(self):
-    def set_home_page(self):
-    def load_home_page(self):
-    def make_default_page(self, b: str = None):
-    def get_index_prefix(self, index):
-    def get_index_numeric(self, index):
-    def key_change_processing(self, deck, key, state):
-    def print_page(self, page: Page):
-    def fill_empty(self, key):
+	def init(self)
+    def get_id(self) -> str:
 
-    # proc that gets installed in driver software
-    def key_change_callback(self, deck, key, state):
-    # proc that produces the feedback through driver software
-    def render(self, button: Button):
+	def is_virtual_deck(self) -> bool:
+    def get_deck_button_definition(self, idx)
+    def get_deck_type(self) -> DeckType:
+    def get_attribute(self, attribute: str, silence: bool = False)
+    def load(self)
 
-    def start(self):
-    def terminate(self):
+	def change_page(self, page: str | None = None)
+    def reload_page(self)
+    def set_home_page(self)
+    def load_home_page(self)
+    def make_default_page(self, b: str | None = None)
+
+	def get_button_value(self, name)
+
+	def get_index_prefix(self, index)
+    def get_index_numeric(self, index)
+    def valid_indices(self, with_icon: bool = False)
+    def valid_activations(self, index=None)
+    def valid_representations(self, index=None)
+
+	def inspect(self, what: str | None = None)
+    def print_page(self, page: Page)
+
+    def vibrate(self, button)
+    def set_brightness(self, brightness: int)
+
+	def render(self, button: Button)
+	def fill_empty(self, key)
+    def clean_empty(self, key)
+
+	def start(self)
+    def terminate(self)
 ```
 
 For deck with iconic display capabilities:
 
 ```python
-    def get_display_for_pil(self, b: str = None):
-    def get_index_image_size(self, index):
-    def load_icons(self):
-    def get_icon_background(self, name: str, width: int, height: int,
-          texture_in, color_in, use_texture = True, who: str = "Cockpit"):
-    def create_icon_for_key(self, index, colors, texture, name: str = None):
-    def scale_icon_for_key(self, index, image, name: str = None):
-    def get_image_size(self, index):
-    def _send_key_image_to_device(self, key, image):
+    def get_image_size(self, index)
+    def create_empty_icon_for_key(self, index)
+    def get_icon_background(
+        self,
+        name: str,
+        width: int,
+        height: int,
+        texture_in,
+        color_in,
+        use_texture=True,
+        who: str = "Deck",
+    ):
+    def create_icon_for_key(self, index, colors, texture)
+    def scale_icon_for_key(self, index, image, name: str | None = None)
+    def fill_empty(self, key)
+    def clean_empty(self, key)
+    def set_key_icon(self, key, image)
 ```
 
 ## Installed Deck Drivers
