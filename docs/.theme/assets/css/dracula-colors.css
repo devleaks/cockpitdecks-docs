@@ -12,13 +12,13 @@
     color: RGB(255, 184, 108);
 }
 .md-typeset em {
-    font-weight: bolder;
     color: RGB(80, 250, 123);
 }
 .md-typeset i {
     color: RGB(80, 250, 123);
 }
 .md-typeset b {
+    font-weight: bolder;
     color: rgb(255, 202, 128);
 }
 .md-typeset del {
@@ -48,7 +48,7 @@
 }
 .md-typeset h4 {
     font-family: "ABCArizona";
-    font-variation-settings: "wght" 300,"slnt" -10,"SRFF" 0.7;
+    font-variation-settings: "wght" 300,"slnt" -8,"SRFF" 0.7;
     font-size: larger;
     color: RGB(255, 85, 85);
 }
