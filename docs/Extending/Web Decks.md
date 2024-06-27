@@ -13,6 +13,20 @@ Web Decks communicate with Cockpitdecks through Websockets. A WebSocket proxy se
 
 # Web Deck Definition
 
+Web decks can be declared at two locations. Cockpitdecks defined a few virtual web decks to help development of physical decks. They are provided with Cockpitdecks.
+
+However, a cockpit designer may want to add her or his own virtual web deck. To do so, and to prevent adding files to Cockpitdecks code, it is possible to declare additional virtual deck types in the `deckconfig` folder of an aircraft.
+
+```
+deckconfig
+  ⊢ resources
+    ⊢ decks
+	  ⊢ types
+	    ⊢ custom_deck_type.yaml
+	 ⊢ images
+	    ⊢ custom_background_image.yaml
+```
+
 Virtual decks are defined like any other deck. Their driver must be `virtualdeck`. Also, the contains a few additional attributes to display them on a HTML web Canvas.
 
 ```yaml
@@ -94,6 +108,7 @@ The Web Deck application server is automagically started when Cockpitdecks start
 When started, the virtual web decks server offers a Welcome page with all virtual web decks available to the user. Selecting a deck starts it in another web navigator window.
 
 ![[webdeck-list.png]]
+
 ### Web Deck Example
 
 Here is a virtual web deck, carefully designed to represent an existing Elgato Stream Deck MK.2 deck. Cheaper.

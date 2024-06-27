@@ -28,30 +28,33 @@ In the overall software organisation of Cockpitdecks, everything related to deck
 The `decks` folder is organized as follow: (between parenthesis, the content of the folder or file.)
 
 ```
+deckconfig
+  ⊢ resources
+    ⊢ decks
 decks
-	resources (accessory files)
-		templates (Jinja2 templates)
-			index.j2
-			deck.j2
-		assets (Web Deck assets)
-			decks (Web Deck specific assets)
-				images (Web Deck background images)
-			images (Web Applicatioin images and icons)
-			js (Interaction and display software in JavaScript)
-		decktype.py (Deck Type class)
-		...
-		deckdefinition.yaml (Deck types, one file per type)
-		...
-		virtualdeckdefinition.yaml (Deck types, one file per type)
-		...
-		virtualdeck.py (Virtual Deck implementation class)
-		virtualdeckmanager.py (Virtual Deck Manager implementation class)
-		virtualdeckui.py (Virtual Deck impl. class with rendering in pyglet)
-		...
-	loupedeck.py (main drivers for each type of deck)
+  ⊢ resources (accessory files)
+	⊢ templates (Jinja2 templates)
+	  ⊢ index.j2
+	  ⊢ deck.j2
+    ⊢ assets (Web Deck assets)
+	  ⊢ decks (Web Deck specific assets)
+		⊢ images (Web Deck background images)
+	  ⊢ images (Web Applicatioin images and icons)
+	  ⊢ js (Interaction and display software in JavaScript)
+	decktype.py (Deck Type class)
 	...
-	virtualdeck.py (main drivers for all virtual decks)
-	xtouchmini.py (main drivers for each type of deck)
+	deckdefinition.yaml (Deck types, one file per type)
+	...
+	virtualdeckdefinition.yaml (Deck types, one file per type)
+	...
+	virtualdeck.py (Virtual Deck implementation class)
+	virtualdeckmanager.py (Virtual Deck Manager implementation class)
+	virtualdeckui.py (Virtual Deck impl. class with rendering in pyglet)
+	...
+  loupedeck.py (main drivers for each type of deck)
+  ...
+  virtualdeck.py (main drivers for all virtual decks)
+  xtouchmini.py (main drivers for each type of deck)
 ```
 
 # Deck Type

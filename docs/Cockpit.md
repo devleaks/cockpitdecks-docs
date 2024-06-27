@@ -28,6 +28,9 @@ Here is the overall structure of the files and sub-folders inside the `deckconfi
       ⊢ fonts
         ⊢ B612-Regular.otf
         ⊢ DIN.ttf
+      ⊢ decks
+        ⊢ images
+        ⊢ types
       ⊢ docs
         ⊢ README.md
       ⊢ other-resource.py
@@ -155,6 +158,10 @@ Typical fonts include standard, formal font like DIN, icon fonts like FontAwesom
 ## Docs
 
 Docs folder may contain documentation files, like explanatory images, and descriptive texts. Simpler text or markdown files are preferred.
+
+## Decks
+
+Cockpitdecks allow experienced users to add their own [[Web Decks|virtual web decks]], specific to an aircraft.
 
 # Layout Folders
 
