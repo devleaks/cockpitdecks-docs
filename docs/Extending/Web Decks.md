@@ -121,7 +121,7 @@ This example shows that there is no limit on background and deck type definition
 
 #### Deck Type
 
-```yaml hl_lines="4,10"
+```yaml
 name: Virtual A321neo Overhead
 driver: virtualdeck
 buttons:
@@ -144,7 +144,7 @@ background:
 
 #### Deckconfig.yaml
 
-```yaml hl_lines="2,16"
+```yaml
 buttons:
   - index: apumaster
     name: APUMASTER
