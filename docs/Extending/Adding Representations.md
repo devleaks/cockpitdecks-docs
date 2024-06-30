@@ -45,9 +45,9 @@ class SpecialtyIcon(Representation):
 In the button definition:
 
 ```yaml hl_lines="4"
-	index: 42
-	name: SPECIAL_ICON
-	type: push
-	specialty-icon:
-		param1: value
+index: 42
+name: SPECIAL_ICON
+type: push
+specialty-icon:
+	param1: value
 ```

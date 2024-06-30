@@ -289,4 +289,5 @@ extra_javascript:
 
 extra_css:
   - assets/css/extra.css
+  - assets/css/fonts.css
   - assets/css/dracula-colors.css

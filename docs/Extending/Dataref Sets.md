@@ -42,16 +42,16 @@ Typical arrays of values that can be requested as such are weather data like clo
 ```
 set-dataref: data:all-cloud-layers-completed
 dataref-collections:
-    -
-        name: cloud-layers
-        datarefs:
-            - sim/weather/aircraft/base
-            - sim/weather/aircraft/tops
-            - sim/weather/aircraft/cloud_type
-            - sim/weather/aircraft/coverage
-        array: 3
-        set-dataref: data:cloud-layer-completed
-    -       
+  -
+    name: cloud-layers
+    datarefs:
+      - sim/weather/aircraft/base
+      - sim/weather/aircraft/tops
+      - sim/weather/aircraft/cloud_type
+      - sim/weather/aircraft/coverage
+    array: 3
+    set-dataref: data:cloud-layer-completed
+  -       
 ```
 
 The above example will create 3 equal sets of 1 datarefs and is equivalent to the following:
@@ -60,22 +60,22 @@ Please note how sets are named after the root name above.
 
 ```
 dataref-collections:
-    -
-        name: cloud-layer#0
-        datarefs:
-            - sim/weather/aircraft/cloud_type[0]
-        set-dataref: data:cloud-layer-completed[0]
-    -
-        name: cloud-layer#1
-        datarefs:
-            - sim/weather/aircraft/cloud_type[1]
-        set-dataref: data:cloud-layer-completed[1]
-    -
-        name: cloud-layer#2
-        datarefs:
-            - sim/weather/aircraft/cloud_type[2]
-        set-dataref: data:cloud-layer-completed[2]
-    -
+  -
+    name: cloud-layer#0
+    datarefs:
+      - sim/weather/aircraft/cloud_type[0]
+    set-dataref: data:cloud-layer-completed[0]
+  -
+    name: cloud-layer#1
+    datarefs:
+      - sim/weather/aircraft/cloud_type[1]
+    set-dataref: data:cloud-layer-completed[1]
+  -
+    name: cloud-layer#2
+    datarefs:
+      - sim/weather/aircraft/cloud_type[2]
+    set-dataref: data:cloud-layer-completed[2]
+  -
 ```
 
 ### set-dataref

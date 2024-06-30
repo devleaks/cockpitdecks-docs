@@ -4,10 +4,6 @@
  * Last updated: 25-MAR-2024
  *
  */
-@font-face {
-  font-family: "ABCArizona";
-  src: url("../fonts/ABCArizonaPlusVariable-Trial.woff2") format('woff2-variations');
-}
 .md-typeset strong {
     color: RGB(255, 184, 108);
 }
@@ -32,34 +28,28 @@
     color: RGB(255, 184, 108) !important;
 }
 .md-typeset h1 {
-    font-family: "ABCArizona";
-    font-variation-settings: "wght" 500,"slnt" 0,"SRFF" 0.7;
+    font-variation-settings: "wght" 400,"slnt" 0,"SRFF" 0.7;
     color: RGB(189, 147, 249);
 }
 .md-typeset h2 {
-    font-family: "ABCArizona";
-    font-variation-settings: "wght" 500,"slnt" 0,"SRFF" 0.7;
+    font-variation-settings: "wght" 400,"slnt" 0,"SRFF" 0.7;
     color: RGB(255, 184, 108);
 }
 .md-typeset h3 {
-    font-family: "ABCArizona";
-    font-variation-settings: "wght" 500,"slnt" 0,"SRFF" 0.7;
+    font-variation-settings: "wght" 40,"slnt" 0,"SRFF" 0.7;
     color: RGB(80, 250, 123);
 }
 .md-typeset h4 {
-    font-family: "ABCArizona";
     font-variation-settings: "wght" 300,"slnt" -8,"SRFF" 0.7;
     font-size: larger;
     color: RGB(255, 85, 85);
 }
 .md-typeset h5 {
-    font-family: "ABCArizona";
     font-variation-settings: "wght" 250,"slnt" -10,"SRFF" 0.4;
     font-size: larger;
     color: RGB(241, 250, 140) !important;
 }
 .md-typeset h6 {
-    font-family: "ABCArizona";
     font-variation-settings: "wght" 200,"slnt" -10,"SRFF" 0.4;
     font-size: larger;
     color: RGB(139, 233, 253);

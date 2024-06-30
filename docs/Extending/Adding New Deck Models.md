@@ -28,21 +28,21 @@ brand: Streamdeck
 model: Plus
 driver: streamdeck
 buttons:
-    - name: 0
-      action: push
-      view: image
-      image: [96, 96, 0, 0]
-      repeat: 8
-    - name: 0
-      prefix: e
-      action: encoder-push
-      view: none
-      repeat: 4
-    # touchscreen in streamdeck package vocabulary
-    - name: touchscreen
-      action: swipe
-      view: image
-      image: [800, 100, 0, 0]
+  - name: 0
+    action: push
+    view: image
+    image: [96, 96, 0, 0]
+    repeat: 8
+  - name: 0
+    prefix: e
+    action: encoder-push
+    view: none
+    repeat: 4
+  # touchscreen in streamdeck package vocabulary
+  - name: touchscreen
+    action: swipe
+    view: image
+    image: [800, 100, 0, 0]
 ```
 
 Through this file, Cockpitdecks is capable to determine that there are 8 (repeat) LCD buttons, named `0`.. `7`, capable of being pushed (action), and capable of displaying a 96x96 pixel image (view, image). Similarly, there are 4 encoders and a swipe screen.
