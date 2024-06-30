@@ -52,6 +52,27 @@ Representations are added one at a time, some are not currently working.
 
 What is working well, it the testing area: You can paste your button definition yaml code in the code text area and press render to get a preview of your button, data included if connected to a simulator.
 
+
+# Workflow
+
+Ideally, X-Plane simulator should be running to get live response data.
+Place a web deck image in the aircraft resources/decks/images folder.
+Start Cockpitdecks. Head to the Deck Designer page and select the above image.
+Add interactors like buttons, encoders, and hardware images. Save the layout.
+Declare a new virtual deck in the aircraft deckconfig folder, create a layout with a single empty page.
+Reload the decks, which will provoke the reload of virtual web decks as well.
+In the web deck list, select the newly created deck it will open in a new window.
+Using the button designer create and test a new button. Fill in properly layout, page name, and button index. Save the button.
+Reload pages immediately preview the appearance on the new button.
+It is now possible to adjust any of the layout, or button definition, save them, reload and use the button.
+
+> [NOTE] Web Deck Definitions
+> Web deck definitions are located either in the Cockpitdecks code or in the aircraft deckconfig folder. On page reloads, web decks definitions located in the code are **not** reloaded. Web deck definitions in the aircraft folder are reloaded.
+
+As a first button, I always create a new Reload button that I place on the side so that I can reload the whole setup each time some files where saved. When happy with the final deck, I simply comment out the code of the reload button. You will need it later…
+
+(Using an external file watcher, it is possible to provoke a deck reload each time a file has been saved, using curl(1) to post a websocket request for page reload to Cockpitdecks.)
+ 
 # A Word of Advise
 
 Never ever forget that the goal of these designer tools is currently not to provide you with a final design ready to be used. One day may be. The above designer tools aim at providing you with skeleton files that contain data that is difficult to get or estimate, thereby removing numerous trial and errors attempts.

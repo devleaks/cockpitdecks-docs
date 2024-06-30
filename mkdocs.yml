@@ -81,6 +81,8 @@ nav:
                   - X-Plane Interaction: Extending/Internals/X-Plane Interaction.md
               - Cockpitdecks Internals: Extending/Internals/Cockpitdecks Internals.md
               - Deck Internals: Extending/Internals/Deck Internals.md
+              - Web Deck Designer Tools: Extending/Internals/Design Helper.md
+              - Themes: Extending/Internals/Themes.md
               - To Do: Extending/Internals/To do.md
   - Installation: Installation.md
 
