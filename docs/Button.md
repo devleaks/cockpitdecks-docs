@@ -8,7 +8,7 @@ In that list, each button is defined by a list of attributes that will determine
 
 The *Button Definition* is a list of parameters that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button. Here is an example of button definition:
 
-```yaml
+```yaml hl_lines="3 5"
 buttons:
   - index: 2
     name: MASTER WARNING
@@ -38,14 +38,19 @@ The button *Representation* page describes attributes specific to the *feedback*
 **Mandatory**. There is no default value.
 
 Each «Button» on a deck is designated by its [[Button Index|Index]].
+
 On a given Page, the Index of a button must be unique on that Page since it addresses a very precise key, knob or slider on the deck.
+
 Depending on the model of deck, buttons have  [[Button Index|coded named index]].
+
 On a simple deck with a number of similar keys, the index of a button is its ordering number: 0, 1, 2... until the number of keys is reached. On a more complex deck, with button and knobs, knobs may be indexed with name like knob0, knob1, knob2... until the number of knobs is reached.
 
 ## Name
 
 Optional. A button can be named.
+
 The name of a button on a page must be unique. If more than one button have the same name, an error is reported and the definition of the button is ignored.
+
 If no name is provided, a unique, long, technical name is created from deck name, page name, and index.
 
 ```yaml
@@ -81,6 +86,7 @@ The label of a button is a short reminder of what the button does. The text of t
 ```
 
 Note: The Button *Label* should not be confused with Button Text. The Label exist for all buttons, and is displayed according to its attributes if the underlying button is capable. The text of the label is defined as a button attribute and is static (cannot be changed dynamically).
+
 The Button *Text* is a text that is part of the Button representation.
 
 ### Label Color
@@ -98,6 +104,7 @@ In pixels. Internally, Cockpitdecks uses 256 × 256 pixel images.
 ### Label Position
 
 The position of the label is a 2 letter code:
+
 1. l, c, or r for left, center, or right-justified on the image (horizontal alignment),
 2. t, m, or b, for top, middle, or bottom of the image (vertical alignment).
 
@@ -116,6 +123,7 @@ Options are, by nature, not indispensable to the button’s activation or render
 # Button Value
 
 A Button has a value that is maintained and used mainly for representation.
+
 Please head [[Button Value|here]] for details about a button's value computation.
 
 ## Button Initial Value
@@ -127,6 +135,7 @@ A Button can force its first, initial value to set its startup or original state
 ```
 
 This value is assigned as the button's current value on startup.
+
 In case of a Button with multiple values, each value has a separate `initial-value` attribute in its own attribute list.
 
 # Button State
@@ -146,7 +155,9 @@ The `type` attribute of a button determine [[Button Activation|how the button wi
 # Button Representation
 
 The representation of a Button determine [[Button Representation|what and how the button will display]] on the deck device. This depends on the capabilities of the button on the deck: LED, image, coloured led button, sound...
+
 The representation of a button is determined by *the presence of a special attribute in the definition of the button*.
+
 For example, if a button definition contains an attribute named `annunciator`, the button representation will be an [[Annunciator]]. A button can only define one representation in its definition. Otherwise, a warning is reported and the button is ignored.
 
 # Button Instantiation
@@ -156,6 +167,7 @@ When a button is created, internal meta data are set first. Second, the Activati
 # Button Validity
 
 Each button has a validity function that ensures that all necessary attributes are provided in its definition. If the activation of the button is not valid, its activation function will never be triggered, because of missing or misconfigurated parameters. If its representation is not valid, it will not be rendered on the deck.
+
 If a button is not valid, a small red triangle appears in the lower right corner of the key icon if the button is capable of representing it. A small blue triangle appears in the lower right corner of the key icon if Cockpitdecks suspect the button is a placeholder.
 
 # Button Description and Inspection
@@ -165,4 +177,3 @@ Each button has an `describe()` method that prints in plain English what the but
 Each button has an `inspect(what: str)` method that exposes internal values and state. The inspect method takes one parameter `what`  that determines what is displayed when invoked.
 
 These methods can be invoked from the [[Button Activations for Developers#ButtonInspect|Inspect]] button activation.
-

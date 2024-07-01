@@ -56,12 +56,14 @@ For a given aircraft, a deck has a Layout. The [[Layout]] of a deck is a collect
 
 A Layout is a folder in the `deckconfig` folder.
 
-```
+```yaml hl_lines="7"
 XPlaneAircraftFolder
   (...)
   ⊢ deckconfig
-    ⊢ icons
-    ⊢ fonts
+    ⊢ resources
+      ⊢ fonts
+      ⊢ icons
+      ⊢ ...
     ⊢ layout1
       ⊢ config.yaml
       ⊢ page1.yaml

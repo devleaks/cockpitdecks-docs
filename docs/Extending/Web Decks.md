@@ -29,18 +29,17 @@ deckconfig
 
 Virtual decks are defined like any other deck. Their driver must be `virtualdeck`. Also, the contains a few additional attributes to display them on a HTML web Canvas.
 
-```yaml
+```yaml hl_lines="1"
 name: Virtual Deck 3×2
 driver: virtualdeck
 buttons:
     - index: 0
-      type: key
+      action: push
       position: [55, 25]
-      display: [96, 96]
-      color: white
+      feedback: image
+      image: [96, 96]
       options: rounded=8
-
-	  ...
+    - ...
 
 background:
   color: "#222"
@@ -121,7 +120,7 @@ This example shows that there is no limit on background and deck type definition
 
 #### Deck Type
 
-```yaml
+```yaml hl_lines="3 9"
 name: Virtual A321neo Overhead
 driver: virtualdeck
 buttons:
@@ -144,7 +143,7 @@ background:
 
 #### Deckconfig.yaml
 
-```yaml
+```yaml hl_lines="2 14"
 buttons:
   - index: apumaster
     name: APUMASTER
