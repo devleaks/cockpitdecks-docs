@@ -20,11 +20,3 @@ Default values affected by themes are:
 - All attributes that contain the word `font`. Example `label-font`.
 
 ## Themed Default Values
-
-```
-night-default-icon-color: (50, 30, 30)
-night-cockpit-texture: nighttexture.png
-night-default-button-highlight-color: paleorange
-```
-
-The themed attribute name is searched first if `cockpit-theme` has been set, if not found the attribute without theme name is used.
