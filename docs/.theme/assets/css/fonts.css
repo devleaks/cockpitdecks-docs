@@ -21,7 +21,7 @@
     --md-text-font-family: "ABCArizona";
     --font-variation-weight: 400;
     --font-variation-italic: 0;
-    --font-variation-serif: 0;
+    --font-variation-serif: 0.2;
 }
 aside, body, input {
     font-family: var(--md-text-font-family);

@@ -28,19 +28,19 @@
     color: RGB(255, 184, 108) !important;
 }
 .md-typeset h1 {
-    font-variation-settings: "wght" 400,"slnt" 0,"SRFF" 0.7;
+    font-variation-settings: "wght" 300,"slnt" 0,"SRFF" 0.7;
     color: RGB(189, 147, 249);
 }
 .md-typeset h2 {
-    font-variation-settings: "wght" 400,"slnt" 0,"SRFF" 0.7;
+    font-variation-settings: "wght" 300,"slnt" 0,"SRFF" 0.7;
     color: RGB(255, 184, 108);
 }
 .md-typeset h3 {
-    font-variation-settings: "wght" 400,"slnt" 0,"SRFF" 0.7;
+    font-variation-settings: "wght" 300,"slnt" 0,"SRFF" 0.7;
     color: RGB(80, 250, 123);
 }
 .md-typeset h4 {
-    font-variation-settings: "wght" 300,"slnt" -8,"SRFF" 0.7;
+    font-variation-settings: "wght" 250,"slnt" -8,"SRFF" 0.7;
     font-size: larger;
     color: RGB(255, 85, 85);
 }

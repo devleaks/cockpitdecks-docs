@@ -1,6 +1,9 @@
-Cockpitdecks comes with two button designer tools.
+Cockpitdecks comes with two designer tools.
 
-# Deck Designer
+1. A Web Deck Designer
+2. A Button Designer
+
+# Web Deck Designer
 
 The Deck Designer is a tool that help positioning and sizing elements on a virtual web deck background image.
 
@@ -9,6 +12,11 @@ The Deck Designer is a tool that help positioning and sizing elements on a virtu
 On the above designer, rectangular or circular buttons, encoder, or hardware image place holders can be positioned and sized.
 
 A layout can be saved and loaded later. When saving, two files are created, one for the graphical representation with the design, and one Yaml file in Deck Type format. The latter can be used as a skeleton to define a new virtual web deck.
+
+> [!WARNING] Layout and layout.
+> In a very unfortunate choice of vocabulary, the word layout is used to designed two different things in Cockpitdecks.
+> 1. [[Layout|Common layouts]] are sets of pages. A deck must reference a layout, that is a deck must reference a set of pages it will load and propose to the user. A common layout is just a folder that contains pages to be loaded on a deck.
+> 2. Virtual or Web Deck layout are arrangement of buttons, encoders, and hardware images on the web page of a virtual or web deck. They are quickly created, saved, and edited with the Deck Designer tool. Look at the above image, Deck Designer allows the user to add, remove, resize different elements to interact with over the background image. This arrangement of elements is also awkwardly called a layout. Sorry. Fortunately, the second meaning of layout is less frequent, and only used by Web Deck designers.
 
 The virtual deck can then be used with the same background image, and each button, encoder, or hardware image will be laid over the background at the very precise defined position and size.
 
@@ -33,7 +41,7 @@ By pressing the render button, Cockpitdecks will generate a button image and mak
 When "Saving..." the button, it is added to a file in the
 
 ```
-deckconfig/deck-name/layout-name/page-name.yaml
+< current-aircraft | deck-name >/deckconfig/layout-name/page-name.yaml
 ```
 
 file at the index position mentioned in the first part of the form. (If no layout or page name is supplied int he form, acceptable default values are provided.)
@@ -61,14 +69,13 @@ Place a web deck image in the aircraft resources/decks/images folder.
 Start Cockpitdecks. Head to the Deck Designer page and select the above image.
 
 Add interactors like buttons, encoders, and hardware images. Save the layout.
-
-Declare a new virtual deck in the aircraft deckconfig folder, create a layout with a single empty page.
+Saving the layout will create a new Deck Type, and will add a new deck in the config.yaml file, like any other deck, and add it to the secret.yaml file as well.
 
 Reload the decks, which will provoke the reload of virtual web decks as well.
-
+Head to the web deck home page. Your new deck appears.
 In the web deck list, select the newly created deck it will open in a new window.
 
-Using the button designer create and test a new button. Fill in properly layout, page name, and button index. Save the button.
+Using the button designer create and test a new button for your new deck selectable at the top. Fill in properly layout, page name, and button index. Save the button.
 
 Reload pages immediately preview the appearance on the new button.
 
@@ -80,12 +87,12 @@ It is now possible to adjust any of the layout, or button definition, save them,
 As a first button, I always create a new Reload button that I place on the side so that I can reload the whole setup each time some files where saved. When happy with the final deck, I simply comment out the code of the reload button. You will need it later…
 
 ```
-index: reload
+index: my first button
 type: reload
-icon: reload-page-icon.png
+icon: reload.png
 ```
 
-(Using an external file watcher, it is possible to provoke a deck reload each time a file has been saved, using curl(1) to post a websocket request for page reload to Cockpitdecks.)
+(Using an external file watcher, it is possible to provoke a deck reload each time a file has been saved, using curl(1) to post a request for page reload to Cockpitdecks. There is a handy shell script that does exactly this using nodejs nodemon utility.)
 
 # A Word of Advise
 

@@ -133,6 +133,14 @@ If your decks are connected, and all drivers properly installed, you can test st
 $ python bin/cockpitdecks_start.py
 ```
 
+### Demonstration of Cockpitdecks
+
+If your decks are connected, and all drivers properly installed, you can test start Cockpidecks by simply launching the application without aircraft folder specified. Cockpitdecks will use default values for everything and set up each deck such as the first key can be used to toggle X-Plane map on or off.
+
+```shell
+$ python bin/cockpitdecks_start.py aircrafts/demo
+```
+
 ### Start Cockpitdecks
 
 To start Cockpitdecks, use the `cockpitdecks_start.py` script by supplying the X-Plane aircraft folder where deck confit resides. Start the python script and supply the folder name where `deckconfig` folder resides.
@@ -156,44 +164,6 @@ The *aircraft folder* (Toliss A321) where cockpitdecks tries to find a `deckconf
 Duane, a Cockpitdecks aficionado has realized several configurations for several aircrafts.
 
 You can [find them here](https://github.com/dlicudi/cockpitdecks-configs), download them and install them in your aircraft folder.
-
-## Virtual Decks
-
-### Start Virtual Decks
-
-To start and render virtual decks, issue the following command:
-
-```shell
-$ python virtualdeck_start.py "/Applications/X-Plane 12/Aircraft/Extra Aircraft/Toliss A321"
-```
-
-This will render virtual decks on your computer screen.
-
-You must run this command where you want virtual decks to be rendered, which can be a different computer than the computer that runs X-Plane or Cockpitdecks.
-
-If you do not use virtual decks, there is not need to start this script.
-
-### Start Web Decks
-
-To start the web server that will allow you to connect your browser to it, issue the following command:
-
-```shell
-$ python webdeck_start.py
-```
-
-There is no need to supply any additional information. The web server will contact Cockpitdecks to discover which decks it should render.
-
-If you do not use web decks, there is not need to start this script.
-
-## Why So Many Startup Scripts
-
-Event loops.
-
-To simplify Cockpitdecks developments, virtual decks were added with the simplest, most straightforward python package available to do the job.
-
-For virtual decks, we use pyglet. To render decks on the screen and control interaction through it, pyglet run an event loop to capture mouse clicks, etc. This has to run in another process, not thread.
-
-Similarly, to serve Web Decks to a browser, a web server is necessary. Cockpitdecks uses Flasak package to serve web pages. Very simple JavaScript code establish a connection to Cockpitdecks to send event it receives (mouse click) and to display images it receives from Cockpitdecks. No more. No less. Flask must run in another process, not in a thread.
 
 # Troubleshooting
 

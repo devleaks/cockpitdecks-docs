@@ -68,20 +68,20 @@ nav:
       - Resources: Resources.md
       - Examples: Extending/Examples.md
       - Extending:
+          - Web decks: Extending/Web Decks.md
           - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
           - Adding representations: Extending/Adding Representations.md
           - Adding activations: Extending/Adding Activations.md
           - Activation for developers: Extending/Button Activations for Developers.md
           - Adding new deck models: Extending/Adding New Deck Models.md
-          - Virtual « web decks »: Extending/Web Decks.md
           - Cockpitdecks Internals:
               - History: History.md
               - Simulator:
                   - Simulator: Extending/Simulator.md
                   - X-Plane Interaction: Extending/Internals/X-Plane Interaction.md
               - Cockpitdecks Internals: Extending/Internals/Cockpitdecks Internals.md
-              - Deck Internals: Extending/Internals/Deck Internals.md
               - Web Deck Designer Tools: Extending/Internals/Design Helper.md
+              - Deck Internals: Extending/Internals/Deck Internals.md
               - Themes: Extending/Internals/Themes.md
               - To Do: Extending/Internals/To do.md
   - Installation: Installation.md
