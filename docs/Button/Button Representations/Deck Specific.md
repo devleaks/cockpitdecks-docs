@@ -1,3 +1,12 @@
+# ColoredLed
+
+ColoredLed buttons are color capable led behind a transparent or mask button.
+They are either on or off, with a RGB color.
+
+```
+colored-led: blue
+```
+
 # EncoderLEDs
 
 `led: encoder-leds`

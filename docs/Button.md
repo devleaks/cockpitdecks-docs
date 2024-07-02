@@ -8,7 +8,7 @@ In that list, each button is defined by a list of attributes that will determine
 
 The *Button Definition* is a list of parameters that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button. Here is an example of button definition:
 
-```yaml hl_lines="3 5"
+```yaml hl_lines="4 6"
 buttons:
   - index: 2
     name: MASTER WARNING

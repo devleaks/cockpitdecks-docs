@@ -18,7 +18,7 @@ Cockpitdecks uses the same convention as [python number to text formatting](http
 
 # Fonts
 
-Font files need to be placed in the `deckconfig/resources/fonts` folder.
+Font files available to all decks are in the `deckconfig/resources/fonts` folder.
 
 Font files must be either Truetype fonts (TTF) or Opentype fonts (OTF).
 
@@ -34,15 +34,19 @@ Cockpitdeck comes with a few fonts appropriate for aeronautical use: Standard fo
 
 For Truetype font, it is not necessary to add the `.ttf` extension. For Opentype fonts it is necessary to add the `.otf` extension.
 
+> [NOTE] About font files.
+> Fonts placed in the resources/fonts folder are available for images on decks. They are not necessarily available as « web fonts » available in web decks.
+> To be available directly, not through Cockpitdecks generated images, web decks fonts have to be made available in the asset folder and referenced in proper CSS files.
+
 # Icons
 
-Icon image files need to be placed in the `deckconfig/resources/icons` folder.
+Icon image files available to all decks need to be placed in the `deckconfig/resources/icons` folder.
 
 Image files must be either JPEG images (JPG, JPEG) or Portable Network Graphic (PNG).
 
 The name of the file is used to designate the icon.
 
-Icons are loaded on start up, uniformly resized and cached for faster successsive starts.
+Icons are loaded on start up and optionally cached.
 
 Typical icon size should be (square) 128 to 256 pixels.
 

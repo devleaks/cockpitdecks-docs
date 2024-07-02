@@ -184,6 +184,20 @@ Optional dataref to set the value of the current stop.
 
 Very much like On/Off activation either `commands` or `set-dataref` can be supplied or both.
 
+# ShortOrLongpress
+
+Short or long press has two commands, one that is executed when the button is pressed for less than `long-time` seconds, and one when it is pressed more than `long-time` seconds.
+
+`type`: short-or-longpress
+
+`commands`
+
+Two commands, the first one is called on short press.
+
+`long-time`
+
+Time to press the button to activate second command. Default to 2 seconds.
+
 # Encoder
 
 `Type: encoder`

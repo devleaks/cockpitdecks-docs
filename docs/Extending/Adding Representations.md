@@ -40,6 +40,8 @@ class SpecialtyIcon(Representation):
     def __init__(self, config: dict, button: "Button"):
         Representation.__init__(self, config=config, button=button)
 
+        self.param1_value = config.get("param1")
+
 ```
 
 In the button definition:
