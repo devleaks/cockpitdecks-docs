@@ -27,3 +27,7 @@ aside, body, input {
     font-family: var(--md-text-font-family);
     font-variation-settings: "wght" var(--font-variation-weight),"ital" var(--font-variation-italic),"SRFF" var(--font-variation-serif);
 }
+@font-face {
+  font-family: "Fira Mono";
+  src: url("../fonts/FiraMono-Regular.woff2") format('woff2');
+}

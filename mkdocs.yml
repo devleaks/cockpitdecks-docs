@@ -17,7 +17,7 @@ theme:
     accent: orange # accent color
   font:
     text: Roboto
-    code: Roboto Mono
+    code: Fira Mono
   features:
     - announce.dismiss
     - navigation.tabs

@@ -6,6 +6,7 @@
  */
 .md-typeset strong {
     color: RGB(255, 184, 108);
+    font-weight: lighter;
 }
 .md-typeset em {
     color: RGB(80, 250, 123);
