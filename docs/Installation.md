@@ -30,7 +30,11 @@ It is recommended to create a virtual environment and run Cockpitdecks within th
 
 # Installation Requirements
 
-(to do.)
+A computer with a modern operating system.
+
+Python language interpreter version 3.10 or above.
+
+Some knowledge of the python ecosystem.
 
 # Installation Process
 
@@ -38,23 +42,15 @@ It is recommended to create a virtual environment and run Cockpitdecks within th
 
 ### Install Cockpitdecks Software
 
-Create a new folder, in that folder:
-
-```shell
-$ git checkout https://github.com/devleaks/cockpitdecks.git
-```
-
 Create a new python environment and activate it.
 
-### Install Python Packages
-
-This packages are required by Cockpitdecks.
-
 ```shell
-$ pip install ruamel.yaml pillow cairosvg pyglet tabulate flask simple_websocket
+$ pip install git+https://github.com/devleaks/cockpitdecks.git
 ```
 
-Optionally, if you would like to use Weather or METAR buttons, add the following packages:
+### Install Additional Optional Python Packages
+
+If you would like to use Weather or METAR buttons, add the following packages:
 
 ```
 $ pip install avwx-engine scipy suntime timezonefinder metar
@@ -74,18 +70,18 @@ $ pip install streamdeck
 To have Cockpitdecks manage Loupedeck devices, add
 
 ```shell
-$ pip install
-git+https://github.com/devleaks/python-loupedeck-live.git
+$ pip install git+https://github.com/devleaks/python-loupedeck-live.git
 ```
 
 To have Cockpitdecks manage Touch Mini devices, add
 
 ```shell
-$ pip install
-git+https://github.com/devleaks/python-berhinger-xtouchmini.git
+$ pip install git+https://github.com/devleaks/python-berhinger-xtouchmini.git
 ```
 
 ### Install Cockpitdecks Helper Plugin
+
+(You can do this step later.)
 
 Some commands cannot be executed directly through UDP. For exemples, commands that have a start and an end cannot be started or ended though UDP. It is an X-Plane UDP limitation.
 
@@ -98,10 +94,10 @@ Cockpitdecks Helper Plugin is written in the python language. So it needs the [X
 Cockpitdecks XPPython3 plugins are located in the
 
 ```sh
-cockpitdecks/resources/xppython3-plugins
+< cockpitdeck-installed-code > /cockpitdecks/resources/xppython3-plugins
 ```
 
-folder. There are 2 single files.
+folder in the source code. There are 2 single files.
 
 To execute long press commands, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder.
 
@@ -130,15 +126,25 @@ First, you have to completely stop (quit completely) original manufacturer deck 
 If your decks are connected, and all drivers properly installed, you can test start Cockpidecks by simply launching the application without aircraft folder specified. Cockpitdecks will use default values for everything and set up each deck such as the first key can be used to toggle X-Plane map on or off.
 
 ```shell
-$ python bin/cockpitdecks_start.py
+$ cockpitdecks-cli
 ```
+
+#### For Cockpitdecks Developers
+
+If you cloned Cockpitdecks sofware in a folder, you can start Cockpitdecks with
+
+```shell
+$ python start.py
+```
+
+from the top folder of the source code.
 
 ### Demonstration of Cockpitdecks
 
 If your decks are connected, and all drivers properly installed, you can test start Cockpidecks by simply launching the application without aircraft folder specified. Cockpitdecks will use default values for everything and set up each deck such as the first key can be used to toggle X-Plane map on or off.
 
 ```shell
-$ python bin/cockpitdecks_start.py aircrafts/demo
+$ cockpitdecks-cli
 ```
 
 ### Start Cockpitdecks
@@ -146,7 +152,7 @@ $ python bin/cockpitdecks_start.py aircrafts/demo
 To start Cockpitdecks, use the `cockpitdecks_start.py` script by supplying the X-Plane aircraft folder where deck confit resides. Start the python script and supply the folder name where `deckconfig` folder resides.
 
 ```shell
-$ python cockpitdecks_start.py "/Applications/X-Plane 12/Aircraft/Extra Aircraft/Toliss A321"
+$ cockpitdecks-cli "/Applications/X-Plane 12/Aircraft/Extra Aircraft/Toliss A321"
 ```
 
 Cockpitdecks will look for `deckconfig` folder in the aircraft folder and start.
