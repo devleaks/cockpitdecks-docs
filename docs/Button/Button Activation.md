@@ -34,15 +34,15 @@ Any event can be handed over to the No Activation, since it will not be used.
 
 ## State Values
 
-In spite of having no activation, the button maintain an internal state.
-
-- `activation_count`
-- `last_activated`
-- `initial_value`
-- `previous_value`
-- `current_value`
-- `guarded`
-- `managed`
+| State Variable     | Value                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------- |
+| `activation_count` | Number of time button was activated                                                                           |
+| `last_activated`   | Time stamp of last activation                                                                                 |
+| `initial_value`    | Initial value in configuration (if any)                                                                       |
+| `current_value`    | Button current value                                                                                          |
+| `previous_value`   | Button previous value before change                                                                           |
+| `guarded`          | Whether button has a guard on top of it                                                                       |
+| `managed`          | Whether button has *managed* mode (specific to some cockpits, which means there are alternate display values) |
 
 # Page
 
@@ -52,21 +52,20 @@ When the button is pressed, a deck will load a page of buttons.
 
 ## Attributes
 
-`page`
-
-Mandatory. Name of the page to load. The page must be in the Layout of the target deck.
-
-`remote_deck`
-
-Optional. If present, will load the page on the target deck.
+| Attribute     | Meaning                                                                                 |
+| ------------- | --------------------------------------------------------------------------------------- |
+| `page`        | Mandatory. Name of the page to load. The page must be in the Layout of the target deck. |
+| `remote_deck` | Optional. If present, will load the page on the target deck.                            |
 
 ## Events
 
-PushEvent and PressEvent can trigger the Page activation.
+`PushEvent` and `PressEvent` can trigger the Page activation.
 
 ## State Values
 
-`page`: page that is currently displayed.
+| Attribute | Meaning                          |
+| --------- | -------------------------------- |
+| `page`    | page that is currently displayed |
 
 # Push
 
@@ -87,7 +86,7 @@ Mandatory. X-Plane command that is executed each time the button is pressed.
 
 ## Events
 
-PushEvent. Please note that PushEvent consists of 2 distinct events, a pressed event, and a release event, when the button is pressed or released respectively.
+PushEvent. Please note that PushEvent consists of 2 distinct events, a pressed event (PushEvent with pressed = True), and a release event (PushEvent with pressed = False), when the button is pressed or released respectively.
 
 ## Options
 

@@ -1,3 +1,5 @@
+# General , Architecture
+
 Isolate a framework that register and observe datarefs, make a better tool than NASA connector.
 
 Evolve towards a XPPython UDP library.
@@ -6,13 +8,7 @@ When dataref(s) meet conditions, events are triggered.
 
 Usable for observation, data collection, even « co-pilot » type of interaction: if this then that.
 
-Make a350/a380 type tick marks on rotating knobs. LED around knob
-
 Make a icon-builder app (electron?) very much like TouchPortal... So don't do it.
-
-### Large displays
-
-Gently pressing on a part of the display triggers FCU mode changes like Speed/Mach, Heading/Track, or even knobs push/pull (with long press). May be vertical swipes will increase/decrease values.
 
 # Dashboard
 
@@ -48,7 +44,7 @@ Idea: Make Streamdeck+ touchscreen either 4 x (200x100) buttons with icon, or 8 
 
 Suppress options: ?
 
-Trigger push event on PRESS not on RELEASE (or add an option to force it)
+Trigger push event on PRESS not on RELEASE (or add an option to force it) **DOCUMENT!**
 
 This is because PRESS event have no release event.
 
@@ -58,13 +54,18 @@ Check aircraft changed event (based on acf_ICAO?)
 
 Example ramp on side of LoupedeckLive or on touchscreen of sd+.
 
+Tape like display (rose, speed, vertical, horizontal)
 
-# Redo, refactor
+  First make tape, the simple translate+clip.
 
-On startup, load & cache icons as found
+Simple gauges
 
-DO NOT cache icon resized for deck
+Make a350/a380 type tick marks on rotating knobs. LED around knob
 
+# Documentation
 
-Make clever resize based on icon defs in deck_type, resize icon on the fly.
-I.e. redo a generic pil_helper and get rid of deck-specific pil_helpers.
+For activation/representation attributes, make table rather than subsections.
+
+Same for activation statuses.
+
+Add button/activation class attribute can be button status variables.

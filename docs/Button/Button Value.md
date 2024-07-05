@@ -43,17 +43,17 @@ All datarefs that starts with a special key word are *NOT* forwarded to X-Plane 
 
 When a button emit an internal dataref, it's definition mention it clearly so that it can be used by other buttons.
 
+The current default prefix for internal datarefs is `data:`.
+
 ```yaml
-   set-dateref: Cockpitdecks/my-local-variable
+   set-dataref: data:my-local-variable
 
 # in the same or another button, it can be used like so:
 
-   formula: ${Cockpitdecks/my-local-variable}
+   formula: ${data:my-local-variable}
 ```
 
-In the above example, the prefix `Cockpitdecks/` denotes internal datarefs.
-
-The current default prefix for internal datarefs is `data:`.
+In the above example, the prefix `data:` denotes internal datarefs.
 
 Internal datarefs can be used as inter-button communication, to set a value in one button, and use or read it in another one.
 
