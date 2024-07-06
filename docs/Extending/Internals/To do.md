@@ -10,6 +10,13 @@ Usable for observation, data collection, even « co-pilot » type of interacti
 
 Make a icon-builder app (electron?) very much like TouchPortal... So don't do it.
 
+## button Value
+
+Make a button value object from config.
+1. Single dataref (suppress?)
+2. Formula
+4. Internal values.
+
 # Dashboard
 
 Create a page with dashboard-like icons:

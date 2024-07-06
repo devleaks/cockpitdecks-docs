@@ -47,56 +47,25 @@ buttons:
 
 Through this file, Cockpitdecks is capable to determine that there are 8 (repeat) LCD buttons, named `0`.. `7`, capable of being pushed (action), and capable of displaying a 96x96 pixel image (feedback, image). Similarly, there are 4 encoders and a swipe screen.
 
-### Type
+| Attribute | Definition                                                                                                                                                                                       |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| type      | Name the precise deck model. Referenced in config.yaml file to tell which deck is connected to the system.                                                                                       |
+| driver    | Name of the driver software inside Cockpitdecks. See below.                                                                                                                                      |
+| buttons   | Button capabilities are modeled in two categories:<br><br>1. Actions, which specifies what a button is capable of,<br>2. View, which specifies what a button can show as a feedback to the user. |
 
-Name the precise deck model. Referenced in config.yaml file to tell which deck is connected to the system.
+### Button Capabilties
 
-### Driver
+| Attribute | Definition                                                                                                                                                                                                                               |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| action    | The following **actions** have been identified and are available in Cockpitdecks:<br><br>- `push`: ability to press a button, optionally pushing a long time,<br>- `encoder`<br>- `press`<br>- `longpress`<br>- `touch`<br>- `swipe`<br> |
+| view      | Similarly, decks defined the following **view** interactions:<br><br>- `image`<br>- `led`<br>- `colored-led`<br>- `encoder-led`                                                                                                          |
+| name      | Name and repeat will determine the index name of the buttons.                                                                                                                                                                            |
+| repeat    |                                                                                                                                                                                                                                          |
+| prefix    | Prefix is used to distinghish button capabilities. If a button has, for example, encoder and push capabilities, the push capabilties will use name `0` (name only), the corresponding encoder will be named `e0` (prefix + name).        |
+| image     | The image attribute sets the image size for the button, and offset if the image is a portion of a larger display.                                                                                                                        |
+| vibrate   |                                                                                                                                                                                                                                          |
 
-Name of the driver software inside Cockpitdecks.
-
-### Button Capabilities
-
-Button capabilities are modeled in two categories:
-
-1. Actions, which specifies what a button is capable of,
-2. View, which specifies what a button can show as a feedback to the user.
-
-#### Actions
-
-`
-
-The following **actions** have been identified and are available in Cockpitdecks:
-
-- `push`: ability to press a button, optionally pushing a long time,
-- `encoder`
-- `press`
-- `longpress`
-- `touch`
-- `swipe`
-
-#### Views
-
-Similarly, decks defined the following **view** interactions:
-
-- `image`
-- `led`
-- `colored-led`
-- `encoder-led`
-
-#### Name, Repeat, and Prefix
-
-Name and repeat will determine the index name of the buttons.
-
-Prefix is used to distinghish button capabilities. If a button has, for example, encoder and push capabilities, the push capabilties will use name `0` (name only), the corresponding encoder will be named `e0` (prefix + name).
-
-#### Image
-
-The image attribute sets the image size for the button, and offset if the image is a portion of a larger display.
-
-#### Vibrate
-
-# Deck «Driver»
+# Deck « Driver »
 
 ## Deck to Computer Interaction
 

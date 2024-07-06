@@ -60,6 +60,12 @@ Internally, Cockpitdeck use 256 pixel icons. Icons are resized to the deck reque
 
 Documentation of the aircraft decks can be placed in the folder `deckconfig/docs` or in the folder  `deckconfig/resources` in a textual form (including markdown), or as PDF.
 
+# Decks
+
+A particular aircraft allows for definition of particular decks. The deck definition is a special Yaml file that describes the deck capabilities and, optionally, for virtual decks, the layout of the buttons on the deck.
+
+Please refer to the particular section on [[Deck Internals#Deck Type|Deck Types]] for details.
+
 # Yaml
 
 All configuration files are Yaml formatted. Yaml is simple, structured, and readable.
