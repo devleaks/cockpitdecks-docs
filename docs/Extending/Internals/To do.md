@@ -69,3 +69,5 @@ For activation/representation attributes, make table rather than subsections.
 Same for activation statuses.
 
 Add button/activation class attribute can be button status variables.
+
+Add a random activation that generate random numbers with some properties/constraints.
