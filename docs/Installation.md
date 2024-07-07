@@ -24,7 +24,7 @@ It is recommended to create a virtual environment and run Cockpitdecks within th
 6. Test run Cockpitdecks without X-Plane.
 7. Install optional Deck Helper plugin in X-Plane
 8. Download and install aircraft deck configurations and layout.
-9. Start Cockpitdeck application.
+9. Start Cockpitdecks application.
 10. Start X-Plane.
 11. Enjoy all your deck devices activated in X-Plane.
 
@@ -85,7 +85,7 @@ $ pip install git+https://github.com/devleaks/python-berhinger-xtouchmini.git
 
 Some commands cannot be executed directly through UDP. For exemples, commands that have a start and an end cannot be started or ended though UDP. It is an X-Plane UDP limitation.
 
-To circumvent this, Cockpitdeck provides a small python plugin called the Cockpitdecks Helper plugin, that need to be installed into X-Plane to allow for start and end commands. The Cockpitdecks Helper plugin will execute start and end commands on behalf of the Cockpitdecks application. Cockpitdecks Helper plugin just need to be installed and will provide its services to Cockpitdecks. This plugin does not take any resource, it only adds and removes commands each time an aircraft is loaded.
+To circumvent this, Cockpitdecks provides a small python plugin called the Cockpitdecks Helper plugin, that need to be installed into X-Plane to allow for start and end commands. The Cockpitdecks Helper plugin will execute start and end commands on behalf of the Cockpitdecks application. Cockpitdecks Helper plugin just need to be installed and will provide its services to Cockpitdecks. This plugin does not take any resource, it only adds and removes commands each time an aircraft is loaded.
 
 The Cockpitdecks Helper Plugin works automatically, reads `deckconfig` configuration and creates a pair of (beginCommand, endCommand) for each *long press* command.
 
@@ -94,7 +94,7 @@ Cockpitdecks Helper Plugin is written in the python language. So it needs the [X
 Cockpitdecks XPPython3 plugins are located in the
 
 ```sh
-< cockpitdeck-installed-code > /cockpitdecks/resources/xppython3-plugins
+< Cockpitdecks-installed-code > /cockpitdecks/resources/xppython3-plugins
 ```
 
 folder in the source code. There are 2 single files.

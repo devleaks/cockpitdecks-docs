@@ -42,7 +42,7 @@ When there is no connection to X-Plane, Cockpitdecks works as expected, however,
 
 # Internal Datarefs
 
-Datarefs whose name starts with a prefix (currently `local:`) behave like any other datarefs but are neither forwarded to X-Plane, nor read from it. They can be set, read, etc. like any other datarefs allowing for a kind of *inter-button communication*: one button sets it, another one adjust its appearance based on it, even buttons on another deck!
+Datarefs whose name starts with a prefix (currently `data:`) behave like any other datarefs but are neither forwarded to X-Plane, nor read from it. They can be set, read, etc. like any other datarefs allowing for a kind of *inter-button communication*: one button sets it, another one adjust its appearance based on it, even buttons on another deck!
 
 Truly, the sky is the limit. Enjoy.
 

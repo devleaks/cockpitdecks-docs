@@ -30,7 +30,7 @@ Fonts are loaded on start up.
 	text-font: DIN Condensed Black.otf
 ```
 
-Cockpitdeck comes with a few fonts appropriate for aeronautical use: Standard formal fonts like DIN, fancier fonts like LED fonts, icon fonts like font-awesome and weather-icon.
+Cockpitdecks comes with a few fonts appropriate for aeronautical use: Standard formal fonts like DIN, fancier fonts like LED fonts, icon fonts like font-awesome and weather-icon.
 
 For Truetype font, it is not necessary to add the `.ttf` extension. For Opentype fonts it is necessary to add the `.otf` extension.
 
@@ -50,7 +50,7 @@ Icons are loaded on start up and optionally cached.
 
 Typical icon size should be (square) 128 to 256 pixels.
 
-Internally, Cockpitdeck use 256 pixel icons. Icons are resized to the deck requested size upon display.
+Internally, Cockpitdecks use 256 pixel icons. Icons are resized to the deck requested size upon display.
 
 ```yaml
 	icon: OFF_WHITE_FRAMED

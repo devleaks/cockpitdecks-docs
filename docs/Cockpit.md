@@ -4,7 +4,7 @@ It starts up the entire Cockpitdecks application. It establishes connection to t
 
 # Aircraft Configuration
 
-Decks are particular to one aircraft. Cockpitdeck will look for a folder named `deckconfig` in the X-Plane folder of that aircraft.
+Decks are particular to one aircraft. Cockpitdecks will look for a folder named `deckconfig` in the X-Plane folder of that aircraft.
 
 If a `deckconfig` folder is found in the folder of the aircraft currently used, Cockpidecks will first look for a file named `config.yaml`. In that file, Cockpitdecks will find all decks connected to the system and available to it. It will also find a set of global parameters.
 
