@@ -17,6 +17,11 @@ Make a button value object from config.
 2. Formula
 4. Internal values.
 
+## Images
+
+Non square icons, any size icon.
+Tile texture/pattern. 
+
 # Dashboard
 
 Create a page with dashboard-like icons:
