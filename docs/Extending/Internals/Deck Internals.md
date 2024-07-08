@@ -139,7 +139,7 @@ Keyword identifying the deck software driver class. (See main drivers class abov
 
 ### Background
 
-The `background` attribute is an optional attribute only used by virtual decks. It specifies a background color and/or image to use for virtual web deck representation. See exemple below.
+The `background` attribute is an optional attribute only used by web decks. It specifies a background color and/or image to use for virtual web deck representation. See exemple below.
 
 ### Buttons
 
