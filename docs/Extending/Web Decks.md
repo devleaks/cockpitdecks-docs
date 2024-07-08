@@ -6,16 +6,16 @@ This is very handy to design layout for deck a developer does not necessary owns
 
 Virtual decks need to be declared at two places:
 
-1. [[Deck Internals|Definition of the deck]], number of buttons, icon sizes, and layout of buttons. This allows Cockpitdecks to determine the virtual deck capabilities and key arrangement for drawing, like any other real physical deck.
+1. [[Deck Internals|Definition of the deck]], number of buttons, icon sizes, and layout of buttons. This allows Cockpitdecks to determine the web deck capabilities and key arrangement for drawing, like any other real physical deck.
 2. *Use of the deck*, like any regular deck, with its Layout and is configuring parameters. To use a web deck it must appear in the list of decks in the `deckconfig/config.yaml` file of an aircraft.
 
 Web Decks communicate with Cockpitdecks through Websockets. A WebSocket proxy server control Interactions between Web Decks and Cockpitdecks.
 
 # Web Deck Definition
 
-Web decks can be defined at two locations. Cockpitdecks defined a few virtual web decks to help development of physical decks. They are provided with Cockpitdecks and are not meant to be altered by users.
+Web decks can be defined at two locations. Cockpitdecks defined a few web decks to help development of physical decks. They are provided with Cockpitdecks and are not meant to be altered by users.
 
-However, a cockpit designer may want to add her or his own virtual web deck. To do so, and to prevent adding files to Cockpitdecks source code, it is possible to define additional virtual deck types in the `deckconfig` folder of an aircraft.
+However, a cockpit designer may want to add her or his own web deck. To do so, and to prevent adding files to Cockpitdecks source code, it is possible to define additional web deck types in the `deckconfig` folder of an aircraft.
 
 ```
 deckconfig
@@ -75,7 +75,7 @@ decks:
     layout: devlayout
 ```
 
-The same virtual deck definition can be used more than once to create similar decks:
+The same web deck definition can be used more than once to create similar decks:
 
 ```yaml 
 decks:
@@ -88,10 +88,10 @@ Web decks include their name in the messages they send to Cockpitdecks. This all
 
 ### `deckconfig/secret.yaml`
 
-If several virtual web decks are running, it is necessary, like other decks, to specify their serial numbers in the secret.yaml file.
+If several web decks are running, it is necessary, like other decks, to specify their serial numbers in the secret.yaml file.
 
-> [!NOTE] Serial Number of Virtual Web Decks
-> The serial number of virtual decks must be specified in the secret.yaml file. It can be any number or string, but it must be different for each virtual web deck.
+> [!NOTE] Serial Number of Web Decks
+> The serial number of web decks must be specified in the secret.yaml file. It can be any number or string, but it must be different for each web deck.
 
 ```yaml 
 Vdeck1: deck1
@@ -104,13 +104,13 @@ The Web Deck application server is automagically started when Cockpitdecks start
 
 ### Web Deck List (Web Deck Home Page)
 
-When started, the virtual web decks server offers a Welcome page with all virtual web decks available to the user. Selecting a deck starts it in another web navigator window.
+When started, the web decks server offers a Welcome page with all web decks available to the user. Selecting a deck starts it in another web navigator window.
 
 ![[webdeck-list.png]]
 
 ### Web Deck Example
 
-Here is a virtual web deck, carefully designed to represent an existing Elgato Stream Deck MK.2 deck. Cheaper.
+Here is a web deck, carefully designed to represent an existing Elgato Stream Deck MK.2 deck. Cheaper.
 
 ![[webdeck-example.png]]
 

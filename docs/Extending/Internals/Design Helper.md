@@ -5,7 +5,7 @@ Cockpitdecks comes with two designer tools.
 
 # Web Deck Designer
 
-The Deck Designer is a tool that help positioning and sizing elements on a virtual web deck background image.
+The Deck Designer is a tool that help positioning and sizing elements on a web deck background image.
 
 ![[deckdesigner.png|600]]
 
@@ -16,9 +16,9 @@ A layout can be saved and loaded later. When saving, two files are created, one 
 > [!WARNING] Layout and layout.
 > In a very unfortunate choice of vocabulary, the word layout is used to designed two different things in Cockpitdecks.
 > 1. [[Layout|Common layouts]] are sets of pages. A deck must reference a layout, that is a deck must reference a set of pages it will load and propose to the user. A common layout is just a folder that contains pages to be loaded on a deck.
-> 2. Virtual or Web Deck layout are arrangement of buttons, encoders, and hardware images on the web page of a virtual or web deck. They are quickly created, saved, and edited with the Deck Designer tool. Look at the above image, Deck Designer allows the user to add, remove, resize different elements to interact with over the background image. This arrangement of elements is also awkwardly called a layout. Sorry. Fortunately, the second meaning of layout is less frequent, and only used by Web Deck designers.
+> 2. Web Deck layout are arrangement of buttons, encoders, and hardware images on the web page of a web deck. They are quickly created, saved, and edited with the Deck Designer tool. Look at the above image, Deck Designer allows the user to add, remove, resize different elements to interact with over the background image. This arrangement of elements is also awkwardly called a layout. Sorry. Fortunately, the second meaning of layout is less frequent, and only used by Web Deck designers.
 
-The virtual deck can then be used with the same background image, and each button, encoder, or hardware image will be laid over the background at the very precise defined position and size.
+The web deck can then be used with the same background image, and each button, encoder, or hardware image will be laid over the background at the very precise defined position and size.
 
 Of course, manual tweaking of position and sizes is sometimes necessary, but the gross work of estimation is completed in fun time. For instance image size may need to be evenly rounded to the same value for aesthetic layouts.
 
@@ -69,10 +69,13 @@ Place a web deck image in the aircraft resources/decks/images folder.
 Start Cockpitdecks. Head to the Deck Designer page and select the above image.
 
 Add interactors like buttons, encoders, and hardware images. Save the layout.
+
 Saving the layout will create a new Deck Type, and will add a new deck in the config.yaml file, like any other deck, and add it to the secret.yaml file as well.
 
 Reload the decks, which will provoke the reload of virtual web decks as well.
+
 Head to the web deck home page. Your new deck appears.
+
 In the web deck list, select the newly created deck it will open in a new window.
 
 Using the button designer create and test a new button for your new deck selectable at the top. Fill in properly layout, page name, and button index. Save the button.
@@ -98,7 +101,7 @@ icon: reload.png
 
 Never ever forget that the goal of these designer tools is currently not to provide you with a final design ready to be used. One day may be. The above designer tools aim at providing you with skeleton files that contain data that is difficult to get or estimate, thereby removing numerous trial and errors attempts.
 
-The goal of the Deck Designer is to supply deck image positions and sizes for all items that need displaying on a virtual web deck.
+The goal of the Deck Designer is to supply deck image positions and sizes for all items that need displaying on a web deck.
 
 The goal of the Button Designer is twofold:
 

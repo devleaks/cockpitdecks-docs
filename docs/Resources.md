@@ -62,7 +62,7 @@ Documentation of the aircraft decks can be placed in the folder `deckconfig/docs
 
 # Decks
 
-A particular aircraft allows for definition of particular decks. The deck definition is a special Yaml file that describes the deck capabilities and, optionally, for virtual decks, the layout of the buttons on the deck.
+A particular aircraft allows for definition of particular decks. The deck definition is a special Yaml file that describes the deck capabilities and, optionally, for web decks, the layout of the buttons on the deck.
 
 Please refer to the particular section on [[Deck Internals#Deck Type|Deck Types]] for details.
 

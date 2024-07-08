@@ -45,11 +45,10 @@ decks
     ...
     deckdefinition.yaml (Deck types, one file per type)
     ...
-    virtualdeckdefinition.yaml (Deck types, one file per type)
+    webdeckdefinition.yaml (Deck types, one file per type)
     ...
     virtualdeck.py (Virtual Deck implementation class)
     virtualdeckmanager.py (Virtual Deck Manager implementation class)
-    virtualdeckui.py (Virtual Deck impl. class with rendering in pyglet)
     ...
   loupedeck.py (main drivers for each type of deck)
   ...
@@ -84,7 +83,7 @@ INFO: drivers installed for streamdeck 0.9.5, xtouchmini 1.3.6; scanning..
 INFO: found 0 streamdeck
 INFO: found 0 xtouchmini
 ...
-INFO: found 1 virtual deck(s)
+INFO: found 1 web deck(s)
 INFO: added virtual deck LoupedeckLive, serial None)
 ```
 
@@ -139,7 +138,7 @@ Keyword identifying the deck software driver class. (See main drivers class abov
 
 ### Background
 
-The `background` attribute is an optional attribute only used by web decks. It specifies a background color and/or image to use for virtual web deck representation. See exemple below.
+The `background` attribute is an optional attribute only used by web decks. It specifies a background color and/or image to use for web deck representation. See exemple below.
 
 ### Buttons
 
@@ -219,9 +218,9 @@ In case of a set if identical buttons, `repeat` if the number of time the same b
 
 If only one value is supplied, it is supposed to be `[value, 1]` array. For vertical layout, specify `[1, value]` instead.
 
-### Deck Type Button Block - Complement for Virtual Web Decks
+### Deck Type Button Block - Complement for Web Decks
 
-The above Deck Type Button Block attributes are necessary for all decks, both physical and virtual decks. Virtual Decks also contain an additional series of attributes that drive the drawing of the deck in a web navigator window.
+The above Deck Type Button Block attributes are necessary for all decks, both physical and web decks. Web Decks also contain an additional series of attributes that drive the drawing of the deck in a web navigator window.
 
 > [!NOTE] Web Deck Drawings
 > For simplicity, Web Deck Drivers are drawn on an HTML Canvas, which is a pixel-driven drawing space. Web Decks are drawn with images and drawing instructions that use the pixel as a unit for display.
@@ -234,7 +233,7 @@ Web decks can have the following types of interactive buttons:
 4. Slider (slid between 2 range values)
 
 > [!NOTE] Background Deck Type Attribute
-> Please read above in this page the `background` Deck Type attribute used to specify a background image to use for virtual web deck display.
+> Please read above in this page the `background` Deck Type attribute used to specify a background image to use for web deck display.
 
 #### Dimension
 
@@ -488,7 +487,7 @@ INFO: found 1 loupedeck
 INFO: found 1 xtouchmini
 ```
 
-# Virtual Web Decks Internals
+# Web Decks Internals
 
 *Web Decks* are designed with simple standard web features, are rendered on an HTML Canvas, uses standard events to report interaction through basic JavaScript functions.
 The application that serves them is a very simple Flask application (2 routes) with 2 simple Ninja2 templates. The Flask application also runs the WebSocket proxy.

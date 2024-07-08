@@ -14,7 +14,7 @@ Never ever forget that in the UDP protocol, there is no guarantee of delivery, o
 
 Cockpitdecks is a regular python application and will run with python 3.10, or newer.
 
-It is recommended to create a virtual environment and run Cockpitdecks within that environment. A set of packages need to be installed in that environment before Cockpitdecks can run.
+It is recommended to create a dedicated environment and run Cockpitdecks within that environment. A set of packages need to be installed in that environment before Cockpitdecks can run.
 
 1. Check Installation Requirements
 2. Create a directory and download Cockpitdecks software from github.
@@ -59,7 +59,7 @@ $ pip install avwx-engine scipy suntime timezonefinder metar
 ### Install Deck Devices Drivers
 
 > [!NOTE] No Physical Deck?
-> If you only use virtual and/or web decks and no physical deck, you can skip this step.
+> If you only use web decks and no physical deck, you can skip this step.
 
 To have Cockpitdecks manage Streamdeck devices, add
 
