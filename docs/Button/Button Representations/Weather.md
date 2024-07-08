@@ -1,6 +1,6 @@
 Cockpitdecks offers different types of Weather Representation, mainly on icons.
 
-These Representations, together with accompanying custom [[Cockpitdecks Internals#Dataref Collector|Activations]], have led to development of highly customized activations and representations to exhibit the potentials of Cockpitdecks.
+These Representations, together with accompanying custom [[Dataref Sets|Activations]], have led to development of highly customized activations and representations to exhibit the potentials of Cockpitdecks.
 
 While some Representations remain highly generic, like graphical representation of METAR at the closest station, some others are highly specific like those that represent X-Plane simulated weather.
 
@@ -50,4 +50,4 @@ There are two *modes*: `aircraft` and `region`.
 
 This representation fetches all weather-related datarefs from the simulator (wind layers, cloud layers, weather conditions, more than 100 datarefs) for a location or region and attempt to automagically generate a METAR from the collected data.
 
-To collect and monitor such an amount of datarefs, Cockpitdecks designed [[Button Value#Dataref Sets|Dataref Sets]].
+To collect and monitor such an amount of datarefs, Cockpitdecks designed [[Dataref Sets|Dataref Sets]].

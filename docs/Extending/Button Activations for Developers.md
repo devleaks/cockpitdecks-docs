@@ -54,7 +54,7 @@ The value of the `what` attribute determine what is displayed when activated.
 
 `image`: produces an image of each deck, images are saved in the Cockpitdecks home directory and named after the deck.
 
-`longpress`: list [[Button Activation#Longpress|Longpress]] command that should have a couple of additional commands [[X-Plane Interaction#Activation|added to X-Plane through the plugin]].
+`longpress`: list [[Button Activation#Longpress|Longpress]] command that should have a couple of additional commands [[X-Plane Interaction#Activations|added to X-Plane through the plugin]].
 
 ```Yaml
 index: 4

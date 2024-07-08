@@ -147,7 +147,7 @@ The `color` attribute can use a formula to determine the color (single hue value
 
 # Switches
 
-[[Drawn Buttons#Switch|Switches]] are drawings often used by OnOff activations that can be used in replacement of icons.
+[[Drawn Buttons – Switches|Switches]] are drawings often used by OnOff activations that can be used in replacement of icons.
 
 *Switches* is a drawing of a simple two or three-way switch.
 *Circular switches* are multi-value rotation switches or selectors.

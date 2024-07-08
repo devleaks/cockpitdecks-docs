@@ -12,9 +12,9 @@ Base class for events.
 
 | Attribute    | Definition                                        |
 | ------------ | ------------------------------------------------- |
-| deck         | Related [[Deck\|deck]] where interaction occured. |
-| button       | Related button [[Button Index\|index]]            |
-| action       | [[Deck Internals#Action\|Deck action name]]       |
+| deck         | Related [[Deck|deck]] where interaction occured. |
+| button       | Related button [[Button Index|index]]            |
+| action       | [[Deck Internals#Actions|Deck action name]]      |
 | timestamp    | Time of creation of event                         |
 | is_processed | Whether event has run or not.                     |
 

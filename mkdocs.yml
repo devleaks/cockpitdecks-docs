@@ -81,8 +81,13 @@ nav:
                   - Simulator: Extending/Simulator.md
                   - X-Plane Interaction: Extending/Internals/X-Plane Interaction.md
               - Cockpitdecks Internals: Extending/Internals/Cockpitdecks Internals.md
+              - Events: Button/Events.md
+              - String Datarefs: Extending/String Datarefs.md
               - Web Deck Designer Tools: Extending/Internals/Design Helper.md
+              - Workflow for Web Deck Design: Extending/Internals/Workflow for Web Deck Design.md
               - Deck Internals: Extending/Internals/Deck Internals.md
+              - Configuration Files and Attributes: Extending/Internals/Configuration Files and Attributes.md
+              - X-Plane Plugin: Extending/Complement Plugin - Continuous Commands.md
               - Themes: Extending/Internals/Themes.md
               - To Do: Extending/Internals/To do.md
   - Installation: Installation.md
