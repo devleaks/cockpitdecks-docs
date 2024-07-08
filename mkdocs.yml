@@ -57,10 +57,11 @@ nav:
           - Button Representation:
               - Button Representation: Button/Button Representation.md
               - Basic Buttons: Button/Button Representations/Basic.md
-              - Animated Buttons: Button/Button Representations/Animation.md
+              - Animated Buttons: Button/Button Representations/Animations.md
               - Annunciators: Button/Button Representations/Annunciator.md
-              - Switches: Button/Button Representations/Switches.md
+              - Switches: Button/Button Representations/Drawn Buttons – Switches.md
               - Drawn Buttons: Button/Button Representations/Drawn Buttons.md
+              - «Data» Buttons: Button/Button Representations/Drawn Buttons (continued).md
               - Advanced:
                   - Deck Specific: Button/Button Representations/Deck Specific.md
                   - Toliss Airbus Specific Buttons: Button/Button Representations/Toliss Specific Representations.md

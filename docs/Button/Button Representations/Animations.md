@@ -10,7 +10,7 @@ Animations are automatic. They should not be confused with button appearance upd
 
 Most of the time, the value button determine if the animation runs. When the value of the button is On, the animation runs. When Off, the animation does not run and may displays an alternate representation.
 
-- [[Animation#IconAnimation]]
+- [[Animations#IconAnimation]]
 -
 
 # IconAnimation

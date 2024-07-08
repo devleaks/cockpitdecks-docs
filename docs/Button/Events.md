@@ -10,39 +10,32 @@ Base class for events.
 
 ## Attributes
 
-`deck`: Related [[Deck|deck]] where interaction occured.
-
-`button`: Related button [[Button Index|index]].
-
-`action`: [[Deck Internals#Action|Deck action name]].
-
-`timestamp`: Time of creation of event.
-
-`is_processed`: Whether event has run or not.
+| Attribute    | Definition                                        |
+| ------------ | ------------------------------------------------- |
+| deck         | Related [[Deck\|deck]] where interaction occured. |
+| button       | Related button [[Button Index\|index]]            |
+| action       | [[Deck Internals#Action\|Deck action name]]       |
+| timestamp    | Time of creation of event                         |
+| is_processed | Whether event has run or not.                     |
 
 ## Common Functions
 
-### run(just_do_it: bool = False)
-
-Run the event.
-
-If just_do_it is False, enqueue the Event.
-
-Otherwise, execute the activation.
-
-### handling()
-
-Mark the start of processing.
-
-### handled()
-
-Mark the end of processing.
+| Function                      | Description                                                                                                |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| run(just_do_it: bool = False) | Run the event.<br><br>If just_do_it is False, enqueue the Event.<br><br>Otherwise, execute the activation. |
+| handling()                    | Mark the start of processing.                                                                              |
+| handled()                     | Mark the end of processing.                                                                                |
+|                               |                                                                                                            |
 
 # PushEvent
 
 ## Parameters
 
-`pressed`: `True` or `False`, if key is pressed (`True`) or released (`False`)
+| Attribute | Description                                                                   |
+| --------- | ----------------------------------------------------------------------------- |
+| pressed   | `True` or `False`, if key is pressed (`True`) or released (`False`)           |
+| pulled    | True if push/pull option is enabled and button was pulled rather than pushed. |
+|           |                                                                               |
 
 PushEvents are in fact raised twice for an interaction. First when the button is pressed, and second when the button it released. It is a main differentiator of Press and LongPress Events.
 
@@ -62,19 +55,25 @@ The long time event occurs experimentally after roughly 600 milliseconds. It is 
 
 # EncodeEvent
 
-`clockwise`: `True` or `False`, if encoder is turned clockwise (`True`) or counter-clockwise (`False`)
+## Parameters
+
+| Attribute | Description                                                                               |
+| --------- | ----------------------------------------------------------------------------------------- |
+| clockwise | `True` or `False`, if encoder is turned clockwise (`True`) or counter-clockwise (`False`) |
 
 # SlideEvent
 
-`value`: Raw value of the slider (as produced by the driver)
+| Attribute | Description                                         |
+| --------- | --------------------------------------------------- |
+| value     | Raw value of the slider (as produced by the driver) |
 
 # TouchEvent
 
-`x`: x-position of the event (horizontal)
-
-`y`: y-position of the event (vertical)
-
-`start`: Timestamp of touch event
+| Attribute | Description                          |
+| --------- | ------------------------------------ |
+| x         | x-position of the event (horizontal) |
+| y         | y-position of the event (vertical)   |
+| start     | Timestamp of touch event             |
 
 # SwipeEvent
 

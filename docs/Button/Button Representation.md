@@ -38,17 +38,17 @@ Here is a list of currently available, general purpose representations.
 ## Drawn Representations
 
 - [[Annunciator]]
-- [[Switches]]
-	- [[Switches#Switch]]
-	- [[Switches#Circular Switch]]
-	- [[Switches#Push Button and Knob]]
+- [[Drawn Buttons – Switches]]
+	- [[Drawn Buttons – Switches#Switch]]
+	- [[Drawn Buttons – Switches#Circular Switch]]
+	- [[Drawn Buttons – Switches#Push Button and Knob]]
 - [[Drawn Buttons|Other drawn representations]]
 	- [[Drawn Buttons#Data]]
 	- [[Drawn Buttons#Decor]]
 
 ## More complex Button Representations
 
-- [[Animation]]
+- [[Animations]]
 - [[Weather]]
 - Other
 	- Aircraft
