@@ -126,47 +126,29 @@ buttons:
     feedback: vibrate
 ```
 
-## Definition Attributes
+## Attributes
 
-### Name
-
-Name used inside Cockpitdecks to identifying the deck model.
-
-### Driver
-
-Keyword identifying the deck software driver class. (See main drivers class above.)
-
-### Background
-
-The `background` attribute is an optional attribute only used by web decks. It specifies a background color and/or image to use for web deck representation. See exemple below.
-
-### Buttons
-
-The `Buttons` contains a list of *Deck Button Type Block* descriptions.
-
-This attribute is named Buttons, with Button having the same meaning as in Cockpitdecks. A Deck Type Button is a generic term for all possible means of interaction on the deck:
-
-1. Keys to press,
-2. Encoders to turn,
-3. Touchscreens to tap or swipe
-4. Cursors to slide
-
-A list of button types, each ButtonType leading to one or more individual buttons identified by their index, built from the `prefix`, `repeat`, and `name` attribute. See below.
+| Attribute  | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| name       | Name used inside Cockpitdecks to identifying the deck model.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| driver     | Keyword identifying the deck software driver class. (See main drivers class above.)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| background | The `background` attribute is an optional attribute only used by web decks. It specifies a background color and/or image to use for web deck representation. See exemple below.                                                                                                                                                                                                                                                                                                                                                                                    |
+| buttons    | The `Buttons` contains a list of *Deck Button Type Block* descriptions.<br><br>This attribute is named Buttons, with Button having the same meaning as in Cockpitdecks. A Deck Type Button is a generic term for all possible means of interaction on the deck:<br><br>1. Keys to press,<br>2. Encoders to turn,<br>3. Touchscreens to tap or swipe<br>4. Cursors to slide<br><br>A list of button types, each ButtonType leading to one or more individual buttons identified by their index, built from the `prefix`, `repeat`, and `name` attribute. See below. |
 
 ### Deck Type Button Block
 
 A Deck Type Button Block defines either a single button, or a group of identical buttons. For example, if a deck has a special, unique, «Escape» button, it can be defined alone in a Deck Type Button Block. Similarly, if a deck consist of a grid of regularly spaced 6 by 4 keys that are all the same, they can also be defined in a single Deck Type Button Block.
 
-#### Name
+#### Attributes
 
-Name of the button type.
+| Attribute | Defintion                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name      | Name of the button type.<br><br>The name of the button type is<br><br>- either the final name of the button, like `touchscreen`, when there is a single button with that name on the deck,<br>- or an *integer value* that will be used to build the button names, in the case the block defines a sets of identical buttons.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| actions   | Interaction with the button. Interaction can be:<br><br>- `none`: There is no interaction with the button. It is only used for display purpose. (`none` interaction can be omitted.)<br>- `press`: Simple press button that only reports when it is pressed (one event)<br>- `push`: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.<br>- `swipe`: A surface swipe event, with a starting touch and a raise events.<br>- `encoder`: A rotating encoder, that can turn both clockwise and counter-clockwise<br>- `cursor`: A linear cursor (straight or circular) delivering values in a finite range.<br><br>Action can ba a single interaction or an array of interactions like `[encore, push]` if a button combines both ways of interacting with it. |
+| feedbacks | Feedback ability of the button. Feedback can be:<br><br>- `none`: No feedback on device, or direct feedback provided by some marks on the deck device. (`none` feedback can be omitted.)<br>- `image`: Small LCD iconic image.<br>- `led`: Simple On/Off LED light.<br>- `colored-led`: A single LED that can be colored.<br>- `multi-leds`: Several, single color, LED on a ramp.<br>- `encoder-leds`: Special encoder led ramp for X-Touch Mini (4 modes)<br>- `vibrate`: emit a buzzer sound.                                                                                                                                                                                                                                                                                                                             |
+| repeat    | In case of a set if identical buttons, `repeat` if the number of time the same button is replicated along width (x) and height (y) axis.<br><br>If only one value is supplied, it is supposed to be `[value, 1]` array. For vertical layout, specify `[1, value]` instead.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-The name of the button type is
-
-- either the final name of the button, like `touchscreen`, when there is a single button with that name on the deck,
-- or an *integer value* that will be used to build the button names, in the case the block defines a sets of identical buttons.
-
-##### Examples
+##### Examples of button names
 
 In the case of a single button, the name of the button will be `touchscreen` and that name needs to be unique for the deck type.
 
@@ -184,39 +166,10 @@ repeat: [4, 3]
 
 Names of buttons will be: `k5`, `k6`, `k7`, ... `k16`.
 
-#### Actions
-
-Interaction with the button. Interaction can be:
-
-- `none`: There is no interaction with the button. It is only used for display purpose. (`none` interaction can be omitted.)
-- `press`: Simple press button that only reports when it is pressed (one event)
-- `push`: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.
-- `swipe`: A surface swipe event, with a starting touch and a raise events.
-- `encoder`: A rotating encoder, that can turn both clockwise and counter-clockwise
-- `cursor`: A linear cursor (straight or circular) delivering values in a finite range.
-
-Action can ba a single interaction or an array of interactions like `[encore, push]` if a button combines both ways of interacting with it.
-
-#### Feedback
-
-Feedback ability of the button. Feedback can be:
-
-- `none`: No feedback on device, or direct feedback provided by some marks on the deck device. (`none` feedback can be omitted.)
-- `image`: Small LCD iconic image.
-- `led`: Simple On/Off LED light.
-- `colored-led`: A single LED that can be colored.
-- `multi-leds`: Several, single color, LED on a ramp.
-- `encoder-leds`: Special encoder led ramp for X-Touch Mini (4 modes)
-- `vibrate`: emit a buzzer sound.
+##### Feedback Trick
 
 > [!NOTE] Trick
 > If a deck has a vibrate capability, it is advisable to declare it as a separate button of interaction, and use that button like any other. Vibrate is a feedback mechanism.
-
-#### Repeat
-
-In case of a set if identical buttons, `repeat` if the number of time the same button is replicated along width (x) and height (y) axis.
-
-If only one value is supplied, it is supposed to be `[value, 1]` array. For vertical layout, specify `[1, value]` instead.
 
 ### Deck Type Button Block - Complement for Web Decks
 
@@ -235,31 +188,13 @@ Web decks can have the following types of interactive buttons:
 > [!NOTE] Background Deck Type Attribute
 > Please read above in this page the `background` Deck Type attribute used to specify a background image to use for web deck display.
 
-#### Dimension
+#### Attributes
 
-The dimension attribute can be a single integer value or a list of two values.
-
-It determine the size of the button has drawn on the Web deck.
-
-If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image. `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`.
-
-#### Layout
-
-Layout of the buttons on the web deck canvas.
-
-##### Offset
-
-##### Spacing
-
-Buttons will be arranged at regular interval, starting from Offset, with supplied spacing between the buttons. Button sizes are specified in the Dimension attribute.
-
-#### Options
-
-Comma-separated list of options, a single option can either be a name=value, or just a name, in which case the value is assumed to be True.
-
-`options: count=8,active`
-
-sets options `count`to value 8, and `active` to True. `active` is equivalent to `active=true`.
+| Attribute | Definition                                                                                                                                                                                                                                                                                                                                                                 |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Dimension | The dimension attribute can be a single integer value or a list of two values.<br><br>It determine the size of the button has drawn on the Web deck.<br><br>If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image. `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`. |
+| layout    | Layout of the buttons on the web deck canvas.<br>- Offset<br>- Spacing<br>Buttons will be arranged at regular interval, starting from Offset, with supplied spacing between the buttons. Button sizes are specified in the Dimension attribute.                                                                                                                            |
+| options   | Comma-separated list of options, a single option can either be a name=value, or just a name, in which case the value is assumed to be True.<br><br>`options: count=8,active`<br><br>sets options `count`to value 8, and `active` to True. `active` is equivalent to `active=true`.                                                                                         |
 
 ### Examples of Deck Type Button Definition Block
 
@@ -490,11 +425,9 @@ INFO: found 1 xtouchmini
 # Web Decks Internals
 
 *Web Decks* are designed with simple standard web features, are rendered on an HTML Canvas, uses standard events to report interaction through basic JavaScript functions.
-The application that serves them is a very simple Flask application (2 routes) with 2 simple Ninja2 templates. The Flask application also runs the WebSocket proxy.
+The application that serves them is a very simple Flask application with Ninja2 templates. The Flask application also runs the WebSocket proxy.
 
 ![[webdecks.svg|600]]
-
-## Web Decks Initialisation Sequence
 
 ## Web Deck Messages
 
@@ -506,7 +439,7 @@ It can contain any arbitrary serialisable items.
 
 #### Send code
 
-```py
+```json
 {
     "code": code,
     "deck": name,
@@ -520,7 +453,7 @@ It can contain any arbitrary serialisable items.
 
 It can be a key image, or a «hardware» image.
 
-```py
+```json
 {
     "code": code,
     "deck": name,
@@ -536,7 +469,7 @@ It can be a key image, or a «hardware» image.
 
 #### Send code
 
-```js
+```json
 {
     "code": code,
     "deck": name,
@@ -545,12 +478,12 @@ It can be a key image, or a «hardware» image.
 
 #### Send Event
 
-```js
+```json
 {
 	"code": 0,
 	"deck": deck,
 	"key": key,
 	"event": value,
-	"data": dat
+	"data": data
 }
 ```

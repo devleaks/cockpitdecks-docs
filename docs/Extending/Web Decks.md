@@ -24,7 +24,7 @@ deckconfig
 	  ⊢ types
 	    ⊢ custom_deck_type.yaml
 	 ⊢ images
-	    ⊢ custom_background_image.yaml
+	    ⊢ custom_background_image.png
 ```
 
 Virtual decks are defined like any other deck. Their driver must be `virtualdeck`. They contain a few additional attributes to render them on a HTML web Canvas like background image or color.
@@ -141,7 +141,16 @@ background:
   image: a321neo.overhead.png
 ```
 
-#### Deckconfig.yaml
+#### deckconfig.yaml
+
+```yaml hl_lines="4 10"
+decks:
+  -	name: A321 Overhead
+	type: Virtual A321neo Overhead
+	layout: overhead
+```
+
+#### overhead/index.yaml Page
 
 ```yaml hl_lines="2 16"
 buttons:
@@ -182,3 +191,18 @@ buttons:
 ![[webdeck-a321.png]]
 
 Pay attention to the center lower annunciator, lightly white-framed. They are produced by Cockpitdecks and reflect the status of Toliss' annunciators.
+
+If buttons have been created for other, physical decks, designing the entire overhead panel is a matter of:
+
+1. using Deck Designer to spot all annunciators, encoders, buttons, etc. and NAME them.
+2. copy/pasting button deck definitions and renaming the button index to the above name.
+
+Nothing more. Nothing less.
+
+You can then hang a touchscreen over your head and display the above web page full screen.
+
+Cost: 1 touch screen, glue. Protection helmet optional, depending on your trust in the glue.
+
+You can consider web decks as live, interactive, responsive images. You can press buttons on the image, Cockpitdecks will adjust the image and its overlays to reflect X-Plane status.
+
+Taxi safely.

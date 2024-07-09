@@ -6,6 +6,12 @@ In each case, we will detail its intended use and the limits of the icon provide
 
 Also, these special icons exhibit particular design techniques that can be extended by Cockpitdecks Representation developers.
 
+
+> [!WARNING] Work In Progress
+> These icons are currently basic but do provide their function.
+> They have limited customization, but these can be added over time later if necessary or requested.
+
+
 # Display Tape
 
 A Tape is a type of display that appears like a tape being slid under the screen. Here are famous display tapes on an Airbus Primary Flight Display:
