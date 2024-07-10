@@ -52,7 +52,7 @@ When the button is pressed, a deck will load a page of buttons.
 
 ## Attributes
 
-| Attribute     | Meaning                                                                                 |
+| Attribute     | Definition                                                                                 |
 | ------------- | --------------------------------------------------------------------------------------- |
 | `page`        | Mandatory. Name of the page to load. The page must be in the Layout of the target deck. |
 | `remote_deck` | Optional. If present, will load the page on the target deck.                            |
@@ -63,7 +63,7 @@ When the button is pressed, a deck will load a page of buttons.
 
 ## State Values
 
-| Attribute | Meaning                          |
+| Attribute | Definition                          |
 | --------- | -------------------------------- |
 | `page`    | page that is currently displayed |
 
@@ -75,9 +75,9 @@ Push button.
 
 ## Attributes
 
-`command`
-
-Mandatory. X-Plane command that is executed each time the button is pressed.
+| Attribute | Definition                                                                      |
+| --------- | ---------------------------------------------------------------------------- |
+| `command` | Mandatory. X-Plane command that is executed each time the button is pressed. |
 
 > [!NOTE]
 > Command is a mandatory parameter but if no command is necessary a command placeholder value can be used. Command placeholder value are any of the following string:
@@ -90,14 +90,9 @@ PushEvent. Please note that PushEvent consists of 2 distinct events, a pressed e
 
 ## Options
 
-`auto-repeat`
-
-Auto repeat command at specified pace while the button remains pressed.
-
-`auto-repeat` option accepts a couple of optional values:
-
-- `delay`: Time (in second) after which the auto-repeat starts, default to 1 second.
-- `speed`: Time (in second) between 2 executions of the command.
+| Option        | Definition                                                                                                                                                                                                                                                                                              |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `auto-repeat` | Auto repeat command at specified pace while the button remains pressed.<br>`auto-repeat` option accepts a couple of optional values:<br><br>- `delay`: Time (in second) after which the auto-repeat starts, default to 1 second.<br>- `speed`: Time (in second) between 2 executions of the command. |
 
 ```
 	options: auto-repeat=3/0.5,dot
@@ -124,9 +119,9 @@ Only PushEvent can be used to trigger Longpress Activation since both press and 
 
 ## Attributes
 
-`command`
-
-Mandatory. X-Plane command that is executed while the button is pressed.
+| Attribute | Definition                                                                      |
+| --------- | ---------------------------------------------------------------------------- |
+| `command` | Mandatory. X-Plane command that is executed each time the button is pressed. |
 
 X-Plane will issue a `beginCommand` when the button is pressed and a `endCommand` when released.
 
@@ -145,15 +140,10 @@ PushEvent, PressEvent, LongPressEvent
 
 ## Attributes
 
-`commands`
-
-Optional pair of X-Plane commands that are executed alternatively. Two commands must be supplied, but the same command can be provided twice.
-
-`set-dataref`
-
-Optional dataref to set On(=1) or Off (=0).
-
-Either attribute can be set or both. In the latter case, the command is first executed and then the dataref is set.
+| Attribute     | Definition                                                                                                                                                                |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `commands`    | Optional pair of X-Plane commands that are executed alternatively. Two commands must be supplied, but the same command can be provided twice.                          |
+| `set-dataref` | Optional dataref to set On(=1) or Off (=0).<br><br>Either attribute can be set or both. In the latter case, the command is first executed and then the dataref is set. |
 
 # UpDown
 
@@ -163,25 +153,12 @@ Cycle Up and Down button.
 
 ## Attributes
 
-`commands`
-
-X-Plane commands that are executed when pushes increase value, and when pushes descrease value.
-
-`stops=3`
-
-Number of stop values. For example: Stops=3 will give 0-1-2-1-0 cycles, with 3 stops 0, 1, and 2.
-
-`initial-value`
-
-If an initial value is supplied, it's sign indicated how the value will evolve.
-
-For example, if the initial value is 1, the next value will be 2 (go up). If the initial value is -1, the initial value will be set to 1, but the next value will be zero (go down).
-
-`set-dataref`
-
-Optional dataref to set the value of the current stop.
-
-Very much like On/Off activation either `commands` or `set-dataref` can be supplied or both.
+| Attribute       | Definition                                                                                                                                                                                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `commands`      | X-Plane commands that are executed when pushes increase value, and when pushes descrease value.                                                                                                                                                                             |
+| `stops=3`       | Number of stop values. For example: Stops=3 will give 0-1-2-1-0 cycles, with 3 stops 0, 1, and 2.                                                                                                                                                                           |
+| `initial-value` | If an initial value is supplied, it's sign indicated how the value will evolve.<br><br>For example, if the initial value is 1, the next value will be 2 (go up). If the initial value is -1, the initial value will be set to 1, but the next value will be zero (go down). |
+| `set-dataref`   | Optional dataref to set the value of the current stop.<br><br>Very much like On/Off activation either `commands` or `set-dataref` can be supplied or both.                                                                                                                  |
 
 # ShortOrLongpress
 
@@ -189,13 +166,12 @@ Short or long press has two commands, one that is executed when the button is pr
 
 `type`: short-or-longpress
 
-`commands`
+## Attributes
 
-Two commands, the first one is called on short press.
-
-`long-time`
-
-Time to press the button to activate second command. Default to 2 seconds.
+| Attribute   | Definition                                                                 |
+| ----------- | -------------------------------------------------------------------------- |
+| `commands`  | Two commands, the first one is called on short press.                      |
+| `long-time` | Time to press the button to activate second command. Default to 2 seconds. |
 
 # Encoder
 
@@ -205,14 +181,16 @@ An Encoder is a rotating knob or dial with *steps*. Steps are often materialised
 
 ## Attributes
 
-`commands`
-
-An Encoder has two commands, one that is executed for each step while turning clockwise, and one for each step when turning counter-clockwise.
+| Attribute  | Definition                                                                                                                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `commands` | An Encoder has two commands, one that is executed for each step while turning clockwise, and one for each step when turning counter-clockwise. |
 
 ## State Values
 
-- `rotation_clockwise`: number of times/clicks the encoder was turned clockwise.
-- `rotation_counterclockwise`: same.
+| State                       | Definition                                                  |
+| --------------------------- | -------------------------------------------------------- |
+| `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
+| `rotation_counterclockwise` | same.                                                    |
 
 # EncoderPush
 
@@ -222,13 +200,9 @@ An EncoderPush is the combination of an Encoder and a push button.
 
 ## Attributes
 
-`commands`
-
-An EncoderPush has 3 commands:
-
-1. First command gets executed when it is pushed
-2. Second command gets executed when encoder is turned clockwise
-3. Third command gets executed when encoder is turned counterclockwise
+| Attribute  | Definition                                                                                                                                                                                                                           |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `commands` | An EncoderPush has 3 commands:<br><br>1. First command gets executed when it is pushed<br>2. Second command gets executed when encoder is turned clockwise<br>3. Third command gets executed when encoder is turned counterclockwise |
 
 # EncoderOnOff
 
@@ -238,36 +212,23 @@ An EncoderOnOff is the combination of an Encoder and an OnOff button.
 
 ## Attributes
 
-`commands`
+| Attribute  | Definition                                                                                                                                                                                                                                                                                                        |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `commands` | An EncoderPush has 4 commands:<br><br>1. First command gets executed when it is OFF, to turn it ON<br>2. Second command gets executed when it is ON, to turn it OFF<br>3. Third command gets executed when encoder is turned clockwise<br>4. Fourth command gets executed when encoder is turned counterclockwise |
 
-An EncoderPush has 4 commands:
+## Options
 
-1. First command gets executed when it is OFF, to turn it ON
-2. Second command gets executed when it is ON, to turn it OFF
-3. Third command gets executed when encoder is turned clockwise
-4. Fourth command gets executed when encoder is turned counterclockwise
-
-`options: dual`
-
-With option `dual`, the activation uses two more commands.
-
-1. First command gets executed when it is OFF, to turn it ON
-2. Second command gets executed when it is ON, to turn it OFF
-3. Third command gets executed when encoder is turned clockwise and ON
-4. Fourth command gets executed when encoder is turned counterclockwise and ON
-5. Third command gets executed when encoder is turned clockwise and OFF
-6. Fourth command gets executed when encoder is turned counterclockwise and OFF.
+| Attribute | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dual`    | With option `dual`, the activation uses two more commands.<br><br>1. First command gets executed when it is OFF, to turn it ON<br>2. Second command gets executed when it is ON, to turn it OFF<br>3. Third command gets executed when encoder is turned clockwise and ON<br>4. Fourth command gets executed when encoder is turned counterclockwise and ON<br>5. Third command gets executed when encoder is turned clockwise and OFF<br>6. Fourth command gets executed when encoder is turned counterclockwise and OFF. |
 
 # EncoderLongPush
 
-`commands`
+## Attributes
 
-An EncoderLongPush has 4 commands:
-
-1. First command  gets executed when encoder is turned clockwise
-2. Second command gets executed when encoder is turned counterclockwise
-3. Third command gets executed when encoder is turned clockwise *and pushed*
-4. Fourth command gets executed when encoder is turned counterclockwise *and pushed*
+| Attribute  | Definition                                                                                                                                                                                                                                                                                                                                                    |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `commands` | An EncoderLongPush has 4 commands:<br><br>1. First command  gets executed when encoder is turned clockwise<br>2. Second command gets executed when encoder is turned counterclockwise<br>3. Third command gets executed when encoder is turned clockwise *and pushed*<br>4. Fourth command gets executed when encoder is turned counterclockwise *and pushed* |
 
 # EncoderValue
 
@@ -277,33 +238,15 @@ An EncoderValue is an Encoder that increases or decrease an internal value each 
 
 ## Attributes
 
-`initial-value`
-
-Initial value. Default to 0.
-
-`step`
-
-Amount of value increase or decrease.
-
-`stepxl`
-
-Alternate value for step increase or decrease. If the encoder is capable of push action, the push action will switch between the `step` and `stepxl` values.
-
-`min`
-
-Minimal value.
-
-`max`
-
-Maximal value.
-
-`formula`
-
-Optional. Formula to transform the `${state:button-value}` *before* it is sent to the dataref.
-
-`set-dataref`
-
-Optional dataref to set to the value of the computed value. The value is sent right away, after each encoder activation.
+| Attribute       | Definition                                                                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `initial-value` | Initial value. Default to 0.                                                                                                                                 |
+| `step`          | Amount of value increase or decrease.                                                                                                                        |
+| `stepxl`        | Alternate value for step increase or decrease. If the encoder is capable of push action, the push action will switch between the `step` and `stepxl` values. |
+| `min`           | Minimal value.                                                                                                                                               |
+| `max`           | Maximal value.                                                                                                                                               |
+| `formula`       | Optional. Formula to transform the `${state:button-value}` *before* it is sent to the dataref.                                                               |
+| `set-dataref`   | Optional dataref to set to the value of the computed value. The value is sent right away, after each encoder activation.                                     |
 
 # Slider
 
@@ -313,13 +256,10 @@ A Slider is a one dimensional cursor that produces a continuous value within a r
 
 ## Attributes
 
-`set-dataref`
-
-Optional. Dataref to write the value to, if present.
-
-`formula`
-
-Optional. Formula to transform the `${state:button-value}` (value produced by the slider) *before* it is sent to the dataref.
+| Attribute     | Definition                                                                                                                    |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `set-dataref` | Optional. Dataref to write the value to, if present.                                                                          |
+| `formula`     | Optional. Formula to transform the `${state:button-value}` (value produced by the slider) *before* it is sent to the dataref. |
 
 # Swipe
 
