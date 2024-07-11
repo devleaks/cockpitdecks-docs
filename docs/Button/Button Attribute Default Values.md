@@ -46,6 +46,7 @@ In `night` mode, the default value `dark-default-label-color` value is first sea
 > [!NOTE]
 > Ultimately, this scheme can be extended to any theme name value, like airbus, or barbie. However, it is advisable to limit theme default values to global appearance parameters like colors, fonts, textures, and sizes.
 
+There is no automatic theme switch, but a [[Button Activation#Theme|special activation]] allows for theme setting.
 # Configuration Files
 
 1. Cockpitdecks internals (cannot be modified)

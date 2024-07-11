@@ -67,6 +67,22 @@ When the button is pressed, a deck will load a page of buttons.
 | --------- | -------------------------------- |
 | `page`    | page that is currently displayed |
 
+# Theme
+
+`type: theme`
+
+When the button is pressed, the main theme will be changed.
+
+## Attributes
+
+| Attribute | Definition                |
+| --------- | ------------------------- |
+| `theme`   | Mandatory. Name of theme. |
+
+## Events
+
+`PushEvent` and `PressEvent` can trigger the Page activation.
+
 # Push
 
 `type: push`

@@ -5,7 +5,7 @@ Cockpitdecks comes with two designer tools.
 
 # Web Deck Designer
 
-The Deck Designer is a tool that help positioning and sizing elements on a web deck background image.
+The Deck Designer is a tool that help positioning, sizing, and naming elements on a web deck background image.
 
 ![[deckdesigner.png|600]]
 
@@ -20,7 +20,7 @@ A layout can be saved and loaded later. When saving, two files are created, one 
 
 The web deck can then be used with the same background image, and each button, encoder, or hardware image will be laid over the background at the very precise defined position and size.
 
-Of course, manual tweaking of position and sizes is sometimes necessary, but the gross work of estimation is completed in fun time. For instance image size may need to be evenly rounded to the same value for aesthetic layouts.
+Of course, manual tweaking of position and sizes is sometimes necessary, but the gross work of estimation is completed in fun time. For instance image size may need to be evenly rounded to the same value for all buttons for aesthetic layouts.
 
 ## Development Example
 
@@ -30,9 +30,10 @@ See the A321 Overhead Panel example. Deck Designer is used to define the very pr
 
 The Button Designer is a simple tools that help test and preview button design.
 
-A button can be defined, either through a form by filling a few I TUI rive fields, or by typing Yaml code directly in the code window. The design tool also can generate Yaml code from the form parameters values.
+A button can be defined, either through a form by filling a few intuitive fields, or by typing Yaml code directly in the code window. The design tool also can generate Yaml code from the form parameters values.
 
-The opposite is not true, when entering or adjusting code in the coding window, form elements are not updated.
+> [!WARNING] Form is not completed from code area
+> The opposite is not true, when entering or adjusting code in the coding window, form elements are not updated.
 
 ![[buttondesigner.png|600]]
 
@@ -41,7 +42,7 @@ By pressing the render button, Cockpitdecks will generate a button image and mak
 When "Saving..." the button, it is added to a file in the
 
 ```
-< current-aircraft | deck-name >/deckconfig/layout-name/page-name.yaml
+< current-aircraft | deck-name >/deckconfig/<layout-name>/<page-name>.yaml
 ```
 
 file at the index position mentioned in the first part of the form. (If no layout or page name is supplied int he form, acceptable default values are provided.)
@@ -60,60 +61,6 @@ Representations are added one at a time, some are not currently working.
 
 What is working well, it the testing area: You can paste your button definition yaml code in the code text area and press render to get a preview of your button, data included if connected to a simulator.
 
-# Workflow
+# See Also
 
-Ideally, X-Plane simulator should be running to get live response data.
-
-Place a web deck image in the aircraft resources/decks/images folder.
-
-Start Cockpitdecks. Head to the Deck Designer page and select the above image.
-
-Add interactors like buttons, encoders, and hardware images. Save the layout.
-
-Saving the layout will create a new Deck Type, and will add a new deck in the config.yaml file, like any other deck, and add it to the secret.yaml file as well.
-
-Reload the decks, which will provoke the reload of virtual web decks as well.
-
-Head to the web deck home page. Your new deck appears.
-
-In the web deck list, select the newly created deck it will open in a new window.
-
-Using the button designer create and test a new button for your new deck selectable at the top. Fill in properly layout, page name, and button index. Save the button.
-
-Reload pages immediately preview the appearance on the new button.
-
-It is now possible to adjust any of the layout, or button definition, save them, reload and use the button.
-
-> [NOTE] Web Deck Definitions
-> Web deck definitions are located either in the Cockpitdecks code or in the aircraft deckconfig folder. On page reloads, web decks definitions located in the code are **not** reloaded. Web deck definitions in the aircraft folder are reloaded.
-
-As a first button, I always create a new Reload button that I place on the side so that I can reload the whole setup each time some files where saved. When happy with the final deck, I simply comment out the code of the reload button. You will need it later…
-
-```
-index: my first button
-type: reload
-icon: reload.png
-```
-
-(Using an external file watcher, it is possible to provoke a deck reload each time a file has been saved, using curl(1) to post a request for page reload to Cockpitdecks. There is a handy shell script that does exactly this using nodejs nodemon utility.)
-
-# A Word of Advise
-
-Never ever forget that the goal of these designer tools is currently not to provide you with a final design ready to be used. One day may be. The above designer tools aim at providing you with skeleton files that contain data that is difficult to get or estimate, thereby removing numerous trial and errors attempts.
-
-The goal of the Deck Designer is to supply deck image positions and sizes for all items that need displaying on a web deck.
-
-The goal of the Button Designer is twofold:
-
-1. Help you test button design right away, viewing a button’s appearance without requiring numerous « deck reload page ».
-2. Learning the button design options and capabilities without searching through the code.
-
-I hope both tools reach their goal and help you design buttons faster for your decks.
-
-One more thing…
-
-Never ever forget enjoy flying with your home made set up.
-
-If Cockpitdecks crashes or is not responding, just restart it. It will restart, reconnect, and reload necessary data. If failures are persistent, just drop us a mail with a description of the problem and `Cockpitdecks.log` file.
-
-Now just go and take off for new adventures.
+[[Workflow for Web Deck Design]]

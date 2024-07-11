@@ -1,5 +1,9 @@
 Here is a suggested workflow for web deck design.
 
+# Workflow
+
+Ideally, X-Plane simulator should be running to get live response data.
+
 Get a background image. PNG or JPEG only.
 
 Place it in
@@ -14,131 +18,104 @@ Start cockpitdecks for that aircraft:
 $ python bon/cockpitdecks_start.py <Aircraft>
 ```
 
-If there are no deck available to the aircraft, Cockpitdecks will terminate.
-
-To prevent that, and use the Deck Designer, set the constant DESIGNER to True in cockpitdecks_start.py.
-
-Cockpitdecks will start the application server and Deck Designer will be available
-
-if there are images in the above folder.
+Cockpitdecks will start the application server, notice the available background image and Deck Designer will be available.
 
 # Deck Designer
 
-In a browser, head to the designer:
+Head to the Deck Designer page at
 
 ```
-http://host:7777/designer
+http://<hostname>:7777/designer
 ```
 
-Your image name should appear.
+and select the above image.
 
-Select it to start a designer for that image.
+Add *interactors* like buttons, encoders, and hardware images. Resize interactors, position them over the background image, and name them.
 
-Place a single first button.
+Double click inside the button to resize it.
 
-Change de label to RELOAD. (Doubble click on label to change it, press enter when text is entered.)
-
-Resize and move the button to your liking.
-
-Doubble click inside the button to resize it,
-
-click outside the button to deselect it.
+Click outside the button to deselect it.
 
 Press Delete key when selected to remove it.
 
-Save the deck layout. The deck layout is now saved in
+Double on the label to rename it. Press ++enter++ to quit the edit text area.
+
+Save the layout. You can load it later if you wish and continue editing.
+
+We recommand creating a button named `reload` and place it at a convenient location on the image.
+
+Saving the layout will create a new Deck Type, and will add a new deck in the config.yaml file, like any other deck, and add it to the secret.yaml file as well.
 
 ```
-<Aircraft>/deckconfig/resources/decks/types
+<Aircraft>/deckconfig/resources/decks/types/<image-name>.json
+<Aircraft>/deckconfig/resources/decks/types/<image-name>.yaml
 ```
 
-There should be two files
+Reload the decks, which will provoke the reload of virtual web decks as well.
 
-```
-<image-name>.json     <-- Never touch this one, you would loose your layout
-<image-name>.yaml
-```
-
-The new deck type is named after the image:
-
-```
-name: a321-xp
-driver: virtualdeck
-background:
-  image: a321-xp.png
-buttons:
-- action:
-  - push
-  dimension:
-  - 40
-  - 40
-  feedback: image
-  layout:
-    offset:
-    - 581
-    - 869
-  name: RELOAD
-```
-
-The first save should also have created a new deck in deckconfig/config.yaml:
-
-```
-  - name: <image-name>
-    type: <image-name>
-    layout: <image-name>
-```
-
-and added it in serial.yaml:
-
-```
-<image-name>: <image-name>
-```
-
-Cockpitdecks configuration needs reloading to take into account this new deck.
-
-If there are deck running, Cockpitdecks will reload all decks.
-
-If not, Cockpitdecks will start and serve the new deck.
-
-If you head to the Web Deck home page, the deck will now appear with a thin white frame
-
-around the added load button, however, the button will remain inactive.
+> [!NOTE] Web Deck Definitions
+> Web deck definitions are located either in the Cockpitdecks code or in the aircraft deckconfig folder. On page reloads, web decks definitions located in the code are **not** reloaded. Web deck definitions in the aircraft folder are reloaded.
 
 # Button Designer
 
-Go back to the Designer home page and select Button Designer to start it.
+Head to the web deck home page.
 
-Fill in the form:
+```
+http://<hostname>:7777/
+```
 
-Select the deck, give a name to a layout (default would be default if none provided).
+Your new deck appears. In the web deck list, select the newly created deck it will open in a new window.
 
-The button name is "RELOAD", the label we gave it.
+Using the button designer create and test a new button for your new deck selectable at the top.
 
-Give a name to a page (default would be index).
+Select the deck, give a name to a layout (default would be default if none provided), and to the page.
+
+If you followed our advise, there should be a button named `reload`, the label we gave it in the Deck Designer.
 
 Select reload as Activation.
 
-Select icon as Representation. Select icon named "reload-page-icon.png".
+Select icon as Representation. Select icon named "reload.png".
 
 Press render to preview rendering.
 
 Press save to save the layout/page/button.
 
-# Testing
+Reload pages immediately preview the appearance on the new button.
 
-Head to Cockpitdecks Web Deck home page:
+From now on, it is now possible to adjust any of the layout, or button definition, save them, reload and use the button.
+
+When happy with the final deck, I simply comment out the code of the reload button. You will need it later…
 
 ```
-http://host:7777/
+index: my first button
+type: reload
+icon: reload.png
 ```
 
-Select your deck in the list.
+# A Word of Advise
 
-Test the reload button to test it.
+Never ever forget that the goal of these designer tools is currently not to provide you with a final design ready to be used. One day may be. The above designer tools aim at providing you with skeleton files that contain data that is difficult to get or estimate, thereby removing numerous trial and errors attempts.
 
-## Automation
+The goal of the Deck Designer is to supply deck image positions and sizes for all items that need displaying on a web deck.
 
-USing nodemon (nodejs), it is possible to reload the decks automatically when a deck type or layout file has changed.
+The goal of the Button Designer is twofold:
+
+1. Help you test button design right away, viewing a button’s appearance without requiring numerous « deck reload page ».
+2. Learning the button design options and capabilities without searching through the code.
+
+I hope both tools reach their goal and help you design buttons faster for your decks.
+
+One more thing…
+
+Never ever forget enjoy flying with your home made set up.
+
+If Cockpitdecks crashes or is not responding, just restart it. It will restart, reconnect, and reload necessary data. If failures are persistent, just drop us a mail with a description of the problem and `Cockpitdecks.log` file.
+
+Now just go and take off for new adventures.
+
+# Automation
+
+Using an external file watcher, it is possible to provoke a deck reload each time a file has been saved, using curl(1) to post a request for page reload to Cockpitdecks. There is a handy shell script that does exactly this using nodejs nodemon utility.
 
 ```
 $ nodemon -w aircrafts/*/deckconfig/resources/decks/types -e yaml --exec curl "http://127.0.0.1:7777/reload-decks"
