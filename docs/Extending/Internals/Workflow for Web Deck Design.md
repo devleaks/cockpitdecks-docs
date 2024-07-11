@@ -4,7 +4,7 @@ Here is a suggested workflow for web deck design.
 
 Ideally, X-Plane simulator should be running to get live response data.
 
-Get a background image. PNG or JPEG only.
+Get a background image. `PNG` or `JPEG` only.
 
 Place it in
 
@@ -15,7 +15,7 @@ Place it in
 Start cockpitdecks for that aircraft:
 
 ```sh
-$ python bon/cockpitdecks_start.py <Aircraft>
+$ cockpitdecks-cli <Aircraft>
 ```
 
 Cockpitdecks will start the application server, notice the available background image and Deck Designer will be available.
@@ -87,7 +87,7 @@ From now on, it is now possible to adjust any of the layout, or button definitio
 When happy with the final deck, I simply comment out the code of the reload button. You will need it later…
 
 ```
-index: my first button
+index: reload
 type: reload
 icon: reload.png
 ```
@@ -117,7 +117,7 @@ Now just go and take off for new adventures.
 
 Using an external file watcher, it is possible to provoke a deck reload each time a file has been saved, using curl(1) to post a request for page reload to Cockpitdecks. There is a handy shell script that does exactly this using nodejs nodemon utility.
 
-```
+```sh
 $ nodemon -w aircrafts/*/deckconfig/resources/decks/types -e yaml --exec curl "http://127.0.0.1:7777/reload-decks"
 ```
 

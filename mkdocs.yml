@@ -132,6 +132,7 @@ markdown_extensions:
   - markdown.extensions.smarty:
       smart_quotes: false
   - pymdownx.betterem:
+  - pymdownx.keys
   - markdown.extensions.attr_list:
   - markdown.extensions.def_list:
   - markdown.extensions.tables:

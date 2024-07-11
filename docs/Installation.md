@@ -131,10 +131,10 @@ $ cockpitdecks-cli
 
 #### For Cockpitdecks Developers
 
-If you cloned Cockpitdecks sofware in a folder, you can start Cockpitdecks with
+If you cloned Cockpitdecks software in a folder, you can start Cockpitdecks with
 
 ```shell
-$ python start.py
+$ python cockpitdecks/start.py
 ```
 
 from the top folder of the source code.
@@ -149,7 +149,7 @@ $ cockpitdecks-cli
 
 ### Start Cockpitdecks
 
-To start Cockpitdecks, use the `cockpitdecks_start.py` script by supplying the X-Plane aircraft folder where deck confit resides. Start the python script and supply the folder name where `deckconfig` folder resides.
+To start Cockpitdecks, use the `cockpitdecks-cli` script by supplying the X-Plane aircraft folder where deck confit resides. Start the python script and supply the folder name where `deckconfig` folder resides.
 
 ```shell
 $ cockpitdecks-cli "/Applications/X-Plane 12/Aircraft/Extra Aircraft/Toliss A321"
@@ -159,7 +159,7 @@ Cockpitdecks will look for `deckconfig` folder in the aircraft folder and start.
 
 Cockpitdecks will repetitively try to connect to X-Plane. If it fails to connect, it infinitely tries again until it succeeds. If not connected, decks will load but no command will be issued to X-Plane and no data will come from X-Plane to update decks.
 
-When Cocpiktdecks successfully connects to X-Plane, it refreshes all pages by *reloading* them to reflect the state of the aircraft on the decks.
+When Cockpitdecks successfully connects to X-Plane, it refreshes all pages by *reloading* them to reflect the state of the aircraft on the decks.
 
 If Cockpitdecks fails to connect to X-Plane or notices it does no longer receive dataref values from X-Plane, it will again repetitively try to connect to it until it succeeds.
 
