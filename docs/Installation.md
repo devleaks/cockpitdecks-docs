@@ -97,21 +97,19 @@ Cockpitdecks XPPython3 plugins are located in the
 < Cockpitdecks-installed-code > /cockpitdecks/resources/xppython3-plugins
 ```
 
-folder in the source code. There are 2 single files.
+folder in the source code. There is a single file.
 
 To execute long press commands, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder.
 
-```shell
-... /X-Plane 12/resources/plugins/PythonPlugins/PI_decks_helper.py
-```
-
 To fetch string-typed datarefs, the [[Complement Plugin - String Datarefs|String Dataref UDP Poster]] needs to be installed in XPPython3 PythonPlugins folder.
 
-```shell
-... /X-Plane 12/resources/plugins/PythonPlugins/PI_string_dataref_udp.py
-```
-
 See [[String Datarefs]] for details about this plugin.
+
+To install both services described above, copy the plugin file to:
+
+```shell
+... /X-Plane 12/resources/plugins/PythonPlugins/PI_cockpitdecks.py
+```
 
 # Usage
 
@@ -134,7 +132,7 @@ $ cockpitdecks-cli
 If you cloned Cockpitdecks software in a folder, you can start Cockpitdecks with
 
 ```shell
-$ python cockpitdecks/start.py
+$ python start.py
 ```
 
 from the top folder of the source code.
