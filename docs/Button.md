@@ -6,24 +6,11 @@ In that list, each button is defined by a list of attributes that will determine
 
 # Button Definition
 
-The *Button Definition* is a list of parameters that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button. Here is an example of button definition:
+The *Button Definition* is a list of parameters that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button.
+![[button-anatomy.png]]
+Resulting button:
 
-```yaml hl_lines="4 6"
-buttons:
-  - index: 2
-    name: MASTER WARNING
-    type: push
-    command: sim/annunciator/clear_master_warning
-    annunciator-animate:
-      text: "MASTER\nWARN"
-      text-color: firebrick
-      text-font: DIN Condensed Black.otf
-      text-size: 72
-      dataref: AirbusFBW/MasterWarn
-      animation-speed: 2.0
-```
-
-The above definition creates a button named MATER WARNING, that will be placed at position 2 on the deck. The button can be pushed, and when pushed, it will trigger the command `sim/annunciator/clear_master_warning`. The button will display the status of the `AirbusFBW/MasterWarn` value in the simulator. The button is an animation. If the value in the simulator is true (i.e. not zero), the animation will run and display a blinking red text message. The text will blink at a rate of 2 seconds. If the value is false, the button will not display anything.
+![[button.png|200]]
 
 The following Sections describe button definition attributes that are common to all buttons, what ever they do and represent.
 
