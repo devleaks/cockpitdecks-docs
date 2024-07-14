@@ -8,7 +8,7 @@ Cockpitdecks communicates with X-Plane through the network UDP protocol. This of
 
 Through UDP ports, X-Plane reports some internal parameter values (called datarefs), and accepts commands to execute.
 
-Never ever forget that in the UDP protocol, there is no guarantee of delivery, ordering, or duplicate protection.
+Never ever forget that in the UDP protocol, there is no guarantee of delivery, ordering, or duplicate protection. This is inherent to the UDP protocol. When something is sent, it is never guaranteed that it will be received or acknowledged.
 
 # Installation
 
@@ -16,33 +16,15 @@ Cockpitdecks is a regular python application and will run with python 3.10, or n
 
 It is recommended to create a dedicated environment and run Cockpitdecks within that environment. A set of packages need to be installed in that environment before Cockpitdecks can run.
 
-1. Check Installation Requirements
-2. Create a directory and download Cockpitdecks software from github.
-3. Create a python environment.
-4. Switch to that environment.
-5. Install necessary python packages.
-6. Test run Cockpitdecks without X-Plane.
-7. Install optional Deck Helper plugin in X-Plane
-8. Download and install aircraft deck configurations and layout.
-9. Start Cockpitdecks application.
-10. Start X-Plane.
-11. Enjoy all your deck devices activated in X-Plane.
+## Enable X-Plane UDP
 
-# Installation Requirements
+(See X-Plane UDP manual. Will provide information here later.)
 
-A computer with a modern operating system.
-
-Python language interpreter version 3.10 or above.
-
-Some knowledge of the python ecosystem.
-
-# Installation Process
-
-## Install Software
+## Install Cockpitdecks Application
 
 ### Install Cockpitdecks Software
 
-Create a new python environment and activate it.
+Create a new python environment and activate it. In that environment, issue the pip install command:
 
 ```shell
 $ pip install git+https://github.com/devleaks/cockpitdecks.git
@@ -81,17 +63,33 @@ $ pip install git+https://github.com/devleaks/python-berhinger-xtouchmini.git
 
 ### Install Cockpitdecks Helper Plugin
 
-(You can do this step later.)
+(You can do this step later, but some functions will not work or be available inside Cockpitdecks.)
+
+X-Plane UDP has some shortcomings that prevent some operations with decks.
+
+To circumvent this, Cockpitdecks provides a small python plugin called the Cockpitdecks Helper plugin, that need to be installed into X-Plane. The Cockpitdecks Helper plugin will execute some instructions on behalf of the Cockpitdecks application. Cockpitdecks Helper plugin just need to be installed and will provide its services to Cockpitdecks.
+
+If not installed, some of the commands inside Cockpitdecks will work properly.
+
+#### Long command execution
 
 Some commands cannot be executed directly through UDP. For exemples, commands that have a start and an end cannot be started or ended though UDP. It is an X-Plane UDP limitation.
 
-To circumvent this, Cockpitdecks provides a small python plugin called the Cockpitdecks Helper plugin, that need to be installed into X-Plane to allow for start and end commands. The Cockpitdecks Helper plugin will execute start and end commands on behalf of the Cockpitdecks application. Cockpitdecks Helper plugin just need to be installed and will provide its services to Cockpitdecks. This plugin does not take any resource, it only adds and removes commands each time an aircraft is loaded.
+To execute long press commands, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder.
 
 The Cockpitdecks Helper Plugin works automatically, reads `deckconfig` configuration and creates a pair of (beginCommand, endCommand) for each *long press* command.
 
+#### String Datarefs
+
+To fetch string-typed datarefs, the [[Complement Plugin - String Datarefs|String Dataref UDP Poster]] needs to be installed in XPPython3 PythonPlugins folder.
+
+See [[String Datarefs]] for details about this plugin.
+
+#### Cockpitdecks Helper Plugin Installation
+
 Cockpitdecks Helper Plugin is written in the python language. So it needs the [XPPython3](https://xppython3.readthedocs.io/) X-Plane plugin installed. XPPython3 plugin allow for execution of python code inside X-Plane.
 
-Cockpitdecks XPPython3 plugins are located in the
+Cockpitdecks XPPython3 plugin is located in the
 
 ```sh
 < Cockpitdecks-installed-code > /cockpitdecks/resources/xppython3-plugins
@@ -99,19 +97,21 @@ Cockpitdecks XPPython3 plugins are located in the
 
 folder in the source code. There is a single file.
 
-To execute long press commands, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder.
-
-To fetch string-typed datarefs, the [[Complement Plugin - String Datarefs|String Dataref UDP Poster]] needs to be installed in XPPython3 PythonPlugins folder.
-
-See [[String Datarefs]] for details about this plugin.
-
 To install both services described above, copy the plugin file to:
 
 ```shell
 ... /X-Plane 12/resources/plugins/PythonPlugins/PI_cockpitdecks.py
 ```
 
-# Usage
+and ask XPPython3 plugin to reload the scripts.
+
+### Install Aircraft Specific `deckconfig` Folders
+
+Duane, a Cockpitdecks aficionado has realized several configurations for several aircrafts.
+
+You can [find them here](https://github.com/dlicudi/cockpitdecks-configs), download them and install them in your aircraft folder.
+
+# Cockpitdecks Usage
 
 ## Disconnect OEM Applications
 
@@ -162,12 +162,6 @@ When Cockpitdecks successfully connects to X-Plane, it refreshes all pages by *r
 If Cockpitdecks fails to connect to X-Plane or notices it does no longer receive dataref values from X-Plane, it will again repetitively try to connect to it until it succeeds.
 
 The *aircraft folder* (Toliss A321) where cockpitdecks tries to find a `deckconfig` folder can be anywhere, it does not need to be in the X-Plane aircraft folder. However, the `deckconfig` folder must be in the X-Plane aircraft folder for the Cockpitdecks Helper Plugin. (For Unix technical people, a symbolic link does the trick.)
-
-## Install Aircraft Config
-
-Duane, a Cockpitdecks aficionado has realized several configurations for several aircrafts.
-
-You can [find them here](https://github.com/dlicudi/cockpitdecks-configs), download them and install them in your aircraft folder.
 
 # Troubleshooting
 

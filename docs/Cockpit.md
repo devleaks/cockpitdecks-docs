@@ -4,15 +4,13 @@ It starts up the entire Cockpitdecks application. It establishes connection to t
 
 # Aircraft Configuration
 
-Decks are particular to one aircraft. All files necessary to Cockpitdecks are located in a single folder named `deckconfig` that is found in the X-Plane aircraft folder currently being used.
-
-Cockpitdecks will look for a folder named `deckconfig` in the X-Plane folder of that aircraft. Cockpitdecks will discover all decks connected to the system and available to it in the file named `config.yaml`.
+Decks are particular to one aircraft. All files necessary to Cockpitdecks are located in a single folder named `deckconfig` that is found in the folder of the X-Plane aircraft currently being used. In that folder, Cockpitdecks will discover all decks connected to the system and available to it.
 
 All configuration files for Cockpitdecks are *Yaml-formatted files*. Yaml file contains a structured list of (name, value) pairs. The name is referred to as an *attribute*. The *value* can be almost anything: A number, a string, a list of things, or a list of other attributes.
 
-# deckconfig Folder
+# The `deckconfig` Folder
 
-Here is the overall structure of the files and sub-folders inside the `deckconfig` folder.
+The overall structure of the files and sub-folders inside the `deckconfig` folder is as follow:
 
 ```
 <X-Plane Aircraft Folder>
@@ -46,13 +44,13 @@ Here is the overall structure of the files and sub-folders inside the `deckconfi
 
 The  `deckconfig` folder contains the following files and sub-folders:
 
-| Name         | Description                                                                                                                       |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| config.yaml  | Main configuration file                                                                                                           |
-| secreat.yaml | Serial numbers of decks used by Cockpitdecks                                                                                      |
-| resources    | Resource files used by this configuration. Resources are icons, fonts, images, etc.                                               |
-| layout       | A Layout is a folder that contains what is displayed on a deck. There can be as many Layout Folder as necessary for this aircraft |
-| docs         | Documentation relative to this aircraft and configuration                                                                         |
+| Name         | Description                                                                                                                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| config.yaml  | Main configuration file                                                                                                                                                                                |
+| secreat.yaml | Serial numbers of decks used by Cockpitdecks                                                                                                                                                           |
+| resources    | Resource files used by this configuration. Resources are icons, fonts, images, etc.                                                                                                                    |
+| docs         | Documentation relative to this aircraft and configuration                                                                                                                                              |
+| layout(s)    | A Layout is a folder that contains what is displayed on a deck. There can be as many Layout Folder as necessary for this aircraft. All remaining folders in the `deckconfig`folder are layout folders. |
 
 # config.yaml File
 
