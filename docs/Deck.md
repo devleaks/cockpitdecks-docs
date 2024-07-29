@@ -1,8 +1,9 @@
-A Deck represents a physical device connected to the computer, be it a
+A Deck represents a deck device connected to the computer, be it a
 
 - Elgato Stream Deck (several models supported),
 - Loupedeck Loupedeck Live, or
 - Berhinger X-Touch Mini,
+- A web deck represented in a web page,
 
 a device that will be used to interact with the X-Plane flight simulator.
 

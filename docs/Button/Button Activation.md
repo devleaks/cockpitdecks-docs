@@ -4,9 +4,9 @@ For a given button on a deck, the action that the button will be able to carry o
 
 When interaction occurs on a button on a deck, Cockpitdecks creates a typed Event, and passes it for activation.
 
-Each activation is designed to handle one or more [[Events]] types. For example a EncodePush activation is capable of handling both PressEvent and EncoderEvent. What is does with those event is left to the activation.
+Each activation is designed to handle one or more [[Events]] types. For example a EncoderPush activation is capable of handling both PressEvent and EncoderEvent. What is does with those event is left to the activation.
 
-This file list all activations that are currently available in Cockpitdecks. For each activation, we present its name or keyword by which it must be referred to, the *attributes* it expects to work properly, the type of *events* it expects, and internal *state values* it maintains.
+This file list all activations that are currently available in Cockpitdecks. For each activation, we present its name or keyword by which it must be referred to, the *attributes* it expects to work properly, the type of *events* it expects, and internal *state values* it produces and maintains.
 
 - [[Button Activation#No Activation]]
 - [[Button Activation#Page]]

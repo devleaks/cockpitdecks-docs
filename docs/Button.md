@@ -7,7 +7,9 @@ In that list, each button is defined by a list of attributes that will determine
 # Button Definition
 
 The *Button Definition* is a list of parameters that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button.
+
 ![[button-anatomy.png]]
+
 Resulting button:
 
 ![[button.png|200]]
@@ -38,6 +40,28 @@ The button *Representation* page describes attributes specific to the *feedback*
 
 A Button has a value that is maintained and used mainly for representation.
 
+The following attributes are used to determine a button’s value:
+
+`dataref` : A single dataref value.
+
+`formula`: An expression that contains variables and mathematical operations to combine and compute a value
+
+`multi-datarefs`: A list of two or more datarefs. The values of all datarefs in the list will be returned.
+
+## Button State
+
+Finally, in addition to the above attributes that can be used to specify the value of the button, a button has a set of internal attributes that can also be used to determine its value.
+
+Each button maintain an internal state: How many times it is pressed, released, turned clockwise or counter-clockwise, what is it current value, its previous, or last value, when it was last used or refreshed, etc.. State information can be accessed by Button designer to control the button behavior and its representation, or its value.
+
+1. activation_count (number of time button was «used»)
+2. current_value
+3. previous_value
+
+Internal state attributes varies depending on the button activation. Please refer to [[Button Activation|button activations]], each activation type returns its own set of particular state values.
+
+All these attributes can be used either individually or combined in a formula to determine the value of a button.
+
 Please head [[Button Value|here]] for details about a button's value computation.
 
 ## Button Initial Value
@@ -52,16 +76,6 @@ This value is assigned as the button's current value on startup.
 
 In case of a Button with multiple values, each value has a separate `initial-value` attribute in its own attribute list.
 
-# Button State
-
-Each button maintain an internal state: How many times it is pressed, released, turned clockwise or counter-clockwise, what is it current value, its previous, or last value, when it was last used or refreshed, etc.. State information can be accessed by Button designer to control the button behavior and its representation.
-
-1. activation_count (number of time button was «used»)
-2. current_value
-3. previous_value
-
-*(Please refer to [[Button Activation|button activations]], each activation type returns its own set of particular state values.)*
-
 # Button Activation
 
 The `type` attribute of a button determine [[Button Activation|how the button will behave]], what it will do when pressed, turned or slid.
@@ -74,17 +88,19 @@ The representation of a button is determined by *the presence of a special attri
 
 For example, if a button definition contains an attribute named `annunciator`, the button representation will be an [[Annunciator]]. A button can only define one representation in its definition. Otherwise, a warning is reported and the button is ignored.
 
-# Button Instantiation
+# Notes for Button Designers
 
-When a button is created, internal meta data are set first. Second, the Activation is installed and initialised. Third, the Representation is installed and initialized, as it may already use some activation information for rendering. Finally, the button is initialised. It will be rendered when the page that contains it is activated on a deck.
+## Button Instantiation
 
-# Button Validity
+When a button is created, internal meta data are set first. Second, the Activation is installed and initialised. Third, the Representation is installed and initialized, as it may already use some activation information for rendering. Finally, the button is initialised. It will be rendered when the page that contains it is loaded on a deck.
+
+## Button Validity
 
 Each button has a validity function that ensures that all necessary attributes are provided in its definition. If the activation of the button is not valid, its activation function will never be triggered, because of missing or misconfigurated parameters. If its representation is not valid, it will not be rendered on the deck.
 
 If a button is not valid, a small red triangle appears in the lower right corner of the key icon if the button is capable of representing it. A small blue triangle appears in the lower right corner of the key icon if Cockpitdecks suspect the button is a placeholder.
 
-# Button Description and Inspection
+## Button Description and Inspection
 
 Each button has an `describe()` method that prints in plain English what the button does and what it renders on the deck.
 

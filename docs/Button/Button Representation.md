@@ -22,6 +22,15 @@ If no Representation is found, a warning message is reported and the button is a
 
 will not issue any warning message.
 
+## Representation Attributes
+
+A representation often has attributes that customise its behavior.
+
+All representation-specific attributes must be declared *under* the attribute that declares the representation: (See attributes in pink in picture below.)
+
+This is a requirement to differentiate attributes at the button activation level (not indented, in blue or green), and button representation (indented, in pink)
+
+![[button-anatomy.png]]
 # Representations
 
 Here is a list of currently available, general purpose representations.
