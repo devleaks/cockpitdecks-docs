@@ -97,6 +97,12 @@ my-activation:
 
 equals 4.
 
+## Summary
+
+The following depicts how a button's value is computed:
+
+![[compute value.svg|500]]
+
 # Value Normalisation
 
 The raw value acquired from a source may not be usable by a button representation. Before a raw value can be used by a representation, it needs *normalisation*. The normlaisation of a value is the process of transforming the (raw) value from the datarefs or formula in values usable for representation.

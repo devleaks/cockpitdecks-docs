@@ -17,7 +17,7 @@ The Layout folder contains the following files:
     ⊢ page2.yaml
 ```
 
-# `config.yaml` File
+# Layout `config.yaml` File
 
 The `config.yaml` file inside a layout folder defines Layout-level attributes. The file is optional.
 
@@ -41,6 +41,8 @@ default-page-name: index
 | `default-homepage-name`         | Optional. Default page name in layout.              |
 
 The default value of some attributes (like font, colors, and sizes) is fetched at the Cockpit level if they are not specified at the Layout level.
+
+Layout attributes are used for all pages in the layout, unless a Page refines the definition of one of these attribute.
 
 # Pages
 
