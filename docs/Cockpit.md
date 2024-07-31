@@ -49,10 +49,9 @@ The  `deckconfig` folder contains the following files and sub-folders:
 | config.yaml  | Main configuration file                                                                                                                                                                                |
 | secreat.yaml | Serial numbers of decks used by Cockpitdecks                                                                                                                                                           |
 | resources    | Resource files used by this configuration. Resources are icons, fonts, images, etc.                                                                                                                    |
-| docs         | Documentation relative to this aircraft and configuration                                                                                                                                              |
 | layout(s)    | A Layout is a folder that contains what is displayed on a deck. There can be as many Layout Folder as necessary for this aircraft. All remaining folders in the `deckconfig`folder are layout folders. |
 
-# config.yaml File
+# `config.yaml` File
 
 The file named `config.yaml` in the `deckconfig` folder contains declarations for each [[Deck|deck]] that will be used and global, aircraft-level attributes.
 
@@ -87,7 +86,7 @@ The parameters apply to all decks for the given aircraft. Each individual deck w
 | `default-*`              | Name of default values of several parameters, defined at the aircraft-level. These values will be used for all missing values. They can be raffined at Layout and Page level if necessary.<br><br>If no aircraft-level global parameter values are not provided, Cockpitdecks will use its own internal default values.                                                                                                                                                                                                                                                                                                                                                                                          |
 | **decks**                | A list of [[Deck]] structure, one per deck. Yaml allow for other attributes in the file. They are ignored by Cockpitdecks. You may include other attributes like aircraft name, ICAO code, descriptions, notes, even change log of your file.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
-# secret.yaml File
+# `secret.yaml` File
 
 The `secret.yaml` file contains the serial numbers of your connected decks.
 

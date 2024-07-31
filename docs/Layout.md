@@ -11,13 +11,13 @@ Layouts were created to cope with different deck models. If you have a set of 30
 The Layout folder contains the following files:
 
 ```
-    ⊢ layout_name
-      ⊢ config.yaml
-      ⊢ page1.yaml
-      ⊢ page2.yaml
+  ⊢ layout_name
+    ⊢ config.yaml
+    ⊢ page1.yaml
+    ⊢ page2.yaml
 ```
 
-# Config.yaml
+# `config.yaml` File
 
 The `config.yaml` file inside a layout folder defines Layout-level attributes. The file is optional.
 
