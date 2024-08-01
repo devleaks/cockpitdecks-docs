@@ -41,24 +41,4 @@ A special gauge is the heading gauge (called `rose`) which show the heading on a
 
 # Charts
 
-Cockpitdecks provides a limited set of time-based display charts, also often called [sparklines](https://en.wikipedia.org/wiki/Sparkline).
-
-On a Cockpitdecks chart icon, up to 4 charts can be displayed simultaneously with numerous options for each chart.
-
-On one chart, the same dataref value is fetched at regular interval and stored. A limited number of historical values is kept for each chart.
-
-There is a limit on the frequency of the data collection also (once every second).
-
-Finally, a chart can also be updated when the monitored dataref value change.
-
-The horizontal axis of a chart will always be the time. The width of the display will be adjusted to accommodate all displayed values that are on the same chart. All charts should have a similar retention time. (I.e. not a chart that updates every second over a chart that update every hour.)
-
-The vertical axis will always be the value of the dataref. The range values of the chart can either be specified manually for each chart, or adjusted automatically be Cockpitdecks. In the later case, the display of the chart may need to be adjusted when the range of value changes.
-
-Example of charts include:
-
-- Fuel in each tank (updated every minutes, or every 5 minutes, displayed over 3 hours, up to four tanks)
-- Pressure in each hydrolic circuit (updated every 5 seconds, displayed for 5 minutes, up to four circuits)
-- Heading (updated every second, kept for 2 minutes)
-- Vertical deviation from descend profile (updated every 5 seconds, displayed for 5 minutes)
-- Etc.
+Cockpitdecks provides a limited set of time-based [[Charts|display charts]], also often called [sparklines](https://en.wikipedia.org/wiki/Sparkline).

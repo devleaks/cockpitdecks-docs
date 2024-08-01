@@ -1,4 +1,4 @@
- A Button can have 0, 1, or more than one value in the special case of [[Annunciator|annunciators]] or LargeButtons  (A LargeButton can have two or more buttons represented inside.). Each annunciator part or each button inside a LargeButton has either 0, or 1 value.
+A Button can have 0, 1, or more than one value in the special case of [[Annunciator|annunciators]] or LargeButtons  (A LargeButton can have two or more buttons represented inside.). Each annunciator part or each button inside a LargeButton has either 0, or 1 value.
 
 Each value of a button is either None (no value) or a numeric value (which is most of the time a floating point number). If a button has several values, its value is either a list or a dictionary of all individual values, each individual value being None or a number.
 
@@ -38,6 +38,39 @@ To explore datarefs, there is a handy X-Plane plugin called [DataRefTool](https:
 For simplicity, Cockpitdecks assumes all individual dataref values are floating point numbers or strings (in which case it actually is a list of floating point values representing the ASCII code number of each character in the string.)
 
 The reason for this is that as today, X-Plane UDP only returns floating point numeric values for requested datarefs.
+
+### Dataref Rounding
+
+Dataref values can change insignificantly very rapidly. To prevent dataref update and its consequences (update of the button value and its representation) with the value change insignificantly, dataref values can immediately be rounded before they are communicated to Cockpitdecks.
+
+Required rounding is expressed in the `config.yaml` file.
+
+The `dataref-roundings` attribute is a list of (dataref-name, significant decimal digit after comma):
+
+```yaml hl_lines="1"
+dataref-roundings:
+    sim/cockpit/autopilot/heading_mag: 2
+    sim/flightmodel/position/latitude: 8
+    sim/flightmodel/position/longitude: 8
+    sim/cockpit/misc/barometer_setting: 2
+```
+
+There is a global, application-level, `dataref-roundings` located in the main Cockpitdecks resources folder. The file should never be changed or touched.
+
+It is possible for the aircraft configuration developer to specify particular rounding needs in the main `config.yaml` file in the aircraft `deckconfig` folder in the same way. Aircraft roundings will take precedence on global roundings.
+
+Dataref roundings only applies to datarefs fetched from X-Plane.
+
+### Dataref Fetch Frequency
+
+Similarly to dataref roundings, it is possible to specify, on a dataref basis, the frequency at which Cockpitdecks will ask X-Plane to send values in UDP packets.
+
+The default values is between 1 and 4 times per seconds, 1 to 4 Hz.
+
+```yaml hl_lines="1"
+dataref-fetch-frequencies:
+    sim/cockpit/autopilot/heading: 10
+```
 
 ## X-Plane / Cockpitdecks String Dataref
 
@@ -111,8 +144,10 @@ The raw value acquired from a source may not be usable by a button representatio
 
 Some dataref values are changing very rapidly over time, sometimes in insignificant changes. To prevent updating a button's state each time a value changes, a Dataref value can be rounded before it enters Cockpitdecks processing.
 
-```
-sim/weather/aircraft/qnh_pas 0 round
+Here is an example of dataref rounding through a formula:
+
+```yaml
+formula: ${sim/weather/aircraft/qnh_pas} 0 roundn
 ```
 
 Value 101308.35278 will be rounded to 101308.
