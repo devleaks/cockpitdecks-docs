@@ -1,4 +1,4 @@
-A Button can have 0, 1, or more than one value in the special case of [[Annunciator|annunciators]] or LargeButtons  (A LargeButton can have two or more buttons represented inside.). Each annunciator part or each button inside a LargeButton has either 0, or 1 value.
+A Button can have 0, 1, or more than one value in the special case of [[Annunciator|annunciators]] or LargeButtons  (A LargeButton  can have two or more buttons represented inside.). Each annunciator part or each button inside a LargeButton has either 0, or 1 value.
 
 Each value of a button is either None (no value) or a numeric value (which is most of the time a floating point number). If a button has several values, its value is either a list or a dictionary of all individual values, each individual value being None or a number.
 
@@ -71,6 +71,12 @@ The default values is between 1 and 4 times per seconds, 1 to 4 Hz.
 dataref-fetch-frequencies:
     sim/cockpit/autopilot/heading: 10
 ```
+
+### Set Dataref
+
+Some datarefs can be written to and modified by Cockpitdecks. If a button definition contains the attribute `set-dataref` and points at a writable dataref (a dataref that can be modified), the value of the button will automatically get written to the writable dataref.
+
+The `set-dataref` attribute can somehow be considered as a *command* that instructs Cockpitdecks to write the value of the button to the simulator. `set-dataref` is used for example to set the value of a dataref to `1` or `0`  on a Boolean dataref.
 
 ## X-Plane / Cockpitdecks String Dataref
 
