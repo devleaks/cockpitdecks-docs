@@ -283,3 +283,17 @@ A Button can force its first, initial value to set its startup or original state
 This value is assigned as the button's current value on startup.
 
 In case of a Button with multiple values, each value has a separate `initial-value` attribute.
+
+# Value (Re-)Computation
+
+The value of a button is updated at the following moment:
+
+1. When the button is initialized, a first value is computed if not supplied.
+2. When a dataref on which the button depends has changed.
+3. After an activation.
+
+An activation only modifies its internal state and does not "forward" its modification to the button. It is the button's responsibility to fetch the value it needs in the activation, through, for example, a state variable:
+
+```
+formula: ${state:counter-clockwise-movement-count}
+```
