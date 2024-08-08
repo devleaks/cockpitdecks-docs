@@ -1,23 +1,12 @@
+A button builds its representation from its *value*. The *value* of the button is computed from one or more *dataref* values returned by X-Plane and/or from some *internal state variable* values.
+
 A Button can have 0, 1, or more than one value in the special case of [[Annunciator|annunciators]] or LargeButtons  (A LargeButton  can have two or more buttons represented inside.). Each annunciator part or each button inside a LargeButton has either 0, or 1 value.
 
-Each value of a button is either None (no value) or a numeric value (which is most of the time a floating point number). If a button has several values, its value is either a list or a dictionary of all individual values, each individual value being None or a number.
+Each value of a button is either None (no value) or a numeric value (which is most of the time a floating point number). If a button has several values, its value is either a list of values or a dictionary of all individual values, each individual value being None or a number.
 
-Activations and Representations of the button knows how to manage the different values contained in the annunciator or side button.
+Activations and Representations of the button knows how to manage the different values contained in the annunciator or LargeButtons.
 
-A button builds its representation from its *value*. The *value* of the button is computed from one or more dataref values returned by X-Plane and/or from some internal state variable values.
-
-# Value Sources
-
-A Button can get its value from the following sources:
-
-1. A single X-Plane *Dataref*
-2. A *formula* that combines both dataref values and/or button internal state values
-
-There should never be both a single dataref and a formula. It is either one or the other. In case both are defined, the formula takes precedence.
-
-If no `dataref`  for `formula` attribute determine the value of a button, it will return all values of its internal state in a dictionary of values.
-
-## X-Plane Dataref
+# X-Plane Datarefs
 
 A *dataref* is the name of a value used by the X-Plane simulator.
 
@@ -39,7 +28,7 @@ For simplicity, Cockpitdecks assumes all individual dataref values are floating 
 
 The reason for this is that as today, X-Plane UDP only returns floating point numeric values for requested datarefs.
 
-### Dataref Rounding
+## Dataref Rounding
 
 Dataref values can change insignificantly very rapidly. To prevent dataref update and its consequences (update of the button value and its representation) with the value change insignificantly, dataref values can immediately be rounded before they are communicated to Cockpitdecks.
 
@@ -61,7 +50,7 @@ It is possible for the aircraft configuration developer to specify particular ro
 
 Dataref roundings only applies to datarefs fetched from X-Plane.
 
-### Dataref Fetch Frequency
+## Dataref Fetch Frequency
 
 Similarly to dataref roundings, it is possible to specify, on a dataref basis, the frequency at which Cockpitdecks will ask X-Plane to send values in UDP packets.
 
@@ -72,21 +61,15 @@ dataref-fetch-frequencies:
     sim/cockpit/autopilot/heading: 10
 ```
 
-### Set Dataref
-
-Some datarefs can be written to and modified by Cockpitdecks. If a button definition contains the attribute `set-dataref` and points at a writable dataref (a dataref that can be modified), the value of the button will automatically get written to the writable dataref.
-
-The `set-dataref` attribute can somehow be considered as a *command* that instructs Cockpitdecks to write the value of the button to the simulator. `set-dataref` is used for example to set the value of a dataref to `1` or `0`  on a Boolean dataref.
-
 ## X-Plane / Cockpitdecks String Dataref
 
 Please refer to [[String Datarefs|this Section]] for The special handling of string datarefs.
 
-## Cockpitdecks Internal Dataref
+# Cockpitdecks «Internal» Datarefs
 
 Cockpitdecks manages its own set of *internal datarefs*.
 
-All datarefs that starts with a special key word are *NOT* forwarded to X-Plane but rather managed internally inside Cockpitdecks. Otherwise, they are not different from X-Plane datarefs. They can be set and used like any other datarefs.
+All datarefs that have a path or name that starts with a special key word are *NOT* forwarded to X-Plane but rather managed internally inside Cockpitdecks. Otherwise, they are not different from X-Plane datarefs. They can be set and used like any other datarefs.
 
 When a button produces an internal dataref, it's definition mention it clearly so that it can be used by other buttons.
 
@@ -104,7 +87,7 @@ In the above example, the prefix `data:` denotes internal datarefs. The name of 
 
 Internal datarefs can be used as inter-button communication, to set a value in one button, and use or read it in another one.
 
-## Internal Button (Activation) Value
+# Button «Internal State» Attributes
 
 When a button cannot fetch its representation from X-Plane, it is possible to use some Cockpitdecks internal variables made available through the button *state*. Each button maintain its state, a few internal variables’that can be accessed in formula.
 
@@ -116,7 +99,7 @@ Numeric internal values are accessible as `${state:variable-name}` in formula.
 	formula: {state:button_pressed_count} 2 mod
 ```
 
-### Class Instance Attributes
+## Class Instance Attributes
 
 For Cockpitdecks developers, all attributes used in the button, its activation, or its representation class instances are also available as state variables. In this case, the value of the attribute is returned with no type checking.
 
@@ -136,54 +119,33 @@ my-activation:
 
 equals 4.
 
-## Summary
+# Button Value
 
-The following depicts how a button's value is computed:
+From the above
 
-![[compute value.svg|500]]
+- X-Plane datarefs
+- Cockpitdecks internal datarefs
+- Button internal state attributes
+which may be called *variables*, a button provides a final value. This value is supplied to the representation that will provide the button feedback on the deck.
 
-# Value Normalisation
+The following sections details how the value gets computed from the above variables. The possibilities are:
 
-The raw value acquired from a source may not be usable by a button representation. Before a raw value can be used by a representation, it needs *normalisation*. The normlaisation of a value is the process of transforming the (raw) value from the datarefs or formula in values usable for representation.
+- Value from a single dataref or button internal state attribute
+- Value from a formula (that combines several datarefs and button internal state attributes)
+- A list of values for a representation that requires it
+- or finally, a list of all the above variables in a dictionary of values.
 
-### Rounding
-
-Some dataref values are changing very rapidly over time, sometimes in insignificant changes. To prevent updating a button's state each time a value changes, a Dataref value can be rounded before it enters Cockpitdecks processing.
-
-Here is an example of dataref rounding through a formula:
-
-```yaml
-formula: ${sim/weather/aircraft/qnh_pas} 0 roundn
-```
-
-Value 101308.35278 will be rounded to 101308.
-
-### Examples of Normalisation Need
-
-- a LED can can be turned On or Off need to receive a boolean value, On or Off as an indicator to light the LED or not, while the formula combining datarefs might return a float value.
-- a switch that can have 5 different positions must receive a value between 1 and 5 to determine which position to represent. Not 0, not 6, which are invalid values for its representation.
-
-# Button with No Value
-
-Some button may not maintain any state or use any value. Example of such button are simple push button with no feedback mean.
-
-# Single Dataref Value
+## Single Dataref Value
 
 The value of the button is determined by a single dataref value.
 
-## Binary Value
+```
+dataref: sim/weather/region/atmospheric_pressure
+```
 
-In its simple form, the value of a button is deduced from the value of a single dataref. If the value of the dataref is zero, the representation is OFF, otherwise, it is ON.
+## Combining Multiple Variables with Formula
 
-## Continuous Range Value
-
-The status of a button is deduced from the value of either a single dataref, or a formula expression.
-
-Ranges are used as buckets to determine in which range/bucket the value falls. Then, the number index of the range, starting with 0, is used to determine the button’s value.
-
-# Combining Multiple Values: Formula
-
-A Representation is driven by a *single final value*. However, it is possible to compute that final value form a list of dataref values and mathematical operations. This is done through a `formula` attribute. The formula is written in [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation), a method to write and execute operations on values. Since a formula allows for value transformation, a formula should always produce a value that is directly usable by a representation. The value of a button can be computed from data coming either from X-Plane (through dataref values) and/or from the button's internal state values.
+A Representation is driven by a *single final value*. However, it is possible to compute that final value form a list of dataref values, internal button attributes, and mathematical operations. This is done through a `formula` attribute. The formula is written in [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation), a method to write and execute operations on values. Since a formula allows for value transformation, a formula should always produce a value that is directly usable by a representation. The value of a button can be computed from data coming either from X-Plane (through dataref values) and/or from the button's internal state values.
 
 Examples of `formula`:
 
@@ -215,7 +177,7 @@ dataref: sim/cockpit/autopilot/vertical_velocity
 
 Only one formula attribute can be used for a button or a annunciator part or a LargeButton button.
 
-## Expression
+### Expression
 
 The *formula* for computation is expressed in *Reverse Polish Notation*. The result of the formula is a *numeric value* (float value that can be rounded to an integer if necessary.) It is intimidating at first to write RPN formula, but once a user get use to it, it actually is equaly easy to write RPN formula and formula with parenthesis. In a nutshell, rather than writing:
 
@@ -246,7 +208,7 @@ The following operator have been added:
 - `eq`: Test for equality of last two elements. Pushes 1 for True, 0 for False on the stack.
 - `not`: Boolean not operator, insert 1 if it was 0 or 0 otherwise.
 
-## Variable Substitution
+### Variable Substitution
 
 In formula:
 
@@ -262,7 +224,7 @@ The following formula determine the final status On(=1) or Off(=0) from the numb
 formula: ${state:activation_count} 2 %
 ```
 
-# Multiple Button Values
+## Multiple Button Values
 
 In case a button has multiple values, each value comes from a part of the button. Each part of the button is independent of other parts of the same button. Each part maintains its single value.
 
@@ -272,7 +234,7 @@ For example, Annunciator, or LargeButton representation, have more than one indi
 
 Another example is a button that has more than one dataref and no formula. In this case, the returned value is a dictionary of all dataref values of that button.
 
-# Button Initial Value
+## Button Initial Value
 
 A Button can force its first, initial value to set its startup or original state.
 
@@ -284,7 +246,17 @@ This value is assigned as the button's current value on startup.
 
 In case of a Button with multiple values, each value has a separate `initial-value` attribute.
 
-# Value (Re-)Computation
+## Button with No Value
+
+Some button may not maintain any state or use any value. Example of such button are simple push button with no feedback mean.
+
+## Summary
+
+The following depicts how a button's value is computed:
+
+![[compute value.svg|500]]
+
+## Notes about Value (Re-)Computation
 
 The value of a button is updated at the following moment:
 
@@ -297,3 +269,4 @@ An activation only modifies its internal state and does not "forward" its modifi
 ```
 formula: ${state:counter-clockwise-movement-count}
 ```
+
