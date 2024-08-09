@@ -161,6 +161,12 @@ PushEvent, PressEvent, LongPressEvent
 | `commands`    | Optional pair of X-Plane commands that are executed alternatively. Two commands must be supplied, but the same command can be provided twice.                          |
 | `set-dataref` | Optional dataref to set On(=1) or Off (=0).<br><br>Either attribute can be set or both. In the latter case, the command is first executed and then the dataref is set. |
 
+## State Values
+
+| Attribute | Definition              |
+| --------- | ----------------------- |
+| `on`      | current state On or Off |
+
 # UpDown
 
 `type: updown`
@@ -175,6 +181,14 @@ Cycle Up and Down button.
 | `stops=3`       | Number of stop values. For example: Stops=3 will give 0-1-2-1-0 cycles, with 3 stops 0, 1, and 2.                                                                                                                                                                           |
 | `initial-value` | If an initial value is supplied, it's sign indicated how the value will evolve.<br><br>For example, if the initial value is 1, the next value will be 2 (go up). If the initial value is -1, the initial value will be set to 1, but the next value will be zero (go down). |
 | `set-dataref`   | Optional dataref to set the value of the current stop.<br><br>Very much like On/Off activation either `commands` or `set-dataref` can be supplied or both.                                                                                                                  |
+
+## State Values
+
+| Attribute | Definition                                           |
+| --------- | ---------------------------------------------------- |
+| `stops`   | Number of stops                                      |
+| `go_up`   | True will increase at next push; False will decrease |
+| `stop`    | Current value                                        |
 
 # ShortOrLongpress
 
@@ -220,6 +234,13 @@ An EncoderPush is the combination of an Encoder and a push button.
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `commands` | An EncoderPush has 3 commands:<br><br>1. First command gets executed when it is pushed<br>2. Second command gets executed when encoder is turned clockwise<br>3. Third command gets executed when encoder is turned counterclockwise |
 
+## State Values
+
+| State                       | Definition                                                  |
+| --------------------------- | -------------------------------------------------------- |
+| `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
+| `rotation_counterclockwise` | same.                                                    |
+
 # EncoderOnOff
 
 `type: encoder-push`
@@ -238,6 +259,14 @@ An EncoderOnOff is the combination of an Encoder and an OnOff button.
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `dual`    | With option `dual`, the activation uses two more commands.<br><br>1. First command gets executed when it is OFF, to turn it ON<br>2. Second command gets executed when it is ON, to turn it OFF<br>3. Third command gets executed when encoder is turned clockwise and ON<br>4. Fourth command gets executed when encoder is turned counterclockwise and ON<br>5. Third command gets executed when encoder is turned clockwise and OFF<br>6. Fourth command gets executed when encoder is turned counterclockwise and OFF. |
 
+## State Values
+
+| State                       | Definition                                               |
+| --------------------------- | -------------------------------------------------------- |
+| `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
+| `rotation_counterclockwise` | same.                                                    |
+| `on`                        | Is currently On or Off                                   |
+
 # EncoderLongPush
 
 ## Attributes
@@ -245,6 +274,13 @@ An EncoderOnOff is the combination of an Encoder and an OnOff button.
 | Attribute  | Definition                                                                                                                                                                                                                                                                                                                                                    |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `commands` | An EncoderLongPush has 4 commands:<br><br>1. First command  gets executed when encoder is turned clockwise<br>2. Second command gets executed when encoder is turned counterclockwise<br>3. Third command gets executed when encoder is turned clockwise *and pushed*<br>4. Fourth command gets executed when encoder is turned counterclockwise *and pushed* |
+
+## State Values
+
+| State                       | Definition                                                  |
+| --------------------------- | -------------------------------------------------------- |
+| `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
+| `rotation_counterclockwise` | same.                                                    |
 
 # EncoderValue
 
@@ -264,6 +300,14 @@ An EncoderValue is an Encoder that increases or decrease an internal value each 
 | `formula`       | Optional. Formula to transform the `${state:button-value}` *before* it is sent to the dataref.                                                               |
 | `set-dataref`   | Optional dataref to set to the value of the computed value. The value is sent right away, after each encoder activation.                                     |
 
+## State Values
+
+| State                       | Definition                                               |
+| --------------------------- | -------------------------------------------------------- |
+| `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
+| `rotation_counterclockwise` | same.                                                    |
+| `value`                     | Current raw value                                        |
+
 # Slider
 
 `type: slider`
@@ -276,6 +320,12 @@ A Slider is a one dimensional cursor that produces a continuous value within a r
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `set-dataref` | Optional. Dataref to write the value to, if present.                                                                          |
 | `formula`     | Optional. Formula to transform the `${state:button-value}` (value produced by the slider) *before* it is sent to the dataref. |
+
+## State Values
+
+| State   | Definition        |
+| ------- | ----------------- |
+| `value` | Current raw value |
 
 # Swipe
 
@@ -299,6 +349,17 @@ ts_end: 135.246
 pos_start: (23, 48)
 pos_end: (78, 42)
 ```
+
+## State Values
+
+| State      | Definition |
+| ---------- | ---------- |
+| `start_x`  |            |
+| `start_y`  |            |
+| `start_ts` |            |
+| `end_x`    |            |
+| `end_y`    |            |
+| `end_ts`   |            |
 
 # Button Activations for Developers
 
