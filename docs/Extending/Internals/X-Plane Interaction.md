@@ -51,8 +51,4 @@ We only request dataref values to be sent at the lowest emission rate, that is o
 
 A UDP packet of values contains at most 14 or 15 values. It takes a few packets to get all dataref values.
 
-We experimentally observed that there is a performance limit of about ~100 datarefs that can be requested from X-Plane. After that, UDP packets will be emitted, but with some noticeable delay (up to a few seconds). And since they will be emitted late, their value will no longer reflect the current X-Plane value.
-
-To request more datarefs, you can request them by batch of less than 100 datarefs and switch batches of requested datarefs at regular interval. It works very well.
-
-Cockpitdecks created a [[Dataref Sets|dataref batch collector]].
+We experimentally observed that there is a performance limit of about ~100 datarefs that can be requested from X-Plane. After that, UDP packets will be emitted, but with some noticeable delay (up to a few *seconds*). And since they will be emitted late, their value will no longer reflect the current X-Plane value.

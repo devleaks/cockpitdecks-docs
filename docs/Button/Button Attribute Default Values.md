@@ -37,25 +37,26 @@ cockpit-theme: dark
 
 The effect is that in `night` (or `dark`) theme, default values prefixed with `dark-` will be favored. If no default value prefixed with `dark-` is found, the regular default value is fetched.
 
-Example for label color:
+## Example for label color
 
-In `day` mode, the default value for label color is `default-label-color`, as usual.
+If the theme `dark` is defined, the attribute `dark-default-label-color` is first searched, and if not defined, the `default-label-color` is retuned.
 
-In `night` mode, the default value `dark-default-label-color` value is first searched, and if not defined, the `default-label-color` is retuned.
+The word `dark` is arbitrary. It can be any string. But the attribute named `<any-string>-default-label-color` will be searched first, and if not found `default-label-color` will be used.
 
 > [!NOTE]
 > Ultimately, this scheme can be extended to any theme name value, like airbus, or barbie. However, it is advisable to limit theme default values to global appearance parameters like colors, fonts, textures, and sizes.
 
 There is no automatic theme switch, but a [[Button Activation#Theme|special activation]] allows for theme setting.
+
 # Configuration Files
 
-1. Cockpitdecks internals (cannot be modified)
-2. Global configuration file: Cockpitdecks/resources/config.yaml
-3. Aircraft configuration file: Aircraft/config.yaml
-4. Layout configuration file: Aircraft/layout1/config.yaml
-5. Page configuration file: Aircraft/layout1/page1.yaml
+Cockpitdecks behavior and deck appearance are driven by a list of Yaml config action files always called `config.yaml `.
 
-# Notes About Configuration Values Melting
+1. Cockpitdecks internals (cannot be modified)
+2. Global configuration file: Cockpitdecks/resources/config.yaml (cannot be modified)
+3. Aircraft configuration file: Aircraft/deckconfig/config.yaml
+4. Layout configuration file: Aircraft/deckconfig/layout1/config.yaml
+5. Page configuration file: Aircraft/deckconfig/layout1/page1.yaml
 
 Sometimes, configuration values can be specified at different level for a given entity.
 
@@ -82,3 +83,9 @@ When a page includes another page, their respective attributes get *melted* (com
 Since a page can include more than one other page, the attributes of the included page are added (on top of) the attribute of the base page and other included pages. But since the order of page inclusion is not specified, attributes may be piled up in any order.
 
 In other words, it is advisable to not include any page-level attribute in a page that will be included in another page, it may lead to unexpected behavior or presentation. It is safer to limit inclusion to the `buttons` attribute, where buttons of main page and included page are merged together.
+
+## Summary
+
+Here is an example how attribute value is looked up for a button's `bg-color`.
+
+![[attr-lookup.png]]

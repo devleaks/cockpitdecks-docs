@@ -1,6 +1,6 @@
 Cockpitdecks offers different types of Weather Representation, mainly on icons.
 
-These Representations, together with accompanying custom [[Dataref Sets|Activations]], have led to development of highly customized activations and representations to exhibit the potentials of Cockpitdecks.
+These Representations have led to development of highly customized activations and representations to exhibit the potentials of Cockpitdecks.
 
 While some Representations remain highly generic, like graphical representation of METAR at the closest station, some others are highly specific like those that represent X-Plane simulated weather.
 
