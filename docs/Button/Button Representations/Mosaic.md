@@ -10,7 +10,9 @@ Typical example of Mosaic are: LoupedeckLive side buttons: They are larger, 60x2
 
 ![[mosaic-sdplus.png|400]]
 
-Mosaic representation has been designed so that it requires the minimal adjustment to Cockpitdecks. Here are some design constraints:
+![[mosaic.png]]
+
+Mosaic representation has been designed so that it requires the minimal adjustment to Cockpitdecks. Here are some design constraints.
 
 # Activation
 
@@ -48,7 +50,7 @@ Here is an example of definition of a mosaic for the LoupedeckLive left screen.
     # The left button is composed of 3 sub-buttons:
     mosaic:
       - name: 0
-        # prefix of mosaic buttons (called tiles) should match name of parent mosaic
+        # prefix of mosaic buttons should match name of parent mosaic
         # names will be left0, left1, left2
         prefix: left
         action:
