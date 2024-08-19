@@ -141,12 +141,12 @@ A Deck Type Button Block defines either a single button, or a group of identical
 
 #### Attributes
 
-| Attribute | Defintion                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name      | Name of the button type.<br><br>The name of the button type is<br><br>- either the final name of the button, like `touchscreen`, when there is a single button with that name on the deck,<br>- or an *integer value* that will be used to build the button names, in the case the block defines a sets of identical buttons.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| actions   | Interaction with the button. Interaction can be:<br><br>- `none`: There is no interaction with the button. It is only used for display purpose. (`none` interaction can be omitted.)<br>- `press`: Simple press button that only reports when it is pressed (one event)<br>- `push`: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.<br>- `swipe`: A surface swipe event, with a starting touch and a raise events.<br>- `encoder`: A rotating encoder, that can turn both clockwise and counter-clockwise<br>- `cursor`: A linear cursor (straight or circular) delivering values in a finite range.<br><br>Action can ba a single interaction or an array of interactions like `[encore, push]` if a button combines both ways of interacting with it. |
-| feedbacks | Feedback ability of the button. Feedback can be:<br><br>- `none`: No feedback on device, or direct feedback provided by some marks on the deck device. (`none` feedback can be omitted.)<br>- `image`: Small LCD iconic image.<br>- `led`: Simple On/Off LED light.<br>- `colored-led`: A single LED that can be colored.<br>- `multi-leds`: Several, single color, LED on a ramp.<br>- `encoder-leds`: Special encoder led ramp for X-Touch Mini (4 modes)<br>- `vibrate`: emit a buzzer sound.                                                                                                                                                                                                                                                                                                                             |
-| repeat    | In case of a set if identical buttons, `repeat` if the number of time the same button is replicated along width (x) and height (y) axis.<br><br>If only one value is supplied, it is supposed to be `[value, 1]` array. For vertical layout, specify `[1, value]` instead.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Attribute | Defintion                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name      | Name of the button type.<br><br>The name of the button type is<br><br>- either the final name of the button, like `touchscreen`, when there is a single button with that name on the deck,<br>- or an *integer value* that will be used to build the button names, in the case the block defines a sets of identical buttons.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| actions   | Interaction with the button. Interaction can be:<br><br>- `none`: There is no interaction with the button. It is only used for display purpose. (`none` interaction can be omitted.)<br>- `press`: Simple press button that only reports when it is pressed (one event)<br>- `push`: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.<br>- `swipe`: A surface swipe event, with a starting touch and a raise events.<br>- `encoder`: A rotating encoder, that can turn both clockwise and counter-clockwise<br>- `cursor`: A linear cursor (straight or circular) delivering values in a finite range.<br><br>Action can ba a single interaction or an array of interactions like `[encoder, push]` if a button combines both ways of interacting with it. |
+| feedbacks | Feedback ability of the button. Feedback can be:<br><br>- `none`: No feedback on device, or direct feedback provided by some marks on the deck device. (`none` feedback can be omitted.)<br>- `image`: Small LCD iconic image.<br>- `led`: Simple On/Off LED light.<br>- `colored-led`: A single LED that can be colored.<br>- `multi-leds`: Several, single color, LED on a ramp.<br>- `encoder-leds`: Special encoder led ramp for X-Touch Mini (4 modes)<br>- `vibrate`: emit a buzzer sound.                                                                                                                                                                                                                                                                                                                              |
+| repeat    | In case of a set if identical buttons, `repeat` if the number of time the same button is replicated along width (x) and height (y) axis.<br><br>If only one value is supplied, it is supposed to be `[value, 1]` array. For vertical layout, specify `[1, value]` instead.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ##### Examples of button names
 
@@ -171,7 +171,7 @@ Names of buttons will be: `k5`, `k6`, `k7`, ... `k16`.
 > [!NOTE] Trick
 > If a deck has a vibrate capability, it is advisable to declare it as a separate button of interaction, and use that button like any other. Vibrate is a feedback mechanism.
 
-### Deck Type Button Block - Complement for Web Decks
+### Deck Type Button Block: Additional Attributes for Web Decks
 
 The above Deck Type Button Block attributes are necessary for all decks, both physical and web decks. Web Decks also contain an additional series of attributes that drive the drawing of the deck in a web navigator window.
 
@@ -185,6 +185,8 @@ Web decks can have the following types of interactive buttons:
 3. Touchscreen (pressed, swiped)
 4. Slider (slid between 2 range values)
 
+When rendered in a browser window, web deck interaction means are materialised through a changing pointer cursor (arrow, curved arrow (encode), single dot (push), double dot (pull), etc.)
+
 > [!NOTE] Background Deck Type Attribute
 > Please read above in this page the `background` Deck Type attribute used to specify a background image to use for web deck display.
 
@@ -194,7 +196,25 @@ Web decks can have the following types of interactive buttons:
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Dimension | The dimension attribute can be a single integer value or a list of two values.<br><br>It determine the size of the button has drawn on the Web deck.<br><br>If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image. `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`. |
 | layout    | Layout of the buttons on the web deck canvas.<br>- Offset<br>- Spacing<br>Buttons will be arranged at regular interval, starting from Offset, with supplied spacing between the buttons. Button sizes are specified in the Dimension attribute.                                                                                                                            |
+| hardware  | Configuration information for a specific drawing representation of this hardware button.                                                                                                                                                                                                                                                                                   |
 | options   | Comma-separated list of options, a single option can either be a name=value, or just a name, in which case the value is assumed to be True.<br><br>`options: count=8,active`<br><br>sets options `count`to value 8, and `active` to True. `active` is equivalent to `active=true`.                                                                                         |
+
+### Special Button Representation
+
+Some deck buttons need a special representation or drawing to visually reproduce the physical deck equivalent button. Examples of such special representations are
+
+- LoupedeckLive « colored » numbered buttons,
+- X-Touch Mini LEDs around the encoders.
+
+These highly specific « drawings » are performed on side representations called *Hardware Representations*.
+
+Technically speaking, they behave very much like LCD representations:
+
+- Some screen space is reserved on the canvas to host the representation,
+- The hardware representation driver produces an image that mimics the hardware button on the send,
+- Cockpitdecks « sends » the hardware representation image to the web deck for display in the reserved space,
+- Like any other representation, the hardware representation gets updated each time the underlying values gets updated.
+Hardware representation only exists for web decks to draw a very specific button.
 
 ### Examples of Deck Type Button Definition Block
 
@@ -439,7 +459,7 @@ It can contain any arbitrary serialisable items.
 
 #### Send code
 
-```json
+```js
 {
     "code": code,
     "deck": name,
@@ -453,7 +473,7 @@ It can contain any arbitrary serialisable items.
 
 It can be a key image, or a «hardware» image.
 
-```json
+```js
 {
     "code": code,
     "deck": name,
@@ -469,7 +489,7 @@ It can be a key image, or a «hardware» image.
 
 #### Send code
 
-```json
+```js
 {
     "code": code,
     "deck": name,
@@ -478,7 +498,7 @@ It can be a key image, or a «hardware» image.
 
 #### Send Event
 
-```json
+```js
 {
 	"code": 0,
 	"deck": deck,

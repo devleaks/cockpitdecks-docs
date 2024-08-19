@@ -31,6 +31,7 @@ All representation-specific attributes must be declared *under* the attribute th
 This is a requirement to differentiate attributes at the button activation level (not indented, in blue or green), and button representation (indented, in pink)
 
 ![[button-anatomy.png]]
+
 # Representations
 
 Here is a list of currently available, general purpose representations.
