@@ -121,26 +121,33 @@ First, you have to completely stop (quit completely) original manufacturer deck 
 
 Cockpitdecks uses a single configuration file to define a few elements that cannot easily be guessed.
 
-| Variable    | Definiton                                                                                                                              |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `XP_HOME`   | Home directory of X-Plane on the computer where Cockpitdecks runs. If X-Plane is installed on a remote host, `XP_HOME` must be `None`. |
-| `XP_HOST`   | Hostname or IP address where X-Plane runs.                                                                                             |
-| `APP_HOST`  | Tuple(Hostname or IP address, port) where Cockpitdecks application runs.                                                               |
-| `API_PORT`  | X-Plane (12.1.1 and above) where REST API runs                                                                                         |
-| `API_PATH`  | X-Plane API root path                                                                                                                  |
-| `DEMO_HOME` | Directory where demonstration `deckconfig` files are found.                                                                            |
+| Variable            | Definiton                                                                                                                                                                                     |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `XP_HOME`           | Home directory of X-Plane on the computer where Cockpitdecks runs. If X-Plane is installed on a remote host, `XP_HOME` must be `None`.                                                        |
+| `XP_HOST`           | Hostname or IP address where *X-Plane* runs.                                                                                                                                                  |
+| `APP_HOST`          | Tuple (Hostname or IP address, port) where *Cockpitdecks* application runs. If specified through operating system environment variables, use (**APP_HOST** and **APP_PORT**)                  |
+| `API_PORT`          | X-Plane (12.1.1 and above) where REST API runs                                                                                                                                                |
+| `API_PATH`          | X-Plane API root path                                                                                                                                                                         |
+| `DEMO_HOME`         | Directory where demonstration `deckconfig` files are found.                                                                                                                                   |
+| `COCKPITDECKS_PATH` | `COCKPITDECKS_PATH` is a colon-separated list of folder paths. In a later release, Cockpitdecks will search for aircrafts in directories specified in this variable. First match is returned. |
+
+Most of these variables gets their default value from operating system environment variables. If no environment variable is defined, the `config.py` file supplies a value.
 
 ## Start Cockpitdecks
 
-```sh
+```
 $ cockpitdecks-cli --help
-usage: cockpitdecks-cli [--help] [--demo] [directory]
+usage: cockpitdecks-cli [ { --help | --demo | directory [fixed] } ]
+
 --help, -h, -?: displays command line help and exits
---demo        : starts demo mode, X-plane not needed but used if availa
-directory     : start from directory if directory contains deckconfig directory (ignored otherwise)
+--demo        : starts demo mode, X-plane not needed but used if available
+directory     : start from directory if directory contains deckconfig directory
+              : if 'fixed' added after the directory, aircraft will not change
+
 without any argument:
-- if X-Plane runs on same computer as Cockpitdecks, starts in full automatic mode.
-- if X-Plane does not run on same computer as Cockpitdecks, start demo mode.
+  * if X-Plane runs on same computer as Cockpitdecks, starts in full automatic
+    mode, reloading aircrafts when changes are detected.
+  * if X-Plane does not run on same computer as Cockpitdecks, start demo mode.
 ```
 
 There are two main configuration mode to start Cockpitdecks. Either Cockpitdecks runs on the same computer as X-Plane, or Cockpitdecks runs on a remote computer.
