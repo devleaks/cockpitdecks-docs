@@ -117,40 +117,62 @@ You can [find them here](https://github.com/dlicudi/cockpitdecks-configs), downl
 
 First, you have to completely stop (quit completely) original manufacturer deck configuration applications. They take exclusive access to the device and that prevents Cockpitdecks from finding and using them.
 
+## Adjust config.py
+
+Cockpitdecks uses a single configuration file to define a few elements that cannot easily be guessed.
+
+| Variable    | Definiton                                                                                                                              |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `XP_HOME`   | Home directory of X-Plane on the computer where Cockpitdecks runs. If X-Plane is installed on a remote host, `XP_HOME` must be `None`. |
+| `XP_HOST`   | Hostname or IP address where X-Plane runs.                                                                                             |
+| `APP_HOST`  | Tuple(Hostname or IP address, port) where Cockpitdecks application runs.                                                               |
+| `API_PORT`  | X-Plane (12.1.1 and above) where REST API runs                                                                                         |
+| `API_PATH`  | X-Plane API root path                                                                                                                  |
+| `DEMO_HOME` | Directory where demonstration `deckconfig` files are found.                                                                            |
+
 ## Start Cockpitdecks
 
-### Test Start Cockpitdecks
+```sh
+$ cockpitdecks-cli --help
+usage: cockpitdecks-cli [--help] [--demo] [directory]
+--help, -h, -?: displays command line help and exits
+--demo        : starts demo mode, X-plane not needed but used if availa
+directory     : start from directory if directory contains deckconfig directory (ignored otherwise)
+without any argument:
+- if X-Plane runs on same computer as Cockpitdecks, starts in full automatic mode.
+- if X-Plane does not run on same computer as Cockpitdecks, start demo mode.
+```
 
-If your decks are connected, and all drivers properly installed, you can test start Cockpidecks by simply launching the application without aircraft folder specified. Cockpitdecks will use default values for everything and set up each deck such as the first key can be used to toggle X-Plane map on or off.
+There are two main configuration mode to start Cockpitdecks. Either Cockpitdecks runs on the same computer as X-Plane, or Cockpitdecks runs on a remote computer.
 
-```shell
+### Test Cockpitdecks In Demonstration Mode
+
+```sh
+$ cockpitdecks-cli --demo
+```
+
+In this mode, Cockpitdecks will start a single web deck.
+
+### Cockpitdecks and X-Plane Run On Same Computer
+
+In this case, make sure the configuration file is setup and issue
+
+```sh
 $ cockpitdecks-cli
 ```
 
-#### For Cockpitdecks Developers
+Cockpitdecks will immediately start in demonstration mode and listen for X-Plane interaction. If Cockpitdecks finds that an aircraft is loaded and that Cockpitdecks `deckconfig` folder exists in the folder of that aircraft, Cockpidecks will load this configuration.
 
-If you cloned Cockpitdecks software in a folder, you can start Cockpitdecks with
+If no configuration is found, Cockpitdecks will listen and interpret X-Plane data but will not load a new configuration.
 
-```shell
-$ python start.py
-```
+This mode is fully automatic, Cockpitdecks always attempts to load the current aircraft deckconfig configuration, if present. Similarly, the XPPython3 plugin, if installed, will load the new configuration as well.
 
-from the top folder of the source code.
+### Cockpidecks and X-Plane Run on Different Computer
 
-### Demonstration of Cockpitdecks
+In this case, it is not possible for Cockpitdecks to locate aircraft configuration files. A set of configuration file will need to be supplied to Cockpitdecks on the command line, and Cockpitdecks will not load a new configuration when it detects an aircraft change.
 
-If your decks are connected, and all drivers properly installed, you can test start Cockpidecks by simply launching the application without aircraft folder specified. Cockpitdecks will use default values for everything and set up each deck such as the first key can be used to toggle X-Plane map on or off.
-
-```shell
-$ cockpitdecks-cli
-```
-
-### Start Cockpitdecks
-
-To start Cockpitdecks, use the `cockpitdecks-cli` script by supplying the X-Plane aircraft folder where deck confit resides. Start the python script and supply the folder name where `deckconfig` folder resides.
-
-```shell
-$ cockpitdecks-cli "/Applications/X-Plane 12/Aircraft/Extra Aircraft/Toliss A321"
+```sh
+$ cockpitdecks-cli aircrafts/A21N
 ```
 
 Cockpitdecks will look for `deckconfig` folder in the aircraft folder and start.
@@ -163,6 +185,16 @@ If Cockpitdecks fails to connect to X-Plane or notices it does no longer receive
 
 The *aircraft folder* (Toliss A321) where cockpitdecks tries to find a `deckconfig` folder can be anywhere, it does not need to be in the X-Plane aircraft folder. However, the `deckconfig` folder must be in the X-Plane aircraft folder for the Cockpitdecks Helper Plugin. (For Unix technical people, a symbolic link does the trick.)
 
+#### For Cockpitdecks Developers
+
+If you cloned Cockpitdecks software in a folder, you can start Cockpitdecks with
+
+```shell
+$ python start.py
+```
+
+from the top folder of the source code.
+
 # Troubleshooting
 
 To report an issue with Cockpitdecks, you should always include the `XPPython3.log` file created in the X-Plane folder. Cockpitdecks also create a `cockpitdecks.log` files with more information in the directory you started your script from.
@@ -171,6 +203,6 @@ The level of information produced in the file is controlled by the logging level
 
 # Termination
 
-Cockpitdecks is designed to terminates cleanly. All requested datarefs monitoring are cancelled, connections are closed, all threads are terminated and joined cleanly. However, it may sometimes take a few seconds before a thread terminates. For example, if a thread is meant to run every 30 seconds, it may be necessary to wait a full 30 seconds before the thread notices the termination request and quits. Longer threads (above 30 seconds or a minute) check periodically for termination request.
+Cockpitdecks is designed to terminates cleanly. All requested datarefs monitoring are cancelled, connections are closed, all threads are terminated and joined cleanly. However, it may sometimes take a few seconds before a thread terminates. For example, if a thread is meant to run every 30 seconds, it may be necessary to wait a full 30 seconds before the thread notices the termination request and quits. Longer threads (above 30 seconds or a minute) check periodically for termination request. Cockpitdecks should always terminate cleanly.
 
 If necessary, pressing ++ctrl+c++ several time in the main window will stop Cockpitdecks completely right away.
