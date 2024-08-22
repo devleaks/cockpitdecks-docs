@@ -150,7 +150,10 @@ without any argument:
   * if X-Plane does not run on same computer as Cockpitdecks, start demo mode.
 ```
 
-There are two main configuration mode to start Cockpitdecks. Either Cockpitdecks runs on the same computer as X-Plane, or Cockpitdecks runs on a remote computer.
+There are two main configuration mode to start Cockpitdecks.
+
+1. Either Cockpitdecks runs on the same computer as X-Plane,
+2. or Cockpitdecks runs on a remote computer on the same local area network.
 
 ### Test Cockpitdecks In Demonstration Mode
 
@@ -174,23 +177,22 @@ If no configuration is found, Cockpitdecks will listen and interpret X-Plane dat
 
 This mode is fully automatic, Cockpitdecks always attempts to load the current aircraft deckconfig configuration, if present. Similarly, the XPPython3 plugin, if installed, will load the new configuration as well.
 
-
 > [!NOTE] COCKPITDECKS_PATH
 > The COCKPITDECKS_PATH environment variable is not used when X-Plane and Cockpitdecks run on the same computer. In this case, Cockpitdecks will look into X-Plane Aircraft folder.
 
 ### Cockpidecks and X-Plane Run on Different Computer
 
-In this case, it is not possible for Cockpitdecks to locate aircraft configuration files. A set of configuration file will need to be supplied to Cockpitdecks on the command line, and Cockpitdecks will not load a new configuration when it detects an aircraft change.
+In this case, it is not possible for Cockpitdecks to locate aircraft configuration files. A set of configuration file will need to be supplied to Cockpitdecks on the command line to start with. (If no folder is supplied, Cockpitdecks will start in demonstration mode.)
 
 ```sh
 $ cockpitdecks-cli aircrafts/A21N fixed
 ```
 
-The `fixed` argument ensure that Cockpitdecks will not reload a new aircraft if it detects the aircraft has changed.
+The optional `fixed` argument ensure that Cockpitdecks will not reload a new aircraft if it detects the aircraft has changed or does not correspond to the aircraft currently being used. This is particularly handy when developing decks.
 
-If `fixed` is not present, Cockpitdecks will attempt to look for the new aircraft in all directories specified in the `COCKPITDECKS_PATH`. The aircraft must have a Cockpitdecks configuration folder `deckconfig`. If it finds such an aircraft, it will load the new configuration.
+If `fixed` is not present, Cockpitdecks will attempt to match the aircraft in X-Plane with an aircraft folder it finds in a list of directories pointed by the `COCKPITDECKS_PATH` environment variable.
 
-Cockpitdecks will look for `deckconfig` folder in the aircraft folder and start.
+The aircraft folder it finds must have a Cockpitdecks configuration folder `deckconfig`. If it finds such an aircraft folder, it will load the new configuration and start.
 
 Cockpitdecks will repetitively try to connect to X-Plane. If it fails to connect, it infinitely tries again until it succeeds. If not connected, decks will load but no command will be issued to X-Plane and no data will come from X-Plane to update decks.
 
@@ -198,7 +200,7 @@ When Cockpitdecks successfully connects to X-Plane, it refreshes all pages by *r
 
 If Cockpitdecks fails to connect to X-Plane or notices it does no longer receive dataref values from X-Plane, it will again repetitively try to connect to it until it succeeds.
 
-The *aircraft folder* (Toliss A321) where cockpitdecks tries to find a `deckconfig` folder can be anywhere, it does not need to be in the X-Plane aircraft folder. However, the `deckconfig` folder must be in the X-Plane aircraft folder for the Cockpitdecks Helper Plugin. (For Unix technical people, a symbolic link does the trick.)
+The *aircraft folder* where Cockpitdecks application tries to find a `deckconfig` folder can be anywhere, it does not need to be in the X-Plane aircraft folder. However, the *aircraft folder* where Cockpitdecks Helper Plugin will try to find the `deckconfig` folder must be in the X-Plane Aircraft folder. (For Unix technical people, a symbolic link does the trick and there is no need to copy the files.)
 
 #### For Cockpitdecks Developers
 
