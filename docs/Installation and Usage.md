@@ -14,7 +14,7 @@ Never ever forget that in the UDP protocol, there is no guarantee of delivery, o
 
 Cockpitdecks is a regular python application and will run with python 3.10, or newer.
 
-It is recommended to create a dedicated environment and run Cockpitdecks within that environment. A set of packages need to be installed in that environment before Cockpitdecks can run.
+It is recommended to create a dedicated environment and run Cockpitdecks within that environment.
 
 ## Enable X-Plane UDP
 
@@ -77,13 +77,13 @@ Some commands cannot be executed directly through UDP. For exemples, commands th
 
 To execute long press commands, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder.
 
-The Cockpitdecks Helper Plugin works automatically, reads `deckconfig` configuration and creates a pair of (beginCommand, endCommand) for each *long press* command.
-
 #### String Datarefs
 
-To fetch string-typed datarefs, the [[Complement Plugin - String Datarefs|String Dataref UDP Poster]] needs to be installed in XPPython3 PythonPlugins folder.
+X-Plane UDP only allows to fetch dataref values one by one. Retrieving a string is a tedious process.
 
-See [[String Datarefs]] for details about this plugin.
+To collect string-typed datarefs, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder.
+
+See [[String Datarefs]] for details about this.
 
 #### Cockpitdecks Helper Plugin Installation
 
@@ -117,7 +117,7 @@ You can [find them here](https://github.com/dlicudi/cockpitdecks-configs), downl
 
 First, you have to completely stop (quit completely) original manufacturer deck configuration applications. They take exclusive access to the device and that prevents Cockpitdecks from finding and using them.
 
-## Adjust config.py
+## Adjust `config.py`
 
 Cockpitdecks uses a single configuration file to define a few elements that cannot easily be guessed.
 
@@ -135,6 +135,10 @@ Most of these variables gets their default value from operating system environme
 
 ## Start Cockpitdecks
 
+### Command-Line Help
+
+If always is a good idea to see what the client application offers:
+
 ```
 $ cockpitdecks-cli --help
 usage: cockpitdecks-cli [ { --help | --demo | directory [fixed] } ]
@@ -150,12 +154,9 @@ without any argument:
   * if X-Plane does not run on same computer as Cockpitdecks, start demo mode.
 ```
 
-There are two main configuration mode to start Cockpitdecks.
-
-1. Either Cockpitdecks runs on the same computer as X-Plane,
-2. or Cockpitdecks runs on a remote computer on the same local area network.
-
 ### Test Cockpitdecks In Demonstration Mode
+
+A second easy step is to start Cockpitdecks in demonstration mode. In this mode, it will offer a single demonstration deck. See [[Examples]] for details about the demonstration.
 
 ```sh
 $ cockpitdecks-cli --demo
@@ -163,46 +164,68 @@ $ cockpitdecks-cli --demo
 
 In this mode, Cockpitdecks will start a single web deck.
 
+![[demo-deck-list.png]]
+
+![[demo-deck.png]]
+
+### Normal Operations
+
+There are two main configuration mode to start Cockpitdecks.
+
+1. Either Cockpitdecks runs on the same computer as X-Plane,
+2. or Cockpitdecks runs on a remote computer on the same local area network.
+
 ### Cockpitdecks and X-Plane Run On Same Computer
 
-In this case, make sure the configuration file is setup and issue
+This is the simplest case. In this mode, everything is automatic.
+
+Make sure the configuration file is setup and issue:
 
 ```sh
 $ cockpitdecks-cli
 ```
 
-Cockpitdecks will immediately start in demonstration mode and listen for X-Plane interaction. If Cockpitdecks finds that an aircraft is loaded and that Cockpitdecks `deckconfig` folder exists in the folder of that aircraft, Cockpidecks will load this configuration.
+Cockpitdecks will immediately start in demonstration mode and listen for X-Plane interaction. If Cockpitdecks finds that an aircraft is loaded and that Cockpitdecks `deckconfig` folder exists in the folder of that aircraft, Cockpitdecks will load this configuration.
 
 If no configuration is found, Cockpitdecks will listen and interpret X-Plane data but will not load a new configuration.
 
-This mode is fully automatic, Cockpitdecks always attempts to load the current aircraft deckconfig configuration, if present. Similarly, the XPPython3 plugin, if installed, will load the new configuration as well.
-
-> [!NOTE] COCKPITDECKS_PATH
-> The COCKPITDECKS_PATH environment variable is not used when X-Plane and Cockpitdecks run on the same computer. In this case, Cockpitdecks will look into X-Plane Aircraft folder.
+This mode is fully automatic, Cockpitdecks always attempts to load the current aircraft `deckconfig` configuration, if present. Similarly, the XPPython3 plugin, if installed, will load the corresponding new configuration as well.
 
 ### Cockpidecks and X-Plane Run on Different Computer
 
-In this case, it is not possible for Cockpitdecks to locate aircraft configuration files. A set of configuration file will need to be supplied to Cockpitdecks on the command line to start with. (If no folder is supplied, Cockpitdecks will start in demonstration mode.)
+In this case, it is not possible for Cockpitdecks to locate aircraft configuration files. A set of configuration file will need to be supplied to Cockpitdecks on the command line to start with. (If no folder is supplied, Cockpitdecks will start in demonstration mode. See above.)
 
 ```sh
 $ cockpitdecks-cli aircrafts/A21N fixed
 ```
 
-The optional `fixed` argument ensure that Cockpitdecks will not reload a new aircraft if it detects the aircraft has changed or does not correspond to the aircraft currently being used. This is particularly handy when developing decks.
+Cockpitdecks will start and load the configuration in `aircrafts/A21N/deckcockpit`. Cockpitdecks will attempt to connect to X-Plane.
 
-If `fixed` is not present, Cockpitdecks will attempt to match the aircraft in X-Plane with an aircraft folder it finds in a list of directories pointed by the `COCKPITDECKS_PATH` environment variable.
+The optional `fixed` argument ensure that Cockpitdecks will not reload a new aircraft if it detects the aircraft in X-Plane has changed or does not correspond to the aircraft currently being used. This is particularly handy when developing decks.
 
-The aircraft folder it finds must have a Cockpitdecks configuration folder `deckconfig`. If it finds such an aircraft folder, it will load the new configuration and start.
+If `fixed` is not present, Cockpitdecks will attempt to find a suitable deckconfig folder to load.
 
-Cockpitdecks will repetitively try to connect to X-Plane. If it fails to connect, it infinitely tries again until it succeeds. If not connected, decks will load but no command will be issued to X-Plane and no data will come from X-Plane to update decks.
+To do this, Cockpitdecks will search for a folder named like the X-Plane aircraft folder. It will search in all folders listed in the `COCKPITDECKS_PATH` environment variable.
+
+Here is an example. Suppose you loaded Toliss A321 aircraft in X-Plane. The aircraft folder name is `Toliss A321`.
+
+If you defined the python variable as such:
+
+```
+COCKPITDECKS_PATH="/XPDATA/CockpitdecksConfig:/Volume0/XPlane/Cockpitdecks/data
+```
+
+Cockpitdecks will search in each of the above folder for a folder named `Toliss A321`. It will then check whether that folder contains a proper `deckconfig`subfolder. If it does, Cockpitdecks will use that configuration.
+
+If the folder `/XPDATA/CockpitdecksConfig/Toliss A321/deckconfig` is found, Cockpitdecks will load it.
+
+In all case, Cockpitdecks will repetitively try to connect to X-Plane. If it fails to connect, it infinitely tries again until it succeeds. If not connected, decks will load but no command will be issued to X-Plane and no data will come from X-Plane to update decks.
 
 When Cockpitdecks successfully connects to X-Plane, it refreshes all pages by *reloading* them to reflect the state of the aircraft on the decks.
 
 If Cockpitdecks fails to connect to X-Plane or notices it does no longer receive dataref values from X-Plane, it will again repetitively try to connect to it until it succeeds.
 
-The *aircraft folder* where Cockpitdecks application tries to find a `deckconfig` folder can be anywhere, it does not need to be in the X-Plane aircraft folder. However, the *aircraft folder* where Cockpitdecks Helper Plugin will try to find the `deckconfig` folder must be in the X-Plane Aircraft folder. (For Unix technical people, a symbolic link does the trick and there is no need to copy the files.)
-
-#### For Cockpitdecks Developers
+### Note for Cockpitdecks Developers
 
 If you cloned Cockpitdecks software in a folder, you can start Cockpitdecks with
 
