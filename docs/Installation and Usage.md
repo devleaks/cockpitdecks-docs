@@ -18,8 +18,25 @@ Cockpitdecks is a regular python application and will run with python 3.10, or n
 
 It is recommended to create a dedicated environment and run Cockpitdecks within that environment.
 
-## Enable X-Plane UDP
+## X-Plane *!*
 
+Cockpitdecks is a modern software that takes benefit from all available possibilities. While being developed, it is constantly updated to use the latest packages and features.
+
+Therefore, Cockpitdecks will work better with the latest production release of X-Plane. It may not work properly, or some feature may not be available when using older versions of X-Plane. We do not have the engineering resources to maintain working versions of Cockpitdecks for all versions of X-Plane. While most features should still work in X-Plane 11, they were never tested, and we will not provide any support to make it work on older release.
+
+Same occurs with aircrafts. Aircrafts are pieces of software that are regularly updated. It is a good practice to include the X-Plane and aircraft versions as comments in  the `deckconfig`.
+
+As a practical example, X-Plane recently opened access to internal data through a new channel: [A Web REST API access](https://developer.x-plane.com/article/x-plane-web-api/). This is offered in X-Plane release 12.1.1 or newer. Immediately, Cockpitdecks has taken benefit from this new, simplified mean to access internal values.
+
+It is good practice to maintain the software you use to the latest, production version. Cockpitdecks is no exception to this advise.
+
+In particular, the X-Plane Cockpitdecks Helper plugin uses and requires the latest version of [XPPython3](https://xppython3.readthedocs.io/en/latest/index.html) plugin to work. This plugin itself requires X-Plane 12 and recent version of X-Plane SDK. Again, the Cockpitdecks Helper plugin is strictly not required to run Cockpitdecks but some features will not work.
+
+### Enable X-Plane UDP
+
+> [!NOTE] X-Plane 12 and UDP
+> X-Plane 12 appears to disable UDP networking initially. Check Settings -> Network page, and make sure “Accept incoming connections” is enabled.
+ 
 (See X-Plane UDP manual. Will provide information here later.)
 
 ## Install Cockpitdecks Application
@@ -28,7 +45,7 @@ It is recommended to create a dedicated environment and run Cockpitdecks within 
 
 Create a new python environment and activate it. In that environment, issue the pip install command:
 
-```shell
+```sh
 $ pip install git+https://github.com/devleaks/cockpitdecks.git
 ```
 
@@ -37,7 +54,7 @@ $ pip install git+https://github.com/devleaks/cockpitdecks.git
 If you would like to use Weather or METAR buttons, add the following packages:
 
 ```
-$ pip install avwx-engine scipy suntime timezonefinder metar
+$ pip install avwx-engine scipy suntime timezonefinder metar tabulate
 ```
 
 ### Install Deck Devices Drivers
@@ -65,7 +82,8 @@ $ pip install git+https://github.com/devleaks/python-berhinger-xtouchmini.git
 
 ### Install Cockpitdecks Helper Plugin
 
-(You can do this step later, but some functions will not work or be available inside Cockpitdecks.)
+> [!WARNING] Cockpitdecks X-Plane Helper Plugin
+> You can do this step later, but some functions will not work or be available inside Cockpitdecks.
 
 X-Plane UDP has some shortcomings that prevent some operations with decks.
 
