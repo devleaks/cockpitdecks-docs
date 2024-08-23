@@ -111,6 +111,12 @@ Duane, a Cockpitdecks aficionado has realized several configurations for several
 
 You can [find them here](https://github.com/dlicudi/cockpitdecks-configs), download them and install them in your aircraft folder.
 
+Cockpitdecks `deckconfig` folder must be placed in the folder of the X-Plane aircraft to be found by Cockpitdecks or the Cockpitdecks Helper plugin.
+
+```
+<X-Plane 12 Folder>/Aircraft/Extra Airicraft/Toliss A321/deckconfig
+```
+
 # Cockpitdecks Usage
 
 ## Disconnect OEM Applications
@@ -205,7 +211,7 @@ The optional `fixed` argument ensure that Cockpitdecks will not reload a new air
 
 If `fixed` is not present, Cockpitdecks will attempt to find a suitable deckconfig folder to load.
 
-To do this, Cockpitdecks will search for a folder named like the X-Plane aircraft folder. It will search in all folders listed in the `COCKPITDECKS_PATH` environment variable.
+To do this, Cockpitdecks will search for a folder named like the X-Plane aircraft folder. It will search in all folders listed in the `COCKPITDECKS_PATH` python or environment variable.
 
 Here is an example. Suppose you loaded Toliss A321 aircraft in X-Plane. The aircraft folder name is `Toliss A321`.
 
@@ -215,7 +221,7 @@ If you defined the python variable as such:
 COCKPITDECKS_PATH="/XPDATA/CockpitdecksConfig:/Volume0/XPlane/Cockpitdecks/data
 ```
 
-Cockpitdecks will search in each of the above folder for a folder named `Toliss A321`. It will then check whether that folder contains a proper `deckconfig`subfolder. If it does, Cockpitdecks will use that configuration.
+Cockpitdecks will search in each of the above folders (`/XPDATA/CockpitdecksConfig` and `/Volume0/XPlane/Cockpitdecks/data`) for a folder named `Toliss A321`. It will then check whether that folder contains a proper `deckconfig` subfolder. If it does, Cockpitdecks will load that configuration.
 
 If the folder `/XPDATA/CockpitdecksConfig/Toliss A321/deckconfig` is found, Cockpitdecks will load it.
 
