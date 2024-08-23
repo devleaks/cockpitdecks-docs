@@ -12,6 +12,8 @@ Never ever forget that in the UDP protocol, there is no guarantee of delivery, o
 
 # Installation
 
+![[installer.jpg|600]]
+
 Cockpitdecks is a regular python application and will run with python 3.10, or newer.
 
 It is recommended to create a dedicated environment and run Cockpitdecks within that environment.
