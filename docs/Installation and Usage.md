@@ -46,7 +46,7 @@ In particular, the X-Plane Cockpitdecks Helper plugin uses and requires the late
 Create a new python environment and activate it. In that environment, issue the pip install command:
 
 ```sh
-$ pip install git+https://github.com/devleaks/cockpitdecks.git
+pip install git+https://github.com/devleaks/cockpitdecks.git
 ```
 
 ### Install Additional Optional Python Packages
@@ -54,7 +54,7 @@ $ pip install git+https://github.com/devleaks/cockpitdecks.git
 If you would like to use Weather or METAR buttons, add the following packages:
 
 ```
-$ pip install avwx-engine scipy suntime timezonefinder metar tabulate
+pip install avwx-engine scipy suntime timezonefinder metar tabulate
 ```
 
 ### Install Deck Devices Drivers
@@ -65,19 +65,19 @@ $ pip install avwx-engine scipy suntime timezonefinder metar tabulate
 To have Cockpitdecks manage Streamdeck devices, add
 
 ```shell
-$ pip install streamdeck
+pip install streamdeck
 ```
 
 To have Cockpitdecks manage Loupedeck devices, add
 
 ```shell
-$ pip install git+https://github.com/devleaks/python-loupedeck-live.git
+pip install git+https://github.com/devleaks/python-loupedeck-live.git
 ```
 
 To have Cockpitdecks manage Touch Mini devices, add
 
 ```shell
-$ pip install git+https://github.com/devleaks/python-berhinger-xtouchmini.git
+pip install git+https://github.com/devleaks/python-berhinger-xtouchmini.git
 ```
 
 ### Install Cockpitdecks Helper Plugin
@@ -185,7 +185,7 @@ without any argument:
 A second easy step is to start Cockpitdecks in demonstration mode. In this mode, it will offer a single demonstration deck. See [[Examples]] for details about the demonstration.
 
 ```sh
-$ cockpitdecks-cli --demo
+cockpitdecks-cli --demo
 ```
 
 In this mode, Cockpitdecks will start a single web deck.
@@ -208,7 +208,7 @@ This is the simplest case. In this mode, everything is automatic.
 Make sure the configuration file is setup and issue:
 
 ```sh
-$ cockpitdecks-cli
+cockpitdecks-cli
 ```
 
 Cockpitdecks will immediately start in demonstration mode and listen for X-Plane interaction. If Cockpitdecks finds that an aircraft is loaded and that Cockpitdecks `deckconfig` folder exists in the folder of that aircraft, Cockpitdecks will load this configuration.
@@ -222,7 +222,7 @@ This mode is fully automatic, Cockpitdecks always attempts to load the current a
 In this case, it is not possible for Cockpitdecks to locate aircraft configuration files. A set of configuration file will need to be supplied to Cockpitdecks on the command line to start with. (If no folder is supplied, Cockpitdecks will start in demonstration mode. See above.)
 
 ```sh
-$ cockpitdecks-cli aircrafts/A21N fixed
+cockpitdecks-cli aircrafts/A21N fixed
 ```
 
 Cockpitdecks will start and load the configuration in `aircrafts/A21N/deckcockpit`. Cockpitdecks will attempt to connect to X-Plane.
@@ -256,7 +256,7 @@ If Cockpitdecks fails to connect to X-Plane or notices it does no longer receive
 If you cloned Cockpitdecks software in a folder, you can start Cockpitdecks with
 
 ```shell
-$ python start.py
+python start.py
 ```
 
 from the top folder of the source code.
