@@ -22,6 +22,16 @@ This file list all activations that are currently available in Cockpitdecks. For
 - [[Button Activation#Slider]]
 - [[Button Activation#Swipe]]
 
+# Activation Steps
+
+Each activation always goes through 3 steps.
+
+First, the event is handled completely. Most of the time, the root class of activations is activated first, for global handling and checks. Then the activation itself is perfomed.
+
+Second, if the activation produces a value, it is written to the `set-dataref` of the button, if any. This operation can be considered like an second instruction that is always performed, provided of course that the button instructed to write the value to the dataref pointed py `set-dataref`.
+
+Third, and finally, if the button activation contains a `view` command, it is executed. The purpose of the view command if to alter the view in the cockpit, may be to focus on a particular area of the dashboard to control the effect of the activation.
+
 # No Activation
 
 `type: none`
@@ -54,7 +64,7 @@ For exemple, the activation value for the On/Off activation is the current state
 
 In the following descriptions, the activation value is highlighted for each activation.
 
-For No Activation activation, the *activation value* is equal to the **activation count**.
+For No Activation activation, the *activation value* is equal to the **activation count**. This is also the "default" *activation value*, if nothing more precise is returned, the activation value is the number of activation of that button.
 
 # Page
 
