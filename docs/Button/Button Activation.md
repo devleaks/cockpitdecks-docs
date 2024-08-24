@@ -44,6 +44,18 @@ Any event can be handed over to the No Activation, since it will not be used.
 | `guarded`          | Whether button has a guard on top of it                                                                       |
 | `managed`          | Whether button has *managed* mode (specific to some cockpits, which means there are alternate display values) |
 
+### Activation Value
+
+Among the above State Value that an Activation returns, there always is a special state value named the *activation value*. The activation value can be accessed by accessing the `activation_value` attributes in the state values.
+
+This value is just a value among the existing state values that gets highlighted because it is the most sensible value used by the activation.
+
+For exemple, the activation value for the On/Off activation is the current state of the activation, either On or Off.
+
+In the following descriptions, the activation value is highlighted for each activation.
+
+For No Activation activation, the *activation value* is equal to the **activation count**.
+
 # Page
 
 `type: page`
@@ -167,6 +179,10 @@ PushEvent, PressEvent, LongPressEvent
 | --------- | ----------------------- |
 | `on`      | current state On or Off |
 
+### Activation Value
+
+The activation value for On/Off activation is the current status, either On or Off.
+
 # UpDown
 
 `type: updown`
@@ -181,6 +197,10 @@ Cycle Up and Down button.
 | `stops=3`       | Number of stop values. For example: Stops=3 will give 0-1-2-1-0 cycles, with 3 stops 0, 1, and 2.                                                                                                                                                                           |
 | `initial-value` | If an initial value is supplied, it's sign indicated how the value will evolve.<br><br>For example, if the initial value is 1, the next value will be 2 (go up). If the initial value is -1, the initial value will be set to 1, but the next value will be zero (go down). |
 | `set-dataref`   | Optional dataref to set the value of the current stop.<br><br>Very much like On/Off activation either `commands` or `set-dataref` can be supplied or both.                                                                                                                  |
+
+### Activation Value
+
+The activation value for UpDown activation is the current value.
 
 ## State Values
 
@@ -222,6 +242,10 @@ An Encoder is a rotating knob or dial with *steps*. Steps are often materialised
 | `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
 | `rotation_counterclockwise` | same.                                                    |
 
+### Activation Value
+
+The activation value for Encoder activation is the current rotation value, i.e. number of rotation clockwise minus number of rotation counter-clockwise, negative values means there are more counter clockwise turns.
+
 # EncoderPush
 
 `type: encoder-push`
@@ -240,6 +264,10 @@ An EncoderPush is the combination of an Encoder and a push button.
 | --------------------------- | -------------------------------------------------------- |
 | `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
 | `rotation_counterclockwise` | same.                                                    |
+
+### Activation Value
+
+Same as Encoder activation.
 
 # EncoderOnOff
 
@@ -267,6 +295,10 @@ An EncoderOnOff is the combination of an Encoder and an OnOff button.
 | `rotation_counterclockwise` | same.                                                    |
 | `on`                        | Is currently On or Off                                   |
 
+### Activation Value
+
+Same as Encoder activation.
+
 # EncoderLongPush
 
 ## Attributes
@@ -281,6 +313,10 @@ An EncoderOnOff is the combination of an Encoder and an OnOff button.
 | --------------------------- | -------------------------------------------------------- |
 | `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
 | `rotation_counterclockwise` | same.                                                    |
+
+### Activation Value
+
+Same as Encoder activation.
 
 # EncoderValue
 
@@ -308,6 +344,10 @@ An EncoderValue is an Encoder that increases or decrease an internal value each 
 | `rotation_counterclockwise` | same.                                                    |
 | `value`                     | Current raw value                                        |
 
+### Activation Value
+
+The activation value of the EncoderValue activation is the computed value of the encoder.
+
 # Slider
 
 `type: slider`
@@ -326,6 +366,10 @@ A Slider is a one dimensional cursor that produces a continuous value within a r
 | State   | Definition        |
 | ------- | ----------------- |
 | `value` | Current raw value |
+
+### Activation Value
+
+The activation value of the Slider activation is the  value of the slider.
 
 # Swipe
 
@@ -352,14 +396,16 @@ pos_end: (78, 42)
 
 ## State Values
 
-| State      | Definition |
-| ---------- | ---------- |
-| `start_x`  |            |
-| `start_y`  |            |
-| `start_ts` |            |
-| `end_x`    |            |
-| `end_y`    |            |
-| `end_ts`   |            |
+| State      | Definition                                   |
+| ---------- | -------------------------------------------- |
+| `start_x`  | Start of swipe position laterally            |
+| `start_y`  | Start of swipe position vertically           |
+| `start_ts` | Timestamp of start of swipe, in microseconds |
+| `end_x`    | End of swipe position laterally              |
+| `end_y`    | End of swipe position vertically             |
+| `end_ts`   | Timestamp of end of swipe, in microseconds   |
+
+From the above values, with some tolerence, it is possible to determine whether the finger moved on the surface or not (swipe or touch), and to determine the duration of the contact with the surface.
 
 # Button Activations for Developers
 

@@ -126,13 +126,14 @@ From the above
 - X-Plane datarefs
 - Cockpitdecks internal datarefs
 - Button internal state attributes
+
 which may be called *variables*, a button provides a final value. This value is supplied to the representation that will provide the button feedback on the deck.
 
 The following sections details how the value gets computed from the above variables. The possibilities are:
 
-- Value from a single dataref or button internal state attribute
-- Value from a formula (that combines several datarefs and button internal state attributes)
-- A list of values for a representation that requires it
+- Value from a single dataref,
+- Value from a formula (that combines several datarefs and button internal state attributes),
+- A list of values for a representation that requires it,
 - or finally, a list of all the above variables in a dictionary of values.
 
 ## Single Dataref Value
@@ -269,4 +270,3 @@ An activation only modifies its internal state and does not "forward" its modifi
 ```
 formula: ${state:counter-clockwise-movement-count}
 ```
-
