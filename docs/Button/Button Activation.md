@@ -66,6 +66,8 @@ In the following descriptions, the activation value is highlighted for each acti
 
 For No Activation activation, the *activation value* is equal to the **activation count**. This is also the "default" *activation value*, if nothing more precise is returned, the activation value is the number of activation of that button.
 
+The *activation value* comes to play when the button needs to determine its value. It first look for a formula, then a single dataref, and if there is no formula and no single dataref, the activation value is used.
+
 # Page
 
 `type: page`
@@ -270,10 +272,11 @@ An EncoderPush is the combination of an Encoder and a push button.
 
 ## State Values
 
-| State                       | Definition                                                  |
-| --------------------------- | -------------------------------------------------------- |
-| `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
-| `rotation_counterclockwise` | same.                                                    |
+| State   | Definition                                               |
+| ------- | -------------------------------------------------------- |
+| `turns` | Number of turns, positive is clockwise                   |
+| `cw`    | number of times/clicks the encoder was turned clockwise. |
+| `ccw`   | same, counter clockwise.                                 |
 
 ### Activation Value
 
@@ -299,11 +302,11 @@ An EncoderOnOff is the combination of an Encoder and an OnOff button.
 
 ## State Values
 
-| State                       | Definition                                               |
-| --------------------------- | -------------------------------------------------------- |
-| `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
-| `rotation_counterclockwise` | same.                                                    |
-| `on`                        | Is currently On or Off                                   |
+| State | Definition                                               |
+| ----- | -------------------------------------------------------- |
+| `cw`  | number of times/clicks the encoder was turned clockwise. |
+| `ccw` | same.                                                    |
+| `on`  | Is currently On or Off                                   |
 
 ### Activation Value
 
@@ -319,10 +322,10 @@ Same as Encoder activation.
 
 ## State Values
 
-| State                       | Definition                                                  |
-| --------------------------- | -------------------------------------------------------- |
-| `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
-| `rotation_counterclockwise` | same.                                                    |
+| State | Definition                                               |
+| ----- | -------------------------------------------------------- |
+| `cw`  | number of times/clicks the encoder was turned clockwise. |
+| `ccw` | same.                                                    |
 
 ### Activation Value
 
@@ -348,11 +351,11 @@ An EncoderValue is an Encoder that increases or decrease an internal value each 
 
 ## State Values
 
-| State                       | Definition                                               |
-| --------------------------- | -------------------------------------------------------- |
-| `rotation_clockwise`        | number of times/clicks the encoder was turned clockwise. |
-| `rotation_counterclockwise` | same.                                                    |
-| `value`                     | Current raw value                                        |
+| State   | Definition                                               |
+| ------- | -------------------------------------------------------- |
+| `cw`    | number of times/clicks the encoder was turned clockwise. |
+| `ccw`   | same.                                                    |
+| `value` | Current raw value                                        |
 
 ### Activation Value
 

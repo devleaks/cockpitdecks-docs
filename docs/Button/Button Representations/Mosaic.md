@@ -69,6 +69,12 @@ Here is an example of definition of a mosaic for the LoupedeckLive left screen.
             - 30
 ```
 
+One Deck Type can define one or more mosaic for its large LCD displays. For example, a 800x100 pixel large LCD can propose a Mosaic of 4 x 200x100 pixels.
+
+If a user prefers an alternate Mosaic of 8 x 100x100 pixels, it is necessary to create another Deck Type, with another name, where the alternate mosaic is expressed, but this can be done.
+
+The same device, whether physical or "virtual" (through a Web Deck), can be declined in several Deck Types to offer a modular representation to Cockpitdecks.
+
 # Button Definition
 
 ## Mosaic

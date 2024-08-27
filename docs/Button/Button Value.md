@@ -99,6 +99,10 @@ Numeric internal values are accessible as `${state:variable-name}` in formula.
 	formula: {state:button_pressed_count} 2 mod
 ```
 
+## Activation Attributes and Activation Value
+
+Most state attributes of a button come from the activation. Each activation has a specific set of state attributes. Among these state attributes, there is a more particular attribute, called the *activation value*, which is the most sensible value produced by the activation.
+
 ## Class Instance Attributes
 
 For Cockpitdecks developers, all attributes used in the button, its activation, or its representation class instances are also available as state variables. In this case, the value of the attribute is returned with no type checking.
@@ -125,14 +129,15 @@ From the above
 
 - X-Plane datarefs
 - Cockpitdecks internal datarefs
-- Button internal state attributes
+- Button internal state attributes, in particular the activation value
 
 which may be called *variables*, a button provides a final value. This value is supplied to the representation that will provide the button feedback on the deck.
 
 The following sections details how the value gets computed from the above variables. The possibilities are:
 
-- Value from a single dataref,
 - Value from a formula (that combines several datarefs and button internal state attributes),
+- Value from a single dataref,
+- Value returned by the activation,
 - A list of values for a representation that requires it,
 - or finally, a list of all the above variables in a dictionary of values.
 
@@ -225,6 +230,9 @@ The following formula determine the final status On(=1) or Off(=0) from the numb
 formula: ${state:activation_count} 2 %
 ```
 
+## Activation Value
+
+If a button does not reference a dataref, and has no formula, the activation value can be used if it is available.
 ## Multiple Button Values
 
 In case a button has multiple values, each value comes from a part of the button. Each part of the button is independent of other parts of the same button. Each part maintains its single value.
