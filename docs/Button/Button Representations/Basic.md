@@ -83,6 +83,9 @@ For example, for an OnOff activation type there may be two icons for On and Off 
 
 No attribute.
 
+> [!NOTE] Multi
+> Cockpitdecks offers representations like multi-icons, multi-texts, and even multi-buttons always on the same pattern. The multi- keyword means that there are several representations of the same type available in the button definition. The *value* of the button determine which one if chosen for representation. If the value of the button does not point at a valid index in the list, the representation is ignored.
+
 # MultiTexts
 
 `multi-texts`
@@ -126,6 +129,10 @@ None
 The selection of the text block must be performed by a **formula** and not a dataref.
 
 When a formula is present in the attributes of a button, it is always favored over a list of datarefs, even if the list contains only one dataref. (If there a button uses multiple datarefs and there is no formula, the value that is returned for that button is a diectionary of all dataref values.)
+
+# Multi-Buttons
+
+See [[Multi-Buttons and Mosaic]].
 
 # LED
 

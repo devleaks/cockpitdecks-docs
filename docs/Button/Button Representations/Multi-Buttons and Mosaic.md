@@ -1,3 +1,11 @@
+Multi-Buttons and Mosaic allow simultaneous representation of several buttons.
+
+Multi-buttons selects one button to represent from a list of buttons.
+
+Mosaic represent them all at once, simultaneously.
+
+# Mosaic
+
 A Mosaic is a trick used to split a large button into smaller ones.
 
 A Mosaic can, in some regards, be considered as a special case of a Page. Yes, a small page with its own set of individual buttons.
@@ -113,3 +121,9 @@ The representation must be `mosaic`. THe representation collects the representat
 ## Representation
 
 (picture, later)
+
+# Multi-Buttons
+
+The multi-button representation defines a list of buttons.
+
+The value of the main hosting button determine which button gets chosen from the list (index value).

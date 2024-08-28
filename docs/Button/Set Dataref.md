@@ -28,6 +28,6 @@ The indent of the above button is to display a counter of how many times the but
 1. The button is pressed, the activation is triggered.
 2. The activation executes the push instruction AND INCREMENT the activation counter.
 3. It is only after the counter that has been incremented that the formula is evaluated and the new value of the button is computed
-4. The new value of the button is computed and saved in the dataref pointed by `set-dataref`.
+4. The new value of the button just computed is optionally saved in the dataref pointed by `set-dataref`.
 
-So, in case the value of button is computed from one or more values that are very precisely modified by the activation of the button, the modification of the values is registered first, and the final value of the button computed afterwards, just before it is optionnaly written to the dataref pointed by the `set-dataref` attribute.
+So, in case the value of button is computed from one or more values that are very precisely modified by the activation of the button, the modification of the values is registered first, and the final value of the button computed afterwards, just before it is optionally written to the dataref pointed by the `set-dataref` attribute.
