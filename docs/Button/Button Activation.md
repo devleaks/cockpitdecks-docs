@@ -426,12 +426,6 @@ Reload, Stop, or Inspect are [[Button Activations for Developers|special activat
 
 These activations are normally not used during regular operations.
 
-# Activation Validity
-
-Each Activation has a `is_valid()` method that checks whether all necessary attributes or parameters are available to it. The inspect keyword to trigger button validity inspection is `valid`.
-
-Each Activation also has a `describe()` method that displays and explains what it does. The inspect keyword for displaying activation description is `desc`.
-
 # New Activations
 
 It always is possible to create new activations by [[Extending Cockpitdecks|extending Cockpitdecks]].

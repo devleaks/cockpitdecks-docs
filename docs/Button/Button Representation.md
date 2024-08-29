@@ -131,12 +131,3 @@ Guarded buttons or keys need to be pressed twice to activate, the first activati
 
 > [!WARNING] Long Press
 > Make sure long press lasts 2 seconds or more, otherwise the button will be activated!
-
-# Representation Validity
-
-> [!NOTE] Development Notes
-> For developer only
-
-Each Representation has a `is_valid()` method that checks whether all necessary attributes or parameters are available to it and valid. If the validity function fails, a warning is reported and the button is not rendered. The inspect keyword used to verify the validity of the representation is `valid`.
-
-Each Representation has an `describe()` method that explains what it displays in plain English. The inspect keyword used to describe the representation is `what`.
