@@ -167,24 +167,24 @@ If always is a good idea to see what the client application offers:
 
 ```
 $ cockpitdecks-cli --help
-usage: cockpitdecks-cli [ { --help | --demo | directory [fixed] } ]
-
---help, -h, -?: displays command line help and exits
---demo        : starts demo mode, X-plane not needed but used if available
-directory     : start from directory if directory contains deckconfig directory
-              : if 'fixed' added after the directory, aircraft will not change
-
-without any argument:
-  * if X-Plane runs on same computer as Cockpitdecks, starts in full automatic
-    mode, reloading aircrafts when changes are detected.
-  * if X-Plane does not run on same computer as Cockpitdecks, start demo mode.
+usage: cockpitdecks-cli [-h] [-d] [-f] [aircraft_folder]
+  
+Start Cockpitdecks
+  
+positional arguments:
+  aircraft_folder  aircraft folder for non automatic start
+  
+options:
+  -h, --help       show this help message and exit
+  -d, --demo       start demo mode
+  -f, --fixed      does not automatically switch aircraft.
 ```
 
 ### Test Cockpitdecks In Demonstration Mode
 
 A second easy step is to start Cockpitdecks in demonstration mode. In this mode, it will offer a single demonstration deck. See [[Examples]] for details about the demonstration.
 
-```sh
+```
 cockpitdecks-cli --demo
 ```
 
@@ -222,14 +222,14 @@ This mode is fully automatic, Cockpitdecks always attempts to load the current a
 In this case, it is not possible for Cockpitdecks to locate aircraft configuration files. A set of configuration file will need to be supplied to Cockpitdecks on the command line to start with. (If no folder is supplied, Cockpitdecks will start in demonstration mode. See above.)
 
 ```sh
-cockpitdecks-cli aircrafts/A21N fixed
+cockpitdecks-cli aircrafts/A21N --fixed
 ```
 
 Cockpitdecks will start and load the configuration in `aircrafts/A21N/deckcockpit`. Cockpitdecks will attempt to connect to X-Plane.
 
-The optional `fixed` argument ensure that Cockpitdecks will not reload a new aircraft if it detects the aircraft in X-Plane has changed or does not correspond to the aircraft currently being used. This is particularly handy when developing decks.
+The optional `--fixed` flag ensure that Cockpitdecks will not reload a new aircraft if it detects the aircraft in X-Plane has changed or does not correspond to the aircraft currently being used. This is particularly handy when developing decks.
 
-If `fixed` is not present, Cockpitdecks will attempt to find a suitable deckconfig folder to load.
+If `--fixed` is not present, Cockpitdecks will attempt to find a suitable deckconfig folder to load.
 
 To do this, Cockpitdecks will search for a folder named like the X-Plane aircraft folder. It will search in all folders listed in the `COCKPITDECKS_PATH` python or environment variable.
 
