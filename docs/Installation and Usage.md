@@ -58,12 +58,12 @@ pip install avwx-engine scipy suntime timezonefinder metar tabulate
 ```
 
 > [!NOTE] All In One
-> You can specify all option or additional package like so:
+> You can specify all options or additional packages like so:
 > ```
-> pip install 'cockpitdecks[streamdeck,loupedeck,xtouchmini] @ git+https://github.com/devleaks/cockpitdecks.git'
+> pip install 'cockpitdecks[weather,streamdeck] @ git+https://github.com/devleaks/cockpitdecks.git'
 > ```
 
-Valid installable extra are:
+Valid installable extras (between the `[` `]`, comma separated, no space) are:
 
 | Extra         | Content                                                                                                       |
 | ------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -71,7 +71,7 @@ Valid installable extra are:
 | `streamdeck`  | For Elgato Stream Deck decks                                                                                  |
 | `loupedeck`   | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                         |
 | `xtouchmini`  | For Berhinger X-Touch Mini device                                                                             |
-| `development` | For developer only, add testing packages and types                                                            |
+| `development` | For developer only, add testing packages and python types                                                     |
 
 ### Install Deck Devices Drivers
 
