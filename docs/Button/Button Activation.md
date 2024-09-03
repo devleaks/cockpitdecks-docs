@@ -140,22 +140,22 @@ PushEvent. Please note that PushEvent consists of 2 distinct events, a pressed e
 
 Auto-repeat will start 3 second after the button was pressed, the command will auto-repeat every 0.5 seconds, twice per second. (`dot` option also set for other purpose.)
 
-# Longpress
+# BeginEndPress
 
-`type: longpress`
+`type: begin-end-command`
 
 Push button that will carry the command as long as the button will remain pressed.
 
-Long press command should not be confused with auto-repeat commands. A Longpress command in one command that is executed once as long as the button remain pressed. An auto-repeat command is the same command that is executed several times at regular interval (typically once every 0.2 seconds, 5 times per second) as long as the button is pressed.
+Long press command should not be confused with auto-repeat commands. A BeginEndPress command in one command that is executed once as long as the button remain pressed. An auto-repeat command is the same command that is executed several times at regular interval (typically once every 0.2 seconds, 5 times per second) as long as the button is pressed.
 
 > [!NOTE]
-> The Longpress command requires installation of a XPPYthon3 plugin in X-Plane to circumvent a few X-Plane UDP limitations.
+> The BeginEndPress command requires installation of a XPPYthon3 plugin in X-Plane to circumvent a few X-Plane UDP limitations.
 
 ## Events
 
 PushEvent
 
-Only PushEvent can be used to trigger Longpress Activation since both press and release events are necessary to estimate the timing between both events.
+Only PushEvent can be used to trigger BeginEndPress Activation since both press and release events are necessary to estimate the timing between both events.
 
 ## Attributes
 

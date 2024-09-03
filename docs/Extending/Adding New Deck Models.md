@@ -77,9 +77,9 @@ Depending on the button's action that is triggered, the deck will programmatical
 
 `swipe`: will produce a complex swipe Event, with the position of the start of the swipe, the end of the swipe and some timing information (timestamps of start and end of swipe).
 
-Technically speaking, the deck will start a thread to listen to incoming events. Events will be decoded (which key was pressed, when, how, etc.) and presented to Cockpitdecks for handling.
+Technically speaking, the deck will start a thread to listen to incoming events. Interaction will be decoded (which key was pressed, when, how, etc.) and presented to Cockpitdecks for handling as a typed Event.
 
-Depending on the device driver's hardware access, events will either be presented directly to Cockpitdecks, or through a FIFO queue: Driver enqueues events, Cockpitdecks dequeues events.
+Depending on the device driver's hardware access, events will either be presented directly to Cockpitdecks, or through a FIFO queue: Driver just enqueues events, Cockpitdecks dequeues events and does the work.
 
 ## Computer to Deck Interaction
 
@@ -91,4 +91,4 @@ This is performed directly through the deck's device driver, by calling the appr
 
 When creating an Activation, the activation will specify which **action** it requires. For example, an activation that requires an encoder dial to work will require the `encoder` or `encoder-push` capability.
 
-Similarly, a Representation will specify which **view** it requires. A representation that displays an image (icon, drawing, animation...) will require a `lcd` view for instance.
+Similarly, a Representation will specify which **view** it requires. A representation that displays an image (icon, drawing, animation...) will require a `image` view for instance.

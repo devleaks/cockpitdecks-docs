@@ -73,18 +73,19 @@ A deck is presented to Cockpitdecks through a deck definition file called a Deck
 On startup, Cockpitdecks will report which deck types are available:
 
 ```
-INFO: loaded 15 deck types (
-Virtual Streamdeck Mini, Virtual Streamdeck MK.2, Streamdeck +,
-Virtual LoupedeckLive, Stream Deck XL, Stream Deck Neo,
-Virtual Streamdeck XL, LoupedeckLive, Streamdeck, Virtual X-Touch Mini,
-Stream Deck Original, Stream Deck Mini, X-Touch Mini, Stream Deck +,
-Virtual XKeys 80), 6 are virtual deck types
-INFO: drivers installed for streamdeck 0.9.5, xtouchmini 1.3.6; scanning..
-INFO: found 0 streamdeck
-INFO: found 0 xtouchmini
-...
-INFO: found 1 web deck(s)
-INFO: added virtual deck LoupedeckLive, serial None)
+Cockpitdecks 11.20.1 © 2022-2024 Pierre M <pierre@devleaks.be>
+Elgato Stream Decks, LoupedeckLive, Berhinger X-Touch, and web decks to X-Plane 12
+
+INFO MainThread start.py:<module>:100: Initializing Cockpitdecks..
+INFO MainThread xplane.py:init:329: aircraft dataref is sim/aircraft/view/acf_livery_path
+WARNING MainThread xplane.py:add_datarefs_to_monitor:727: no connection
+INFO MainThread xplane.py:add_datetime_datarefs:378: monitoring simulator date/time datarefs
+INFO MainThread cockpit.py:load_deck_types:808: loaded 20 deck types (Virtual Deck for Development, virtual loupedeck.live.s, Virtual Streamdeck Mini, Virtual Streamdeck MK.2, Virtual Streamdeck +, Virtual LoupedeckLive, Stream Deck XL, Stream Deck Neo, Virtual Streamdeck XL, Virtual Stream Deck Neo, LoupedeckLive, Streamdeck, Virtual X-Touch Mini, Stream Deck Original, Stream Deck Mini, virtual loupedeck.ct, Virtual LoupedeckLive with Mosaic, X-Touch Mini, Stream Deck +, Virtual XKeys 80), 12 are virtual deck types
+INFO MainThread cockpit.py:scan_devices:357: drivers installed for streamdeck 0.9.5, loupedeck 1.4.5, xtouchmini 1.3.6; scanning for decks and initializing them (this may take a few seconds)..
+INFO MainThread cockpit.py:scan_devices:367: found 3 streamdeck
+INFO MainThread cockpit.py:scan_devices:367: found 1 loupedeck
+INFO MainThread cockpit.py:scan_devices:367: found 1 xtouchmini
+INFO MainThread start.py:<module>:102: ..initialized
 ```
 
 ## Deck Definition
