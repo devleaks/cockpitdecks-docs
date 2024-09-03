@@ -92,3 +92,7 @@ This is performed directly through the deck's device driver, by calling the appr
 When creating an Activation, the activation will specify which **action** it requires. For example, an activation that requires an encoder dial to work will require the `encoder` or `encoder-push` capability.
 
 Similarly, a Representation will specify which **view** it requires. A representation that displays an image (icon, drawing, animation...) will require a `image` view for instance.
+
+# See Also
+
+[[Deck Internals]]
