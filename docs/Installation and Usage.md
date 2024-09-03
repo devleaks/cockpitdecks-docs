@@ -57,6 +57,22 @@ If you would like to use Weather or METAR buttons, add the following packages:
 pip install avwx-engine scipy suntime timezonefinder metar tabulate
 ```
 
+> [!NOTE] All In One
+> You can specify all option or additional package like so:
+> ```
+> pip install 'cockpitdecks[streamdeck,loupedeck,xtouchmini] @ git+https://github.com/devleaks/cockpitdecks.git'
+> ```
+
+Valid installable extra are:
+
+| Extra         | Content                                                                                                       |
+| ------------- | ------------------------------------------------------------------------------------------------------------- |
+| `weather`     | To load special iconic representation for weather. These icons sometimes fetch information outside of X-Plane |
+| `streamdeck`  | For Elgato Stream Deck decks                                                                                  |
+| `loupedeck`   | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                         |
+| `xtouchmini`  | For Berhinger X-Touch Mini device                                                                             |
+| `development` | For developer only, add testing packages and types                                                            |
+
 ### Install Deck Devices Drivers
 
 > [!NOTE] No Physical Deck?
