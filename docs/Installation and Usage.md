@@ -65,36 +65,13 @@ pip install avwx-engine scipy suntime timezonefinder metar tabulate
 
 Valid installable extras (between the `[` `]`, comma separated, no space) are:
 
-| Extra         | Content                                                                                                       |
-| ------------- | ------------------------------------------------------------------------------------------------------------- |
-| `weather`     | To load special iconic representation for weather. These icons sometimes fetch information outside of X-Plane |
-| `streamdeck`  | For Elgato Stream Deck decks                                                                                  |
-| `loupedeck`   | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                         |
-| `xtouchmini`  | For Berhinger X-Touch Mini device                                                                             |
-| `development` | For developer only, add testing packages and python types                                                     |
-
-### Install Deck Devices Drivers
-
-> [!NOTE] No Physical Deck?
-> If you only use web decks and no physical deck, you can skip this step.
-
-To have Cockpitdecks manage Streamdeck devices, add
-
-```shell
-pip install streamdeck
-```
-
-To have Cockpitdecks manage Loupedeck devices, add
-
-```shell
-pip install git+https://github.com/devleaks/python-loupedeck-live.git
-```
-
-To have Cockpitdecks manage Touch Mini devices, add
-
-```shell
-pip install git+https://github.com/devleaks/python-berhinger-xtouchmini.git
-```
+| Extra         | Content                                                                                                                     |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `weather`     | To load special iconic representation for weather. These icons sometimes fetch information outside of X-Plane. Recommended. |
+| `streamdeck`  | For Elgato Stream Deck decks                                                                                                |
+| `loupedeck`   | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                                       |
+| `xtouchmini`  | For Berhinger X-Touch Mini device                                                                                           |
+| `development` | For developer only, add testing packages and python types                                                                   |
 
 ### Install Cockpitdecks Helper Plugin
 
@@ -159,23 +136,31 @@ Cockpitdecks `deckconfig` folder must be placed in the folder of the X-Plane air
 
 First, you have to completely stop (quit completely) original manufacturer deck configuration applications. They take exclusive access to the device and that prevents Cockpitdecks from finding and using them.
 
-## Adjust `config.py`
+## Adjust `config.Yaml`
 
-Cockpitdecks uses a single configuration file to define a few elements that cannot easily be guessed.
+Cockpitdecks uses a single configuration file to define a few elements that cannot easily be guessed. Cockpitdecks provides a configuration file that is suitable for single computer installation. You must, however, adjust at least the X-Plane folder path.
 
-| Variable            | Definiton                                                                                                                                                                    |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `XP_HOME`           | Home directory of X-Plane on the computer where Cockpitdecks runs. If X-Plane is installed on a remote host, `XP_HOME` must be `None`.                                       |
-| `XP_HOST`           | Hostname or IP address where *X-Plane* runs.                                                                                                                                 |
-| `APP_HOST`          | Tuple (Hostname or IP address, port) where *Cockpitdecks* application runs. If specified through operating system environment variables, use (**APP_HOST** and **APP_PORT**) |
-| `API_PORT`          | X-Plane (12.1.1 and above) where REST API runs                                                                                                                               |
-| `API_PATH`          | X-Plane API root path                                                                                                                                                        |
-| `DEMO_HOME`         | Directory where demonstration `deckconfig` files are found.                                                                                                                  |
-| `COCKPITDECKS_PATH` | `COCKPITDECKS_PATH` is a colon-separated list of folder paths. Cockpitdecks will search for aircrafts in directories specified in this variable. First match is returned.    |
+| Variable   | Definiton                                                                                                                                                                                            |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `XP_HOME`  | Home directory of X-Plane on the computer where Cockpitdecks runs. If X-Plane is installed on a remote host, `XP_HOME` must be `None`.                                                               |
+| `XP_HOST`  | Hostname or IP address where *X-Plane* runs. Defaults to local host.                                                                                                                                 |
+| `APP_HOST` | Tuple (Hostname or IP address, port) where *Cockpitdecks* application runs. If specified through operating system environment variables, use (**APP_HOST** and **APP_PORT**). Default to local host. |
+| `API_PORT` | X-Plane (12.1.1 and above) where REST API runs. Default to 8086.                                                                                                                                     |
+| `API_PATH` | X-Plane API root path. Currently default to `/api/v1`.                                                                                                                                               |
 
-Most of these variables gets their default value from operating system environment variables. If no environment variable is defined, the `config.py` file supplies a value.
+In addition, there is a operation system environment variable `COCKPITDECKS_PATH` that holds folders where Cockpitdecks will look for aircraft configurations.
+
+If you do not want to modify the Cockpitdecks-provided `config.yaml` file, you always can supply one on the command line with the `—-config` flag.
+
+The set of global parameters provided in the `config.yaml` file is called the Cockpitdecks *environment*, since it provides all « external » information to Cockpitdecks.
+
+Cockpitdecks provides two templates configuration files for local and remote use.
 
 ## Start Cockpitdecks
+
+Currently, Cockpitdecks only offers a command-line interface to be executed in a shell window.
+
+Installation of the above package in a python environment adds a single command `cockpitdecks-cli` that can be used to start Cockpitdecks and provide options.
 
 ### Command-Line Help
 
@@ -183,28 +168,31 @@ If always is a good idea to see what the client application offers:
 
 ```
 $ cockpitdecks-cli --help
-usage: cockpitdecks-cli [-h] [-d] [-f] [aircraft_folder]
+usage: cockpitdecks-cli [-h] [-c config_file] [-d] [-f] [-v] [aircraft_folder]
   
 Start Cockpitdecks
   
 positional arguments:
-  aircraft_folder  aircraft folder for non automatic start
+  aircraft_folder       aircraft folder for non automatic start
   
 options:
-  -h, --help       show this help message and exit
-  -d, --demo       start demo mode
-  -f, --fixed      does not automatically switch aircraft.
+  -h, --help            show this help message and exit
+  -c config_file, --config config_file
+                        alternate configuration file
+  -d, --demo            start demo mode
+  -f, --fixed           does not automatically switch aircraft
+  -v, --verbose         show startup information
 ```
 
 ### Test Cockpitdecks In Demonstration Mode
 
-A second easy step is to start Cockpitdecks in demonstration mode. In this mode, it will offer a single demonstration deck. See [[Examples]] for details about the demonstration.
+A second easy step is to start Cockpitdecks in demonstration mode. In this mode, it will offer a single demonstration web deck. See [[Examples]] for details about the demonstration.
 
 ```
 cockpitdecks-cli --demo
 ```
 
-In this mode, Cockpitdecks will start a single web deck.
+In this mode, Cockpitdecks will start a single web deck. Head for the index web page as specified in the `config.yaml` environment file.
 
 ![[demo-deck-list.png]]
 
@@ -212,10 +200,13 @@ In this mode, Cockpitdecks will start a single web deck.
 
 ### Normal Operations
 
-There are two main configuration mode to start Cockpitdecks.
+There are two possible ways of working with Cockpitdecks:
 
 1. Either Cockpitdecks runs on the same computer as X-Plane,
 2. or Cockpitdecks runs on a remote computer on the same local area network.
+
+> [!NOTE]
+> Cockpitdecks provides two templates global parameter/environment files to get you started.
 
 ### Cockpitdecks and X-Plane Run On Same Computer
 
