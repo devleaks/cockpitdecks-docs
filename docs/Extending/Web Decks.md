@@ -3,6 +3,9 @@ In addition to real physical decks, Cockpitdecks offers *Web Decks* rendered in 
 ![[virtualdecks.jpg]]
 
 This is very handy to design layout for deck a developer does not necessary owns.
+Web decks can be (almost) any physical deck represented in Cockpitdecks (most popular brands and models are actually provided with Cockpitdecks), or any next deck model of your fantasy. As an example and proof of concept, Cockpitdecks comes with a fully operational overhead panel for Toliss A321 neo aircraft. Yes, you read it right, you can have Toliss A321 overhead panel on a touch screen or tablet.
+
+# Web Deck Declaration and Use
 
 Virtual decks need to be declared at two places:
 

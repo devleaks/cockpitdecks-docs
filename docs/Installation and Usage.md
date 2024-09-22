@@ -30,7 +30,7 @@ As a practical example, X-Plane recently opened access to internal data through 
 
 It is good practice to maintain the software you use to the latest, production version. Cockpitdecks is no exception to this advise.
 
-In particular, the X-Plane Cockpitdecks Helper plugin uses and requires the latest version of [XPPython3](https://xppython3.readthedocs.io/en/latest/index.html) plugin to work. This plugin itself requires X-Plane 12 and recent version of X-Plane SDK. Again, the Cockpitdecks Helper plugin is strictly not required to run Cockpitdecks but some features will not work.
+In particular, the X-Plane Cockpitdecks Helper plugin uses and requires the latest version of [XPPython3](https://xppython3.readthedocs.io/en/latest/index.html) plugin to work. This plugin itself requires X-Plane 12 and recent version of X-Plane SDK. Cockpitdecks Helper plugin is strictly not required to run Cockpitdecks but some features will not work without it.
 
 ### Enable X-Plane UDP
 
@@ -46,22 +46,8 @@ In particular, the X-Plane Cockpitdecks Helper plugin uses and requires the late
 Create a new python environment and activate it. In that environment, issue the pip install command:
 
 ```sh
-pip install git+https://github.com/devleaks/cockpitdecks.git
+pip install 'cockpitdecks[weather,streamdeck] @ git+https://github.com/devleaks/cockpitdecks.git'
 ```
-
-### Install Additional Optional Python Packages
-
-If you would like to use Weather or METAR buttons, add the following packages:
-
-```
-pip install avwx-engine scipy suntime timezonefinder metar tabulate
-```
-
-> [!NOTE] All In One
-> You can specify all options or additional packages like so:
-> ```
-> pip install 'cockpitdecks[weather,streamdeck] @ git+https://github.com/devleaks/cockpitdecks.git'
-> ```
 
 Valid installable extras (between the `[` `]`, comma separated, no space) are:
 
@@ -136,7 +122,7 @@ Cockpitdecks `deckconfig` folder must be placed in the folder of the X-Plane air
 
 First, you have to completely stop (quit completely) original manufacturer deck configuration applications. They take exclusive access to the device and that prevents Cockpitdecks from finding and using them.
 
-## Adjust `config.Yaml`
+## Adjust `config.yaml`
 
 Cockpitdecks uses a single configuration file to define a few elements that cannot easily be guessed. Cockpitdecks provides a configuration file that is suitable for single computer installation. You must, however, adjust at least the X-Plane folder path.
 
@@ -152,7 +138,7 @@ In addition, there is a operation system environment variable `COCKPITDECKS_PATH
 
 If you do not want to modify the Cockpitdecks-provided `config.yaml` file, you always can supply one on the command line with the `—-config` flag.
 
-The set of global parameters provided in the `config.yaml` file is called the Cockpitdecks *environment*, since it provides all « external » information to Cockpitdecks.
+The set of global parameters provided in the `config.yaml` file is called the Cockpitdecks *environment*, since it provides all « external » information to Cockpitdecks (external, relative to Cockpitdecks).
 
 Cockpitdecks provides two templates configuration files for local and remote use.
 

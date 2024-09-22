@@ -58,3 +58,23 @@ what: desc
 ```
 
 When button index 4 is pressed, it will display what each button does (description) in plain English on the output or debugging screen or file.
+
+# Notes for Button Designers
+
+## Button Instantiation
+
+When a button is created, internal meta data are set first. Second, the Activation is installed and initialised. Third, the Representation is installed and initialized, as it may already use some activation information for rendering. Finally, the button is initialised. It will be rendered when the page that contains it is loaded on a deck.
+
+## Button Validity
+
+Each button has a validity function that ensures that all necessary attributes are provided in its definition. If the activation of the button is not valid, its activation function will never be triggered, because of missing or misconfigurated parameters. If its representation is not valid, it will not be rendered on the deck.
+
+If a button is not valid, a small red triangle appears in the lower right corner of the key icon if the button is capable of representing it. A small blue triangle appears in the lower right corner of the key icon if Cockpitdecks suspect the button is a placeholder.
+
+## Button Description and Inspection
+
+Each button has an `describe()` method that prints in plain English what the button does and what it renders on the deck.
+
+Each button has an `inspect(what: str)` method that exposes internal values and state. The inspect method takes one parameter `what`  that determines what is displayed when invoked.
+
+These methods can be invoked from the [[Button Activations for Developers#Inspect|Inspect]] button activation.

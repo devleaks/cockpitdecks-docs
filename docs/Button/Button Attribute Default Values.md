@@ -19,7 +19,7 @@ This hierarchy is very important.
 
 As an example, let us find the value of the `label-color`.
 
-First, the button will perform a direct lookup in its attribute. If it finds a  `label-color` in its attribute, it will use it. If it does not find it, it will as its `default-label-color`. The button will then ask its parent entity for the `default-label-color`.
+First, the button will perform a direct lookup in its attribute. If it finds a  `label-color` in its attribute, it will use it. If it does not find it, it will ask for its `default-label-color`. The button will ask its *parent entity* for the `default-label-color`.
 
 So the Page will search for a `default-label-color` in its attributes. If it finds it, it will use it. If it does not find it, it ask its parent entity.
 
@@ -27,15 +27,19 @@ The Deck will search for a `default-label-color` in its attributes. If it finds 
 
 Finally, the Cockpit will return a `default-label-color`. If there is no value for the `default-label-color`, Cockpitdecks will issue an error. It simply means that there is no default value for that attribute and that a value *must* be supplied by the user in the definition of the button.
 
-# Day / Night (or light / dark) Theme
+# Theme
 
-Cockpitdecks attempts to provide a day and a night *theme*. The attribute `cockpit` can be set to `day` (or `light`) or `night`(or `dark`).
+Cockpitdecks introduced the concept of color schemes or *Themes*. A theme is an additional parameter (string) that is added to the attribute name being looked up. Let us see in a practical example.
+
+## Day or Night Theme
+
+Cockpitdecks attempts to provide a day and a night *theme*. The attribute `cockpit` can be set to `day` (or `light`) or `night`(or `dark`) to specify which theme to use.
 
 ```yaml
 cockpit-theme: dark
 ```
 
-The effect is that in `night` (or `dark`) theme, default values prefixed with `dark-` will be favored. If no default value prefixed with `dark-` is found, the regular default value is fetched.
+The effect is that in `night` (or `dark`) theme, default values *prefixed* with `dark-` will be favored. If no default value prefixed with `dark-` is found, the regular default value is fetched.
 
 ## Example for label color
 
@@ -62,11 +66,11 @@ Sometimes, configuration values can be specified at different level for a given 
 
 ## Cockpitdecks (Application), Cockpits
 
-At the highest level, a Cockpit will start with a set of default values provided in its code.
+At the highest level, a Cockpit will start with a set of default values provided in its internal code.
 
-It will then loads additional parameters in a global resource configuration file. That file is the same for ALL aircrafts. The config.yaml file is located in the home directory of Cockpitdecks software, in the *resources* folder.
+It will then loads additional parameters in a global resource configuration file. That file is the same for ALL aircrafts. The config.yaml file is located in the home directory of Cockpitdecks software, in the *resources* folder. It cannot be changed.
 
-Next, Cockpitdecks will look for an aircraft specific configuration file, in the  deckconfig folder of that aircraft. It will load the config.yaml file of that aircraft, and default values loaded from there will apply to that aircraft only.
+Next, Cockpitdecks will look for an aircraft specific configuration file, in the  deckconfig folder of that aircraft. It will load the config.yaml file of that aircraft, and default values loaded from there will apply to that aircraft only. That configuration file can be used for cockpit designer to specify their requirements and preferences.
 
 ## Decks and Layouts
 

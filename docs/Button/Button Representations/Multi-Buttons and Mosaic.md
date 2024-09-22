@@ -79,7 +79,7 @@ Here is an example of definition of a mosaic for the LoupedeckLive left screen.
 
 One Deck Type can define one or more mosaic for its large LCD displays. For example, a 800x100 pixel large LCD can propose a Mosaic of 4 x 200x100 pixels.
 
-If a user prefers an alternate Mosaic of 8 x 100x100 pixels, it is necessary to create another Deck Type, with another name, where the alternate mosaic is expressed, but this can be done.
+If a user prefers an alternate Mosaic of 8 x 100x100 pixels, it is necessary to create another Deck Type, with another name, where the alternate mosaic is expressed.
 
 The same device, whether physical or "virtual" (through a Web Deck), can be declined in several Deck Types to offer a modular representation to Cockpitdecks.
 
@@ -99,7 +99,7 @@ The same device, whether physical or "virtual" (through a Web Deck), can be decl
 
 The activation (`type`) must be `mosaic`. This activation transforms the swipe event into push events.
 
-The representation must be `mosaic`. THe representation collects the representation of each tile and compose the final image that is sent for display.
+The representation must be `mosaic`. The representation collects the representation of each tile and compose the final image that is sent for display.
 
 ## Tiles
 

@@ -314,11 +314,14 @@ Same as Encoder activation.
 
 # EncoderLongPush
 
+A combination of pushing and turning.
+
 ## Attributes
 
-| Attribute  | Definition                                                                                                                                                                                                                                                                                                                                                    |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `commands` | An EncoderLongPush has 4 commands:<br><br>1. First command  gets executed when encoder is turned clockwise<br>2. Second command gets executed when encoder is turned counterclockwise<br>3. Third command gets executed when encoder is turned clockwise *and pushed*<br>4. Fourth command gets executed when encoder is turned counterclockwise *and pushed* |
+| Attribute  | Definition                                                                                                                                                                                                                                                                                                                                                                |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `commands` | An EncoderLongPush has 4 commands:<br><br>1. First command  gets executed when encoder is turned clockwise<br>2. Second command gets executed when encoder is turned counterclockwise<br>3. Third command gets executed when encoder is first pushed, then turned clockwise<br>4. Fourth command gets executed when encoder is first pushed, then turned counterclockwise |
+|            |                                                                                                                                                                                                                                                                                                                                                                           |
 
 ## State Values
 

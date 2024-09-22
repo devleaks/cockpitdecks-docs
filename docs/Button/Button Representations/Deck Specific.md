@@ -1,6 +1,7 @@
 # ColoredLed
 
 ColoredLed buttons are color capable led behind a transparent or mask button.
+
 They are either on or off, with a RGB color.
 
 ```
@@ -66,7 +67,7 @@ Larger screens can be used in two different ways:
 - As a whole, unique, larger display surface,
 - As a set of adjacent buttons covering the entire surface.
 
-In the later case, the specificity of the display is not apparent, and resulting buttons are treated as regular keys with iconic image display (with different sizes sometimes.)
+In the later case, the specificity of the display is not apparent, and resulting buttons are treated as regular keys with iconic image display (with different sizes sometimes.) This is called a [[Multi-Buttons and Mosaic|Mosaic]].
 
 When considered as a single larger display, it is difficult to remain generic since each display will have special size, location, and behavior. Cockpitdecks buttons assigned to those specific display are therefore also very specific.
 

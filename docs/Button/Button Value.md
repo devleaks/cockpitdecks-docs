@@ -1,16 +1,16 @@
 A button builds its representation from its *value*. The *value* of the button is computed from one or more *dataref* values returned by X-Plane and/or from some *internal state variable* values.
 
-A Button can have 0, 1, or more than one value in the special case of [[Annunciator|annunciators]] or LargeButtons  (A LargeButton  can have two or more buttons represented inside.). Each annunciator part or each button inside a LargeButton has either 0, or 1 value.
+A Button can have 0, 1, or more than one value in the special case of [[Annunciator|annunciators]] or Mosaic  (A Mosaic  can have two or more buttons represented inside.). Each annunciator part or each button inside a Mosaic has either 0, or 1 value.
 
 Each value of a button is either None (no value) or a numeric value (which is most of the time a floating point number). If a button has several values, its value is either a list of values or a dictionary of all individual values, each individual value being None or a number.
 
-Activations and Representations of the button knows how to manage the different values contained in the annunciator or LargeButtons.
+Activations and Representations of the button knows how to manage the different values contained in the annunciator or Mosaic.
 
 # X-Plane Datarefs
 
 A *dataref* is the name of a value used by the X-Plane simulator.
 
-The value can be a string, integer, or float value, either a single value or an array of (same type of) values. A dataref has a name to access it. Names are organized in a folder-like structure (namespace using `/` separator). Some datarefs are read-only, some other can be written and modified.
+The value can be a string, integer, or float value, either a single value or an array of (same type of) values. A dataref has a name to access it. Names are organized in a folder-like structure (namespace using `/` separator). Some datarefs are read-only, some other can be written and modified. Names that start with `sim/` are reserved for the simulator internal use.
 
 #### Examples
 
@@ -20,11 +20,11 @@ The value can be a string, integer, or float value, either a single value or an 
 
 There are thousands of datarefs in a running instance of X-Plane. Datarefs drive almost everything in the simulator.
 
-A dataref is always monitored. Its value is fetched from the simulator at regular interval (typically every second). When a dataref's value has changed, all buttons that depend on that dataref are notified to update their appearance.
+When used by a button in Cockpitdecks, the value of a dataref is monitored. Its value is fetched from the simulator at regular interval (typically every second). When a dataref's value has changed, all buttons that depend on that dataref are notified of the change to, for example, update their appearance.
 
-To explore datarefs, there is a handy X-Plane plugin called [DataRefTool](https://datareftool.com). There are also a few web pages that collect, report, and present them so that they can be searched.
+To explore datarefs available in the simulator, there is a handy X-Plane plugin called [DataRefTool](https://datareftool.com). There are also a few web pages that collect, report, and present them so that they can be searched. The plugin allow not only for inspection of datarefs, but also for inspection and discovery of *commands*, strings that can be submitted to the simulator to perform some action.
 
-For simplicity, Cockpitdecks assumes all individual dataref values are floating point numbers or strings (in which case it actually is a list of floating point values representing the ASCII code number of each character in the string.)
+For simplicity, Cockpitdecks assumes all individual dataref values are floating point numbers or strings.
 
 The reason for this is that as today, X-Plane UDP only returns floating point numeric values for requested datarefs.
 
@@ -89,7 +89,7 @@ Internal datarefs can be used as inter-button communication, to set a value in o
 
 # Button «Internal State» Attributes
 
-When a button cannot fetch its representation from X-Plane, it is possible to use some Cockpitdecks internal variables made available through the button *state*. Each button maintain its state, a few internal variables’that can be accessed in formula.
+When a button cannot fetch its representation from X-Plane, it is possible to use some Cockpitdecks internal variables made available through the button *state*. Each button maintain its state, a few internal variables that can be accessed in formula.
 
 Some state variables are generic, and available for almost every buttons, like for instance the number of time a button was activated. Other state variables are activation specific and listed in the [[Button Activation]] page under the activation being used, like for example, the number of times a encoder was turned clockwise.
 
@@ -100,7 +100,7 @@ Numeric internal values are accessible as `${state:variable-name}` in formula.
 ```
 
 ## Activation Attributes and Activation Value
-
+ 
 Most state attributes of a button come from the activation. Each activation has a specific set of state attributes. Among these state attributes, there is a more particular attribute, called the *activation value*, which is the most sensible value produced by the activation.
 
 ## Class Instance Attributes
@@ -233,6 +233,7 @@ formula: ${state:activation_count} 2 %
 ## Activation Value
 
 If a button does not reference a dataref, and has no formula, the activation value can be used if it is available.
+
 ## Multiple Button Values
 
 In case a button has multiple values, each value comes from a part of the button. Each part of the button is independent of other parts of the same button. Each part maintains its single value.

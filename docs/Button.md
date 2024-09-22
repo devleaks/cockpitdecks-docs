@@ -86,32 +86,36 @@ In case of a Button with multiple values, each value has a separate `initial-val
 
 The `type` attribute of a button determine [[Button Activation|how the button will behave]], what it will do when pressed, turned or slid.
 
+## Set-Dataref
+
+A button definition can have a `set-dataref` attribute that points at a Dataref name.
+
+If present, Cockpitdecks will set the value of that dataref to the value of the button.
+
+Here is example of use. If a button has a activation type of `updown` with let us say 3 stops, the value of the button can be 0, 1, or 2. Each time the user presses the button the value of the button cycles between those three values.
+
+```
+type: updown
+stops: 3
+set-dataref: toliss/NDmodeFO
+```
+
+If there is a `set-dataref` attribute, the current value of the dataref (`toliss/NDmodeFO`) in the simulator will be set to the value of the button: 0, 1, or 2.
+
+For some activations, the `set-dataref` attribute is a mandatory attribute.
+
+For some other activations that expects a command to be performed upon activation, the `set-dataref` attribute (or instruction) can be an *alternative* to the command. In other words, the commands that gets executed is very precisely the `set-dataref` instruction.
+
 # Button Representation
 
 (In the picture above, this refer to the pink part of the definition.)
 
 The representation of a Button determine [[Button Representation|what and how the button will display]] on the deck device. This depends on the capabilities of the button on the deck: LED, image, coloured led button, sound...
 
-The representation of a button is determined by *the presence of a special attribute in the definition of the button*.
+The representation of a button is determined by *the presence of a special attribute in the definition of the button*. That attribute will determine how the button will be represented.
 
 For example, if a button definition contains an attribute named `annunciator`, the button representation will be an [[Annunciator]]. A button can only define one representation in its definition. Otherwise, a warning is reported and the button is ignored.
 
-# Notes for Button Designers
+Attributes related to the representation of the button are indented under the attributes that names the representation. This is done on purpose to clearly separate attributes dedicated to what the button does (activation), and how it provides feedback to the user (representation).
 
-## Button Instantiation
-
-When a button is created, internal meta data are set first. Second, the Activation is installed and initialised. Third, the Representation is installed and initialized, as it may already use some activation information for rendering. Finally, the button is initialised. It will be rendered when the page that contains it is loaded on a deck.
-
-## Button Validity
-
-Each button has a validity function that ensures that all necessary attributes are provided in its definition. If the activation of the button is not valid, its activation function will never be triggered, because of missing or misconfigurated parameters. If its representation is not valid, it will not be rendered on the deck.
-
-If a button is not valid, a small red triangle appears in the lower right corner of the key icon if the button is capable of representing it. A small blue triangle appears in the lower right corner of the key icon if Cockpitdecks suspect the button is a placeholder.
-
-## Button Description and Inspection
-
-Each button has an `describe()` method that prints in plain English what the button does and what it renders on the deck.
-
-Each button has an `inspect(what: str)` method that exposes internal values and state. The inspect method takes one parameter `what`  that determines what is displayed when invoked.
-
-These methods can be invoked from the [[Button Activations for Developers#Inspect|Inspect]] button activation.
+A Page of 32 buttons 4 rows of 8 buttons) can quickly become quite large and difficult to read. Fortunately, recall that a Page can include other Pages to structure the creation of a layout. For example, it might be advisable to create a « main » page with global settings, and include four sub-pages, one for each row on the deck.

@@ -14,6 +14,8 @@ An image file is loaded on the deck key if it is capable of displaying images.
 
 ## Attributes
 
+### frame
+
 ```yaml
 icon: isi
 frame:
@@ -128,7 +130,7 @@ None
 
 The selection of the text block must be performed by a **formula** and not a dataref.
 
-When a formula is present in the attributes of a button, it is always favored over a list of datarefs, even if the list contains only one dataref. (If there a button uses multiple datarefs and there is no formula, the value that is returned for that button is a diectionary of all dataref values.)
+When a formula is present in the attributes of a button, it is always favored over a list of datarefs, even if the list contains only one dataref. (If there a button uses multiple datarefs and there is no formula, the value that is returned for that button is a dictionary of all dataref values.)
 
 # Multi-Buttons
 
@@ -136,7 +138,7 @@ See [[Multi-Buttons and Mosaic]].
 
 # LED
 
-`led: led
+`led: led`
 
 Turns a single LED light On or Off depending on the button's value.
 
