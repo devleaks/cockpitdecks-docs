@@ -1,3 +1,9 @@
+# Architecture
+
+## Cockpitdecks Software Entities
+
+![[entities.svg|600]]
+
 Cockpitdecks proceeds by starting autonomous threads of execution that monitor different aspects of the interaction of decks with X-Plane.
 
 Cockpitdecks threads are often created in start() procedures and terminated in terminate() procedures. Communication with the thread is performed through synchronous Queues.
