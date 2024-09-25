@@ -77,7 +77,7 @@ Depending on the button's action that is triggered, the deck will programmatical
 
 `swipe`: will produce a complex swipe Event, with the position of the start of the swipe, the end of the swipe and some timing information (timestamps of start and end of swipe).
 
-Technically speaking, the deck will start a thread to listen to incoming events. Interaction will be decoded (which key was pressed, when, how, etc.) and presented to Cockpitdecks for handling as a typed Event.
+Technically speaking, the deck will start a thread to listen to incoming events. Interaction will be decoded (which key was pressed, when, how, etc.) and presented to Cockpitdecks as a typed Event.
 
 Depending on the device driver's hardware access, events will either be presented directly to Cockpitdecks, or through a FIFO queue: Driver just enqueues events, Cockpitdecks dequeues events and does the work.
 

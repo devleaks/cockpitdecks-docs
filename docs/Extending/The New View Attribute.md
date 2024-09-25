@@ -74,9 +74,18 @@ Command above will be executed 5 seconds after the execution of the activation o
 #### Condition
 
 A `condition` attribute is a formula that is executed before he command. If the result of the formula is evaluated to a non null (non zero) value, the command is executed. Otherwise, the command is not executed.
+
+```yaml
+command: command/to/execute
+condition: ${some/dataref/to/check} 1 -
+```
+
+If the result of the computation of the formula is non zero, the command will be executed.
+
 # Processing
 
 Detection of the new parameter value is easy. Either it is a string representing a command to submit to X-Plane, or it is a list of one or more command blocks. There is no ambiguity.
+
 # Usage
 
 The `view` attribute can be used as a test bed for execution of more than one command in a sequence, a kind of execution of « macro » command, with additional features like conditions and delay of execution.

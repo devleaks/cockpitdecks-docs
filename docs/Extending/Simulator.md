@@ -10,9 +10,17 @@ In addition to the core simulation software, the Simulator also proposes a few a
 
 The simulation software presents to Cockpitdecks all its reachable « values ». Any value that is accessible in the simulation software is made available to Cockpitdecks through the SimulationData. A sophisticated mechanism updates the data in Cockpitdecks every time the data is modified in the simulator.
 
+For example, Laminar X-Plane extensively uses « *datarefs* », while Microsoft Flight Simulator uses « *simvars* ». They both are values coming from the simulator, and they both can be used in Cockpitdecks.
+
+## Local Values
+
+In addition to simulator data, Cockpitdecks maintains its own set of « local » data, data that is not forwarded to the simulator but that can be used like any other simulator data.
+
 # Instructions
 
 Cockpitdecks offers the Instruction, an action that must be carried out in the simulator software, provided that the simulation software allows for « external action » to be accepted.
+
+Again, as an example, Laminar X-Plane has « *commands* » (offered in two modes of operation), and Microsoft Flight Simulator has « *idontknow* ».
 
 # Simulator Core
 

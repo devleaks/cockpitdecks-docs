@@ -2,7 +2,10 @@ In addition to real physical decks, Cockpitdecks offers *Web Decks* rendered in 
 
 ![[virtualdecks.jpg]]
 
-This is very handy to design layout for deck a developer does not necessary owns.
+If a Web Deck is detected in an aircraft configuration, Cockpitdecks will automagically start a basic web server to present the Web Deck to the user. The index (home) page of the web server will present all web decks available to the user. Selecting on web deck will start it in another browser window.
+
+Web decks are very handy to design layout for deck a developer does not necessary owns.
+
 Web decks can be (almost) any physical deck represented in Cockpitdecks (most popular brands and models are actually provided with Cockpitdecks), or any next deck model of your fantasy. As an example and proof of concept, Cockpitdecks comes with a fully operational overhead panel for Toliss A321 neo aircraft. Yes, you read it right, you can have Toliss A321 overhead panel on a touch screen or tablet.
 
 # Web Deck Declaration and Use
@@ -30,7 +33,7 @@ deckconfig
 	    ⊢ custom_background_image.png
 ```
 
-Virtual decks are defined like any other deck. Their driver must be `virtualdeck`. They contain a few additional attributes to render them on a HTML web Canvas like background image or color.
+Virtual decks are defined like any other deck. Their driver must be `virtualdeck`. They contain  additional attributes to render them on a HTML web Canvas like background image or color.
 
 ```yaml hl_lines="2"
 name: Virtual Deck 3×2
