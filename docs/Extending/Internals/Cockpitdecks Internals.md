@@ -1,3 +1,15 @@
+As simple as it may appears when working, Cockpitdecks is a complex piece of software that relies on numerous technologies, systems, and interfaces to provide, ultimately, a confortable user experience.
+
+First of all, Cockpitdecks tries to provide a uniform representation of different deck models. Each deck model, from different manufacturers, has its own way of doing things. Different decks are accessed differently, some through basic serial (USB) interfaces, some through application programming interfaces, and some other through existing "protocols" made to talk to devices like HID or MIDI. Some device even allow several methods to be used.
+
+Cockpitdecks uses the appropriate method to hide the complexity of accessing the deck devices, to hide their particularities, at the expense of a complex and modular installation process. Some will use a single device, some other will use more than one, combining different models and brands to suit their needs.
+
+Cockpitdecks communicates with X-Plane through the network UDP protocol. This offers the advantage that Cockpitdecks and X-Plane do not necessarily need to run on the same computer, as long as both computer are on the same local network.
+
+Through UDP ports, X-Plane reports some internal parameter values (called datarefs), and accepts commands to execute.
+
+Never ever forget that in the UDP protocol, there is no guarantee of delivery, ordering, or duplicate protection. This is inherent to the UDP protocol. When something is sent, it is never guaranteed that it will be received or acknowledged.
+
 # Architecture
 
 ## Cockpitdecks Software Entities
