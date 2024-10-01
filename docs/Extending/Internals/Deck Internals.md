@@ -31,30 +31,6 @@ The `decks` folder is organized as follow: (between parenthesis, the content of 
 deckconfig
   ⊢ resources
     ⊢ decks
- 
-cockpitdecks/decks
-  ⊢ resources   << accessory files
-    ⊢ templates   << Jinja2 templates
-      ⊢ index.j2
-      ⊢ deck.j2
-    ⊢ assets      << Web Deck assets
-      ⊢ decks        << Web Deck specific assets
-        ⊢ images       << Web Deck background images
-      ⊢ images       << Web Applicatioin images and icons
-      ⊢ js           << Interaction and display software in JavaScript
-    ⊢ types       << Web Deck types
-      deckdefinition.yaml      << Deck types, one file per deck type
-      ...
-      webdeckdefinition.yaml   << Web Deck types, one file per web deck type
-    decktype.py   << Deck Type class
-    ...
-    virtualdeck.py           << Virtual Deck implementation class
-    virtualdeckmanager.py    << Virtual Deck Manager implementation class
-    ...
-  loupedeck.py     << main drivers for each type of deck
-  ...
-  virtualdeck.py   << main drivers for all virtual decks
-  xtouchmini.py    << main drivers for each type of deck
 ```
 
 # Deck Type
