@@ -51,8 +51,6 @@ nav:
       - Button: Button.md
       - Buttons:
           - Button Index: Button/Button Index.md
-          - Button Value: Button/Button Value.md
-          - Button Attributes: Button/Button Attribute Default Values.md
           - Button Activation: Button/Button Activation.md
           - Button Representation:
               - Button Representation: Button/Button Representation.md
@@ -62,33 +60,35 @@ nav:
               - Switches: Button/Button Representations/Drawn Buttons – Switches.md
               - Drawn Buttons: Button/Button Representations/Drawn Buttons.md
               - «Data» Buttons: Button/Button Representations/Drawn Buttons (continued).md
-              - Advanced:
+              - Advanced Representations:
                   - Mosaic (Large LCD Touchscreen): Button/Button Representations/Mosaic.md
-                  - Deck Specific: Button/Button Representations/Deck Specific.md
+                  - Deck Specific Representations: Button/Button Representations/Deck Specific.md
                   - Toliss Airbus Specific Buttons: Button/Button Representations/Toliss Specific Representations.md
                   - Weather Representations: Button/Button Representations/Weather.md
+          - Button Attributes: Button/Button Attribute Default Values.md
+          - Button Value: Button/Button Value.md
       - Resources: Resources.md
       - Examples: Extending/Examples.md
       - Extending:
-          - Web decks: Extending/Web Decks.md
           - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
           - Adding representations: Extending/Adding Representations.md
           - Adding activations: Extending/Adding Activations.md
           - Activation for developers: Extending/Button Activations for Developers.md
-          - Adding new deck models: Extending/Adding New Deck Models.md
+          - Adding web decks: Extending/Web Decks.md
+          - Workflow for Web Deck Design: Extending/Internals/Workflow for Web Deck Design.md
+          - Adding new physical deck models: Extending/Adding New Deck Models.md
           - Cockpitdecks Internals:
               - History: History.md
               - Simulator:
                   - Simulator: Extending/Simulator.md
+                  - X-Plane Plugin: Extending/Complement Plugin - Continuous Commands.md
                   - X-Plane Interaction: Extending/Internals/X-Plane Interaction.md
               - Cockpitdecks Internals: Extending/Internals/Cockpitdecks Internals.md
+              - Deck Internals: Extending/Internals/Deck Internals.md
               - Events: Button/Events.md
               - String Datarefs: Extending/String Datarefs.md
               - Web Deck Designer Tools: Extending/Internals/Design Helper.md
-              - Workflow for Web Deck Design: Extending/Internals/Workflow for Web Deck Design.md
-              - Deck Internals: Extending/Internals/Deck Internals.md
               - Configuration Files and Attributes: Extending/Internals/Configuration Files and Attributes.md
-              - X-Plane Plugin: Extending/Complement Plugin - Continuous Commands.md
               - Themes: Extending/Internals/Themes.md
               - To Do: Extending/Internals/To do.md
   - Installation and Usage: Installation and Usage.md
