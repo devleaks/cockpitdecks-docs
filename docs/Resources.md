@@ -56,6 +56,10 @@ Internally, Cockpitdecks use 256 pixel icons. Icons are resized to the deck requ
 	icon: OFF_WHITE_FRAMED
 ```
 
+# Sounds
+
+Sounds files can be provided very much like icons. Valid sound file formats are `wav` and `mp3`. Other sound file format may be added in the future, provided they can be played in a browser.
+
 # Documentation
 
 Documentation of the aircraft decks can be placed in the folder `deckconfig/docs` or in the folder  `deckconfig/resources` in a textual form (including markdown), or as PDF.

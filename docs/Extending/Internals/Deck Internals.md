@@ -27,11 +27,11 @@ In the overall software organisation of Cockpitdecks, everything related to deck
 
 The `decks` folder is organized as follow: (between parenthesis, the content of the folder or file.)
 
-``` hl_lines="1 5"
+```
 deckconfig
   ⊢ resources
     ⊢ decks
-
+ 
 cockpitdecks/decks
   ⊢ resources   << accessory files
     ⊢ templates   << Jinja2 templates
