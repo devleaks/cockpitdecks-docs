@@ -2,8 +2,8 @@ Adding a new deck model can be very simple or very difficult, depending on the d
 
 Cockpitdecks does its best at isolating deck specifics into
 
-- configuration files
-- device (deck) drivers classes
+- deck definition files (called a Deck Type)
+- deck (device) drivers classes
 
 # Deck Definition File
 
@@ -55,15 +55,16 @@ Through this file, Cockpitdecks is capable to determine that there are 8 (repeat
 
 ### Button Capabilties
 
-| Attribute | Definition                                                                                                                                                                                                                               |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| action    | The following **actions** have been identified and are available in Cockpitdecks:<br><br>- `push`: ability to press a button, optionally pushing a long time,<br>- `encoder`<br>- `press`<br>- `longpress`<br>- `touch`<br>- `swipe`<br> |
-| view      | Similarly, decks defined the following **view** interactions:<br><br>- `image`<br>- `led`<br>- `colored-led`<br>- `encoder-led`                                                                                                          |
-| name      | Name and repeat will determine the index name of the buttons.                                                                                                                                                                            |
-| repeat    |                                                                                                                                                                                                                                          |
-| prefix    | Prefix is used to distinghish button capabilities. If a button has, for example, encoder and push capabilities, the push capabilties will use name `0` (name only), the corresponding encoder will be named `e0` (prefix + name).        |
-| image     | The image attribute sets the image size for the button, and offset if the image is a portion of a larger display.                                                                                                                        |
-| vibrate   |                                                                                                                                                                                                                                          |
+| Attribute | Definition                                                                                                                                                                                                                                                                                                                    |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| action    | The following **actions** (means of interaction with a deck) have been identified and are available in Cockpitdecks:<br><br>- `push`: ability to press a button, optionally pushing a long time,<br>- `encoder`<br>- `press`: ability to press a button, no timing information<br>- `longpress`<br>- `touch`<br>- `swipe`<br> |
+| feedback  | Similarly, decks defined the following **feedback** interactions:<br><br>- `image`<br>- `led`: simple on-off light<br>- `colored-led`: colored light (that can also be off)<br>- `encoder-led`: ramp of led lights for X-Touch Mini                                                                                           |
+| name      | Name and repeat will determine the index name of the buttons.                                                                                                                                                                                                                                                                 |
+| repeat    | Number of time the same button needs repeating                                                                                                                                                                                                                                                                                |
+| prefix    | Prefix is used to distinguish button capabilities. If a button has, for example, encoder and push capabilities, the push capabilities will use name `0` (name only), the corresponding encoder will be named `e0` (prefix + name).                                                                                            |
+| image     | In case of an `image` feedback, the image attribute sets the image size for this button, and its offset if the image is a portion of a larger display.                                                                                                                                                                        |
+| vibrate   | If the device/button has a vibration capability                                                                                                                                                                                                                                                                               |
+| sound     | If the device/button has a sound emission capability                                                                                                                                                                                                                                                                          |
 
 # Deck « Driver »
 
@@ -91,7 +92,7 @@ This is performed directly through the deck's device driver, by calling the appr
 
 When creating an Activation, the activation will specify which **action** it requires. For example, an activation that requires an encoder dial to work will require the `encoder` or `encoder-push` capability.
 
-Similarly, a Representation will specify which **view** it requires. A representation that displays an image (icon, drawing, animation...) will require a `image` view for instance.
+Similarly, a Representation will specify which **feedback** it requires. A representation that displays an image (icon, drawing, animation...) will require a `image` feedback for instance.
 
 # See Also
 

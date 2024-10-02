@@ -1,8 +1,4 @@
-To add a new activation to Cockpitdecks, the developer has to create a new Activation sub-class and declare it in the
-
-`<cockpitdecks-source-code>/cockpitdecks/buttons/activation/__init__.py`
-
-file.
+To add a new activation to Cockpitdecks, the developer has to create a new Activation sub-class derived from `cockpitdecks.buttons.activation.Activation` (or one of its subclass).
 
 ```python hl_lines="3-4"
 class SpecialAction(Activation):
@@ -22,10 +18,9 @@ name: ULTIMATE
 type: special-action
 ```
 
-
 # Example: Adding an Activation to Dim Deck Backlight
 
-The following python script adds a simple activation to adjust 
+The following python script adds a simple activation to adjust
 
 ```python
 import logging

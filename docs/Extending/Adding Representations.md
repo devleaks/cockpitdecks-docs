@@ -25,11 +25,7 @@ Other attributes may already be defined by existing activations and representati
 
 Creating a new representation, like sending some special information or custom image to a LCD key is more probable.
 
-To add a new representation to Cockpitdecks, the developer has to create a new Representation sub-class and declare it in the
-
-`<cockpitdecks-source-code>/cockpitdecks/buttons/representation/__init__.py`
-
-file.
+To add a new representation to Cockpitdecks, the developer has to create a new Representation sub-class and derived it from `cockpitdecks.buttons.representation.Representation` or one of its subclass.
 
 ```python hl_lines="3-4"
 class SpecialtyIcon(Representation):
