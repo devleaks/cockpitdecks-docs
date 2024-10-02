@@ -1,56 +1,20 @@
 Deck Internals explains how Cockpitdecks discovers about miscellaneous deck hardware capabilities and how user interactions on a physical deck device enter Cockpitdecks.
 
-> [!WARNING] Work In Progress
-> This important file is under DEEP re-writing.
-
 # How Deck User Interactions Enter Cockpitdecks
 
-When a user want to use a deck with Cockpitdecks, it is necessary to have a python package available to interact with it. This python package is not provided by Cockpitdecks but by other developers how bridged the physical deck hardware with the python language.
+When a user want to use a deck with Cockpitdecks, it is necessary to have a python package available to interact with it. This python package is not provided by Cockpitdecks but by other developers who bridged the physical deck hardware with the python language.
 
-By design and coïncidence, all three deck brands currently proceed with similar means.
+By design and coïncidence, all three deck brands currently used by Cockpitdecks (Elgato, Loupedeck, and Berhinger) proceed with a similar mechanism: The python package that interfaces the physical deck to the python language request to supply a callback function. That function is called each time an *interaction* occurs on the physical deck device.
 
-The python package that interfaces the physical deck to the python language request to supply and install a callback function, with a proper interface.
+When Cockpitdecks is started, its scans for available devices, checks whether the interfacing software package is available, and if it is, installs its callback function into the python package for that deck.
 
-The function, that we supply, is called each time an interaction occurs on the physical deck device.
+From that moment on, each time something occurs on the physical deck device, Cockpitdecks' callback function gets called. In that callback function, Cockpitdecks tries to spend a minimum time. From the data it receives from the interfacing python package, it creates an [[Events|Event]] with all necessary data and enqueues it in Cockpitdecks for later processing. The Event the callback function creates is aptly called a Deck Event.
 
-When Cockpitdecks is started, its scans for available devices, and check whether the interfacing software package is available. If it is, it installs its own callback function into the python package for that deck. From that moment on, each time something occurs on the physical deck device, Cockpitdecks' callback function gets called.
+The Deck Event contains information about the deck, of course, but also the precise button, knob, encoder, slider, screen... that was manipulated and the type of interaction that occurred (pushed, turned, swiped...) All that information is in the Deck Event and is sent to Cockpitdecks.
 
-In that callback function, Cockpitdecks tries to spend a minimum time. From the data it receives, it creates an [[Events|Event]] with all necessary data and enqueues it for later processing by Cockpitdecks.
+That's how physical deck interaction enters Cockpitdecks.
 
-The Event contains information about the deck, of course, but also the precise button, knob, encoder, slider, screen... that was used and what type of interaction occurred (pushed, turned, swiped...) All that information is in the Event and the Event is sent to Cockpitdecks. That's how physical deck interaction enters Cockpitdecks.
-
-Cockpitdecks runs a specific routine that listen to events that enter through the queue. Cockpitdecks instruct the event to *run*. That's how and when actions are actually performed, like sending a command to X-Plane or changing the value of a dataref.
-
-In the overall software organisation of Cockpitdecks, everything related to decks is confined in a `decks` folder.
-
-# Decks Folder Organisation
-
-The `decks` folder is organized as follow: (between parenthesis, the content of the folder or file.)
-
-```
-deckconfig
-  ⊢ resources
-    ⊢ decks
-
-cockpitdecks/decks
-  ⊢ resources   << accessory files
-    ⊢ templates   << Jinja2 templates
-      ⊢ index.j2
-      ⊢ deck.j2
-    ⊢ assets      << Web Deck assets
-      ⊢ images       << Web Applicatioin images and icons
-      ⊢ js           << Interaction and display software in JavaScript
-    ⊢ images      << Web Deck background images
-    ⊢ types       << Web Deck types
-      deckdefinition.yaml      << Deck types, one file per deck type
-      ...
-      webdeckdefinition.yaml   << Web Deck types, one file per web deck type
-    decktype.py   << Deck Type class
-    ...
-    virtualdeck.py           << Virtual Deck implementation class
-    virtualdeckmanager.py    << Virtual Deck Manager implementation class (finds and lists all virtual decks)
-  virtualdeck.py             << Virtual Deck driver class
-```
+Cockpitdecks processes events that enter its queue. Cockpitdecks instruct the event to *run*. That's how and when actions are actually performed, like sending a command to the simulator or changing the value of a dataref.
 
 # Deck Type
 
@@ -58,31 +22,12 @@ Cockpitdecks discovers about deck capabilities through a Deck Type structure.
 
 A deck is presented to Cockpitdecks through a deck definition file called a Deck Type. The deck definition file describes the deck capabilities:
 
-- How many buttons,
+- How many buttons and how they can be manipulated,
 - How many dials, if they can be turned, or pushed
-- Feedback screen icons
-- Feedback LED
+- Feedback LCD screens for icons
+- Feedback LED, optionally colored
 - Ability to emit vibration or sound
-
-## Installed Deck Types
-
-On startup, Cockpitdecks will report which deck types are available:
-
-```
-Cockpitdecks 11.20.1 © 2022-2024 Pierre M <pierre@devleaks.be>
-Elgato Stream Decks, LoupedeckLive, Berhinger X-Touch, and web decks to X-Plane 12
-
-INFO MainThread start.py:<module>:100: Initializing Cockpitdecks..
-INFO MainThread xplane.py:init:329: aircraft dataref is sim/aircraft/view/acf_livery_path
-WARNING MainThread xplane.py:add_datarefs_to_monitor:727: no connection
-INFO MainThread xplane.py:add_datetime_datarefs:378: monitoring simulator date/time datarefs
-INFO MainThread cockpit.py:load_deck_types:808: loaded 20 deck types (Virtual Deck for Development, virtual loupedeck.live.s, Virtual Streamdeck Mini, Virtual Streamdeck MK.2, Virtual Streamdeck +, Virtual LoupedeckLive, Stream Deck XL, Stream Deck Neo, Virtual Streamdeck XL, Virtual Stream Deck Neo, LoupedeckLive, Streamdeck, Virtual X-Touch Mini, Stream Deck Original, Stream Deck Mini, virtual loupedeck.ct, Virtual LoupedeckLive with Mosaic, X-Touch Mini, Stream Deck +, Virtual XKeys 80), 12 are virtual deck types
-INFO MainThread cockpit.py:scan_devices:357: drivers installed for streamdeck 0.9.5, loupedeck 1.4.5, xtouchmini 1.3.6; scanning for decks and initializing them (this may take a few seconds)..
-INFO MainThread cockpit.py:scan_devices:367: found 3 streamdeck
-INFO MainThread cockpit.py:scan_devices:367: found 1 loupedeck
-INFO MainThread cockpit.py:scan_devices:367: found 1 xtouchmini
-INFO MainThread start.py:<module>:102: ..initialized
-```
+- etc.
 
 ## Deck Definition
 
@@ -129,7 +74,7 @@ buttons:
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | name       | Name used inside Cockpitdecks to identifying the deck model.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | driver     | Keyword identifying the deck software driver class. (See main drivers class above.)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| background | The `background` attribute is an optional attribute only used by web decks. It specifies a background color and/or image to use for web deck representation. See exemple below.                                                                                                                                                                                                                                                                                                                                                                                    |
+| background | The `background` attribute is an optional attribute only used by web decks. It specifies a background color and/or image to use for web deck representation. See explanation and exemple below.                                                                                                                                                                                                                                                                                                                                                                    |
 | buttons    | The `Buttons` contains a list of *Deck Button Type Block* descriptions.<br><br>This attribute is named Buttons, with Button having the same meaning as in Cockpitdecks. A Deck Type Button is a generic term for all possible means of interaction on the deck:<br><br>1. Keys to press,<br>2. Encoders to turn,<br>3. Touchscreens to tap or swipe<br>4. Cursors to slide<br><br>A list of button types, each ButtonType leading to one or more individual buttons identified by their index, built from the `prefix`, `repeat`, and `name` attribute. See below. |
 
 ### Deck Type Button Block
@@ -191,13 +136,30 @@ When rendered in a browser window, web deck interaction means are materialised t
 
 | Attribute    | Definition                                                                                                                                                                                                                                                                                                                                                                 |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Dimension    | The dimension attribute can be a single integer value or a list of two values.<br><br>It determine the size of the button has drawn on the Web deck.<br><br>If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image. `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`. |
+| dimension    | The dimension attribute can be a single integer value or a list of two values.<br><br>It determine the size of the button has drawn on the Web deck.<br><br>If the feedback visualisation is an `image`, the `image` attribute specifies the characteristics of the image. `X`is horizontal and correspond to the `width`, `Y` is vertical and correspond to the `height`. |
 | layout       | Layout of the buttons on the web deck canvas.<br>- Offset<br>- Spacing<br>Buttons will be arranged at regular interval, starting from Offset, with supplied spacing between the buttons. Button sizes are specified in the Dimension attribute.                                                                                                                            |
 | hardware     | Configuration information for a specific drawing representation of this hardware button.                                                                                                                                                                                                                                                                                   |
-| empty-button | Minimal Button definition to create an empty, dummy button. This dummy button will becreated and used to generate an "empty" hardware representation (completely `off`). (In other words, if a button with hardware representation is not defined, this definition will be used to create a button.)                                                                       |
+| empty-button | Minimal Button definition to create an empty, dummy button. This dummy button will becreated and used to generate an "empty" hardware representation (completely `off`). (In other words, if a button with hardware representation is not defined, this definition will be used to create a button.) See below.                                                            |
 | options      | Comma-separated list of options, a single option can either be a name=value, or just a name, in which case the value is assumed to be True.<br><br>`options: count=8,active`<br><br>sets options `count`to value 8, and `active` to True. `active` is equivalent to `active=true`.                                                                                         |
 
-### Special Button Representation
+### Deck  Type `background`
+
+In addition to the above button definitions, a deck type may contain a `background` attribute. This attribute is only used by web decks. The background attribute defines the background of the web page where the web deck will be rendered. The background can either be
+
+1. A PNG image,
+2. A solid color and size information.
+In the case of a PNG image, the size is deduced from the size of the image.
+
+#### Attributes
+
+| Attribute | Definition                                                                                  |
+| --------- | ------------------------------------------------------------------------------------------- |
+| `image`   | Name of a PNG image, with extension. No default.                                            |
+| `color`   | Color of the background of the web page. No default.                                        |
+| `size`    | Array of two values with width and height of the web canvas. Defaults to (200, 100) pixels. |
+| `overlay` | Static text or image overlay. Not implemented yet.                                          |
+
+### Special Button « Hardware » Representation
 
 Some deck buttons need a special representation or drawing to visually reproduce the physical deck equivalent button. Examples of such special representations are
 
@@ -213,6 +175,21 @@ Technically speaking, they behave very much like LCD representations:
 - Cockpitdecks « sends » the hardware representation image to the web deck for display in the reserved space,
 - Like any other representation, the hardware representation gets updated each time the underlying values gets updated.
 Hardware representation only exists for web decks to draw a very specific button.
+
+#### Empty Button Definition
+
+Hardware Representations need to know how to represent themselves in case they are not used or defined on a page. To present nicely, Cockpitdecks needs to know how to draw an "undefined", unused Hardware Representation. To do this, Cockpitdecks uses a trick: It dynamically create an dummy placeholder button from the Empty Button Definition for its Hardware Representation. Basically, only two attributes need to be defined: A type (often set to none) and an attribute that tells its Hardware Representation. Optionally, a default, initial value can be supplied. Sometimes, some mandatory or optional Hardware Representation attributes need to be supplied as well. Here is an exemple of a simple LED representation.
+
+```
+hardware:
+	type: virtual-xtm-led
+	empty-button:
+		type: none
+		led: single
+		initial-value: 1
+```
+
+![[hardware-representation-empty.png|400]]
 
 ### Examples of Deck Type Button Definition Block
 
@@ -255,77 +232,39 @@ buttons:
       spacing: [0, 41]
 ```
 
-# Deck Event Processing
+## Installed Deck Types
 
-From the parameter supplied in the callback function, Cockpitdecks determine the type of interaction that occurred (pushed, turned, swiped...). For that interaction, an Event of a precise type is created, with all detailed parameters available to it. The callback function does not execute the activation but rather enqueues the event for later processing.
+On startup, Cockpitdecks reports which deck types are available:
 
-In Cockpitdecks, another thread of execution reads events from the queue and perform the required action. This cleanly separate event collection and event "execution" in two separate process threads.
+```
+Cockpitdecks 12.1.1.20241002 © 2022-2024 Pierre M
+Elgato Stream Decks, Loupedeck decks, Berhinger X-Touch Mini, and web decks to X-Plane 12.1+
 
-## Activation
-
-The activation is the piece of code that will process the event.
-
-```python hl_lines="6"
-class Push(Activation):
-    """
-    Defines a Push activation.
-    The supplied command is executed each time a button is pressed.
-    """
-    ACTIVATION_NAME = "push"
-    REQUIRED_DECK_ACTIONS = DECK_ACTIONS.PUSH
+INFO  start.py:<module>:248: Initializing Cockpitdecks..
+INFO  xplane.py:init:745: aircraft dataref is sim/aircraft/view/acf_livery_path
+WARN  xplane.py:add_datarefs_to_monitor:1171: no connection
+INFO  xplane.py:add_datetime_datarefs:803: monitoring simulator date/time datarefs
+INFO  cockpit.py:add_extension_paths:337: added extension path /Users/pierre/Developer/fs/cockpitdecks_ext to sys.path
+INFO  cockpit.py:add_extension_paths:342: loaded package cockpitdecks_ext and all its subpackages/modules (recursively)
+INFO  cockpit.py:init:234: available simulator: X-Plane
+INFO  cockpit.py:init:237: available deck drivers: xtouchmini, virtualdeck, loupedeck, streamdeck
+INFO  cockpit.py:load_deck_types:999: loaded 20 deck types (Virtual Deck for Development, LoupedeckLive...), 12 are virtual deck types
+INFO  cockpit.py:scan_devices:507: device drivers installed for xtouchmini 1.3.6, virtualdeck (included), loupedeck 1.4.5, streamdeck 0.9.5; scanning for decks and initializing them (this may take a few seconds)..
+INFO  cockpit.py:scan_devices:532: found 1 xtouchmini
+INFO  cockpit.py:scan_devices:532: found 1 loupedeck
+INFO  cockpit.py:scan_devices:532: found 3 streamdeck
+INFO  start.py:<module>:250: ..initialized
 ```
 
-Activation usually leads to either
+# Deck Driver
 
-- one or more command sent to the simulator for execution
-- internal changes of the deck, like loading a new page of buttons
-- or both
-
-## Representation
-
-```python hl_lines="6"
-class Annunciator(DrawBase):
-    """
-    All annunciators are based on this class.
-    See docs for subtypes and models. 
-    """
-    REPRESENTATION_NAME = "annunciator"
-    def __init__(self, config: dict, button: "Button"):
-        self.button = button
-```
-
-Similarly, when a Representation code is created, it must mention its identification keyword `REPRESENTATION_NAME` that will be searched in the button definition attribute.
-
-The `REQUIRED_DECK_FEEDBACKS` determine which of the deck's definition `feedback` type is requested to be able to use the Representation().
-
-## Button Definition
-
-The `ACTIVATION_NAME` is the string that the button definition must use to trigger that activation (`type` attribute):
-
-```yaml
-  - index: 1
-    name: MASTER CAUTION
-    type: push
-    command: sim/annunciator/clear_master_caution
-    annunciator:
-      text: "MASTER\nCAUT"
-      text-color: darkorange
-      text-font: DIN Condensed Black.otf
-      text-size: 72
-      dataref: AirbusFBW/MasterCaut
-    vibrate: RUMBLE5
-```
-
-## Deck Driver (Hardware Interface)
-
-The second interface provided for decks is the software necessary to:
+A particular deck will come with software that interfaces it with the python language. That piece of software is a deck *device driver*. It is necessary to
 
 1. Collect interactions from the device (which button has been pressed, how long?, which encoder has been turned, how fast?)
-2. Send feedback visualisation instruction to the device to reflect the state change.
+2. Send feedback visualisation instruction to the device to reflect the state change, instruct to draw an image, emit a sound, etc.
+Device drivers are very specific and particular software. To further isolate their specificities, Cockpitdecks uses a *Deck Driver* interface, a bridge between Cockpitdecks and the device driver that controls the deck.
 
-This require the coding of a bridge between Cockpitdecks and the API that controls the device.
-
-Currently, this require the coding of a single python class with the following functions:
+Currently, this require the coding of a single python class derived from the `cockpitdecks.deck` class, with the following functions:
 
 **General**:
 
@@ -427,108 +366,4 @@ For deck with iconic display capabilities:
     def fill_empty(self, key)
     def clean_empty(self, key)
     def set_key_icon(self, key, image)
-```
-
-## Installed Deck Drivers
-
-On startup, Cockpitdecks will report which drivers are installed:
-
-```
-INFO: drivers installed for streamdeck 0.9.5, loupedeck 1.4.5, xtouchmini 1.3.6; scanning..
-INFO: found 3 streamdeck
-INFO: found 1 loupedeck
-INFO: found 1 xtouchmini
-```
-
-# Web Decks Internals
-
-*Web Decks* are designed with simple standard web features, are rendered on an HTML Canvas, uses standard events to report interaction through basic JavaScript functions.
-The application that serves them is a very simple Flask application with Ninja2 templates. The Flask application also runs the WebSocket proxy.
-
-![[webdecks.svg|600]]
-
-## Web Deck Messages
-
-Meta data is a python dictionary serialized into JSON (mostly name, value pairs).
-
-It can contain any arbitrary serialisable items.
-
-### Cockpitdecks to Web Deck Messages
-
-#### Send code
-
-```js
-{
-    "code": code,
-    "deck": name,
-    "meta": {
-        "ts": datetime.now().timestamp()
-    }
-}
-```
-
-Code is interpreted by the deck. Codes are:
-
-- 0: Display (attached) image on deck/key
-- 1: Reload yourself (deck)
-- 2: Emit (attached) sound for deck
-
-#### Send Image
-
-It can be a key image, or a «hardware» image.
-
-```js
-{
-    "code": 0,
-    "deck": name,
-    "key": key,
-    "image": base64.encodebytes(content).decode("ascii"),
-    "meta": {
-        "ts": datetime.now().timestamp()
-    }
-}
-```
-
-#### Send Sound
-
-It can be a key image, or a «hardware» image.
-
-```js
-{
-    "code": 2,
-    "deck": name,
-    "sound": base64.encodebytes(content).decode("ascii"),
-    "type": "wav",
-    "meta": {
-        "ts": datetime.now().timestamp()
-    }
-}
-```
-
-### Web Decks to Cockpitdecks Messages
-
-#### Send code
-
-```js
-{
-    "code": code,
-    "deck": name,
-}
-```
-
-Code values:
-
-- 0: Report event (see below)
-- 1: New deck, expect reload/refresh data
-
-#### Send Event
-
-```js
-{
-	"code": 0,
-	"deck": deck,
-	"key": key,
-	"event": value,
-	"data": data
-}
 ```

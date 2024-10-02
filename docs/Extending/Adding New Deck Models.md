@@ -13,7 +13,9 @@ Decks, in general, have been defined as devices containing buttons that can be p
 
 These buttons can be illuminated by one or more monochrome or color LED(s), or can sometimes even display an image on a small LCD. Some can vibrate, or even produce sound.
 
-Each of these interaction has led to the definition of standardized behavior. On one side, the deck expresses what is is capable of, on the other side, the Cockpitdecks designer tells which capabilities he or she want to exercise to produce a result.
+Each of these interaction has led to the definition of standardized behavior. On one side, the deck expresses what is is capable of, on the other side, the Cockpitdecks designer tells which capabilities she or he wants to produce a result.
+
+Please refer to the [[Deck Internals]] document to learn about how to express deck specifics in a Deck Type definition file.
 
 ## Definition Files
 

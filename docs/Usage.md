@@ -4,23 +4,26 @@
 
 First, you have to completely stop (quit completely) original manufacturer deck configuration applications. They take exclusive access to the device and that prevents Cockpitdecks from finding and using them.
 
-# Adjust `config.yaml`
+# Adjust `environment.yaml`
 
-Cockpitdecks uses a single configuration file to define a few elements that cannot easily be guessed. Cockpitdecks provides a configuration file that is suitable for single computer installation. You must, however, adjust at least the X-Plane folder path.
+Cockpitdecks uses a single configuration file, called the Cockpitdecks environment file, to define a few elements that cannot easily be guessed. Cockpitdecks provides a configuration file that is suitable for single computer installation. You must, however, adjust at least the simulator folder path.
 
-| Variable   | Definiton                                                                                                                                                                                            |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `XP_HOME`  | Home directory of X-Plane on the computer where Cockpitdecks runs. If X-Plane is installed on a remote host, `XP_HOME` must be `None`.                                                               |
-| `XP_HOST`  | Hostname or IP address where *X-Plane* runs. Defaults to local host.                                                                                                                                 |
-| `APP_HOST` | Tuple (Hostname or IP address, port) where *Cockpitdecks* application runs. If specified through operating system environment variables, use (**APP_HOST** and **APP_PORT**). Default to local host. |
-| `API_PORT` | X-Plane (12.1.1 and above) where REST API runs. Default to 8086.                                                                                                                                     |
-| `API_PATH` | X-Plane API root path. Currently default to `/api/v1`.                                                                                                                                               |
+| Variable                      | Definiton                                                                                                                                                                                                     |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SIMULATOR_NAME`              | Name of simulator to use. Currently, only X-Plane is a valid value.                                                                                                                                           |
+| `SIMULATOR_HOME`              | Home directory of X-Plane on the computer where Cockpitdecks runs. If X-Plane is installed on a remote host, `SIMULATOR_HOME` must be `None`.                                                                 |
+| `SIMULATOR_HOST`              | Hostname or IP address where *X-Plane* runs. Defaults to local host.                                                                                                                                          |
+| `APP_HOST`                    | Tuple (Hostname or IP address, port) where *Cockpitdecks* application runs. If specified through operating system environment variables, use (**APP_HOST** and **APP_PORT**). Default to (local host, 7777).  |
+| `API_PORT`                    | X-Plane (12.1.1 and above) where REST API runs. Default to `8086`.                                                                                                                                            |
+| `API_PATH`                    | X-Plane (12.1.1 and above) where REST API: X-Plane API root path. Currently default to `/api/v1`.                                                                                                             |
+| `COCKPITDECKS_EXTENSION_PATH` | List of paths where to search for Cockpitdecks extensions                                                                                                                                                     |
+| `COCKPITDECKS_EXTENSION_NAME` | List of python package names that contains Cockpitdecks extensions                                                                                                                                            |
 
 In addition, there is a operation system environment variable `COCKPITDECKS_PATH` that holds folders where Cockpitdecks will look for aircraft configurations.
 
-If you do not want to modify the Cockpitdecks-provided `config.yaml` file, you always can supply one on the command line with the `—-config` flag.
+If you do not want to modify the Cockpitdecks-provided `environ.yaml` file, you always can supply one on the command line with the `—-env` flag.
 
-The set of global parameters provided in the `config.yaml` file is called the Cockpitdecks *environment*, since it provides all « external » information to Cockpitdecks (external, relative to Cockpitdecks).
+The set of global parameters provided in the `environ.yaml` file is called the Cockpitdecks *environment*, since it provides all « external » information to Cockpitdecks (external, relative to Cockpitdecks).
 
 Cockpitdecks provides two templates configuration files for local and remote use.
 
@@ -36,18 +39,18 @@ If always is a good idea to see what the client application offers:
 
 ```
 $ cockpitdecks-cli --help
-usage: cockpitdecks-cli [-h] [-c config_file] [-d] [-f] [-v] [aircraft_folder]
-  
+usage: cockpitdecks-cli [-h] [-e environ_file] [-d] [-f] [-v] [aircraft_folder]
+
 Start Cockpitdecks
-  
+
 positional arguments:
   aircraft_folder       aircraft folder for non automatic start
-  
+
 options:
   -h, --help            show this help message and exit
-  -c config_file, --config config_file
-                        alternate configuration file
   -d, --demo            start demo mode
+  -e environ_file, --env environ_file
+                        alternate environment file
   -f, --fixed           does not automatically switch aircraft
   -v, --verbose         show startup information
 ```
@@ -60,7 +63,7 @@ A second easy step is to start Cockpitdecks in demonstration mode. In this mode,
 cockpitdecks-cli --demo
 ```
 
-In this mode, Cockpitdecks will start a single web deck. Head for the index web page as specified in the `config.yaml` environment file.
+In this mode, Cockpitdecks will start a single web deck. Head for the index web page as specified in the `environ.yaml` environment file (`APP_HOST`).
 
 ![[demo-deck-list.png]]
 
@@ -80,7 +83,7 @@ There are two possible ways of working with Cockpitdecks:
 
 This is the simplest case. In this mode, everything is automatic.
 
-Make sure the configuration file is setup. When everything is run on the same computer, the only important parameter is the X-Plane home folder that should be supplied in `XP_HOME` configuration variable. Alternatively, for convenience, the operating system `XP_HOME` environment variable can be set, especially if it is the only configuration variable that has to be changed. Then issue:
+Make sure the configuration file is setup. When everything is run on the same computer, the only important parameter is the X-Plane home folder that should be supplied in `SIMULATOR_HOME` configuration variable. Alternatively, for convenience, the operating system `SIMULATOR_HOME` environment variable can be set, especially if it is the only configuration variable that has to be changed. Then issue:
 
 ```sh
 cockpitdecks-cli
@@ -127,6 +130,8 @@ If Cockpitdecks fails to connect to X-Plane or notices it does no longer receive
 To report an issue with Cockpitdecks, you should always include the `XPPython3.log` file created in the X-Plane folder. Cockpitdecks also create a `cockpitdecks.log` files with more information in the directory you started Cockpitdecks from.
 
 The level of information produced in the file is controlled by the logging level parameter. (info=some information and warnings, debug=a lot of information for debugging purpose, your XPPython3.log file may grow quite large.) The parameter is available at the global plugin level (the entire plugin will report all messages), or can be set at a Cockpitdecks internal module level to pin point issues.
+
+Cockpitdecks is *stateless*. If we except internal statistics, Cockpitdecks does not maintain any state variable of a situation. Therefore, at any time, it is possible to stop and restart it. Should a problem persists, please file an issue on github with necessary information to reproduce it.
 
 # Termination
 
