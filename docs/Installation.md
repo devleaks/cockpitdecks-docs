@@ -57,6 +57,8 @@ To circumvent this, Cockpitdecks provides a small python plugin called the Cockp
 
 If not installed, some of the commands inside Cockpitdecks will work properly.
 
+Cockpitdecks Helper plugin is an _in-process_ plugin, running inside X-Plane, while Cockpitdecks is an _out-of-process_ executable.
+
 #### Long command execution
 
 Some commands cannot be executed directly through UDP. For exemples, commands that have a start and an end cannot be started or ended though UDP. It is an X-Plane UDP limitation.
