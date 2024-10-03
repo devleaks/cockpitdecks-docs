@@ -37,14 +37,14 @@ pip install 'cockpitdecks[weather,streamdeck] @ git+https://github.com/devleaks/
 
 Valid installable extras (between the `[` `]`, comma separated, no space) are:
 
-| Extra              | Content                                                                                                                     |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `cockpitdecks_ext` | Load Stream Deck, Loupedeck, and X-Touch capabilities. Highly recommended, almost mandatory.                                |
-| `weather`          | To load special iconic representation for weather. These icons sometimes fetch information outside of X-Plane. Recommended. |
-| `streamdeck`       | For Elgato Stream Deck decks                                                                                                |
-| `loupedeck`        | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                                       |
-| `xtouchmini`       | For Berhinger X-Touch Mini device                                                                                           |
-| `development`      | For developer only, add testing packages and python types                                                                   |
+| Extra              | Content                                                                                                                    |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `weather`          | Add special iconic representation for weather. These icons sometimes fetch information outside of X-Plane. Recommended     |
+| `streamdeck`       | For Elgato Stream Deck devices                                                                                             |
+| `loupedeck`        | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                                      |
+| `xtouchmini`       | For Berhinger X-Touch Mini devices                                                                                         |
+| `demoext`          | Add a few Loupedeck and Stream Deck+ demo extensions. Recommended                                                          |
+| `development`      | For developer only, add testing packages and python types                                                                  |
 
 ## Install Cockpitdecks Helper Plugin
 

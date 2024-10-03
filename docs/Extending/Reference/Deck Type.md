@@ -229,7 +229,7 @@ hardware:
 
 ![[hardware-representation-empty.png|400]]
 
-## Examples of Deck Type Button Definition Block
+# Examples of Deck Type Button Definition Block
 
 #### Single Button Definition
 
