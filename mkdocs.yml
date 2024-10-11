@@ -70,7 +70,11 @@ nav:
           - Button Attributes: Button/Button Attribute Default Values.md
           - Button Value: Button/Button Value.md
       - Resources: Resources.md
-      - Examples: Extending/Examples.md
+      - Examples:
+          - Extending/Examples.md
+          - Tutorials:
+              - Adding a Page of Buttons to a Deck: Creating/Adding a Page of Buttons to a Deck.md
+              - Adding a Web Deck: Creating/Adding a Web Deck.md
       - Extending:
           - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
           - Adding representations: Extending/Adding Representations.md
@@ -93,6 +97,11 @@ nav:
               - Configuration Files and Attributes: Extending/Internals/Configuration Files and Attributes.md
               - Themes: Extending/Internals/Themes.md
               - To Do: Extending/Internals/To do.md
+          - Reference:
+              - Activation: Activation.md
+              - Deck Type: Deck Type.md
+              - Representation: Representation.md
+              - Simulator: Simulator.md
   - Installation and Usage:
       - Installation: Installation.md
       - Usage: Usage.md
