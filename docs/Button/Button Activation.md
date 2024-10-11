@@ -11,7 +11,7 @@ This file list all activations that are currently available in Cockpitdecks. For
 - [[Button Activation#No Activation]]
 - [[Button Activation#Page]]
 - [[Button Activation#Push]]
-- [[Button Activation#Longpress]]
+- [[Button Activation#ShortOrLongpress]]
 - [[Button Activation#OnOff]]
 - [[Button Activation#UpDown]]
 - [[Button Activation#Encoder]]

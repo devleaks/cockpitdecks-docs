@@ -40,16 +40,16 @@ The value of the `what` attribute determine what is displayed when activated.
 
 ### what Attribute Values
 
-| Value               | Description                                                                                                                                                                        |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `threads`           | list Cockpitdecks and deck threads that are currently running.                                                                                                                     |
-| `datarefs`          | list datarefs and values (the page containing the buttons need to be loaded first before it can display values).                                                                   |
-| `datarefs-listener` | List all datarefs and which buttons (listeners) are using the dataref.                                                                                                             |
-| `status`            | list internal variables and statuses of each button.                                                                                                                               |
-| `valid`             | check button validity and report invalid status.                                                                                                                                   |
-| `desc`              | print a description of what each button does in plain English, both for activation and representation.                                                                             |
-| `image`             | produces an image of each deck, images are saved in the Cockpitdecks home directory and named after the deck.                                                                      |
-| `longpress`         | list [[Button Activation#Longpress\|Longpress]] command that should have a couple of additional commands [[X-Plane Interaction#Activations\|added to X-Plane through the plugin]]. |
+| Value               | Description                                                                                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `threads`           | list Cockpitdecks and deck threads that are currently running.                                                                                                                 |
+| `datarefs`          | list datarefs and values (the page containing the buttons need to be loaded first before it can display values).                                                               |
+| `datarefs-listener` | List all datarefs and which buttons (listeners) are using the dataref.                                                                                                         |
+| `status`            | list internal variables and statuses of each button.                                                                                                                           |
+| `valid`             | check button validity and report invalid status.                                                                                                                               |
+| `desc`              | print a description of what each button does in plain English, both for activation and representation.                                                                         |
+| `image`             | produces an image of each deck, images are saved in the Cockpitdecks home directory and named after the deck.                                                                  |
+| `longpress`         | list [[Button Activation#ShortOrLongpress]] command that should have a couple of additional commands [[X-Plane Interaction#Activations\|added to X-Plane through the plugin]]. |
 
 ```Yaml
 index: 4

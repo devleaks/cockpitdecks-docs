@@ -41,4 +41,4 @@ A special gauge is the heading gauge (called `rose`) which show the heading on a
 
 # Charts
 
-Cockpitdecks provides a limited set of time-based [[Charts|display charts]], also often called [sparklines](https://en.wikipedia.org/wiki/Sparkline).
+Cockpitdecks provides a limited set of time-based [[Drawn Buttons – Charts|display charts]], also often called [sparklines](https://en.wikipedia.org/wiki/Sparkline).

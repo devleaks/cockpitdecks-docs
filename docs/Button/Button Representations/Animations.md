@@ -45,7 +45,7 @@ In this case, the animation controls and changes the value of the button, switch
 
 # Drawing Based Animation
 
-A Drawing animation is a parametrised drawing that uses a single parameter value (for exemple the button's value). When the value changes, the procedure optionally uses a tweening algorithm to progressively change the value from the old one to the new one.
+A Drawing animation is a parametrized drawing that uses a single parameter value (for exemple the button's value). When the value changes, the procedure optionally uses a tweening algorithm to progressively change the value from the old one to the new one.
 
 As a proof of this concept, the FollowTheGreens Representation displays a portion of taxiway centerline with "flashing" lead light when it is activated.
 

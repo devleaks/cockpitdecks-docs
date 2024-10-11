@@ -35,16 +35,18 @@ Create a new python environment and activate it. In that environment, issue the 
 pip install 'cockpitdecks[weather,streamdeck] @ git+https://github.com/devleaks/cockpitdecks.git'
 ```
 
-Valid installable extras (between the `[` `]`, comma separated, no space) are:
+### Cockpitdecks Extension Packages
 
-| Extra              | Content                                                                                                                    |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| `weather`          | Add special iconic representation for weather. These icons sometimes fetch information outside of X-Plane. Recommended     |
-| `streamdeck`       | For Elgato Stream Deck devices                                                                                             |
-| `loupedeck`        | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                                      |
-| `xtouchmini`       | For Berhinger X-Touch Mini devices                                                                                         |
-| `demoext`          | Add a few Loupedeck and Stream Deck+ demo extensions. Recommended                                                          |
-| `development`      | For developer only, add testing packages and python types                                                                  |
+Valid installable extension packages (between the `[` `]`, comma separated, no space) are:
+
+| Extra         | Content                                                                                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `weather`     | Add special iconic representation for weather. These representations fetch information outside of simulation software. That's why it is not bundled with Cockpitdecks. Recommended. |
+| `streamdeck`  | For Elgato Stream Deck devices                                                                                                                                                      |
+| `loupedeck`   | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                                                                                               |
+| `xtouchmini`  | For Berhinger X-Touch Mini devices                                                                                                                                                  |
+| `demoext`     | Add a few Loupedeck and Stream Deck+ demo extensions                                                                                                                                |
+| `development` | For developer only, add testing packages and python types                                                                                                                           |
 
 ## Install Cockpitdecks Helper Plugin
 
@@ -58,6 +60,8 @@ To circumvent this, Cockpitdecks provides a small python plugin called the Cockp
 If not installed, some of the commands inside Cockpitdecks will work properly.
 
 Cockpitdecks Helper plugin is an _in-process_ plugin, running inside X-Plane, while Cockpitdecks is an _out-of-process_ executable.
+
+### Why an Additional Plugin?
 
 #### Long command execution
 
@@ -73,7 +77,7 @@ To collect string-typed datarefs, the **Cockpitdecks Helper** plugin needs to be
 
 See [[String Datarefs]] for details about this.
 
-#### Cockpitdecks Helper Plugin Installation
+### Cockpitdecks Helper Plugin Installation
 
 Cockpitdecks Helper Plugin is written in the python language. So it needs the [XPPython3](https://xppython3.readthedocs.io/) X-Plane plugin installed. XPPython3 plugin allow for execution of python code inside X-Plane.
 

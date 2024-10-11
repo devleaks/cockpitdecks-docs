@@ -19,7 +19,7 @@ Cockpitdecks uses a single configuration file, called the Cockpitdecks environme
 | `COCKPITDECKS_EXTENSION_PATH` | List of paths where to search for Cockpitdecks extensions                                                                                                                                                     |
 | `COCKPITDECKS_EXTENSION_NAME` | List of python package names that contains Cockpitdecks extensions                                                                                                                                            |
 
-In addition, there is a operation system environment variable `COCKPITDECKS_PATH` that holds folders where Cockpitdecks will look for aircraft configurations.
+In addition, there is a operating system environment variable `COCKPITDECKS_PATH` that holds folders where Cockpitdecks will look for aircraft configurations.
 
 If you do not want to modify the Cockpitdecks-provided `environ.yaml` file, you always can supply one on the command line with the `—-env` flag.
 
@@ -136,5 +136,7 @@ Cockpitdecks is *stateless*. If we except internal statistics, Cockpitdecks does
 # Termination
 
 Cockpitdecks is designed to terminates cleanly. All requested datarefs monitoring are cancelled, connections are closed, all threads are terminated and joined cleanly. However, it may sometimes take a few seconds before a thread terminates. For example, if a thread is meant to run every 30 seconds, it may be necessary to wait a full 30 seconds before the thread notices the termination request and quits. Longer threads (above 30 seconds or a minute) check periodically for termination request. Cockpitdecks should always terminate cleanly.
+
+If necessary, there is an [[Button Activations for Developers#Stop|activation]] that can be assigned to a button to stop Cockpitdecks.
 
 If necessary, pressing ++ctrl+c++ several time in the main window will stop Cockpitdecks completely right away.

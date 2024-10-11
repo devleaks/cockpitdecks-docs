@@ -8,34 +8,6 @@ They are either on or off, with a RGB color.
 colored-led: blue
 ```
 
-# EncoderLEDs
-
-`led: encoder-leds`
-
-(Specific to the X-Touch Mini Encoders.)
-
-MultiLeds are LED-based display that use more than one LED for reporting information.
-
-X-Touch Mini encoders, for example, are surrounded by 11 LED that can be lit individually.
-
-![[enc-status.png]]
-
-## Attributes
-
-`led-mode: fan` or `led-mode: 2`; name or number
-
-Valid modes are:
-
-0. Single
-1. Trim
-2. Fan
-3. Spread
-
-The value of the button determine how many leds will be displayed (0 to 11).
-
-> [!NOTE] X-Touch Mini MACKIE MODE
-> To send feedback instruction to the deck, two modes of interactions are available: Direct mode, and Mackie Mode. Cockpitdecks uses Mackie Mode which makes deck interaction easier and standard through the MIDI protocol. However, in Mackie Mode, only 11 or the 13 available encoder LEDs are accessible. It is not possible to access LED 0 and 13, only 1 to 12.
-
 # IconSide
 
 `icon-side: ICON_FILE_NAME`

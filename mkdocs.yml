@@ -55,16 +55,18 @@ nav:
           - Button Representation:
               - Button Representation: Button/Button Representation.md
               - Basic Buttons: Button/Button Representations/Basic.md
-              - Animated Buttons: Button/Button Representations/Animations.md
+              - Drawn Buttons: Button/Button Representations/Drawn Buttons.md
               - Annunciators: Button/Button Representations/Annunciator.md
               - Switches: Button/Button Representations/Drawn Buttons – Switches.md
-              - Drawn Buttons: Button/Button Representations/Drawn Buttons.md
-              - «Data» Buttons: Button/Button Representations/Drawn Buttons (continued).md
+              - Charts Buttons: Button/Button Representations/Drawn Buttons – Charts.md
               - Advanced Representations:
-                  - Mosaic (Large LCD Touchscreen): Button/Button Representations/Mosaic.md
-                  - Deck Specific Representations: Button/Button Representations/Deck Specific.md
-                  - Toliss Airbus Specific Buttons: Button/Button Representations/Toliss Specific Representations.md
+                  - Mosaic (Large LCD Touchscreen): Button/Button Representations/Multi-Buttons and Mosaic.md
+                  - Deck Specific Representations – Stream Deck: Button/Button Representations/Deck Specific – Stream Deck.md
+                  - Deck Specific Representations – Loupedeck: Button/Button Representations/Deck Specific – Loupedeck.md
+                  - Deck Specific Representations – X-Touch Mini: Button/Button Representations/Deck Specific – X-Touch Mini.md
+                  - Aircraft Specific Representations – Toliss Airbus: Button/Button Representations/Toliss Specific Representations.md
                   - Weather Representations: Button/Button Representations/Weather.md
+                  - Animated Buttons: Button/Button Representations/Animations.md
           - Button Attributes: Button/Button Attribute Default Values.md
           - Button Value: Button/Button Value.md
       - Resources: Resources.md
@@ -85,13 +87,15 @@ nav:
                   - X-Plane Interaction: Extending/Internals/X-Plane Interaction.md
               - Cockpitdecks Internals: Extending/Internals/Cockpitdecks Internals.md
               - Deck Internals: Extending/Internals/Deck Internals.md
-              - Events: Button/Events.md
+              - Events: Extending/Internals/Events.md
               - String Datarefs: Extending/String Datarefs.md
               - Web Deck Designer Tools: Extending/Internals/Design Helper.md
               - Configuration Files and Attributes: Extending/Internals/Configuration Files and Attributes.md
               - Themes: Extending/Internals/Themes.md
               - To Do: Extending/Internals/To do.md
-  - Installation and Usage: Installation and Usage.md
+  - Installation and Usage:
+      - Installation: Installation.md
+      - Usage: Usage.md
 
 # ###############################################
 #
