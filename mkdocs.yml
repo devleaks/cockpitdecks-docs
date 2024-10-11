@@ -63,7 +63,7 @@ nav:
                   - Mosaic (Large LCD Touchscreen): Button/Button Representations/Multi-Buttons and Mosaic.md
                   - Deck Specific Representations – Stream Deck: Button/Button Representations/Deck Specific – Stream Deck.md
                   - Deck Specific Representations – Loupedeck: Button/Button Representations/Deck Specific – Loupedeck.md
-                  - Deck Specific Representations – X-Touch Mini: Button/Button Representations/Deck Specific – X-Touch Mini.md
+                  - < Representations – X-Touch Mini: Button/Button Representations/Deck Specific – X-Touch Mini.md
                   - Aircraft Specific Representations – Toliss Airbus: Button/Button Representations/Toliss Specific Representations.md
                   - Weather Representations: Button/Button Representations/Weather.md
                   - Animated Buttons: Button/Button Representations/Animations.md
@@ -98,10 +98,10 @@ nav:
               - Themes: Extending/Internals/Themes.md
               - To Do: Extending/Internals/To do.md
           - Reference:
-              - Activation: Activation.md
-              - Deck Type: Deck Type.md
-              - Representation: Representation.md
-              - Simulator: Simulator.md
+              - Activation: Extending/Reference/Activation.md
+              - Deck Type: Extending/Reference/Deck Type.md
+              - Representation: Extending/Reference/Representation.md
+              - Simulator: Extending/Reference/Simulator.md
   - Installation and Usage:
       - Installation: Installation.md
       - Usage: Usage.md

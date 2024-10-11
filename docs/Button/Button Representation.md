@@ -65,8 +65,12 @@ Here is a list of currently available, general purpose representations.
 
 ## Deck Specific Displays and Representations
 
-- [[Deck Specific#EncoderLEDs]]
-- [[Deck Specific#IconSide]]
+Please refer to the following pages for deck specific representtions.
+Deck specific means those representations on one deck will (probably) not work on another deck.
+
+- [[Deck Specific – Stream Deck]]
+- [[Deck Specific – Loupedeck]]
+- [[Deck Specific – X-Touch Mini]]
 
 ## Aircraft / Deck Specific Representations
 
