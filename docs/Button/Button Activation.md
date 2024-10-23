@@ -210,6 +210,14 @@ Cycle Up and Down button.
 | `initial-value` | If an initial value is supplied, it's sign indicated how the value will evolve.<br><br>For example, if the initial value is 1, the next value will be 2 (go up). If the initial value is -1, the initial value will be set to 1, but the next value will be zero (go down). |
 | `set-dataref`   | Optional dataref to set the value of the current stop.<br><br>Very much like On/Off activation either `commands` or `set-dataref` can be supplied or both.                                                                                                                  |
 
+The number of supplied commands may vary.
+
+If no command is supplied, it is assumed that there is a `set-dataref` instruction. In this case, the activation runs inside the `[0, #stops[` interval and writes the current value to the dataref.
+
+If two commands are supplied, they are assumed to be commands to go up and go down when cycling between the values.
+
+If the number of commands is equal to the number of stops, and if there are more than 3 stops, then the activation runs inside the `[0, #stops[` interval and executes the command corresponding to the current value.
+
 ### Activation Value
 
 The activation value for UpDown activation is the current value.

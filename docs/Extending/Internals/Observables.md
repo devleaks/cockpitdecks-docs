@@ -1,4 +1,4 @@
-Observables are data that is constantly monitored. When the data matches some criteria, a list of actions or commands is executed.
+Observables are data that is constantly monitored. When the data matches a criteria, a list of actions or commands is executed.
 
 For people familiar with the concept, it can be considered a *if-this-then-that* instruction. For example: If the weather data from the simulator indicates rain is falling on the aircraft, we can set the windshield wipers automatically.
 

@@ -22,14 +22,36 @@ Cockpitdecks is the name of the application used to control decks connected to a
 
 # Simulator
 
-# Simulator Data
-# Simulator Instruction
+## Simulator Data
+
+## Simulator Instruction
 
 # Event
 
 ## Simulator Event
 
 ## Deck Event
+
+# Cockpitdecks Internals
+
+## Cockpitdecks Data
+
+Cockpitdecks data are internal Cockpitdecks values mainly kept for statistical or introspection purposes. Button internal state is maintained inside a few Cockpitdecks internal data.
+
+End-users and Cockpitdecks developer can define and use internal cockpitdecks data. They all behave like simulator data, propagating changes to their listeners.
+
+## Cockpitdecks Instruction
+
+Cockpitdecks instructions are instructions triggered and used inside Cockpitdecks and are not forwarded to the simulator. Cockpitdecks instructions are:
+
+- Change/load alternate deck page
+- Reload decks
+- Stop Cockpitdecks
+- ...
+
+## Cockpitdecks Events
+
+Cockpitdecks does not currently generate or process Cockpitdecks internal events.
 
 # Dataref
 
