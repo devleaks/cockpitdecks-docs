@@ -32,6 +32,71 @@ Second, if the activation produces a value, it is written to the `set-dataref` o
 
 Third, and finally, if the button activation contains a `view` command, it is executed. The purpose of the view command if to alter the view in the cockpit, may be to focus on a particular area of the dashboard to control the effect of the activation.
 
+# Command, Commands, and «Macro Instruction»
+
+When specifying attributes for an activation `command`and `commands` attributes can be requested. A `command` is a single command, `commands` is a list of individual commands, often, the number of commands in the list matters to match the Activation requirements.
+
+A `command` can be:
+
+- a single string naming the command to execute, or
+- a single command block, with a condition and or a delay, or
+- a *Macro Instruction*, that can contain one or more *command blocks*.
+
+## Simple Command String
+
+```
+    command: sim/map/show_current
+```
+
+## Single Command Block
+
+A *Command Block* is a series of attributes that specify a command to execute and some optional behavior.
+
+```
+	command:
+	  - set-dataref: sim/value/to/set
+	    condition: ${sim/position/altitude} 5000 >
+	    delay: 5
+```
+
+The group of attributes `set-dataref`, `condition`, `delay` is a *command block*. It is one instruction (`set-dataref`), a condition to satisfy before executing the instruction, and a delay to wait after the condition is satisfied before executing the command.
+
+The condition is evaluated each time one of its parameter changes.
+
+### Command Block Attributes
+
+#### Command
+
+There are currently two attributes that can be used to specify a command to execute:
+
+- `command`
+- `set-dataref`
+
+Either one can be used but not both. (If both are specified, a warning is issued and the command is ignored.)
+
+#### Condition
+
+A condition is a *formula* that specify, when evaluated, if the command can be executed. The condition is evaluated each time one of its constituting simulator value changes.
+
+#### Delay
+
+The delay is a value in seconds that specifies how long after the command receives its instruction to execute it actually perform the task. This allows to pause between commands rather than submitting them all simultaneously to the target.
+
+## Multiple Command Blocks: Macro Instruction
+
+```
+    command:
+      - command: AirbusFBW/MCDU1Menu
+      - command: AirbusFBW/MCDU1LSK6L
+        delay: 1
+      - command: AirbusFBW/MCDU1LSK6R
+        delay: 1
+      - command: AirbusFBW/MCDU1LSK1R
+        delay: 1
+```
+
+In the above example, the single command consists of a series of 4 command blocks. In this case, the single command is called a *Macro Instruction*.
+
 # No Activation
 
 `type: none`
