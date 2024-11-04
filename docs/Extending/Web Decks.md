@@ -1,5 +1,7 @@
 In addition to real physical decks, Cockpitdecks offers *Web Decks* rendered in a browser window.
 
+Web Decks were first developed as a tool to speed up deck page creation, but Web Decks turned out to be fast and available everywhere, in particular on tablets.
+
 ![[virtualdecks.jpg]]
 
 A Web Deck behaves like their physical counterparts, with limitations inherent to presentation in a browser window. In a nutshell, a web deck has an optional background image (or a uniform background color), and buttons laid over it. Buttons can be of four main types:

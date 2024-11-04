@@ -21,7 +21,7 @@ In particular, the X-Plane Cockpitdecks Helper plugin uses and requires the late
 ## Enable X-Plane UDP
 
 > [!NOTE] X-Plane 12 and UDP
-> X-Plane 12 appears to disable UDP networking initially. Check Settings -> Network page, and make sure “Accept incoming connections” is enabled.
+> X-Plane 12 appears to disable UDP networking on new installations. Check Settings -> Network page, and make sure “Accept incoming connections” is enabled.
  
 (See X-Plane UDP manual. Will provide information here later.)
 
@@ -59,21 +59,21 @@ To circumvent this, Cockpitdecks provides a small python plugin called the Cockp
 
 If not installed, some of the commands inside Cockpitdecks will work properly.
 
-Cockpitdecks Helper plugin is an _in-process_ plugin, running inside X-Plane, while Cockpitdecks is an _out-of-process_ executable.
+Cockpitdecks Helper plugin is an _in-process_ plugin, running inside X-Plane, while Cockpitdecks is an _out-of-process_ executable running independently of X-Plane.
 
 ### Why an Additional Plugin?
 
 #### Long command execution
 
-Some commands cannot be executed directly through UDP. For exemples, commands that have a start and an end cannot be started or ended though UDP. It is an X-Plane UDP limitation.
+Some commands cannot be executed directly through UDP. For exemples, commands that have a *start* and an *end* cannot be started or ended though UDP. It is an X-Plane UDP limitation.
 
 To execute long press commands, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder.
 
 #### String Datarefs
 
-X-Plane UDP only allows to fetch dataref values one by one. Retrieving a string is a tedious process.
+X-Plane UDP only allows to fetch dataref values one by one. Retrieving a string is a tedious process Bea cause each individual character has to be fetched.
 
-To collect string-typed datarefs, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder.
+To collect string-typed datarefs, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 PythonPlugins folder. It collects the entire string and then broadcasts it as a whole string, not individual characters.
 
 See [[String Datarefs]] for details about this.
 
@@ -95,7 +95,7 @@ To install both services described above, copy the plugin file to:
 ... /X-Plane 12/resources/plugins/PythonPlugins/PI_cockpitdecks.py
 ```
 
-and ask XPPython3 plugin to reload the scripts.
+and ask XPPython3 plugin to reload its scripts.
 
 ## Install Aircraft Specific `deckconfig` Folders
 

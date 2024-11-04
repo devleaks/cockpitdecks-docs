@@ -61,15 +61,24 @@ The button *Representation* page describes attributes specific to the *feedback*
 
 (In the picture above, this refer to the yellow part of the definition.)
 
-A Button has a value that is maintained and used mainly for representation.
+A Button has a value that is maintained and used mainly for its representation.
+
+The value of a button can come from two sources:
+
+- The simulator (i.e. some variable or parameter used and controlled by the simulator)
+- The internal state of the button (read below)
 
 The following attributes are used to determine a button’s value:
 
 `dataref` : A single dataref value.
 
-`formula`: An expression that contains variables and mathematical operations to combine and compute a value
+`formula`: An expression that contains variables, including datarefs, and mathematical operations to combine and compute a value
 
-`multi-datarefs`: A list of two or more datarefs. The values of all datarefs in the list will be returned.
+`multi-datarefs`: A list of two or more datarefs. The values of all datarefs in the list will be returned as the value of the button, although in this case, the value will be a composite value. The representation that uses such a specific value will know how to use each individual component of the composite value.
+
+## Value from the Simulator
+
+When the value of a button is computed from one or more values coming from the simulator, Cockpitdecks will request the values from the simulator, and each time one of these values changes, Cockpitdecks will notify the button of the changes so that it can adjust its representation.
 
 ## Button State
 

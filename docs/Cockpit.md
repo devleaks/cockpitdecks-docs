@@ -1,12 +1,20 @@
-The Cockpit is the *Maestro* of the Cockpitdecks application.
+Cockpitdecks is an application that connect decks to the X-Plane flight simulator. On one side, the application scans for connected decks and prepare them for use with X-Plane. On the other side, Cockpitdecks connects to X-Plane to issue instructions and  listen to changes and reflect those changes on the deck device if it allows it.
+
+To determine what to display on decks, which commands to issue to the simulator, etc. Cockpitdecks reads a set of configuration files on startup.
+
+Configuration files are specific to an aircraft. Commands are different on a Cesna and on an Airbus. Things to display are different as well. That’s why configuration files are located in the folder of the aircraft being used. Numerous other software like X-Camera proceed in a similar way, locating their aircraft specific configuration there as well.
+
+The Cockpit is the *Maestro* component of the Cockpitdecks application.
 
 It starts up the entire Cockpitdecks application. It establishes connection to the simulator, scans for existing decks connected to the computer, and load the aircraft configuration files. It listen to interactions that occur on the decks and listen to simulator changes to reflect deck statuses. It also monitors which aircraft is currently loaded in the simulator, and if the user changes aircraft, it loads the new configuration if any.
 
-# Aircraft Configuration
-
-Decks are particular to one aircraft. All files necessary to Cockpitdecks are located in a single folder named `deckconfig` that is found in the folder of the X-Plane aircraft currently being used. In that folder, Cockpitdecks will discover all decks connected to the system and available to it.
+The following pages describe the necessary configuration files, their location and organisation, and their content. Configuration files are organised in structured folders, and this structure is explained as well.
 
 All configuration files for Cockpitdecks are *Yaml-formatted files*. Yaml file contains a structured list of (name, value) pairs. The name is referred to as an *attribute*. The *value* can be almost anything: A number, a string, a list of things, or a list of other attributes.
+
+# Aircraft Configuration
+
+Decks are particular to one aircraft. All files necessary to Cockpitdecks are located in a single folder named `deckconfig` that is found in the folder of the X-Plane aircraft currently being used. In that folder, Cockpitdecks will find all its configuration files.
 
 # The `deckconfig` Folder
 
@@ -44,16 +52,16 @@ The overall structure of the files and sub-folders inside the `deckconfig` folde
 
 The  `deckconfig` folder contains the following files and sub-folders:
 
-| Name        | Description                                                                                                                                                                                                                                         |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| config.yaml | Main configuration file                                                                                                                                                                                                                             |
-| secret.yaml | Serial numbers of decks used by Cockpitdecks                                                                                                                                                                                                        |
-| resources   | Resource files used by this configuration. Resources are icons, fonts, images, etc.                                                                                                                                                                 |
-| layout(s)   | A Layout is a folder that contains what is displayed on a deck. There can be as many Layout Folder as necessary for this aircraft. All remaining folders in the `deckconfig`folder are layout folders. There usually is one Layout folder per deck. |
+| Name          | Description                                                                                                                                                                                                                                         |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `config.yaml` | Main configuration file                                                                                                                                                                                                                             |
+| `secret.yaml` | Serial numbers of decks used by Cockpitdecks                                                                                                                                                                                                        |
+| resources     | Resource files used by this configuration. Resources are icons, fonts, images, etc.                                                                                                                                                                 |
+| layout(s)     | A Layout is a folder that contains what is displayed on a deck. There can be as many Layout Folder as necessary for this aircraft. All remaining folders in the `deckconfig`folder are layout folders. There usually is one Layout folder per deck. |
 
 # `config.yaml` File
 
-The file named `config.yaml` in the `deckconfig` folder contains declarations for each [[Deck|deck]] that will be used and global, aircraft-level attributes.
+The file named `config.yaml` in the `deckconfig` folder it the main configuration file, It contains declarations for each [[Deck|deck]] that will be used, and global, aircraft-level attributes.
 
 ```yaml
 # Definition of decks for Toliss A321
@@ -77,7 +85,7 @@ cockpit-color: lightblue
 
 ## Attributes
 
-The parameters apply to all decks for the given aircraft. Each individual deck will have the possibility to redefine these values if necessary.
+The following attributes apply to all decks for the given aircraft. Each individual deck will have the possibility to redefine these values if necessary.
 
 | Attribute                | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -89,7 +97,7 @@ The parameters apply to all decks for the given aircraft. Each individual deck w
 | `default-*`              | Name of default values of several parameters, defined at the aircraft-level. These values will be used for all missing values. They can be raffined at Layout and Page level if necessary.<br><br>If no aircraft-level global parameter values are not provided, Cockpitdecks will use its own internal default values.                                                                                                                                                                                                                                                                                                                                                                                          |
 | **decks**                | A list of [[Deck]] structure, one per deck.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
-Yaml allow for other attributes in the file. They are ignored by Cockpitdecks. You may include other attributes like aircraft name, ICAO code, descriptions, notes, even change log of your file.
+Yaml allow for other attributes in the file. They are ignored by Cockpitdecks. You may include other attributes like aircraft name, ICAO code, descriptions, notes, even change log of your file. Comments are also allowed in Yaml files.
 
 # `secret.yaml` File
 
@@ -109,6 +117,8 @@ XPLive: AAA0000000000000000000A0000
 
 Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft.
 
+Usually, the resources folder contains the following sub-folders:
+
 | Folder | Content                                                                                                                                                                                                  |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | icons  | Folder containing all icon images for that aircraft. Images should be in JPEG or PNG format. Typical icon size is 256 × 256 pixels, RGB(A). Icons are named after their file name without the extension. |
@@ -121,3 +131,7 @@ Resources are fonts, icons, other images, wallpapers, documentation, and texts u
 Next to the the above *resources* folder, there will be one folder per Layout for a deck.
 
 [[Layout|Layout folders]] are explained separately.
+
+# Decks
+
+One of the most important attributes in this first configuration file is the `decks` attribute which lists all [[cockpitdecks-docs/docs/Deck|Deck]]  Cockpitdecks will use.

@@ -6,26 +6,33 @@ First, you have to completely stop (quit completely) original manufacturer deck 
 
 # Adjust `environment.yaml`
 
-Cockpitdecks uses a single configuration file, called the Cockpitdecks environment file, to define a few elements that cannot easily be guessed. Cockpitdecks provides a configuration file that is suitable for single computer installation. You must, however, adjust at least the simulator folder path.
+Cockpitdecks uses a configuration file, called the Cockpitdecks environment file, to define a few elements that cannot easily be guessed. Cockpitdecks provides a environment file that is suitable for single computer installation. You must, however, adjust at least the simulator folder path.
 
-| Variable                      | Definiton                                                                                                                                                                                                     |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `SIMULATOR_NAME`              | Name of simulator to use. Currently, only X-Plane is a valid value.                                                                                                                                           |
-| `SIMULATOR_HOME`              | Home directory of X-Plane on the computer where Cockpitdecks runs. If X-Plane is installed on a remote host, `SIMULATOR_HOME` must be `None`.                                                                 |
-| `SIMULATOR_HOST`              | Hostname or IP address where *X-Plane* runs. Defaults to local host.                                                                                                                                          |
-| `APP_HOST`                    | Tuple (Hostname or IP address, port) where *Cockpitdecks* application runs. If specified through operating system environment variables, use (**APP_HOST** and **APP_PORT**). Default to (local host, 7777).  |
-| `API_PORT`                    | X-Plane (12.1.1 and above) where REST API runs. Default to `8086`.                                                                                                                                            |
-| `API_PATH`                    | X-Plane (12.1.1 and above) where REST API: X-Plane API root path. Currently default to `/api/v1`.                                                                                                             |
-| `COCKPITDECKS_EXTENSION_PATH` | List of paths where to search for Cockpitdecks extensions                                                                                                                                                     |
-| `COCKPITDECKS_EXTENSION_NAME` | List of python package names that contains Cockpitdecks extensions                                                                                                                                            |
+| Variable                      | Definiton                                                                                                                                                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SIMULATOR_NAME`              | Name of simulator to use. Currently, only X-Plane is a valid value.                                                                                                                                         |
+| `SIMULATOR_HOME`              | Home directory of X-Plane on the computer where Cockpitdecks runs. If X-Plane is installed on a remote host, `SIMULATOR_HOME` must be `None`.                                                               |
+| `SIMULATOR_HOST`              | Hostname or IP address where *X-Plane* runs. Defaults to local host.                                                                                                                                        |
+| `APP_HOST`                    | Tuple (Hostname or IP address, port) where *Cockpitdecks* application runs. If specified through operating system environment variables, use (**APP_HOST** and **APP_PORT**). Default to (localhost, 7777). |
+| `API_PORT`                    | X-Plane (12.1.1 and above) where REST API runs. Default to `8086`.                                                                                                                                          |
+| `API_PATH`                    | X-Plane (12.1.1 and above) where REST API: X-Plane API root path. Currently default to `/api/v1`.                                                                                                           |
+| `COCKPITDECKS_EXTENSION_PATH` | List of paths where to search for Cockpitdecks extensions                                                                                                                                                   |
+| `COCKPITDECKS_EXTENSION_NAME` | List of python package names that contains Cockpitdecks extensions                                                                                                                                          |
 
-In addition, there is a operating system environment variable `COCKPITDECKS_PATH` that holds folders where Cockpitdecks will look for aircraft configurations.
+In addition, there is a operating system environment variable `COCKPITDECKS_PATH` that lists folder paths where Cockpitdecks will look for aircraft configurations.
 
 If you do not want to modify the Cockpitdecks-provided `environ.yaml` file, you always can supply one on the command line with the `—-env` flag.
 
 The set of global parameters provided in the `environ.yaml` file is called the Cockpitdecks *environment*, since it provides all « external » information to Cockpitdecks (external, relative to Cockpitdecks).
 
 Cockpitdecks provides two templates configuration files for local and remote use.
+
+The minimal environment file if everything runs locally is
+
+```
+SIMILATOR_NAME: X-Plane
+SIMULATOR_HOME: <path to where X-Plane software is installed>
+```
 
 # Start Cockpitdecks
 
@@ -89,11 +96,13 @@ Make sure the configuration file is setup. When everything is run on the same co
 cockpitdecks-cli
 ```
 
-Cockpitdecks will immediately start in demonstration mode and listen for X-Plane interaction. If Cockpitdecks detects tht X-Plane is running, finds that an aircraft is loaded, and that a Cockpitdecks `deckconfig` folder exists in the folder of that aircraft, Cockpitdecks will load this configuration.
+Cockpitdecks will immediately start in demonstration mode and listen for X-Plane interaction. If Cockpitdecks detects that X-Plane is running, finds that an aircraft is loaded, and that a Cockpitdecks `deckconfig` folder exists in the folder of that aircraft, Cockpitdecks will load that configuration.
 
 If no configuration is found, Cockpitdecks will listen and interpret X-Plane data but will not load a new configuration.
 
-This mode is fully automatic, Cockpitdecks always attempts to load the current aircraft `deckconfig` configuration, if present. Similarly, the XPPython3 plugin, if installed, will load the corresponding new configuration as well.
+This mode is fully automatic. If X-Plane is stoped or later restarted, Cockpitdecks will notice it and either wait idle that X-Plane is started, and if X-Plane is running, Cockpitdecks will attempt to load the aircraft configuration, if any.
+
+Cockpitdecks always attempts to load the current aircraft `deckconfig` configuration, if present. Similarly, the XPPython3 plugin, if installed, will load the corresponding new configuration as well.
 
 ## Cockpidecks and X-Plane Run on Different Computer
 
