@@ -1,4 +1,4 @@
-A *button* is the general term for a key, knob, rotary encoder, slider cursor, or even touch surface on a deck. On a given deck, each element that can be pressed, turned, or slid is a *button*.
+A *button* is the general term for a key, knob, rotary encoder, slider cursor, or even touch surface on a deck. On a given deck, each element that can be pressed, turned, swiped, or slid is a *button*.
 
 For a given deck, all buttons that are available and/or displayed at a moment in time are on the same *Page*, the collection of buttons currently usable on that deck. Hence, in the definition of a page, there is a mandatory `buttons` attributes that lists all buttons on that page.
 
@@ -6,7 +6,7 @@ In that list, each button is defined by a list of attributes that will determine
 
 # Button Definition
 
-The *Button Definition* is a list of parameters that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button.
+The *Button Definition* is a list of attributes that describe what the button will do when it is manipulated and how it will be represented on the deck if the deck can some how represent the state of that button.
 
 Button definition can be very simple and straightforward, but definitions can also be complex and refined.
 
@@ -28,6 +28,8 @@ The definition of a button is always structured in 4 distinct sections:
 
 The following sections address these.
 
+Here is a complex definition of a button which exemplifies all above sections (in different colors):
+
 ![[button-anatomy.png]]
 
 Resulting button:
@@ -42,7 +44,7 @@ The button *Representation* page describes attributes specific to the *feedback*
 
 # Common Button Attributes
 
-(In the picture above, this refer to the blue part of the definition.)
+(In the *Anatomy of a Button* above, this refer to the blue part of the definition.)
 
 | Attribute        | Definition                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -59,7 +61,7 @@ The button *Representation* page describes attributes specific to the *feedback*
 
 # Button Value
 
-(In the picture above, this refer to the yellow part of the definition.)
+(In the *Anatomy of a Button* above, this refer to the yellow part of the definition.)
 
 A Button has a value that is maintained and used mainly for its representation.
 
@@ -72,9 +74,9 @@ The following attributes are used to determine a button’s value:
 
 `dataref` : A single dataref value.
 
-`formula`: An expression that contains variables, including datarefs, and mathematical operations to combine and compute a value
+`formula`: An expression that contains variables, including datarefs, and mathematical operations to combine and compute a single final value.
 
-`multi-datarefs`: A list of two or more datarefs. The values of all datarefs in the list will be returned as the value of the button, although in this case, the value will be a composite value. The representation that uses such a specific value will know how to use each individual component of the composite value.
+`multi-datarefs`: A list of two or more datarefs. The values of all datarefs in the list will be returned as the value of the button. In this case, the value will be a *composite* value. The representation that uses such a specific value will know how to use each part of the composite value.
 
 ## Value from the Simulator
 
@@ -86,15 +88,17 @@ Finally, in addition to the above attributes that can be used to specify the val
 
 Each button maintain an internal state: How many times it is pressed, released, turned clockwise or counter-clockwise, what is it current value, its previous, or last value, when it was last used or refreshed, etc.. State information can be accessed by Button designer to control the button behavior and its representation, or its value.
 
+Examples of internal state attributes are:
+
 1. `activation_count` (number of time button was «used»)
 2. `current_value`
 3. `previous_value`
 
-Internal state attributes varies depending on the button activation. Please refer to [[Button Activation|button activations]], each activation type returns its own set of particular state values.
+Internal state attributes varies depending on the [[Button Activation|button activation]]. Each activation type returns its own set of particular state values.
 
 All these attributes can be used either individually or combined in a formula to determine the value of a button.
 
-Please head [[Button Value|here]] for details about a button's value computation.
+Please head [[Button Value|here]] for details about the computation of the value of a button.
 
 ## Button Initial Value
 
@@ -110,7 +114,7 @@ In case of a Button with multiple values, each value has a separate `initial-val
 
 # Button Activation
 
-(In the picture above, this refer to the green part of the definition.)
+(In the *Anatomy of a Button* above, this refer to the green part of the definition.)
 
 The `type` attribute of a button determine [[Button Activation|how the button will behave]], what it will do when pressed, turned or slid.
 
@@ -118,7 +122,7 @@ The `type` attribute of a button determine [[Button Activation|how the button wi
 
 A button definition can have a `set-dataref` attribute that points at a Dataref name.
 
-If present, Cockpitdecks will set the value of that dataref to the value of the button.
+If present, Cockpitdecks will set the value of that dataref to the value of the button each time the value of the button changes.
 
 Here is example of use. If a button has a activation type of `updown` with let us say 3 stops, the value of the button can be 0, 1, or 2. Each time the user presses the button the value of the button cycles between those three values.
 
@@ -136,7 +140,7 @@ For some other activations that expects a command to be performed upon activatio
 
 # Button Representation
 
-(In the picture above, this refer to the pink part of the definition.)
+(In the *Anatomy of a Button* above, this refer to the pink part of the definition.)
 
 The representation of a Button determine [[Button Representation|what and how the button will display]] on the deck device. This depends on the capabilities of the button on the deck: LED, image, coloured led button, sound...
 

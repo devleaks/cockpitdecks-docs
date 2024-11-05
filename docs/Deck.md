@@ -25,14 +25,13 @@ Decks are declared in the `config.yaml` file in the `deckconfig` folder in the `
 | `type`                  | **Mandatory**. Type of deck. This points at a very precise deck brand and model. The value must match one of the deck types Cockpitdecks recognizes. The types of deck models Cockpitdecks recognizes is displayed upon startup of the Cockpitdecks application. |
 | `layout`                | Optional. Name of the layout for this deck. Default to name value `default`. See the next Section for more information.                                                                                                                                          |
 | `brightness`            | Optional. Overall brightness of deck. Default to 100%. It might be necessary to adjust brightness at night or in low light environment.                                                                                                                          |
-| `default-homepage-name` | Optional. Default page name in layout. Default to `index`.                                                                                                                                                                                                       |
+| `disabled`              | Boolean value to tell whether the deck should be enabled or not for this aircraft. Useful during development process.                                                                                                                                            |
+| `default-homepage-name` | Optional. Name of the page to load first in the layout. Default to `index`. That's why layout folder often contains a `index.yaml` page.                                                                                                                         |
 | `default-*`             | Optional. Default attributes to use for deck.                                                                                                                                                                                                                    |
 
 # Deck Layout
 
-For a given aircraft, a deck has a Layout. The [[Layout]] of a deck is a collection of [[Page|Pages]] that will be used and displayed on the deck device for that aircraft.
-
-A Layout is a folder in the `deckconfig` folder.
+For a given aircraft, a deck has a Layout. The [[Layout]] of a deck is the collection of [[Page|Pages]] that will be used and displayed on the deck device for that aircraft. All these pages are grouped into a folder called a layout. A Layout is a folder in the `deckconfig` folder that contains *pages*.
 
 ``` hl_lines="8"
 XPlaneAircraftFolder
@@ -55,3 +54,9 @@ The deck definition should contain a `layout` attribute that indicates which lay
 # Web Decks
 
 No deck? [[Web Decks|We got you covered]].
+
+If there is no physical deck device, Cockpitdecks can be used to replicate one of those on a web page.
+
+To use an emulation of a Stream Deck device for example, it is necessary to install the streamdeck component of Cockpitdecks. When done, it is possible to create virtual Stream Deck devices and display them in a web page.
+
+This is equally possible with other brands like Loupedeck or Behringer.

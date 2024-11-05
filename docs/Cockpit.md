@@ -115,23 +115,23 @@ XPLive: AAA0000000000000000000A0000
 
 # Resources
 
-Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft.
+Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft. All this elements are organized into the `resources` folder.
 
 Usually, the resources folder contains the following sub-folders:
 
-| Folder | Content                                                                                                                                                                                                  |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| icons  | Folder containing all icon images for that aircraft. Images should be in JPEG or PNG format. Typical icon size is 256 × 256 pixels, RGB(A). Icons are named after their file name without the extension. |
-| fonts  | Folder containing all fonts for that aircraft. Fonts can be Truetype or Opentype. Fonts are named after their file name with the extension.                                                              |
-| docs   | Docs folder may contain documentation files, like explanatory images, and descriptive texts. Simpler text or markdown files are preferred.                                                               |
-| decks  | Cockpitdecks allow experienced users to add their own [[Web Decks]] specific to an aircraft.                                                                                                             |
+| Folder  | Content                                                                                                                                                                                                  |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `icons` | Folder containing all icon images for that aircraft. Images should be in JPEG or PNG format. Typical icon size is 256 × 256 pixels, RGB(A). Icons are named after their file name without the extension. |
+| `fonts` | Folder containing all fonts for that aircraft. Fonts can be Truetype or Opentype. Fonts are named after their file name with the extension.                                                              |
+| `docs`  | Docs folder may contain documentation files, like explanatory images, and descriptive texts. Simpler text or markdown files are preferred.                                                               |
+| `decks` | Cockpitdecks allow experienced users to create their own [[Web Decks]] specific to an aircraft.                                                                                                          |
 
 # Layout Folders
 
 Next to the the above *resources* folder, there will be one folder per Layout for a deck.
 
-[[Layout|Layout folders]] are explained separately.
+[[Layout|Layout folders]] are explained later.
 
 # Decks
 
-One of the most important attributes in this first configuration file is the `decks` attribute which lists all [[cockpitdecks-docs/docs/Deck|Deck]]  Cockpitdecks will use.
+One of the most important attributes in the main configuration file is the `decks` attribute which defnies all [[cockpitdecks-docs/docs/Deck|decks]] available to Cockpitdecks.

@@ -1,21 +1,21 @@
-For a given deck, a Layout is a collection of *Pages* that will be displayed on that deck.
+A Layout is a collection of *Pages* that will be displayed on that deck.
 
-A Layout is a folder, inside the `deckconfig` main folder.
+Layouts were created to cope with different deck models. If you have a set of 30 commands, you can display them all on a 32 key deck on the same *page*. But you have to spread 30 commands on *two pages* of buttons if your deck can only display 16 buttons at a time. Same commands, but two different *layouts*.
 
-The Layout is named and addressed by the name of the folder.
-
-Layouts were created to cope with different deck models. If you have a set of 30 commands, you can display them all on a 32 key deck. But you have to make two pages of buttons on a 16 key deck. Same button definitions, but two *layouts*.
+A Layout is a folder, inside the `deckconfig` main folder. The Layout is named and addressed by the name of that folder.
 
 # Layout Folder
 
 The Layout folder contains the following files:
 
 ```
-  ⊢ layout_name
+  ⊢ live
     ⊢ config.yaml
     ⊢ page1.yaml
     ⊢ page2.yaml
 ```
+
+The Layout name is `live`, it contains 2 pages.
 
 # Layout `config.yaml` File
 
@@ -27,7 +27,7 @@ default-icon-color: (94, 111, 130)
 default-label-color: blue
 default-label-font: DIN Bold.ttf
 default-label-size: 13
-default-page-name: index
+default-page-name: page1
 ```
 
 ## Attributes
@@ -40,13 +40,13 @@ default-page-name: index
 | `default-label-size: 13`        | Optional. Default label size.                       |
 | `default-homepage-name`         | Optional. Default page name in layout.              |
 
-The default value of some attributes (like font, colors, and sizes) is fetched at the Cockpit level if they are not specified at the Layout level.
+The default values of attributes (like font, colors, and sizes) are fetched at the Cockpit level if they are not specified at the Layout level.
 
 Layout attributes are used for all pages in the layout, unless a Page refines the definition of one of these attribute.
 
 # Pages
 
-Other files in the folder are considered to be [[Page|Pages]] in the layout.
+All other Yaml files in the folder are considered to be [[Page|Pages]] in the layout.
 
 # Default Layout
 
