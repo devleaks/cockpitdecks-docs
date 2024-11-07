@@ -12,7 +12,7 @@ The following pages describe the necessary configuration files, their location a
 
 All configuration files for Cockpitdecks are *Yaml-formatted files*. Yaml file contains a structured list of (name, value) pairs. The name is referred to as an *attribute*. The *value* can be almost anything: A number, a string, a list of things, or a list of other attributes.
 
-# Aircraft Configuration
+# Cockpitdecks Configuration for one Aircraft
 
 Decks are particular to one aircraft. All files necessary to Cockpitdecks are located in a single folder named `deckconfig` that is found in the folder of the X-Plane aircraft currently being used. In that folder, Cockpitdecks will find all its configuration files.
 
