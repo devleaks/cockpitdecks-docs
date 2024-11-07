@@ -96,13 +96,29 @@ Make sure the configuration file is setup. When everything is run on the same co
 cockpitdecks-cli
 ```
 
+If you defined a personal environment file:
+
+```sh
+cockpitdecks-cli --env myenv.yaml
+```
+
 Cockpitdecks will immediately start in demonstration mode and listen for X-Plane interaction. If Cockpitdecks detects that X-Plane is running, finds that an aircraft is loaded, and that a Cockpitdecks `deckconfig` folder exists in the folder of that aircraft, Cockpitdecks will load that configuration.
 
 If no configuration is found, Cockpitdecks will listen and interpret X-Plane data but will not load a new configuration.
 
-This mode is fully automatic. If X-Plane is stoped or later restarted, Cockpitdecks will notice it and either wait idle that X-Plane is started, and if X-Plane is running, Cockpitdecks will attempt to load the aircraft configuration, if any.
+This mode is fully automatic. If X-Plane is stopped or later restarted, Cockpitdecks will notice it and either wait idle that X-Plane is started, and if X-Plane is running, Cockpitdecks will attempt to load the aircraft configuration, if any.
 
 Cockpitdecks always attempts to load the current aircraft `deckconfig` configuration, if present. Similarly, the XPPython3 plugin, if installed, will load the corresponding new configuration as well.
+
+## Forced Configuration
+
+May be thhe aircraft loaded in X-Plane has no Cockpitdecks configuration but still, a configuration need to be loaded. The command-line interface can help:
+
+```sh
+cockpitdecks-cli --env myenv.yaml folder-where-there-is-a-config --fixed
+```
+
+The above command will look for a `deckconfig` folder in the folder supplied on the command line. The `--fixed` flag indicates that Cockpitdecks should not try to load another configuration in case the folder loaded (the one supplied on the command line) and the folder of the aircraft used in the simulator do not match.
 
 ## Cockpidecks and X-Plane Run on Different Computer
 
@@ -112,7 +128,7 @@ In this case, it is not possible for Cockpitdecks to locate aircraft configurati
 cockpitdecks-cli aircrafts/A21N --fixed
 ```
 
-Cockpitdecks will start and load the configuration in `aircrafts/A21N/deckcockpit`. Cockpitdecks will attempt to connect to X-Plane.
+Cockpitdecks will start and load the configuration in `aircrafts/A21N/deckconfig`, then Cockpitdecks will attempt to connect to X-Plane.
 
 The optional `--fixed` flag ensure that Cockpitdecks will not reload a new aircraft if it detects the aircraft in X-Plane has changed or does not correspond to the aircraft currently being used.
 
@@ -140,12 +156,14 @@ To report an issue with Cockpitdecks, you should always include the `XPPython3.l
 
 The level of information produced in the file is controlled by the logging level parameter. (info=some information and warnings, debug=a lot of information for debugging purpose, your XPPython3.log file may grow quite large.) The parameter is available at the global plugin level (the entire plugin will report all messages), or can be set at a Cockpitdecks internal module level to pin point issues.
 
-Cockpitdecks is *stateless*. If we except internal statistics, Cockpitdecks does not maintain any state variable of a situation. Therefore, at any time, it is possible to stop and restart it. Should a problem persists, please file an issue on github with necessary information to reproduce it.
+Cockpitdecks is *stateless*. If we except its internal statistics, Cockpitdecks does not maintain any state variable of a situation. Therefore, at any time, it is possible to stop and restart it. Should a problem persists, please file an issue on github with necessary information to reproduce it.
 
 # Termination
 
-Cockpitdecks is designed to terminates cleanly. All requested datarefs monitoring are cancelled, connections are closed, all threads are terminated and joined cleanly. However, it may sometimes take a few seconds before a thread terminates. For example, if a thread is meant to run every 30 seconds, it may be necessary to wait a full 30 seconds before the thread notices the termination request and quits. Longer threads (above 30 seconds or a minute) check periodically for termination request. Cockpitdecks should always terminate cleanly.
+To terminate Cockpitdecks, press **a single** ++ctrl+c++ to stop Cockpitdecks client application.
+
+Cockpitdecks is designed to terminates cleanly. All requested datarefs monitoring are cancelled, connections are closed, all threads are terminated and joined cleanly. However, it may sometimes take a few seconds before a thread terminates. For example, if a thread is meant to run every 30 seconds, it may be necessary to wait a full 30 seconds before the thread notices the termination request and quits. Longer threads (above 30 seconds or a minute) check periodically for termination request. Cockpitdecks should always terminate cleanly to release resources it controls from the simulator.
 
 If necessary, there is an [[Button Activations for Developers#Stop|activation]] that can be assigned to a button to stop Cockpitdecks.
 
-If necessary, pressing ++ctrl+c++ several time in the main window will stop Cockpitdecks completely right away.
+If necessary, or blocked, pressing ++ctrl+c++ several time in the main window will stop Cockpitdecks completely right away.

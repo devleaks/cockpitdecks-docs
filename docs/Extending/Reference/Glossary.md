@@ -16,15 +16,31 @@ In Cockpitdecks, a Layout is a collection of pages that can be displayed on a de
 
 Cockpitdecks is the name of the application used to control decks connected to a computer.
 
+# Cockpit
+
+The Cockpit is the main entity of Cockpitdecks that controls most parts of the application, from the start to its termination.
+
 # Activation
 
+An Activation is an action that is executed when interaction occurs on a deck.
+
 # Representation
+
+A Representation is an abstraction of an instruction sent to a deck to change its appearance. It can be turning a LED light on or off, playing a sound, or dynamically generating an iconic image and sending it for display on a deck key.
 
 # Simulator
 
 ## Simulator Data
 
+A Simulator Data is a variable value kept and modified in the simulator. Cockpitdecks expressed interest in receiving a notification when the value of the variable changes. The variable is accessed by its name.
+
 ## Simulator Instruction
+
+A Simulator Instruction is something the simulator software understand to perform an action. Cockpitdecks generate instructions and submit them to the simulation sofwtware for execution.
+
+## Simulator Events
+
+See below.
 
 # Event
 

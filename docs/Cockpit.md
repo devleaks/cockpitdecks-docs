@@ -134,4 +134,4 @@ Next to the the above *resources* folder, there will be one folder per Layout fo
 
 # Decks
 
-One of the most important attributes in the main configuration file is the `decks` attribute which defnies all [[cockpitdecks-docs/docs/Deck|decks]] available to Cockpitdecks.
+One of the most important attributes in the main configuration file is the `decks` attribute which defnies all [[Deck|decks]] available to Cockpitdecks.

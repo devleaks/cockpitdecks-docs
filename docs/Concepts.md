@@ -1,1 +1,5 @@
-The following page describe the components of Cockpitdecks and its vocabulary.
+The following page describe the key components of Cockpitdecks and its vocabulary.
+
+# Glossary
+
+[[Glossary|Here]].
