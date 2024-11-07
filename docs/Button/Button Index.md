@@ -1,5 +1,7 @@
 The `index` attribute is a mandatory attribute of a Button. It designate a very precise button on the deck. Hence, it defines what the button is capable of performing and how it will be rendered.
 
+Button Index is specified in the Deck Type definition of the deck.
+
 # Indices for Streamdeck Devices
 
 ![[streamdeck.png]]
