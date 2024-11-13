@@ -10,7 +10,7 @@ The *Button Definition* is a list of attributes that describe what the button wi
 
 Button definition can be very simple and straightforward, but definitions can also be complex and refined.
 
-Here is an example of a very simple definition of a button to toggle the map display in X-Plane.
+Here is an example of a simple definition of a button to toggle the map display in X-Plane.
 
 ```
 index: 0
@@ -19,16 +19,14 @@ command: sim/map/toggle_map_display
 icon: map
 ```
 
-The definition of a button is always structured in 4 distinct sections:
+The definition of a button can be organised into 4 distinct parts:
 
 1. What the button is (and where it is on the deck)
 2. What it does (when the button is pressed on the deck)
 3. What it displays (on the deck)
 4. Where does it get the value it displays from.
 
-The following sections address these.
-
-Here is a complex definition of a button which exemplifies all above sections (in different colors):
+Here is a complex definition of a button which exemplifies all above parts (in different colors):
 
 ![[button-anatomy.png]]
 
@@ -36,11 +34,7 @@ Resulting button:
 
 ![[button.png|200]]
 
-The following Sections describe the four button definition sections in detail.
-
-The button *Activation* page describes attributes specific to *what a button will trigger or do* when used.
-
-The button *Representation* page describes attributes specific to the *feedback* given by the button on the deck, be it an iconic image to display, a led to turn on or off, or a sound to emit.
+The following Sections describe the four button definition parts in detail.
 
 # Common Button Attributes
 

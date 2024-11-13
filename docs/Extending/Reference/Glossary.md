@@ -8,9 +8,27 @@ It can be a simple button to press, a small LCD button, an encoder to turn, or a
 
 A Deck is a piece of hardware connected to a computer to provide some input by means of buttons, encoders, cursors... A Deck also provide some feedback to the user through colored LED lights, small LCD icon screens, or by emitting sound and vibration.
 
+# Web Deck
+
+A Web Deck is an emulation of a deck in an internet browser window. Cockpitdecks provides a set of web decks that emulate existing decks.
+
+Originally, web decks where created to speed up deck page creation and arrangement. But web decks turned out to be so convenient that they are now part of Cockpitdecks. Some users actually only use web decks, without any physical ones.
+
+But it is possible to design as create any web deck one can imagine, built from basic components like buttons, encoders, led, and LCD displays. As a proof of this concept, there a entire overhead panel, fully reactive and responsive to the simulator changes.
+
+Cockpitdecks allow a designer to create and use any web deck, in the context of the Cockpitdecks application.
+
 # Layout
 
-In Cockpitdecks, a Layout is a collection of pages that can be displayed on a deck. ON startup, a deck must tell Cockpitdecks which Layout it is going to use.
+A Layout is a collection of pages that can be displayed on a deck. On startup, a deck must tell Cockpitdecks which Layout it is going to use.
+
+# Page
+
+A Page is a collection of buttons that are displayed on a deck at a moment.
+
+A deck can display different pages of buttons. A button on a page can be used to switch or change a page, leading to a literally infinite number of pages.
+
+All pages that can be displayed on a deck are grouped in a folder called the Layout of the deck.
 
 # Cockpitdecks
 
