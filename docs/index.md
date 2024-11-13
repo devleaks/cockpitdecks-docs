@@ -15,3 +15,11 @@ There also are *Web Decks*, an emulator of the above decks in a web page, in the
 Cockpitdecks can run on the same computer as X-Plane, or a remote computer, network-connected to X-Plane.
 
 In Cockpitdecks, the [[Cockpit]] holds all your decks.
+
+**Post Scriptum**
+
+Currently, Cockpitdecks only connects to X-Plane flight simulator. However, hooks are ready to connect to other simulator, like Microsoft Flight Simulator. Packages like [pysimconnect](https://github.com/patricksurry/pysimconnect) can be used to bridge Cockpitdecks and MSFS. Unfortunately, these packages only run on Microsoft Window platform because they require MSFS SDK only available on the MS Window platform.
+
+In this respect, X-Plane, which runs on MS Windows, MacOS, and Linux is a far more open.
+
+If a developer want to create the MSFS Cockpitdecks plugin, please contact me.
