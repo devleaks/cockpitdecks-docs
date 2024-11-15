@@ -11,11 +11,9 @@ There are two sources of information for weather:
 
 # Real Life Live Weather (now)
 
-The WeatherMetarIcon provides the *real* Metar currently in use at a location in the simulator.
+The WeatherMetarIcon provides the *real life* Metar currently in use at a location in the simulator.
 
-If the location is provided, it is used and never updated.
-
-If no location is provided, the *current aircraft location is used*. If the aircraft is cruising, the location is updated approximatively every 5 minutes, or when the closest Metar source changes.
+If the location is provided through an attribute, it is used and never updated. If no location is provided, the *current aircraft location is used*. If the aircraft is cruising, the location is updated approximatively every 5 minutes, or when the closest Metar source changes.
 
 If no aircraft location is available, a default location is used (currently EBBR, Brussels Airport, Belgium).
 
@@ -25,15 +23,10 @@ weather-metar:
 	update: 30  # minutes
 ```
 
-Reports the current real life weather for the closest Metar location. (Closest to the current aircraft location.)
-
-If the location is not changed, the Metar updates every `update` minutes.
+Reports the current real life weather at LFBO. If the location is not changed, the Metar updates every `update` minutes.
 
 > [!NOTE] Metar is from external source
 > The WeatherMetarIcon reflects the real Metar at the time of collection. It does not necessarily reflect the weather as simulated in X-Plane.
-
-> [!WARNING] X-Plane Weather
-> X-Plane Weather is currently heavily modified by Laminar. The following representation do not work reliably.
 
 # X-Plane Weather
 
@@ -43,6 +36,9 @@ X-Plane weather is flexible and proposed with several variant. We designed a few
 - Weather informations from X-Plane (from clouds and wind *layers*)
 
 In addition, X-Plane weather can be local or regional.
+
+> [!WARNING] X-Plane Weather
+> X-Plane Weather is currently heavily modified by Laminar. The following representation may not work reliably and may need revisions.
 
 # X-Plane Weather Summary
 

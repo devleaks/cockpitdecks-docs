@@ -24,9 +24,7 @@ When used by a button in Cockpitdecks, the value of a dataref is monitored. Its 
 
 To explore datarefs available in the simulator, there is a handy X-Plane plugin called [DataRefTool](https://datareftool.com). There are also a few web pages that collect, report, and present them so that they can be searched. The plugin allow not only for inspection of datarefs, but also for inspection and discovery of *commands*, strings that can be submitted to the simulator to perform some action.
 
-For simplicity, Cockpitdecks assumes all individual dataref values are floating point numbers or strings.
-
-The reason for this is that as today, X-Plane UDP only returns floating point numeric values for requested datarefs.
+For simplicity, Cockpitdecks assumes all individual dataref values are floating point numbers or strings. The reason for this is that as today, X-Plane UDP only returns floating point numeric values for requested datarefs.
 
 ## Dataref Rounding
 
@@ -61,6 +59,7 @@ dataref-fetch-frequencies:
     sim/cockpit/autopilot/heading: 10
 ```
 
+The above configuration indicates that dataref named `sim/cockpit/autopilot/heading` should be fetched 10 times per second (which is a lot, if not too much. Please recall that Cockpitdecks drives "deck" devices, not screen! Transfer of images to deck icons occurs on slow serial lines.)
 ## X-Plane / Cockpitdecks String Dataref
 
 Please refer to [[String Datarefs|this Section]] for The special handling of string datarefs.

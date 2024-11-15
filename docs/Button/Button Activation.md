@@ -26,23 +26,23 @@ This file list all activations that are currently available in Cockpitdecks. For
 
 Each activation always goes through 3 steps.
 
-First, the event is handled completely. Most of the time, the root class of activations is activated first, for global handling and checks. Then the activation itself is perfomed.
+First, the event is handled completely. Most of the time, the root class of activations is activated first, for global handling and checks. Then the activation itself is performed. The activation returns a boolean flag to indicate that it completed successfully.
 
-Second, if the activation produces a value, it is written to the `set-dataref` of the button, if any. This operation can be considered like an second instruction that is always performed, provided of course that the button instructed to write the value to the dataref pointed py `set-dataref`.
+Second, if the activation produces a value, it is written to the `set-dataref` of the button, if any. This operation can be considered like an second instruction that is performed provided that the button instructed to write the value to the dataref pointed by `set-dataref`.
 
 Third, and finally, if the button activation contains a `view` command, it is executed. The purpose of the view command if to alter the view in the cockpit, may be to focus on a particular area of the dashboard to control the effect of the activation.
 
 # Command, Commands, and «Macro Instruction»
 
-When specifying attributes for an activation `command`and `commands` attributes can be requested. A `command` is a single command, `commands` is a list of individual commands, often, the number of commands in the list matters to match the Activation requirements.
+When specifying attributes for an activation `command` and `commands` attributes can be requested. A `command` is a single command, `commands` is a list of individual commands, often, the number of commands in the list matters and match the Activation requirements.
 
 A `command` can be:
 
 - a single string naming the command to execute, or
-- a single command block, with a condition and or a delay, or
+- a single *command block*, with a condition and or a delay, or
 - a *Macro Instruction*, that can contain one or more *command blocks*.
 
-## Simple Command String
+## Single Command String
 
 ```
     command: sim/map/show_current
