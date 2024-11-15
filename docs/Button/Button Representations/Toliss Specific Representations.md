@@ -39,3 +39,13 @@ and in the FCU page:
     type: page
     page: fma
 ```
+
+## Individual FMA
+
+The FMA display can also be used to display a single FMA on a smaller square icon. 5 small square icons can be used to display all 5 FMAs.
+
+![[ToLiss-FMA-single.png]]
+
+It is also possible to display a single FMA (center), and loop through all FMAs by pressing on it.
+
+Examples of such configuration are provided for ToLiss aircraft and can be used to develop alternate display on smaller decks.
