@@ -1,6 +1,6 @@
 ![[installer.jpg|600]]
 
-Cockpitdecks is a regular python application and will run with python 3.10, or newer.
+Cockpitdecks is a regular python application and will run under python 3.10, or newer.
 
 It is recommended to create a dedicated environment and run Cockpitdecks within that environment.
 

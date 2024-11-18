@@ -34,7 +34,7 @@ Cockpitdecks comes with a few fonts appropriate for aeronautical use: Standard f
 
 For Truetype font, it is not necessary to add the `.ttf` extension. For Opentype fonts it is necessary to add the `.otf` extension.
 
-> [NOTE] About font files.
+> [!NOTE] About font files.
 > Fonts placed in the resources/fonts folder are available for images on decks. They are not necessarily available as « web fonts » available in web decks.
 > To be available directly, not through Cockpitdecks generated images, web decks fonts have to be made available in the asset folder and referenced in proper CSS files.
 

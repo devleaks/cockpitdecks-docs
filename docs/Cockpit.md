@@ -2,6 +2,8 @@ Cockpitdecks is an application that connect decks to the X-Plane flight simulato
 
 To determine what to display on decks, which commands to issue to the simulator, etc. Cockpitdecks reads a set of *configuration files* on startup.
 
+![[intro-detailed.png|600]]
+
 Configuration files are specific to an aircraft. Commands are different on a Cessna and on an Airbus. Things to display on the deck are different as well. That’s why configuration files are located in the folder of the aircraft being used because they are specific to it. Numerous other software like X-Camera proceed in a similar way, locating their aircraft specific configuration there as well.
 
 The Cockpit is the *Maestro* component of the Cockpitdecks application.
