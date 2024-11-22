@@ -117,7 +117,7 @@ XPLive: AAA0000000000000000000A0000
 
 # Resources
 
-Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft. All this elements are organized into the `resources` folder.
+Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft. All these elements are organized into the `resources` folder.
 
 Usually, the resources folder contains the following sub-folders:
 

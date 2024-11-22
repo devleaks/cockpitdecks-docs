@@ -29,6 +29,12 @@ Decks are declared in the `config.yaml` file in the `deckconfig` folder in the `
 | `default-homepage-name` | Optional. Name of the page to load first in the layout. Default to `index`. That's why layout folder often contains a `index.yaml` page.                                                                                                                         |
 | `default-*`             | Optional. Default attributes to use for deck.                                                                                                                                                                                                                    |
 
+Announce of available deck types on startup.
+
+```
+cockpit.py: loaded 19 deck types (Virtual Deck for Development, X-Touch Mini, Virtual X-Touch Mini, LoupedeckLive, virtual loupedeck.ct, virtual loupedeck.live.s, Virtual LoupedeckLive with Mosaic, Virtual LoupedeckLive, Stream Deck Original, Stream Deck Mini, Stream Deck Neo, Stream Deck +, Stream Deck XL, Streamdeck, Virtual Streamdeck Mini, Virtual Streamdeck MK.2, Virtual Stream Deck Neo, Virtual Streamdeck +, Virtual Streamdeck XL), 11 are virtual deck types
+```
+
 # Deck Layout
 
 For a given aircraft, a deck has a Layout. The [[Layout]] of a deck is the collection of [[Page|Pages]] that will be used and displayed on the deck device for that aircraft. All these pages are grouped into a folder called a layout. A Layout is a folder in the `deckconfig` folder that contains *pages*.
