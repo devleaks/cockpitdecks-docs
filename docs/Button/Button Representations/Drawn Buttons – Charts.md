@@ -58,3 +58,7 @@ There is also a limit on the total number of Sparklines that can be use at one p
 - Performance data like speed to UDP packet acquisition
 - Speed of deck rendering
 - and so on.
+
+# See Also
+
+[[Drawn Buttons – Gauges and Tapes]]

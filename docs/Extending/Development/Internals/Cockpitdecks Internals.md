@@ -22,17 +22,15 @@ Cockpitdecks threads are often created in start() procedures and terminated in t
 
 In addition, each deck has its own, internal, mechanism to capture user interactions.
 
-![[architecture.svg|600]]
-
 ## Execution of Actions
 
 As today, *things that occurs on a deck* are captured by a lower level computer software module. In the case of Cockpitdecks and its Streamdeck, Loupedeck and Berhinger devices, each of those lower level software module is designed to use a user-provided callback function that is called each time something occurs on the deck. That's how event enters Cockpitdecks.
 
-During initialization of a deck, Cockpitdecks installs a small, minimalist callback function in the deck software module. This callback function processes data provided from the deck and immediately converts it into an [[Events|Event]] that gets enqueued right away for later handling. This process is optimized to be as minimal and as fast as possible. The Queue where events are then enqueued is called the **Event Queue**.
+During initialization of a deck, Cockpitdecks installs a small, minimalist callback function in the deck software module. This callback function processes data provided from the deck and immediately converts it into an [[Events|Event]] (a *Deck Event*) that gets enqueued right away for later handling. This process is optimized to be as minimal and as fast as possible. The Queue where events are then enqueued is called the **Event Queue**.
 
 The Event Queue that receives all events from all decks connected to the system is unique for a Cockpit. It is the entry point for all interactions into Cockpitdecks. It behaves like a clean separator between lower level interaction handling at the device and Cockpitdecks. The callback function is responsible for decoding the information received from the device and crafting a typed Event that correspond to the interaction that occurred. The event also carries the necessary complementary information and data like, for instance, the precise button that was pressed or turned.
 
-![[activations.svg]]
+![[activations.svg|600]]
 
 Inside Cockpitdecks' Cockpit, a thread of execution receives the event from the Event Queue and immediately executes them to perform the action they carry.
 

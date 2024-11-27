@@ -144,4 +144,4 @@ So we shall just say that Knob icons can be used as simple push button, with an 
 
 # See Also
 
-[[Switch Drawing Parameters]]
+[[Switch Drawing Attributes]]

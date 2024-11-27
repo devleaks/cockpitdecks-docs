@@ -1,3 +1,9 @@
+The following document explains the special `set-dataref` attribute that can be used in numerous button definition.
+
+`Set-dataref` is an instruction that tells Cockpitdecks to set the value of the data pointed by the `set-dataref` attribute value to the value of the button.
+
+![[set-dataref.png|500]]
+
 # Theory of Operations
 
 The `set-dataref` attribute points at a writable dataref. After each activation of a button, the value of the button is computed and written to that dataref.

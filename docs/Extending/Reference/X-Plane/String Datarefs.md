@@ -53,6 +53,22 @@ text: ${some/dateref}
 
 # XPPython3 Plugin
 
+To circumvent limitations of UDP dataref fetch, Cockpitdecks is bundled with a plugin that reads "string"-typed datarefs efficiently and post them on a UDP port, as a single decoded string value, very much like other dataref values sent by the simulator.
+
+The String Dataref Poster is a XPPython3 plugin that reads the `string-datarefs`attribute in the main Cockpitdecks configuration file. The `string-dataref` attributes is a list of datarefs that are supposed to be of type "array of bytes", each byte being assumed to be a character ASCII code.
+
+```yaml
+string-datarefs:
+  - AirbusFBW/FMA1w
+...
+  - AirbusFBW/FMA3a
+use-default-string-datarefs: True
+```
+
+The String Dataref Poster will ask the plugin to post the value of each of those datarefs at regular intervals, typically every 5 seconds.
+
+String dataref collection is an expensive operation that requires numerous dataref reads. It should be scheduled to run periodically but not too often.
+
 The XPPython3 plugin proceeds as follow. For the aircraft currently being used by X-Plane, it reads the Cockpitdecks configuration in the `deckconfig` folder, if any.
 
 If it finds one, it inspect decks, their layouts, pages in these layouts, and ultimately buttons being used on each page, scan for `string-datarefs`  attributes in button definitions, and collects string datarefs that are used. It then collects the values of those datarefs and publish them on a dedicated UDP port, all at once at a regular interval. No more, no less.

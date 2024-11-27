@@ -12,6 +12,29 @@ All values should be in the [0..255] range. For colors, 0 is black, 255 is pure 
     text-color: mediumaquamarine
 ```
 
+## Named Colors
+
+Named colors are defined at the highest aircraft level. They behave like a placeholder for a color, an alternate name.
+
+### Definition
+
+In the main configuration file of the aircraft:
+
+```
+named-colors:
+	COCKPIT_BACKGROUND: skyblue
+	COCKPIT_NIGHT: slateblue
+	HIGHLIGHT: coral
+```
+
+### Usage
+
+In a button definition attributes:
+
+```
+label-color: HIGHLIGHT
+```
+
 # Number Formatting
 
 Cockpitdecks uses the same convention as [python number to text formatting](https://docs.python.org/3/library/string.html#format-examples).

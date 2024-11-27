@@ -1,4 +1,3 @@
-
 Names are self explanatory 😉.
 
 ```python
@@ -92,5 +91,3 @@ type
 vertical
 
 ```
-
-

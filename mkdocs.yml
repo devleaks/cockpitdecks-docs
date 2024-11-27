@@ -41,70 +41,92 @@ theme:
 # Navigation, headings
 #
 nav:
-  - Home:
-      - Cockpitdecks: index.md
+  - Welcome: index.md
   - Cockpitdecks:
-      - Cockpit: Cockpit.md
-      - Deck: Deck.md
-      - Layout: Layout.md
-      - Page: Page.md
-      - Button: Button.md
-      - Buttons:
-          - Button Index: Button/Button Index.md
-          - Button Activation: Button/Button Activation.md
-          - Button Representation:
-              - Button Representation: Button/Button Representation.md
-              - Basic Buttons: Button/Button Representations/Basic.md
-              - Drawn Buttons: Button/Button Representations/Drawn Buttons.md
-              - Annunciators: Button/Button Representations/Annunciator.md
-              - Switches: Button/Button Representations/Drawn Buttons – Switches.md
-              - Charts Buttons: Button/Button Representations/Drawn Buttons – Charts.md
-              - Advanced Representations:
-                  - Mosaic (Large LCD Touchscreen): Button/Button Representations/Multi-Buttons and Mosaic.md
-                  - Deck Specific Representations – Stream Deck: Button/Button Representations/Deck Specific – Stream Deck.md
-                  - Deck Specific Representations – Loupedeck: Button/Button Representations/Deck Specific – Loupedeck.md
-                  - < Representations – X-Touch Mini: Button/Button Representations/Deck Specific – X-Touch Mini.md
-                  - Aircraft Specific Representations – Toliss Airbus: Button/Button Representations/Toliss Specific Representations.md
-                  - Weather Representations: Button/Button Representations/Weather.md
-                  - Animated Buttons: Button/Button Representations/Animations.md
-          - Button Attributes: Button/Button Attribute Default Values.md
-          - Button Value: Button/Button Value.md
+    - Concepts: Concepts.md
+    - Cockpit: Cockpit.md
+    - Deck: Deck.md
+    - Layout: Layout.md
+    - Page: Page.md
+    - Button: Button.md
+    - Resources:
       - Resources: Resources.md
-      - Examples:
-          - Extending/Examples.md
-          - Tutorials:
-              - Adding a Page of Buttons to a Deck: Creating/Adding a Page of Buttons to a Deck.md
-              - Adding a Web Deck: Creating/Adding a Web Deck.md
-      - Extending:
-          - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
-          - Adding representations: Extending/Adding Representations.md
-          - Adding activations: Extending/Adding Activations.md
-          - Activation for developers: Extending/Button Activations for Developers.md
-          - Adding web decks: Extending/Web Decks.md
-          - Workflow for Web Deck Design: Extending/Internals/Workflow for Web Deck Design.md
-          - Adding new physical deck models: Extending/Adding New Deck Models.md
-          - Cockpitdecks Internals:
-              - History: History.md
-              - Simulator:
-                  - Simulator: Extending/Simulator.md
-                  - X-Plane Plugin: Extending/Complement Plugin - Continuous Commands.md
-                  - X-Plane Interaction: Extending/Internals/X-Plane Interaction.md
-              - Cockpitdecks Internals: Extending/Internals/Cockpitdecks Internals.md
-              - Deck Internals: Extending/Internals/Deck Internals.md
-              - Events: Extending/Internals/Events.md
-              - String Datarefs: Extending/String Datarefs.md
-              - Web Deck Designer Tools: Extending/Internals/Design Helper.md
-              - Configuration Files and Attributes: Extending/Internals/Configuration Files and Attributes.md
-              - Themes: Extending/Internals/Themes.md
-              - To Do: Extending/Internals/To do.md
-          - Reference:
-              - Activation: Extending/Reference/Activation.md
-              - Deck Type: Extending/Reference/Deck Type.md
-              - Representation: Extending/Reference/Representation.md
-              - Simulator: Extending/Reference/Simulator.md
-  - Installation and Usage:
-      - Installation: Installation.md
-      - Usage: Usage.md
+      - Themes: Resources/Themes.md
+      - Observables: Resources/Observables.md
+    - Simulator: Simulator.md
+    - Buttons:
+        - Button Index: Button/Button Index.md
+        - Button Attributes: Button/Button Attribute Default Values.md
+        - Button Value: Button/Button Value.md
+        - Button Activation: Button/Button Activation.md
+        - Button Representation:
+            - Button Representation: Button/Button Representation.md
+            - Basic Buttons: Button/Button Representations/Basic.md
+            - Drawn Buttons: Button/Button Representations/Drawn Buttons.md
+            - Annunciators: Button/Button Representations/Annunciator.md
+            - Switches: Button/Button Representations/Drawn Buttons – Switches.md
+            - Data Buttons Charts, Indicators, Gauges: Button/Button Representations/Drawn Buttons – Charts.md
+            - Advanced Representations:
+                - Mosaic (Large LCD Touchscreen): Button/Button Representations/Multi-Buttons and Mosaic.md
+                - Deck Specific Representations – Stream Deck: Button/Button Representations/Deck Specific – Stream Deck.md
+                - Deck Specific Representations – Loupedeck: Button/Button Representations/Deck Specific – Loupedeck.md
+                - Deck Specific Representations – X-Touch Mini: Button/Button Representations/Deck Specific – X-Touch Mini.md
+                - Aircraft Specific Representations – Toliss Airbus: Button/Button Representations/Toliss Specific Representations.md
+                - Weather Representations: Button/Button Representations/Weather.md
+                - Animated Buttons: Button/Button Representations/Animations.md
+        - Data Value Change: Button/Set Dataref.md
+        - « Commands »: Button/The New View Attribute.md
+  - Running:
+    - Installation: Running/Installation.md
+    - Usage: Running/Usage.md
+    - Examples:
+      - Extending/Examples.md
+      - Tutorials:
+        - Adding a Page of Buttons to a Deck: Running/Adding a Page of Buttons to a Deck.md
+        - Adding a Web Deck: Extending/Adding a Web Deck.md
+
+  - Extending:
+    - Adding web decks: Extending/Web Decks.md
+    - Adding new physical deck models: Extending/Adding New Deck Models.md
+    - Developments:
+      - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
+      - (Python) Packaging: Extending/Development/Packaging.md
+      - Adding activations: Extending/Development/Adding Activations.md
+      - Adding representations: Extending/Development/Adding Representations.md
+      - Adding a simulator: Extending/Development/Simulator.md
+
+      - Activation for developers: Extending/Development/Button Activations for Developers.md
+      - Web Deck Designer Tools: Extending/Development/Internals/Design Helper.md
+      - Workflow for Web Deck Design: Extending/Development/Internals/Workflow for Web Deck Design.md
+
+      - Internals:
+        - Cockpitdecks Internals: Extending/Development/Internals/Cockpitdecks Internals.md
+        - Deck Internals: Extending/Development/Internals/Deck Internals.md
+        - Events: Extending/Development/Internals/Events.md
+        - Instructions: Extending/Development/Internals/Instruction.md
+        - Value: Extending/Development/Internals/Value.md
+
+        - Replay: Extending/Development/Internals/Replay.md
+
+        - X-Plane Simulator:
+          - X-Plane Cockpitdecks Plugin: Extending/Reference/X-Plane/X-Plane Cockpitdecks Plugin.md
+          - X-Plane Interaction: Extending/Reference/X-Plane/X-Plane Interaction.md
+          - String Datarefs: Extending/Reference/X-Plane/String Datarefs.md
+
+      - To Do: Extending/Development/Internals/To do.md
+
+  - Reference:
+    - Concepts: Concepts.md
+    - Glossary: Extending/Reference/Glossary.md
+    - Activation: Extending/Reference/Activation.md
+    - Deck Type: Extending/Reference/Deck Type.md
+    - Representation: Extending/Reference/Representation.md
+    - Switch Drawing Attributes: Extending/Reference/Switch Drawing Attributes.md
+    - Simulator: Extending/Reference/Simulator.md
+    - Environment: Extending/Reference/Environment.md
+    - Configuration Files and Attributes: Extending/Development/Internals/Configuration Files and Attributes.md
+  - History: History.md
+
 
 # ###############################################
 #
@@ -128,6 +150,7 @@ plugins:
           paths: ["src"]
           # options:
           #   show_source: false
+
 
 # ###############################################
 #
@@ -294,6 +317,7 @@ markdown_extensions:
   # - tools.collapse_code:
   #     expand_text: ""
   #     collapse_text: ""
+
 
 # ###############################################
 #

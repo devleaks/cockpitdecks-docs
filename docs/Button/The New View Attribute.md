@@ -8,7 +8,22 @@ view: x-camera/view/8
 
 This document explains a new expression for the view attribute value to allow for the execution of one or more commands.
 
-If this schema is successful, it will be extended to other definitions that use a *command* attribute.
+This schema has been extended to other definitions that use a *command* attribute. It is an alternate way to specify a command. Rather that a single string expression:
+
+```
+command: sim/view/map_display_toggle
+```
+
+it is now possible to express an entire block of pseudo code instruction:
+
+```
+# Instruction to display the map if it is not visible.
+# The instruction will be hide the map, just show it if not visible.
+command:
+   command: sim/view/map_display_toggle
+   delay: 5
+   formula: ${sim/view/map_is_visible} not
+```
 
 # Syntax
 

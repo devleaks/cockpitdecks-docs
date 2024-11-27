@@ -2,6 +2,8 @@
 
 Cockpitdecks is an application to use *decks* connected to a computer with X-Plane flight simulator.
 
+![[deck-simulator.png]]
+
 The following make and models have been tested and are known to work with Cockpitdecks:
 
 - [Elgato Stream Deck](https://www.elgato.com/us/en/s/welcome-to-stream-deck) (all models work: Small, Mk.2, XL, Plus, and Neo)
@@ -14,12 +16,12 @@ There also are *Web Decks*, an emulator of the above decks in a web page, in the
 
 Cockpitdecks can run on the same computer as X-Plane, or a remote computer, network-connected to X-Plane.
 
-In Cockpitdecks, the [[Cockpit]] holds all your decks.
+You can now proceed to the discovery of Cockpitdecks [[Concepts]], or directly jump to the [[Cockpit]] that holds all your decks. Or if you are impatient to try Cockpitdecks, head for [[Installation]]
 
 **Post Scriptum**
 
-Currently, Cockpitdecks only connects to X-Plane flight simulator. However, hooks are ready to connect to other simulator, like Microsoft Flight Simulator. Packages like [pysimconnect](https://github.com/patricksurry/pysimconnect) can be used to bridge Cockpitdecks and MSFS. Unfortunately, these packages only run on Microsoft Window platform because they require MSFS SDK only available on the MS Window platform.
+Cockpitdecks currently only connects to X-Plane flight simulator. However, hooks are ready to connect to other simulators, like Microsoft Flight Simulator. Packages like [pysimconnect](https://github.com/patricksurry/pysimconnect) can be used to bridge Cockpitdecks and MSFS. Unfortunately, these packages only run on Microsoft Window platform because they require MSFS SDK only available on the MS Window platform.
 
-In this respect, X-Plane, which runs on MS Windows, MacOS, and Linux, and accept interaction through network ports is a far more open.
+In this respect, X-Plane and Cockpitdecks, which runs on MS Windows, MacOS, and Linux, and accept interaction through network ports is a far more open.
 
 If a developer want to create the MSFS Cockpitdecks plugin, please contact me.

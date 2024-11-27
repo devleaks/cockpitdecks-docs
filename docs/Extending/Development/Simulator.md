@@ -1,10 +1,10 @@
-The Simulator entity represent the simulator software and contains all procedures necessary for interaction with the Flight Simulation software.
+The Simulator entity represent the simulator software and contains all procedures necessary for interaction with the flight simulation software.
 
 There currently is only one type of flight simulation software supported and it is Laminar Research X-Plane (release 12 onwards).
 
-It is possible to create a new Simulator implementation for another software.
+It is possible to create a new Simulator implementation for another software, like for example Microsoft Flight Simulator.
 
-In addition to the core simulation software, the Simulator also proposes a few accessory classes that represent interactions with it.
+In addition to the core simulation software, the Simulator also proposes a few entities that represent interactions with it.
 
 # Simulator Data Values
 
