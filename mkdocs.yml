@@ -38,22 +38,32 @@ theme:
 #
 # ###############################################
 #
-# Navigation, headings
+# Navigation, headings, «tabs»
+#
+# ===============================================
+#
+# T A B L E   O F  C O N T E N T
 #
 nav:
+
   - Welcome: index.md
+
   - Cockpitdecks:
     - Concepts: Concepts.md
+
     - Cockpit: Cockpit.md
     - Deck: Deck.md
     - Layout: Layout.md
     - Page: Page.md
     - Button: Button.md
+
     - Resources:
       - Resources: Resources.md
       - Themes: Resources/Themes.md
       - Observables: Resources/Observables.md
+
     - Simulator: Simulator.md
+
     - Buttons:
         - Button Index: Button/Button Index.md
         - Button Attributes: Button/Button Attribute Default Values.md
@@ -77,6 +87,7 @@ nav:
                 - « Hardware » Representations: Extending/Development/Internals/Hardware Representation.md
         - Data Value Change: Button/Set Dataref.md
         - « Commands »: Button/The New View Attribute.md
+
   - Running:
     - Installation: Running/Installation.md
     - Usage: Running/Usage.md
@@ -89,6 +100,7 @@ nav:
   - Extending:
     - Adding web decks: Extending/Web Decks.md
     - Adding new physical deck models: Extending/Adding New Deck Models.md
+
     - Developments:
       - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
       - (Python) Packaging: Extending/Development/Packaging.md
@@ -106,6 +118,10 @@ nav:
         - Events: Extending/Development/Internals/Events.md
         - Instructions: Extending/Development/Internals/Instruction.md
         - Value: Extending/Development/Internals/Value.md
+        - Simulator Data Collection: Extending/Development/Internals/Dataref Scanning.md
+        - Cockpitdecks Internal Data: Extending/Development/Internals/Internal Datarefs.md
+        - Deck Event Processing: Extending/Development/Internals/Deck Event Processing.md
+        - Web Decks Internals: Extending/Development/Internals/Web Decks Internals.md
 
         - Replay: Extending/Development/Internals/Replay.md
 
@@ -119,14 +135,17 @@ nav:
   - Reference:
     - Concepts: Concepts.md
     - Glossary: Extending/Reference/Glossary.md
-    - Activation: Extending/Reference/Activation.md
-    - Deck Type: Extending/Reference/Deck Type.md
-    - Representation: Extending/Reference/Representation.md
-    - Switch Drawing Attributes: Extending/Reference/Switch Drawing Attributes.md
-    - Simulator: Extending/Reference/Simulator.md
     - Environment: Extending/Reference/Environment.md
     - Configuration Files and Attributes: Extending/Development/Internals/Configuration Files and Attributes.md
+    - Activation: Extending/Reference/Activation.md
+    - Representation: Extending/Reference/Representation.md
+    - Switch Drawing Attributes: Extending/Reference/Switch Drawing Attributes.md
+    - Deck Type: Extending/Reference/Deck Type.md
+    - Simulator: Extending/Reference/Simulator.md
+
   - History: History.md
+#
+# ===============================================
 
 
 # ###############################################
