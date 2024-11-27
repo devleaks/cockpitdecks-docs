@@ -31,10 +31,14 @@ theme:
     - search.suggest
     - content.code.copy
     - content.code.annotations
-  pymdownx:
-    sponsor: "https://github.com/sponsors/facelessuser"
+#  Uncomment to add move and credit to mkdocs material designers
+#  pymdownx:
+#    sponsor: "https://github.com/sponsors/facelessuser"
+#
+#
 #
 # Dracula is a dark theme only. Dracula can't stand the light.
+#
 #
 # ###############################################
 #
