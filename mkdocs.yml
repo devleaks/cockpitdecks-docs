@@ -74,6 +74,7 @@ nav:
                 - Aircraft Specific Representations – Toliss Airbus: Button/Button Representations/Toliss Specific Representations.md
                 - Weather Representations: Button/Button Representations/Weather.md
                 - Animated Buttons: Button/Button Representations/Animations.md
+                - « Hardware » Representations: Extending/Development/Internals/Hardware Representation.md
         - Data Value Change: Button/Set Dataref.md
         - « Commands »: Button/The New View Attribute.md
   - Running:
