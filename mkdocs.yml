@@ -130,6 +130,7 @@ nav:
         - Replay: Extending/Development/Internals/Replay.md
 
         - X-Plane Simulator:
+          - X-Plane: Extending/Reference/X-Plane/X-Plane.md
           - X-Plane Cockpitdecks Plugin: Extending/Reference/X-Plane/X-Plane Cockpitdecks Plugin.md
           - X-Plane Interaction: Extending/Reference/X-Plane/X-Plane Interaction.md
           - String Datarefs: Extending/Reference/X-Plane/String Datarefs.md
