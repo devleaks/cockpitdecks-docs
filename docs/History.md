@@ -13,3 +13,9 @@ A final step was to isolate this software from all device particularities and sp
 Other entities glue things together with concepts like the *Cockpit* with is a collection of one or more deck, and a *Page* that is a grouping of buttons represented at once on a deck.
 
 I hope this piece of software will allow you to make a better desktop cockpit and make your flight simulation more enjoyable.
+
+# See Also
+
+[Bio on X-Plane Forum](https://forums.x-plane.org/index.php?/profile/1019089-marespi/&tab=field_core_pfield_13)
+
+![[a2fs2.jpg|center]]

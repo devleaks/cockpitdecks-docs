@@ -229,3 +229,13 @@ Cost: 1 touch screen, glue. Protection helmet optional, depending on your trust 
 You can consider web decks as live, interactive, responsive images. You can press buttons on the image, Cockpitdecks will adjust the image and its overlays to reflect X-Plane status.
 
 Taxi safely.
+
+# Important Note
+
+As explained, Web Deck were originally created has a development tools to speed up button creation and testing. It was suggested by [Duane](https://github.com/dlicudi).
+
+Once we settle on an architecture, and made critical web-oriented decision (use of HTML Canvas), it took no more that 2 days to get it working! Mainly because of the strict Cockpitdecks architecture and concepts. A few more days were necessary to open up the creation of web decks for Cockpitdecks creators, and imagine [[Hardware Representation]].
+
+As today, Cockpitdecks can work with no physical decks, with just Web Decks, even those that replicate existing deck models like Stream Deck and Loupedeck.
+
+Please note that web deck lead to Instructions. Currently, Instructions are limited to flight simulation to issue commands, change values, etc. Nothing would prevent a developer from creating Instructions that execute command at the operating system level, like opening a file or starting an application.

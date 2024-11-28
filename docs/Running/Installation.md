@@ -53,34 +53,6 @@ Valid installable extension packages (between the `[` `]`, comma separated, no s
 > [!WARNING] Cockpitdecks X-Plane Helper Plugin
 > You can do this step later, but some functions will not work or be available inside Cockpitdecks.
 
-### Why an Additional Plugin?
-
-X-Plane UDP has some shortcomings that prevent some operations with decks.
-
-To circumvent this, Cockpitdecks provides a small python plugin called the Cockpitdecks Helper plugin, that need to be installed into X-Plane. The Cockpitdecks Helper plugin will execute some instructions on behalf of the Cockpitdecks application. Cockpitdecks Helper plugin just need to be installed and will provide its services to Cockpitdecks.
-
-If not installed, some of the commands inside Cockpitdecks will work properly.
-
-Cockpitdecks Helper plugin is an _in-process_ plugin, running inside X-Plane, while Cockpitdecks is an _out-of-process_ executable running independently of X-Plane.
-
-Here are the functions the Cockpitdecks Plugin offers to complement X-Plane UDP access.
-
-#### Long command execution
-
-Some commands cannot be executed directly through UDP. For exemples, commands that have a *start* and an *end* cannot be started or ended though UDP. It is an X-Plane UDP limitation.
-
-To execute long press commands, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 `PythonPlugins` folder.
-
-#### String Datarefs
-
-X-Plane UDP only allows to fetch dataref values one by one. Retrieving a string is a tedious process because each character has to be fetched individually.
-
-To collect string-typed datarefs, the **Cockpitdecks Helper** plugin needs to be installed in XPPython3 `PythonPlugins` folder. It collects the entire string and then broadcasts it as a whole string, not individual characters.
-
-See [[String Datarefs]] for details about this.
-
-### Cockpitdecks Helper Plugin Installation
-
 Cockpitdecks Helper Plugin is written in the python language. So it needs the [XPPython3](https://xppython3.readthedocs.io/) X-Plane plugin installed. XPPython3 plugin allow for execution of python code *inside* X-Plane.
 
 Cockpitdecks XPPython3 plugin is located in the
@@ -91,7 +63,7 @@ Cockpitdecks XPPython3 plugin is located in the
 
 folder in the source code. There is a single file.
 
-To install both services described above, copy the plugin file to:
+To install, **copy** the plugin file to:
 
 ```shell
 ... /X-Plane 12/resources/plugins/PythonPlugins/PI_cockpitdecks.py
@@ -101,7 +73,7 @@ and ask XPPython3 plugin to reload its scripts.
 
 ## Install Aircraft Specific `deckconfig` Folders
 
-Duane, a Cockpitdecks aficionado has realized several configurations for several aircrafts.
+[Duane](https://github.com/dlicudi), a Cockpitdecks aficionado has realized several configurations for several aircrafts.
 
 You can [find them here](https://github.com/dlicudi/cockpitdecks-configs), download them and install them in your aircraft folder.
 

@@ -124,3 +124,7 @@ A Dataref is a simulator data inside the X-Plane flight simulator.
 # SimVar
 
 A SimVar is a simulator data from Flight Simulator. There are several types of SimVar. Please refer to the [Flight Simulator SDK](https://docs.flightsimulator.com/html/Introduction/SDK_Overview.htm) for more information.
+
+# See Also
+
+[[History]]
