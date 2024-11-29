@@ -361,3 +361,4 @@ extra_css:
   - assets/css/extra.css
   - assets/css/fonts.css
   - assets/css/dracula-colors.css
+  - assets/css/image-align.css
