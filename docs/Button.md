@@ -1,5 +1,7 @@
 A *button* is the general term for a key, knob, rotary encoder, slider cursor, or even touch surface on a deck. On a given deck, each element that can be pressed, turned, swiped, or slid is a *button*.
 
+> [!NOTE] May be the term *Interactor* would have been better, more abstract, more generic, but he first deck we used only had keys to be pressed, so we sticked to the term *Button*, and extended the interactions a simple Button allow.
+
 For a given deck, all buttons that are available and/or displayed at a moment in time are on the same *Page*, the collection of buttons currently usable on that deck. Hence, in the definition of a page, there is a mandatory `buttons` attributes that lists all buttons on that page.
 
 In that list, each button is defined by a list of attributes that will determine what it does and how it appears on the deck. The list of attributes that define a button is called a *Button Definition*.

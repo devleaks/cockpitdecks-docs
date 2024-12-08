@@ -9,8 +9,10 @@ copyright: |
 theme:
   name: material # Must use Material theme
   custom_dir: docs/.theme # If you have overrides, specify where to find them
-  icon:
-    logo: material/airplane
+  logo: assets/images/favicon.png
+  favicon: assets/images/favicon.ico
+  # icon:
+  #   logo: assets/images/favicon.png
   palette:
     scheme: dracula # This is how to enables the Dracula theme for dark. For light, it will use default Material with some tweaks.
     primary: deep purple # Primary colors

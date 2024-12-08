@@ -4,6 +4,8 @@ Layouts were created to cope with different deck models. If you have a set of 30
 
 A Layout is a folder, inside the `deckconfig` main folder. The Layout is named and addressed by the name of that folder.
 
+![[deck-layout-page-button.png|500]]
+
 # Layout Folder
 
 The Layout folder contains the following files:

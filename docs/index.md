@@ -20,6 +20,6 @@ You can now proceed to the discovery of Cockpitdecks [[Concepts]], or directly j
 
 **Post Scriptum**
 
-Cockpitdecks currently only connects to X-Plane flight simulator. However, hooks are ready to connect to other simulators, like Microsoft Flight Simulator. Packages like [pysimconnect](https://github.com/patricksurry/pysimconnect) can be used to bridge Cockpitdecks and MSFS. Unfortunately, these packages only run on Microsoft Window platform because they require MSFS SDK only available on the MS Window platform. If a developer want to create the MSFS Cockpitdecks plugin, please contact me.
+Cockpitdecks currently only connects to [X-Plane](https://www.x-plane.com) flight simulator. However, hooks are ready to connect to other simulators, like [Microsoft Flight Simulator](https://www.flightsimulator.com/). Packages like [pysimconnect](https://github.com/patricksurry/pysimconnect) can be used to bridge Cockpitdecks and MSFS. Unfortunately, these packages only run on Microsoft Window platform because they require MSFS SDK only available on the MS Window platform. If a developer want to create the MSFS Cockpitdecks plugin for Microsoft Flight Simulator, please contact me.
 
-In this respect, X-Plane and Cockpitdecks, which runs on MS Windows, MacOS, and Linux, and accept interaction through network ports is a far more open.
+In this respect, X-Plane and Cockpitdecks, which run on MS Windows, MacOS, and Linux, and accept interaction through network ports are a far more open to extensions.
