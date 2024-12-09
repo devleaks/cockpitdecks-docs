@@ -22,33 +22,33 @@ Decks are particular to one aircraft. All files necessary to Cockpitdecks are lo
 
 The overall structure of the files and sub-folders inside the `deckconfig` folder is as follow:
 
-```
-<X-Plane Aircraft Folder>
+```tree
+<X-Plane Aircraft Folder>/
   (.. aircraft files ..)
-  ⊢ deckconfig
-    ⊢ config.yaml
-    ⊢ secret.yaml
-    ⊢ resources
-      ⊢ icons
-        ⊢ icon-off.png
-      ⊢ fonts
-        ⊢ B612-Regular.otf
-        ⊢ DIN.ttf
-      ⊢ decks
-        ⊢ images
-        ⊢ types
-      ⊢ docs
-        ⊢ README.md
-      ⊢ other-resource.py
-    ⊢ layout1
-      ⊢ config.yaml
-      ⊢ page1.yaml
-      ⊢ page2.yaml
+  deckconfig/
+    config.yaml
+    secret.yaml
+    resources/
+      icons/
+        icon-off.png
+      fonts/
+        B612-Regular.otf
+        DIN.ttf
+      decks/
+        images
+        types
+      docs/
+        README.md
+      other-resource.py
+    layout1/
+      config.yaml
+      page1.yaml
+      page2.yaml
       ...
     ...
-    ⊢ layoutN
-      ⊢ page1.yaml
-      ⊢ page2.yaml
+    layoutN
+      page1.yaml
+      page2.yaml
       ...
 ```
 

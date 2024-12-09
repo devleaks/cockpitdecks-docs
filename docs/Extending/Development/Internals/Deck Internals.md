@@ -237,23 +237,30 @@ buttons:
 On startup, Cockpitdecks reports which deck types are available:
 
 ```
-Cockpitdecks 12.1.1.20241002 © 2022-2024 Pierre M
+Cockpitdecks 12.7.2.20241209 © 2022-2024 Pierre M <pierre@devleaks.be>
 Elgato Stream Decks, Loupedeck decks, Berhinger X-Touch Mini, and web decks to X-Plane 12.1+
 
-INFO  start.py:<module>:248: Initializing Cockpitdecks..
-INFO  xplane.py:init:745: aircraft dataref is sim/aircraft/view/acf_livery_path
-WARN  xplane.py:add_datarefs_to_monitor:1171: no connection
-INFO  xplane.py:add_datetime_datarefs:803: monitoring simulator date/time datarefs
-INFO  cockpit.py:add_extension_paths:337: added extension path /Users/pierre/Developer/fs/cockpitdecks_ext to sys.path
-INFO  cockpit.py:add_extension_paths:342: loaded package cockpitdecks_ext and all its subpackages/modules (recursively)
-INFO  cockpit.py:init:234: available simulator: X-Plane
-INFO  cockpit.py:init:237: available deck drivers: xtouchmini, virtualdeck, loupedeck, streamdeck
-INFO  cockpit.py:load_deck_types:999: loaded 20 deck types (Virtual Deck for Development, LoupedeckLive...), 12 are virtual deck types
-INFO  cockpit.py:scan_devices:507: device drivers installed for xtouchmini 1.3.6, virtualdeck (included), loupedeck 1.4.5, streamdeck 0.9.5; scanning for decks and initializing them (this may take a few seconds)..
-INFO  cockpit.py:scan_devices:532: found 1 xtouchmini
-INFO  cockpit.py:scan_devices:532: found 1 loupedeck
-INFO  cockpit.py:scan_devices:532: found 3 streamdeck
-INFO  start.py:<module>:250: ..initialized
+INFO MainThread start.py:<module>:315: Initializing Cockpitdecks..
+INFO MainThread cockpit.py:add_extensions:610: loaded extensions cockpitdecks_xp, cockpitdecks_wm, cockpitdecks_ld, cockpitdecks_ext, s_sd, cockpitdecks_bx
+INFO MainThread cockpit.py:init:466: available simulators: X-Plane
+INFO MainThread cockpit.py:init:469: available deck drivers: virtualdeck, loupedeck, xtouchmini, streamdeck
+WARNING MainThread xplane.py:add_datarefs_to_monitor:1189: no connection
+INFO MainThread xplane.py:add_cockpit_datarefs:819: monitoring 1 cockpit datarefs
+WARNING MainThread xplane.py:add_datarefs_to_monitor:1189: no connection
+INFO MainThread xplane.py:add_simulator_datarefs:832: monitoring 7 simulator datarefs
+INFO MainThread cockpit.py:init_simulator:497: simulator driver XPlane 1.4.0 installed
+INFO MainThread cockpit.py:init_simulator:501: COCKPITDECKS_PATH=/Users/xplane/X-Plane 12/Aircraft/Laminar Research:/Users/xplane/X-Plane 12xtra Aircraft
+INFO MainThread cockpit.py:load_cd_fonts:1494: 18 fonts loaded, default font=D-DIN.otf, default label font=D-DIN.otf
+INFO MainThread cockpit.py:load_cd_icons:1369: 18 icons loaded from cache
+INFO MainThread cockpit.py:load_cd_sounds:1543: 8 sounds loaded
+DEBUG MainThread observable.py:init:130: observable Aircraft loaded: listening to {'sim/aircraft/view/acf_livery_path'}
+INFO MainThread cockpit.py:load_cd_observables:1284: loaded 1 observables
+INFO MainThread cockpit.py:load_deck_types:1336: loaded 19 deck types (Virtual Deck for Development, LoupedeckLive, virtual loupedeck.ct, pedeck.live.s, Virtual LoupedeckLive with Mosaic, Virtual LoupedeckLive, Stream Deck Original, Stream Deck Mini, Stream Deck Neo, Stream eam Deck XL, Streamdeck, Virtual Streamdeck Mini, Virtual Streamdeck MK.2, Virtual Stream Deck Neo, Virtual Streamdeck +, Virtual XL, X-Touch Mini, Virtual X-Touch Mini), 11 are virtual deck types
+INFO MainThread cockpit.py:scan_devices:800: device drivers installed for virtualdeck (included), loupedeck 1.4.5, xtouchmini 1.3.6, 0.9.6; scanning for decks and initializing them (this may take a few seconds)..
+INFO MainThread cockpit.py:scan_devices:825: found 1 loupedeck
+INFO MainThread cockpit.py:scan_devices:825: found 1 xtouchmini
+INFO MainThread cockpit.py:scan_devices:825: found 3 streamdeck
+INFO MainThread start.py:<module>:317: ..initialized
 ```
 
 # Deck Driver
