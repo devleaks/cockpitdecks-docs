@@ -6,6 +6,10 @@ site_description: Documentation for Cockpitdecks X-Plane Application and Plugin
 copyright: |
   Copyright &copy; 2023 - 2024 <a href="https://github.com/devleaks"  target="_blank" rel="noopener">Pierre M</a>
 
+# ###############################################
+#
+# Theme and appearance
+#
 theme:
   name: material # Must use Material theme
   custom_dir: docs/.theme # If you have overrides, specify where to find them
@@ -160,6 +164,7 @@ nav:
 # Plugins
 #
 plugins:
+#  - markdown-exec # this adds ```tree representation support
   - search
   - roamlinks
   - callouts
@@ -170,13 +175,14 @@ plugins:
       encoding: utf-8
       file_extension: .mm.md
   - git-revision-date-localized:
+      type: timeago
       fallback_to_build_date: true
-  - mkdocstrings:
-      handlers:
-        python:
-          paths: ["src"]
-          # options:
-          #   show_source: false
+  # - mkdocstrings:
+  #     handlers:
+  #       python:
+  #         paths: ["src"]
+  #         # options:
+  #         #   show_source: false
 
 
 # ###############################################
