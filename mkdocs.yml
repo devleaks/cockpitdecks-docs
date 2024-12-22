@@ -116,7 +116,7 @@ nav:
       - (Python) Packaging: Extending/Development/Packaging.md
       - Adding activations: Extending/Development/Adding Activations.md
       - Adding representations: Extending/Development/Adding Representations.md
-      - Adding a simulator: Extending/Development/Simulator.md
+      - Adding a simulator: Extending/Development/Adding a Simulator.md
 
       - Activation for developers: Extending/Development/Button Activations for Developers.md
       - Web Deck Designer Tools: Extending/Development/Internals/Design Helper.md
@@ -138,23 +138,23 @@ nav:
         - Replay: Extending/Development/Internals/Replay.md
 
         - X-Plane Simulator:
-          - X-Plane: Extending/Reference/X-Plane/X-Plane.md
-          - X-Plane Cockpitdecks Plugin: Extending/Reference/X-Plane/X-Plane Cockpitdecks Plugin.md
-          - X-Plane Interaction: Extending/Reference/X-Plane/X-Plane Interaction.md
-          - String Datarefs: Extending/Reference/X-Plane/String Datarefs.md
+          - X-Plane: Extending/Development/Reference/X-Plane/X-Plane.md
+          - X-Plane Cockpitdecks Plugin: Extending/Development/Reference/X-Plane/X-Plane Cockpitdecks Plugin.md
+          - X-Plane Interaction: Extending/Development/Reference/X-Plane/X-Plane Interaction.md
+          - String Datarefs: Extending/Development/Reference/X-Plane/String Datarefs.md
 
       - To Do: Extending/Development/Internals/To do.md
 
   - Reference:
     - Concepts: Concepts.md
-    - Glossary: Extending/Reference/Glossary.md
-    - Environment: Extending/Reference/Environment.md
+    - Glossary: Extending/Development/Reference/Glossary.md
+    - Environment: Extending/Development/Reference/Environment.md
     - Configuration Files and Attributes: Extending/Development/Internals/Configuration Files and Attributes.md
-    - Activation: Extending/Reference/Activation.md
-    - Representation: Extending/Reference/Representation.md
-    - Switch Drawing Attributes: Extending/Reference/Switch Drawing Attributes.md
-    - Deck Type: Extending/Reference/Deck Type.md
-    - Simulator: Extending/Reference/Simulator.md
+    - Activation: Extending/Development/Reference/Activation.md
+    - Representation: Extending/Development/Reference/Representation.md
+    - Switch Drawing Attributes: Extending/Development/Reference/Switch Drawing Attributes.md
+    - Deck Type: Extending/Development/Reference/Deck Type.md
+    - Simulator: Extending/Development/Reference/Simulator.md
 
   - History: History.md
 #
