@@ -40,7 +40,7 @@ In a nutshell, the representation of the *Mosaic* is built from the representati
 
 # Deck Type Definition
 
-Here is an example of definition of a mosaic for the LoupedeckLive left screen.
+Here is an example of Deck Type definition of a mosaic for the LoupedeckLive left screen.
 
 ```yaml hl_lines="3 20"
   - name: left
@@ -76,6 +76,10 @@ Here is an example of definition of a mosaic for the LoupedeckLive left screen.
             - 0
             - 30
 ```
+
+In the above example, the left 60 × 270 pixel LCD screen will be split into 3 60 × 60 pixel icons with 30 pixels empty space between themselves.
+
+### Other Examples
 
 One Deck Type can define one or more mosaic for its large LCD displays. For example, a 800x100 pixel large LCD can propose a Mosaic of 4 x 200x100 pixels.
 

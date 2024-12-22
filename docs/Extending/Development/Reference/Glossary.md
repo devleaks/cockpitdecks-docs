@@ -97,9 +97,9 @@ The other type of Simulator Instruction is a request to update a value made acce
 
 The Maestro of Cockpitdecks is the Cockpit entity. Internal components are interchangeably called *Cockpitdecks* items or *Cockpit* items (word is shorter *!*).
 
-## Cockpitdecks Data
+## Cockpitdecks Internal Data
 
-Cockpit or Cockpitdecks Data is an internal Cockpitdecks value mainly kept for statistical or introspection purposes. Button internal state is maintained inside a few Cockpitdecks internal data.
+Cockpit or Cockpitdecks or simply Internal Data is an internal Cockpitdecks value mainly kept for statistical or introspection purposes. Button internal state is maintained inside a few Cockpitdecks internal data. (CockpitData, CockpitdecksData, InternalData are synonyms.)
 
 End-users and Cockpitdecks developer can define and use internal cockpitdecks data. They all behave like simulator data, propagating changes to their listeners.
 
@@ -123,7 +123,7 @@ A Dataref is a simulator data inside the X-Plane flight simulator.
 
 # SimVar
 
-A SimVar is a simulator data from Flight Simulator. There are several types of SimVar. Please refer to the [Flight Simulator SDK](https://docs.flightsimulator.com/html/Introduction/SDK_Overview.htm) for more information.
+A SimVar is a simulator data from Microsoft Flight Simulator. There are several types of SimVar. Please refer to the [Flight Simulator SDK](https://docs.flightsimulator.com/html/Introduction/SDK_Overview.htm) for more information.
 
 # See Also
 

@@ -115,6 +115,10 @@ If you have more than one deck of the same type (i.e. two Streamdecks, two X-Tou
 XPLive: AAA0000000000000000000A0000
 ```
 
+> [!WARNING] Serial Numbers
+> We experimentally noticed that serial numbers as displayed on the device and as reported by some software package do not always correspond. This also depends on the operating system. As a practical illustration, for HID devices, the request for its serial number throught HID specific protocol calls returns a value WA1234MHK0G, while the core operating system raw USB device probe returns A00WA1234MHK0G. Some device do not respond to serial number requests and in this case, an arbitrary software dependent value is returned, and not guaranteed to be unique(!).
+> As a consequence, Cockpitdecks maintains a list of valid serial numbers for a given device.
+
 # Resources
 
 Resources are fonts, icons, other images, wallpapers, documentation, and texts used and related to that aircraft. All these elements are organized into the `resources` folder.

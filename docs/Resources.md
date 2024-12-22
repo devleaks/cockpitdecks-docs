@@ -61,6 +61,18 @@ For Truetype font, it is not necessary to add the `.ttf` extension. For Opentype
 > Fonts placed in the resources/fonts folder are available for images on decks. They are not necessarily available as « web fonts » available in web decks.
 > To be available directly, not through Cockpitdecks generated images, web decks fonts have to be made available in the asset folder and referenced in proper CSS files.
 
+Cockpitdecks provides the following licensed fonts in its distribution:
+- D-DIN (4 variants),
+- Overpass, especially Overpass Mono,
+- Segment7Standard,
+- Split flaps Skyfont and SplitFlap-TV,
+- Icon fonts Font Awesome and weathericons.
+
+The following fonts are recommended:
+- B612
+- DSEG: Original 7-segment and 14-segment fonts
+
+Any Truetype or OpenType font can be added to Cockpitdecks.
 # Icons
 
 Icon image files available to all decks need to be placed in the `deckconfig/resources/icons` folder.

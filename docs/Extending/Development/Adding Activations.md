@@ -74,3 +74,5 @@ Its accompanying button definition:
 ```
 
 When switch is moved to TEST, backlight is set to 100%, BTR sets it to 80%, and DIM to 30%.
+
+# Activation API

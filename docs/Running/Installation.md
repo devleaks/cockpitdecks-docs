@@ -32,7 +32,7 @@ In particular, the X-Plane Cockpitdecks Helper plugin uses and requires the late
 Create a new python environment and activate it. In that environment, issue the pip install command:
 
 ```sh
-pip install 'cockpitdecks[weather,demoext,streamdeck] @ git+https://github.com/devleaks/cockpitdecks.git'
+pip install 'cockpitdecks[xplane,weather,demoext,streamdeck] @ git+https://github.com/devleaks/cockpitdecks.git'
 ```
 
 ### Cockpitdecks Extension Packages
@@ -41,6 +41,7 @@ Valid installable extension packages (between the `[` `]`, comma separated, no s
 
 | Extra         | Content                                                                                                                                                                             |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `xplane`      | Add X-Plane flight simulator. Mandatory if you want to use it with X-Plane flight simulator.                                                                                        |
 | `weather`     | Add special iconic representation for weather. These representations fetch information outside of simulation software. That's why it is not bundled with Cockpitdecks. Recommended. |
 | `streamdeck`  | For Elgato Stream Deck devices                                                                                                                                                      |
 | `loupedeck`   | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                                                                                               |

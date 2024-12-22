@@ -76,6 +76,9 @@ In this mode, Cockpitdecks will start a single web deck. Head for the index web 
 
 ![[demo-deck.png]]
 
+> [!NOTE] NoSimulator
+> If no simulator package is loaded, Cockpitdecks will start a dummy, empty simulator connector for its internal use. The above demonstration will be fully functional. Please note that if no specific deck package has been loaded, "hardware" reprensentation may not appear correctly on the emulated web decks.
+
 ## Normal Operations
 
 There are two possible ways of working with Cockpitdecks:

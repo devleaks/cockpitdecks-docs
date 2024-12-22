@@ -122,6 +122,8 @@ nav:
       - Web Deck Designer Tools: Extending/Development/Internals/Design Helper.md
       - Workflow for Web Deck Design: Extending/Development/Internals/Workflow for Web Deck Design.md
 
+      - Application Programming Interfaces: Extending/Development/API/index.md
+
       - Internals:
         - Cockpitdecks Internals: Extending/Development/Internals/Cockpitdecks Internals.md
         - Deck Internals: Extending/Development/Internals/Deck Internals.md
@@ -177,12 +179,14 @@ plugins:
   - git-revision-date-localized:
       type: timeago
       fallback_to_build_date: true
-  # - mkdocstrings:
-  #     handlers:
-  #       python:
-  #         paths: ["src"]
-  #         # options:
-  #         #   show_source: false
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["/Users/pierre/Developer/fs/cockpitdecks"]
+          options:
+            docstring_style: google
+            show_source: false
+      default_handler: python
 
 
 # ###############################################
