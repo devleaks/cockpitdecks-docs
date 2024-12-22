@@ -179,15 +179,15 @@ plugins:
   - git-revision-date-localized:
       type: timeago
       fallback_to_build_date: true
-  - mkdocstrings:
-      handlers:
-        python:
-#          paths: ["https://raw.githubusercontent.com/devleaks/cockpitdecks/refs/heads/main/cockpitdecks"]
-          paths: ["/Users/pierre/Developer/fs/cockpitdecks"]
-          options:
-            docstring_style: google
-            show_source: false
-      default_handler: python
+#   - mkdocstrings:
+#       handlers:
+#         python:
+# #          paths: ["https://raw.githubusercontent.com/devleaks/cockpitdecks/refs/heads/main/cockpitdecks"]
+#           paths: ["/Users/pierre/Developer/fs/cockpitdecks"]
+#           options:
+#             docstring_style: google
+#             show_source: false
+#       default_handler: python
 
 
 # ###############################################
