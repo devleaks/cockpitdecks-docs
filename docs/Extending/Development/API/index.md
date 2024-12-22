@@ -2,10 +2,10 @@
 
 Here are the main Cockpitdecks entities meant to be extended by developers
 
-- [`Representation`][representation]
-- [`Deck`][deck]
-- [`Deck Type`][resrouces.decktype] (Resource)
-- [`Instruction`][instruction]
-- [`Simulator`][simulator]
+- [[Extending/Development/API/representation|Representation]]
+- [[Extending/Development/API/deck|Deck]]
+- [[Extending/Development/API/resources/decktype.md|Deck Type]]
+- [[Extending/Development/API/instruction|Instruction]]
+- [[Extending/Development/API/activation|Activation]]
+- [[Extending/Development/API/simulator|Simulator]]
 
-- [`Activation`][activation]

@@ -14,9 +14,9 @@ theme:
   name: material # Must use Material theme
   custom_dir: docs/.theme # If you have overrides, specify where to find them
   logo: assets/images/favicon.png
-  favicon: assets/images/favicon.ico
-  # icon:
-  #   logo: assets/images/favicon.png
+  # favicon: assets/images/favicon.png
+  icon:
+    logo: assets/images/favicon.png
   palette:
     scheme: dracula # This is how to enables the Dracula theme for dark. For light, it will use default Material with some tweaks.
     primary: deep purple # Primary colors
@@ -179,14 +179,15 @@ plugins:
   - git-revision-date-localized:
       type: timeago
       fallback_to_build_date: true
-  # - mkdocstrings:
-  #     handlers:
-  #       python:
-  #         paths: ["/Users/pierre/Developer/fs/cockpitdecks"]
-  #         options:
-  #           docstring_style: google
-  #           show_source: false
-  #     default_handler: python
+  - mkdocstrings:
+      handlers:
+        python:
+#          paths: ["https://raw.githubusercontent.com/devleaks/cockpitdecks/refs/heads/main/cockpitdecks"]
+          paths: ["/Users/pierre/Developer/fs/cockpitdecks"]
+          options:
+            docstring_style: google
+            show_source: false
+      default_handler: python
 
 
 # ###############################################
