@@ -16,7 +16,7 @@ In addition of defining a new deck model, it might be necessary to add a new met
 
 ## New Simulator Software
 
-Core class Simulator can also be extended to connect Cockpitdecks to another simulation software. In this case, interaction models imposed by Cockpitdecks (datarefs, commands, UDP connection) inspired by the X-Plane flight simulator software may have to be adjusted as well.
+Core class [[cockpitdecks-docs/docs/Simulator|Simulator]] can also be extended to connect Cockpitdecks to another simulation software. In this case, interaction models imposed by Cockpitdecks (datarefs, commands, UDP connection) inspired by the X-Plane flight simulator software may have to be adjusted as well.
 
 # Extensions Integration
 
@@ -74,7 +74,7 @@ Depending on the extension provided, discovery is achieved as follow:
 
 - [[Adding Activations|New activations]] (python classes) needs to be derived from the `cockpitdecks.buttons.activation.Activation` class.
 - [[Adding Representations|New representations]] needs to be derived from the `cockpitdecks.buttons.representation.Representation` class.
-- [[Adding New Deck Models|New deck]] (python classes) needs to be derived from the `cockpitdecks.deck` class.
+- [[Adding New Deck Models|New deck]] (python classes) needs to be derived from the `cockpitdecks.Deck` class.
 - New simulator software needs to be derived from the `cockpitdecks.Simulator` class.
 
 Cockpitdecks will discover daughter classes of the above core classes and add them to its collections of available resources.

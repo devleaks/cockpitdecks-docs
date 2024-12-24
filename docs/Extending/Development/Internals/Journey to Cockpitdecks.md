@@ -1,18 +1,18 @@
-It started with a standard Stream Deck device. I found it nice to be able to see result of interaction with the deck right away on the deck.
+It started with a standard Stream Deck device. I found it nice to be able to see result of interaction with the deck right away on the deck. Luckily, I found a python langage package to programmatically interact with the device.
 
 I only fly Airbus, so I wanted to see annunciators switches on my deck. On panel at a time.
 
-So I started to cut icons from an overhead screen dump. I quickly noticed some repetitive annunciators. But also numerous wordings changes. Label above annunciators would also change of course. I did not want to end up with a thousand icons, named by some clever convention. So I gave up fairly quickly on image processing and static icons and headed for a mechanism to dynamically create images with words laid over. I elaborated a set of design conventions that resulted in image generation.
+So I started to cut icons from an overhead screen dump. I quickly noticed some repetitive annunciators. But also numerous simple wordings changes. Label above annunciators would also change of course. I did not want to end up with a thousand icons, named by clever convention. So I gave up fairly quickly on image processing and static icons and headed for a mechanism to dynamically create images with words laid over. I elaborated a set of design conventions that resulted in image generation. Annunciators are all very similar, only texts, labels, and colors change.
 
-Convention evolved quickly as I wanted to not only be able to generate annunciators but also switches, rotary knobs, and display some numbers like FCU data, fuel tank levels, etc.
+Convention evolved quickly as I wanted to not only be able to generate annunciators but also switches, rotary knobs, and display some numbers like FCU data, fuel tank levels, battery voltage, etc.
 
-Then I discovered the Loupedeck device. More elaborate with encoders and touch screens. I wanted to be able to handle those devices as well.
+Then I discovered the Loupedeck device with encoders and touch screens. I wanted to be able to handle those devices as well. There was no python package to interface, so I created it.
 
 I am the happy owner of an inexpensive Behringer X-Touch Mini that I wanted to handle with my development too, even if it was not capable of showing images, it had other LED to communicate.
 
-This led, one button at a time to what Cockpitdecks is today.
+This led, one button at a time, one device at a time to what Cockpitdecks is today.
 
-One, a gentleman approached me with questions about the configuration of a deck. I was first surprised to see that somebody else was successfully using my code. But above all, this gentleman who was designing cockpits for other aircrafts needed a way to speed up its development process and suggested rendering decks on screen. This led, in a first iteration in what we called « virtual decks », but as the screen rendering package used lacked features for interaction and brought in significant complexity, we decided to change for lightweight rendering in a browser window. Virtual decks became web decks (but in the code or wording, both terms still co-exist.) In a nutshell, rather than sending generated images to decks for display on their small LCD screens, we send them to a web page for display on a Canvas. Couldn’t be simpler!
+One, a gentleman approached me with questions about the configuration of a deck. I was first surprised to discover that somebody else was successfully using my code. But above all, this gentleman who was designing cockpits for other aircrafts needed a way to speed up its development process and suggested rendering decks on screen. This led, in a first iteration in what we called « virtual decks », but as the screen rendering package used lacked features for interaction and brought in significant complexity, we decided to change for lightweight rendering in a browser window. Virtual decks became web decks (but in the code or wording, both terms still co-exist.) In a nutshell, rather than sending generated images to decks for display on their small LCD screens, we send them to a web page for display on a HTML Canvas. Couldn’t be simpler!
 
 That, together with numerous code refactoring, abstractions, and conventions, lead to a flexible, configurable, autonomous application that now allow to use common deck models with X-Plane fight simulator. As an illustration of code refactoring, Cockpitdecks was first designed to work with X-Plane only, using X-Plane terminology of Datarefs, Commands, etc. Refactoring brought in a new abstractions for Simulator applications, with neutral generic terminology and allow now for different simulation software to be used with Cockpitdecks.
 
