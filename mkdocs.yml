@@ -122,7 +122,7 @@ nav:
       - Web Deck Designer Tools: Extending/Development/Internals/Design Helper.md
       - Workflow for Web Deck Design: Extending/Development/Internals/Workflow for Web Deck Design.md
 
-      - Application Programming Interfaces: Extending/Development/API/index.md
+#      - Application Programming Interfaces: Extending/Development/API/index.md
 
       - Internals:
         - Cockpitdecks Internals: Extending/Development/Internals/Cockpitdecks Internals.md
