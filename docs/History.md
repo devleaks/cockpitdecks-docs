@@ -8,7 +8,7 @@ A first step was clearly to abstract particularities of device. Pressing keys, r
 
 A second step was to isolate this software from all device particularities and specificities. This leads to abstractions such as Deck (make, models, *device drivers* to interact with the device) and Buttons (things a user interact with on a device). A simple abstract model describe the device capabilities and physical organisation (the *Deck*).
 
-A final step was to isolate all interactions with flight simulation software: Issuing commands and monitoring data values coming from it. This is done in a collection of specialised Simulator, Dataref, and Command abstractions.
+A final step was to isolate all interactions with flight simulation software: Issuing commands and monitoring data values coming from it. This is done in a collection of specialized Simulator, Dataref, and Command abstractions.
 
 Other entities glue things together with concepts like the *Cockpit* which is a collection of one or more decks, and a *Page* that is a grouping of buttons represented at once on a deck.
 

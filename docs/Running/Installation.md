@@ -39,15 +39,16 @@ pip install 'cockpitdecks[xplane,weather,demoext,streamdeck] @ git+https://githu
 
 Valid installable extension packages (between the `[` `]`, comma separated, no space) are:
 
-| Extra         | Content                                                                                                                                                                             |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `xplane`      | Add X-Plane flight simulator. Mandatory if you want to use it with X-Plane flight simulator.                                                                                        |
-| `weather`     | Add special iconic representation for weather. These representations fetch information outside of simulation software. That's why it is not bundled with Cockpitdecks. Recommended. |
-| `streamdeck`  | For Elgato Stream Deck devices                                                                                                                                                      |
-| `loupedeck`   | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                                                                                               |
-| `xtouchmini`  | For Berhinger X-Touch Mini devices                                                                                                                                                  |
-| `demoext`     | Add a few Loupedeck and Stream Deck+ demo extensions. Recommended.                                                                                                                  |
-| `development` | For Cockpitdecks developer only, adds testing packages and python types. Useless if you do not develop Cockpitdecks software.                                                       |
+| Extra         | Content                                                                                                                                                                                                        |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `xplane`      | Add X-Plane flight simulator. Mandatory if you want to use it with X-Plane flight simulator.                                                                                                                   |
+| `weather`     | Add special iconic representation for weather. These representations fetch information outside of simulation software. That's why it is not bundled with Cockpitdecks. Recommended.                            |
+| `toliss`      | Representations highly specific to X-Plane ToLiss Airbus aircrafts (should work with most of them)                                                                                                             |
+| `streamdeck`  | For Elgato Stream Deck devices                                                                                                                                                                                 |
+| `loupedeck`   | For Loupedeck LoupedeckLive, LoupedeckLive.s and Loupedeck CT devices                                                                                                                                          |
+| `xtouchmini`  | For Berhinger X-Touch Mini devices                                                                                                                                                                             |
+| `demoext`     | Add a few Loupedeck and Stream Deck+ demo extensions. Recommended. Add a dimmer representation to control the backlight of decks. This extension can be used as a template for creating other representations. |
+| `development` | For Cockpitdecks developer only, adds testing packages and python types. Useless if you do not develop Cockpitdecks software.                                                                                  |
 
 ## Install Cockpitdecks Helper Plugin
 
@@ -56,21 +57,15 @@ Valid installable extension packages (between the `[` `]`, comma separated, no s
 
 Cockpitdecks Helper Plugin is written in the python language. So it needs the [XPPython3](https://xppython3.readthedocs.io/) X-Plane plugin installed. XPPython3 plugin allow for execution of python code *inside* X-Plane.
 
-Cockpitdecks XPPython3 plugin is located in the
+To install the XPPython3 Cockpitdecks Helper plugin in XPPython3, run the following command:
 
 ```sh
-< Cockpitdecks-installed-code > /cockpitdecks/resources/xppython3-plugins
+$ cockpitdecks-cli --install-plugin --verbose
 ```
 
-folder in the source code. There is a single file.
+This command first checks for the existence of XPPython3 plugin.
 
-To install, **copy** the plugin file to:
-
-```shell
-... /X-Plane 12/resources/plugins/PythonPlugins/PI_cockpitdecks.py
-```
-
-and ask XPPython3 plugin to reload its scripts.
+Do not forget to ask XPPython3 plugin to reload its scripts if X-Plane is running.
 
 ## Install Aircraft Specific `deckconfig` Folders
 

@@ -7,7 +7,7 @@ While some Representations remain highly generic, like graphical representation 
 There are two sources of information for weather:
 
 1. External, real weather collected from aviation sources.
-2. X-Plane, using the weather as it currently is available in the simulation.
+2. X-Plane, using the weather as it currently is available in the simulation (called real weather inside X-Plane eco system.)
 
 # Real Life Live Weather (now)
 
@@ -28,37 +28,7 @@ Reports the current real life weather at LFBO. If the location is not changed, t
 > [!NOTE] Metar is from external source
 > The WeatherMetarIcon reflects the real Metar at the time of collection. It does not necessarily reflect the weather as simulated in X-Plane.
 
-# X-Plane Weather
-
-X-Plane weather is flexible and proposed with several variant. We designed a few set of X-Plane specific button representation to present these data sets.
-
-- Weather from X-Plane (from global items like METAR)
-- Weather informations from X-Plane (from clouds and wind *layers*)
-
-In addition, X-Plane weather can be local or regional.
-
-> [!WARNING] X-Plane Weather
-> X-Plane Weather is currently heavily modified by Laminar. The following representation may not work reliably and may need revisions.
-
-# X-Plane Weather Summary
-
-```yaml hl_lines="1"
-xp-weather-summary
-	mode: region
-```
-
-Provides the Real weather currently installed into X-Plane in a short, Metar-like summary.
-
-This is done by fetching a limited set of values from the weather-related datarefs (temperature, pressure, wind, weather conditions...:
-
-1. pressure: sealevel_pressure_pas,
-2. temperature: sealevel_temperature_c,
-3. dew point: dewpoint_deg_c,
-4. visibility: visibility_reported_sm,
-5. wind direction: wind_direction_degt,
-6. wind speed: wind_speed_msc,
-
-There are two *modes*: `aircraft` and `region`.
+This Representation is provided as an extension in the cockpitdecks_wm package (wm=weather METAR).
 
 # X-Plane Real Weather
 
@@ -74,3 +44,8 @@ There are two *modes*: `aircraft` and `region`.
 This representation fetches all weather-related datarefs from the simulator (wind layers, cloud layers, weather conditions, more than 100 datarefs) for a location or region and attempt to automagically generate a METAR from the collected data.
 
 To collect and monitor such an amount of datarefs, Cockpitdecks uses the X-Plane Web API, only available from release 12.1.1 onwards.
+
+> [!WARNING] X-Plane Weather
+> X-Plane Weather is currently heavily modified by Laminar. The following representation may not work reliably and may need revisions.
+
+This Representation is provided as an extension in the cockpitdecks_xp package (xp=X-Plane, since it is specific to weather as provided by X-Plane).

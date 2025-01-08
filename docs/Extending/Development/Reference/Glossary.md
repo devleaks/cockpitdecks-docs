@@ -46,11 +46,18 @@ An Activation is an action that is executed when interaction occurs on a deck.
 
 A Representation is an abstraction of an instruction sent to a deck to change its appearance. It can be turning a LED light on or off, playing a sound, or dynamically generating an iconic image and sending it for display on a deck key.
 
+# Variable
+
+A Variable is a typed value. A Variable maintains a list of "Variable Listener" entities that get notified whenever the value of the variable changes. There are mainly two types of Variables:
+
+- Internal Variables are variables defined and used inside Cockpitdecks
+- Simulator Variables are variables that represent a value inside the connected simulator.
+
 # Simulator
 
-## Simulator Data
+## Simulator Variable
 
-A Simulator Data is a variable value kept and modified in the simulator. Cockpitdecks expressed interest in receiving a notification when the value of the variable changes. The variable is accessed by its name.
+A Simulator Variable is a variable value kept and modified in the simulator. Cockpitdecks expressed interest in receiving a notification when the value of the variable changes. The variable is accessed by its name.
 
 ## Simulator Instruction
 
@@ -89,7 +96,7 @@ A Command is an instruction to perform an action.
 
 This included instructions that simulate key press.
 
-### Update Value of a Simulator Data
+### Update Value of a Simulator Variable
 
 The other type of Simulator Instruction is a request to update a value made accessible by the simulator.
 
@@ -97,11 +104,11 @@ The other type of Simulator Instruction is a request to update a value made acce
 
 The Maestro of Cockpitdecks is the Cockpit entity. Internal components are interchangeably called *Cockpitdecks* items or *Cockpit* items (word is shorter *!*).
 
-## Cockpitdecks Internal Data
+## Cockpitdecks Internal Variable
 
-Cockpit or Cockpitdecks or simply Internal Data is an internal Cockpitdecks value mainly kept for statistical or introspection purposes. Button internal state is maintained inside a few Cockpitdecks internal data. (CockpitData, CockpitdecksData, InternalData are synonyms.)
+ Internal Variable is a value kept for statistical or introspection purposes inside Cockpitdecks, or its components. A Button internal state is maintained inside a few Internal Variables.
 
-End-users and Cockpitdecks developer can define and use internal cockpitdecks data. They all behave like simulator data, propagating changes to their listeners.
+End-users and Cockpitdecks developer can define and use internal variable. They all behave like any other Variable, propagating changes to their listeners.
 
 ## Cockpitdecks Instruction
 
@@ -119,11 +126,11 @@ Cockpit or Cockpitdecks Events are generated internally by Cockpitdecks to notif
 
 # Dataref
 
-A Dataref is a simulator data inside the X-Plane flight simulator.
+A Dataref is a Simulator Variable inside the X-Plane flight simulator.
 
 # SimVar
 
-A SimVar is a simulator data from Microsoft Flight Simulator. There are several types of SimVar. Please refer to the [Flight Simulator SDK](https://docs.flightsimulator.com/html/Introduction/SDK_Overview.htm) for more information.
+A SimVar is a Simulator Variable from Microsoft Flight Simulator. There are several types of SimVar. Please refer to the [Flight Simulator SDK](https://docs.flightsimulator.com/html/Introduction/SDK_Overview.htm) for more information.
 
 # See Also
 
