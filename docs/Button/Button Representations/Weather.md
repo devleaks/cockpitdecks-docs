@@ -9,7 +9,7 @@ There are two sources of information for weather:
 1. External, real weather collected from aviation sources.
 2. X-Plane, using the weather as it currently is available in the simulation (called real weather inside X-Plane eco system.)
 
-# Real Life Live Weather (now)
+# Real Life Weather (now)
 
 The WeatherMetarIcon provides the *real life* Metar currently in use at a location in the simulator.
 
@@ -27,8 +27,49 @@ Reports the current real life weather at LFBO. If the location is not changed, t
 
 > [!NOTE] Metar is from external source
 > The WeatherMetarIcon reflects the real Metar at the time of collection. It does not necessarily reflect the weather as simulated in X-Plane.
+> As a current limitation, only current METAR or TAF report is shown. Historical data may be offered at a later stage.
 
 This Representation is provided as an extension in the cockpitdecks_wm package (wm=weather METAR).
+
+## Terminal Area Forecast
+
+```
+weather-taf:
+	station: EDDM
+	update: 30  # minutes
+```
+
+Similarly to METAR, TAF is fetched and shown on an icon as a textual form of the forecast.
+
+A TAF usually consists of several forecasts that are presented in turn on "pages" of forecast. Each press of the button changes the page.
+
+## (Ground) Weather Station Plot
+
+[Station Model](https://en.wikipedia.org/wiki/Station_model) is a popular representation of the main weather elements: Weather, wind speed and direction, temperature, pressure, clouds, visibility, etc.
+
+```
+weather-station-plot:
+	station: LFBO
+	update: 30  # minutes
+```
+
+The plot model is a graphical representation of the METAR. The same information is used for text and plot.
+
+## Examples
+
+![[weather-ext.png]]
+
+METAR, TAF and two «Station Model» plots of weather. Left most icons (EBBR) uses the same METAR, only presentation differs.
+
+## Weather Updates
+
+If possible, METAR and TAF for a station are temporarily archived and used to present evolution, past and forecast information, very much like real METAR web site.
+
+METAR and TAF are updated every 30 minutes on average.
+
+### Location Update
+
+If the display of the weather is not fixed to a location, the position of the aircraft in X-Plane is used, although, the weather that is fetched is the real weather at the time of the the day (not the simulated date/time). In this case, the nearest weather station is used for the report. Station position changes if the aircraft moved more than a minimal distance, typically 50 kilometers.
 
 # X-Plane Real Weather
 
