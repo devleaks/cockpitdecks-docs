@@ -50,4 +50,11 @@ specialty-icon:
 	param1: value
 ```
 
+> [!NOTE] Abstract Representation.
+> It is sometimes convenient to create a *base* class from which derived classes inherit. If the (abstract) base class cannot be instanciated, terminate its internal name with `-base`. By convention, activation and representation classes with internal names that terminates with `-base` are excluded from instanciable classes.
+
+```yaml
+		REPRESENTATION_NAME = "do-not-instanciate-base"
+```
+
 # Representation API

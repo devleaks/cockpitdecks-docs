@@ -27,7 +27,7 @@ Reports the current real life weather at LFBO. If the location is not changed, t
 
 > [!NOTE] Metar is from external source
 > The WeatherMetarIcon reflects the real Metar at the time of collection. It does not necessarily reflect the weather as simulated in X-Plane.
-> As a current limitation, only current METAR or TAF report is shown. Historical data may be offered at a later stage.
+> As a current limitation, only current METAR or TAF report is shown at the time the application runs. Historical data may be offered at a later stage.
 
 This Representation is provided as an extension in the cockpitdecks_wm package (wm=weather METAR).
 
@@ -71,7 +71,7 @@ METAR and TAF are updated every 30 minutes on average.
 
 If the display of the weather is not fixed to a location, the position of the aircraft in X-Plane is used, although, the weather that is fetched is the real weather at the time of the the day (not the simulated date/time). In this case, the nearest weather station is used for the report. Station position changes if the aircraft moved more than a minimal distance, typically 50 kilometers.
 
-# X-Plane Real Weather
+# X-Plane « Real Weather »
 
 ```yaml
 xp-real-weather
