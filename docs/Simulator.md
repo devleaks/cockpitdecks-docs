@@ -6,9 +6,9 @@ It is possible to create a new Simulator implementation for another software, li
 
 In addition to the core simulation software, the Simulator also proposes a few entities that represent interactions with it.
 
-# Simulator Data Values
+# Simulator Variable Values
 
-The simulation software presents to Cockpitdecks all its reachable « values ». Any value that is accessible in the simulation software is made available to Cockpitdecks through the SimulationData. A sophisticated mechanism updates the data in Cockpitdecks every time the data is modified in the simulator.
+The simulation software presents to Cockpitdecks all its reachable « values ». Any value that is accessible in the simulation software is made available to Cockpitdecks through the SimulationVariable. A sophisticated mechanism updates the data in Cockpitdecks every time the data is modified in the simulator.
 
 For example, Laminar X-Plane extensively uses « *datarefs* », while Microsoft Flight Simulator uses « *simvars* ». They both are values coming from the simulator, and they both can be used in Cockpitdecks.
 

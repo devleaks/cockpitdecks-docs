@@ -48,19 +48,23 @@ Cockpitdecks configuration is a folder (always named `deckconfig`), organized in
 
 Internally, Cockpitdecks uses a few objects whose function are easy to understand.
 
-## Data
+## Variable
 
-A data is a named entity ready to contain some data, a value.
+A Variable is a named entity ready to contain some data, a value.
 
-There are several types of data depending on where the data gets its value from.
+There are several types of Variable depending on the source of the value.
 
-Cockpitdecks internal data is an internal value only used by Cockpitdecks, to maintain an internal state for example.
+Cockpitdecks internal variable is an internal value only used by Cockpitdecks, to maintain an internal state for example.
 
-Simulator data is a value coming from the simulation software. Each time it changes in the simulation software, its value is updated in Cockpitdecks.
+Simulator variable is a value coming from the simulation software. Each time it changes in the simulation software, its value is updated in Cockpitdecks.
 
-### Data Listener
+### Variable Listener
 
-Each data has listeners associated with it. Each time the value of a Data changes, the listeners are notified of the updated value and can perform some tasks on their own to take into account the new value.
+Each variable has listeners associated with it. Each time the value of a Variable changes, the listeners are notified of the updated value and can perform some tasks on their own to take into account the new value.
+
+### Formula
+
+A Formula is an expression that uses Variables to compute a new value.
 
 ## Instruction
 

@@ -103,9 +103,10 @@ nav:
     - Usage: Running/Usage.md
     - Examples:
       - Extending/Examples.md
-      - Tutorials:
-        - Adding a Page of Buttons to a Deck: Running/Adding a Page of Buttons to a Deck.md
-        - Adding a Web Deck: Extending/Adding a Web Deck.md
+
+  - Tutorials:
+    - Adding a Page of Buttons to a Deck: Running/Adding a Page of Buttons to a Deck.md
+    - Adding a Web Deck: Extending/Adding a Web Deck.md
 
   - Extending:
     - Adding web decks: Extending/Web Decks.md
