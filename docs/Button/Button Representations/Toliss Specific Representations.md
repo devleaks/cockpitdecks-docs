@@ -5,6 +5,8 @@ Toliss Airbus Aircrafts A319, A320, A321, and A340 share numerous functions, wit
 
 These buttons are highly specific and would probably not be usable in other aircrafts. However the very specific code used to produce these buttons is an example for alternative development.
 
+These Representations are more complex than they appear. While very comparable on appearance, numerous technical details and variant make these representations complex.
+
 # Toliss Airbus FCU
 
 ToLiss FCU representation is actually a set of representations for Loupedeck LoupedeckLive side LCD display. As shown on the capture below, it vertically presents FCU data next to the encoders.
