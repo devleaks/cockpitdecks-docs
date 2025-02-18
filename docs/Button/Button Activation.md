@@ -48,6 +48,14 @@ A `command` can be:
     command: sim/map/show_current
 ```
 
+## Command to Change Variable
+
+```
+    set-dataref: AirbusFBW/DUBrightness[0]
+```
+
+While it does not appear as a command, the above instruction is actually a command to set the value pointed by the `set-dataref` variable to the value of the button.
+
 ## Single Command Block
 
 A *Command Block* is a series of attributes that specify a command to execute and some optional behavior.
@@ -80,7 +88,7 @@ A condition is a *formula* that specify, when evaluated, if the command can be e
 
 #### Delay
 
-The delay is a value in seconds that specifies how long after the command receives its instruction to execute it actually perform the task. This allows to pause between commands rather than submitting them all simultaneously to the target.
+The delay is a value in seconds that specifies how long after the command receives its instruction to execute it actually perform the task. This allows to pause between commands rather than submitting them all simultaneously to the target. The delay starts when the previous command is submitted for execution.
 
 ## Multiple Command Blocks: Macro Instruction
 
@@ -96,6 +104,8 @@ The delay is a value in seconds that specifies how long after the command receiv
 ```
 
 In the above example, the single command consists of a series of 4 command blocks. In this case, the single command is called a *Macro Instruction*.
+
+Since delay starts after the previous command is started, the command `AirbusFBW/MCDU1LSK1R` will be executed 1 second after `AirbusFBW/MCDU1LSK6R` command is started, 3 seconds after command `AirbusFBW/MCDU1Menu` is started.
 
 # No Activation
 
@@ -121,7 +131,7 @@ Any event can be handed over to the No Activation, since it will not be used.
 
 ### Activation Value
 
-Among the above State Value that an Activation returns, there always is a special state value named the *activation value*. The activation value can be accessed by accessing the `activation_value` attributes in the state values.
+Among the above State Value that an Activation returns, there always is a special state value named the *activation value*. The activation value can be accessed by requesting the `activation_value` attribute in the state values.
 
 This value is just a value among the existing state values that gets highlighted because it is the most sensible value used by the activation.
 

@@ -69,3 +69,15 @@ Another form of instruction is the instruction block. The instruction block is a
 A Macro Instruction is a set of one or more commands that are executed one after the other.
 
 Each command can be specified either a simple instruction or an instruction block
+
+```
+    command:
+      - command: AirbusFBW/ECP/SelectElecACPage
+      - command: AirbusFBW/PopUpSD
+        condition: ${AirbusFBW/PopUpStateArray[7]} not
+        delay: 2
+      - command: AirbusFBW/PopUpSD
+        delay: 10
+```
+
+The above macro instruction has three commands. The second command occurs 2 seconds aftre the first one, and only if `AirbusFBW/PopUpStateArray[7]` is zero (i.e. not set). The third command call the same popup display to make it dissappear after 10 seconds.

@@ -8,6 +8,7 @@ There are two sources of information for weather:
 
 1. External, real weather collected from aviation sources.
 2. X-Plane, using the weather as it currently is available in the simulation (called real weather inside X-Plane eco system.)
+![[weather-representation.png]]
 
 # Real Life Weather (now)
 
@@ -57,7 +58,7 @@ The plot model is a graphical representation of the METAR. The same information 
 
 ## Examples
 
-![[weather-ext.png]]
+![[weather-ext.png|300]]
 
 METAR, TAF and two «Station Model» plots of weather. Left most icons (EBBR) uses the same METAR, only presentation differs.
 
@@ -90,3 +91,7 @@ To collect and monitor such an amount of datarefs, Cockpitdecks uses the X-Plane
 > X-Plane Weather is currently heavily modified by Laminar. The following representation may not work reliably and may need revisions.
 
 This Representation is provided as an extension in the cockpitdecks_xp package (xp=X-Plane, since it is specific to weather as provided by X-Plane).
+
+# X-Plane Weather Station Update
+
+When using X-Plane flight simulator, a special Observable regularly monitors the position of the aircraft and deduces the closest weather station. The closest weather station ICAO code is stored in the internal variable named `weather-station`. By subscribing (listening) to that variable changes, a representation can adjust its weather information for the local station.
