@@ -154,7 +154,7 @@ nav:
     - Representation: Extending/Development/Reference/Representation.md
     - Switch Drawing Attributes: Extending/Development/Reference/Switch Drawing Attributes.md
     - Deck Type: Extending/Development/Reference/Deck Type.md
-    - Simulator: Extending/Development/Reference/Simulator.md
+    - Simulator: Concepts/Simulator.md
 
   - History: History.md
 #
