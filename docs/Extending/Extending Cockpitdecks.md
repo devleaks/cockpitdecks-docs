@@ -16,7 +16,7 @@ In addition of defining a new deck model, it might be necessary to add a new met
 
 ## New Simulator Software
 
-Core class [[../Simulator|Simulator]] can also be extended to connect Cockpitdecks to another simulation software. In this case, interaction models imposed by Cockpitdecks (datarefs, commands, UDP connection) inspired by the X-Plane flight simulator software may have to be adjusted as well.
+Core class [[cockpitdecks-docs/docs/Concepts/Simulator|Simulator]] can also be extended to connect Cockpitdecks to another simulation software. In this case, interaction models imposed by Cockpitdecks (datarefs, commands, UDP connection) inspired by the X-Plane flight simulator software may have to be adjusted as well.
 
 # Extensions Integration
 

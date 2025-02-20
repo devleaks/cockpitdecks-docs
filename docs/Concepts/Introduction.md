@@ -6,7 +6,7 @@ Walking though Cockpitdecks main entities will get you familiar with Cockpitdeck
 
 ## Deck
 
-The core object of Cockpitdecks is the Deck. It can be a real, physical deck device like Stream Deck or LoupedeckLive, but it can also be the representation of a deck in a web page. In the later case, it is called a Web Deck. Web deck can either be a representation of an existing physical deck like Stream Deck or LoupedeckLive, and an imaginary one. Historically, Web Decks were also called Virtual Decks, names can be interchanged and have the same meaning.
+The core object of Cockpitdecks is the Deck. It can be a real, physical deck device like Stream Deck or LoupedeckLive, but it can also be the representation of a deck in a web page. In the later case, it is called a *Web Deck*. Web deck can either be a representation of an existing physical deck like Stream Deck or LoupedeckLive, and an imaginary one. Historically, Web Decks were also called *Virtual Decks*, names can be interchanged and have the same meaning.
 
 A Deck usually has buttons that can be pressed, encoders that can be turned. They often also have either simple led that can be turned on or off, or small iconic LCD screens where some iconic image can be displayed.
 

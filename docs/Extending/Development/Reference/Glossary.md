@@ -18,6 +18,8 @@ But it is possible to design as create any web deck one can imagine, built from 
 
 Cockpitdecks allow a designer to create and use any web deck, in the context of the Cockpitdecks application.
 
+Formerly, *Web Decks* were called *Virtual Decks*, in the context of Cockpitdecks, both names can be used interchangeably.
+
 # Layout
 
 A Layout is a collection of pages that can be displayed on a deck. On startup, a deck must tell Cockpitdecks which Layout it is going to use.

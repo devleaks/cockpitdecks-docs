@@ -14,9 +14,13 @@ First, make sure the deck model you own is a deck already available through Cock
 
 In normal, simple, automatic mode, Cockpitdecks expects configuration to be found in the folder of the aircraft currently being used. (This may be adjusted by advanced configuration parameters if you do not want to store Cockpitdecks configuration files in the that folder.)
 
-In the aircraft folder, create a folder named `deckconfig`.
+```
+cockpitdecks-cli --template destination/folder
+```
 
-## Add the main `config.yaml`File
+will create a template deckconfig folder and all necessary files to get started.
+
+## Edit the main `config.yaml`File
 
 Inside the above folder, create the main configuration file with this content. Adjust the content to your deck.
 
@@ -60,6 +64,8 @@ If every runs on the same computer, you only need to supply X-Plane home directo
 SIMULATOR_NAME: X-Plane
 SIMULATOR_HOME: /Applications/X-Plane 12
 ```
+
+If you do not supply a SIMULATOR_HOME environment variable, Cockpitdecks will try to locate X-Plane on the host computer.
 
 ### Start Cockpitdecks
 
