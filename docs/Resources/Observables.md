@@ -1,16 +1,16 @@
-Observables are data that is constantly monitored. When the data matches a criteria, a list of actions or commands is executed.
+Observables are data that is constantly monitored. When the data matches a criteria, a set of actions is executed.
 
 For people familiar with the concept, it can be considered a *if-this-then-that* instruction. For example: If the weather data from the simulator indicates rain is falling on the aircraft, we can set the windshield wipers automatically.
 
 Observables are defined at three levels:
 
-1. the cockpit level, available for the entire application
-2. the simulator level, available to monitor simulator-specific variables
+1. the cockpit level, available for the entire application, mostly all the time,
+2. the simulator level, available to monitor simulator-specific variables,
 3. the aircraft level, available to monitor aircraft-specific variables.
 
-Observables are defined in `resources` folder of the entity in a `observables.yaml` file. All observables are loaded at once in an Observables entity which contains them all.
+Observables are defined in `resources` folder of the entity in a `observables.yaml` file. All observables are loaded at once in an Observables entity which contains them all and report their use .
 
-# Definition
+# Definition of Observables
 
 The file `observables.yaml` is located in the `deckconfig/resources` folder of an aircraft. It is loaded on startup.
 
@@ -34,21 +34,29 @@ The `observables` attribute is a list of individual observables.
 
 ## Attributes
 
-### Trigger
+### Type
 
-#### True/False Evaluation
+What triggers the observable.
 
-The `trigger` attribute of an observable is a single dataref or a formula that is evaluated each time a dataref mentioned in the formula changes. The result of a the formula is compared to 0, i.e. True (different from zero) or False (equal to zero).
+#### Trigger
 
-If the result of the formula is True, commands listed into the `actions` attributes are executed.
+`type: trigger`
+
+The list of action is carried over when the value of the observable is True (or non zero).
 
 #### Value Changed
 
+`type: onchange`
+
 Another method to trigger the flow of action(s) is to select the *value changed* mode. Actions get executed as the value of the dataref or of the computation has changed.
 
-### Observable
+#### Event
 
-The observable is the data that is monitored. It can either be a single dataref or a formula.
+`type: event`
+
+The observable will look for the `event` or `events` attributes and register interest in the events listed under these attributes.
+
+Each time the simulator software will report those events, the actions will be carried over.
 
 ### Actions
 
@@ -76,6 +84,8 @@ When a new aircraft is loaded, or when an aircraft livery is changed, "internal"
 
 This is how Cockpitdecks detects aircraft or livery changes. Action triggered are very specific (to change the aircraft).
 
+So, internally, Cockpitdecks uses an Observable that monitors a simulator variable that changes when a new aircraft or mivery is loaded. This depends on the
+
 ## Aircraft Events
 
 ### Auto Save on Event
@@ -84,4 +94,4 @@ Most simulators or aircrafts provide a command to save the situation and restore
 
 ToLiss aircrafts simulate Airbus which have the concept of [flight phase](https://www.aviationhunt.com/airbus-a320-flight-phases/).
 
-We devised an Observable to trigger a situation phase on flight phase change. This allows to restart a flight right at the flight phase change.
+We devised an Observable to trigger a situation save on flight phase change. This allows to restart a flight right at the flight phase change.

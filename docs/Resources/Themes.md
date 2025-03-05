@@ -1,4 +1,4 @@
-Rendering themes is a experimental features that allows a Cockpitdecks developer to provide different sets of default values.
+Rendering themes is a features that allows a Cockpitdecks developer to provide different sets of default values, especially for colors, fonts, and textures.
 
 # Theme Declaration
 
@@ -8,13 +8,13 @@ cockpit-theme: night
 
 Theme default value is an empty string (no theme).
 
-If a theme is used, its name is prepended to attribute name:
+If a theme is used, its name is prepended to default attribute name when they are looked up:
 
 ```
-	theme-default-label-color: purple
+	night-default-label-color: purple
 ```
 
-If no such attribute is found, the `default-label-color` attribute name is looked up (without the `theme-` prepended.)
+If no such attribute is found, the `default-label-color` attribute name is looked up, without the `theme-` prepended.
 
 # Theme Usage
 
@@ -33,3 +33,5 @@ theme: light
 default-label-color: white
 dark-default-label-color: coral
 ```
+
+It is advisable to define a light/day theme and a dark/night theme. There is an activation to change the theme. It also is possible to change the theme in an Observable. For example, it is possible to collect the simulation date, time, and location, and determine if it is a day-light or night time and set the theme occordingly.

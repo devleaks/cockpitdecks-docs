@@ -102,6 +102,20 @@ This included instructions that simulate key press.
 
 The other type of Simulator Instruction is a request to update a value made accessible by the simulator.
 
+### Long Press
+
+A Long Press is an instruction that needs to be done while/as long as the button is pressed.
+
+### View
+
+A View is a command. Historically, a view was a second command that could be attached to an Instruction to perform a view change in the simulation software.
+
+Instructions have evolved with time and view are no longer necessary or can now be expressed by other means. However, the terminology remained and view can still be declared in activations.
+
+# « Macro-»Instruction
+
+A Macro Instruction is an Instruction that consists of set of two or more instructions. Whenever an instruction is required, it is possible to use a Macro Instruction and trigger not one instruction but a whole set of instructions. Each individual instruction in the set is defined in an *instruction block*.
+
 # Cockpitdecks Internals
 
 The Maestro of Cockpitdecks is the Cockpit entity. Internal components are interchangeably called *Cockpitdecks* items or *Cockpit* items (word is shorter *!*).
@@ -129,6 +143,10 @@ Cockpit or Cockpitdecks Events are generated internally by Cockpitdecks to notif
 # Dataref
 
 A Dataref is a Simulator Variable inside the X-Plane flight simulator.
+
+# Command
+
+A Command is an Instruction sent to the X-Plane flight simulator.
 
 # SimVar
 

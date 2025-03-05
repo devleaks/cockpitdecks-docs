@@ -60,9 +60,6 @@ dataref-fetch-frequencies:
 ```
 
 The above configuration indicates that dataref named `sim/cockpit/autopilot/heading` should be fetched 10 times per second (which is a lot, if not too much. Please recall that Cockpitdecks drives "deck" devices, not screen! Transfer of images to deck icons occurs on slow serial lines.)
-## X-Plane / Cockpitdecks String Dataref
-
-Please refer to [[String Datarefs|this Section]] for The special handling of string datarefs.
 
 # Cockpitdecks «Internal» Datarefs
 
@@ -99,7 +96,7 @@ Numeric internal values are accessible as `${state:variable-name}` in formula.
 ```
 
 ## Activation Attributes and Activation Value
- 
+
 Most state attributes of a button come from the activation. Each activation has a specific set of state attributes. Among these state attributes, there is a more particular attribute, called the *activation value*, which is the most sensible value produced by the activation.
 
 ## Class Instance Attributes

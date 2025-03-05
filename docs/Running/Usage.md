@@ -62,7 +62,7 @@ Sometimes, or for some complex environement, Cockpitdecks cannot find the inform
 1. Operating system environment variables.
 2. A *environment file* that contains the same information as above.
 
-# Adjust `environment.yaml`
+# Create `environment.yaml`
 
 Cockpitdecks uses a configuration file, called the Cockpitdecks *environment file*, to define a few elements that cannot easily be guessed. Cockpitdecks provides a environment file that is suitable for single computer installation. You must, however, adjust at least the simulator folder path (where the simulator is located).
 
@@ -174,7 +174,7 @@ To report an issue with Cockpitdecks, you should always include the `XPPython3.l
 
 The level of information produced in the file is controlled by the logging level parameter. (info=some information and warnings, debug=a lot of information for debugging purpose, your XPPython3.log file may grow quite large.) The parameter is available at the global plugin level (the entire plugin will report all messages), or can be set at a Cockpitdecks internal module level to pin point issues.
 
-Cockpitdecks is *stateless*. If we except its internal statistics, Cockpitdecks does not maintain any state variable of a situation. Therefore, at any time, it is possible to stop and restart it. Should a problem persists, please file an issue on github with necessary information to reproduce it.
+Cockpitdecks is *stateless*. If we except its internal statistics, Cockpitdecks does not maintain any state variable of a situation. Therefore, at any time, it is possible to stop and restart it. Should a problem persists, please file an issue on [Github](https://github.com/devleaks/cockpitdecks/issues) with necessary information to reproduce it.
 
 # Termination
 

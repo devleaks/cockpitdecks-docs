@@ -6,7 +6,7 @@ Walking though Cockpitdecks main entities will get you familiar with Cockpitdeck
 
 ## Deck
 
-The core object of Cockpitdecks is the Deck. It can be a real, physical deck device like Stream Deck or LoupedeckLive, but it can also be the representation of a deck in a web page. In the later case, it is called a *Web Deck*. Web deck can either be a representation of an existing physical deck like Stream Deck or LoupedeckLive, and an imaginary one. Historically, Web Decks were also called *Virtual Decks*, names can be interchanged and have the same meaning.
+The core object of Cockpitdecks is the Deck. It can be a real, physical deck device like Stream Deck or LoupedeckLive, but it can also be the representation of a deck in a web page. In the later case, it is called a *Web Deck*. Web deck can either be a representation of an existing physical deck like Stream Deck or LoupedeckLive, or an imaginary one. Historically, Web Decks were also called *Virtual Decks*, names can be interchanged and have the same meaning.
 
 A Deck usually has buttons that can be pressed, encoders that can be turned. They often also have either simple led that can be turned on or off, or small iconic LCD screens where some iconic image can be displayed.
 
@@ -18,7 +18,7 @@ A Page is a collection of buttons that are displayed on a deck and ready to be u
 
 ### Layout
 
-A Layout is a group of related pages, displayed alternatively on a deck. On a Deck, a button can be used to change/load another Page of buttons.
+A Layout is a group of related pages, displayed alternatively on a deck. On a Deck, a button can be used to change/load another Page of buttons on the deck.
 
 ## Button
 
@@ -26,11 +26,13 @@ A *button* is the general term for a key, knob, rotary encoder, slider cursor, o
 
 ### Activation
 
-The activation of a button determine what it will do when pressed, turned or slid.
+The activation of a button determine what it will do when pressed, turned or slid, when it is manipulated.
+When this button is pressed, we instructifs the simulation software to lower the landing gear.
 
 ### Representation
 
-The representation of a Button determine what the button will display on the deck device. This depends on the capabilities of the button on the deck: LED, image, colored led, vibration, sound...
+The representation of a Button determine what the button will display on the deck device. This depends on the capabilities of the button on the deck: monochrome LED, image, colored led, vibration, sound... 
+When the landing gear is lowered, we turn this LED green.
 
 ## Cockpit
 
@@ -40,13 +42,17 @@ The Cockpit is a container entity, the maestro that orchestrate the symphony.
 
 Cockpitdecks proceeds by numerous autonomous pieces of program that do some very precise task independently of each other, like listening to what happens on a deck or in the simulation software, and the Cockpit is responsible to orchestrate all these pieces of program so that they work in harmony to timely display information on decks or issue commands to simulation software.
 
+## Simulator
+
+The Simulator is an entity that bridges Cockpitdecks and the flight simulation software.
+
 ## Configuration
 
-Cockpitdecks configuration is a folder (always named `deckconfig`), organized into sub-folders, where the Cockpit will find all instructions to execute, both on the simulator side and on the deck side.
+Cockpitdecks configuration is a folder (always named `deckconfig`), organized into sub-folders, where the Cockpit will find all instructions to execute, both on the simulator side and on the deck side and what to display on the decks.
 
 # Cockpitdecks « Internal » Objects
 
-Internally, Cockpitdecks uses a few objects whose function are easy to understand.
+Internally, Cockpitdecks uses a few objects with functions easy to understand.
 
 ## Variable
 
@@ -74,13 +80,13 @@ An Instruction is a named entity that designate something to do, an action to pe
 
 There are several types of instructions.
 
-Some are internal and specific to Cockpitdecks like loading a new page of button on a deck.
+Some are internal and specific to Cockpitdecks like loading a new page of button on a deck, or loading a new aircraft on all decks.
 
-Some other instructions are oriented towards the simulator software and designate an action to perform inside the simulation software.
+Some other instructions are oriented towards the simulator software and designate an action to perform inside the simulation software: change a value, or send a command to raise the landing gears.
 
 ## Event
 
-An Event is an object created each time somethings of interest to Cockpitdecks occurs. There mainly are two types of Events.
+An Event is created each time somethings of interest to Cockpitdecks occurs. There mainly are two types of Events.
 
 *Events that come from the decks*: Each time a button is pressed, an encoder is turned, a slider is slid, or a touch screen touched, a *Deck Event* gets generated by the deck and is sent to Cockpitdecks for interpretation. Cockpitdecks analyses the event and issue the necessary Instruction(s) (see above) to handle the event.
 
@@ -88,7 +94,7 @@ An Event is an object created each time somethings of interest to Cockpitdecks o
 
 ![[deck-simulator.png|600]]
 
-Please note that for the above objects, Data, Instruction, and Event, there always is a Cockpitdecks «internal» version of the object, and a simulator version of the object.
+Please note that for the above objects, Variable, Instruction, and Event, there always is a Cockpitdecks «internal» version of the object, and a simulator version of the object.
 
 # See Also
 

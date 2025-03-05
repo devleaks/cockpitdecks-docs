@@ -1,11 +1,13 @@
-
 Cockpitdecks introduced the concept of a Value.
 
 A Value defines where it gets its value from, and make its value always available through the simple abstraction.
 
 Every entity that can have a value uses this abstraction.
+
 The value of a Button,
+
 The value of a chart or sparkline,
+
 The value of an Annunciator part.
 
 It is a dynamic entity. It does not store any value. It just know where to gets its value from and gets it.
@@ -20,20 +22,17 @@ The Value entity performs necessary variable substitution, computations if there
 
 Here is the list of attributes that are inspected by a Value to determine its value.
 
-
-| Attribute                                     | Definition                                                                                                                            |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `dataref`                                     | Single Dataref, monitored if coming from X-Plane                                                                                      |
-| `formula`                                     | Reverse Polish Notation expression with reference to Cockpitdecks variables such as datarefs, internal datarefs, and internal states. |
-| `multi-datarefs` (or `datarefs`, plural form) | List of datarefs that are monitored                                                                                                   |
-| `string-dataref`(singular form)               | [[String Datarefs]]                                                                                                                   |
-| `string-datarefs`                             | List of [[String Datarefs]] fetched as string through a Cockpitdecks helper plugin.                                                   |
-| `set-dataref`                                 | Dataref where the value is written to                                                                                                 |
-| `any-attribute`                               | If an attribute is added, Cockpitdecks will look into this very particular attribute for variable substitution. See below.            |
+| Attribute         | Definition                                                                                                                            |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `dataref`         | Single Dataref, monitored if coming from X-Plane                                                                                      |
+| `formula`         | Reverse Polish Notation expression with reference to Cockpitdecks variables such as datarefs, internal datarefs, and internal states. |
+| `set-dataref`     | Dataref where the value is written to                                                                                                 |
+| `any-attribute`   | If an attribute is added, Cockpitdecks will look into this very particular attribute for variable substitution. See below.            |
 
 ## Additional Attribute
 
 Cockpitdecks will look into known additional attributes for variable substitution. Additionaly, a button designer can ask that its particular attribute be scanned as well.
+
 Here is a typical example of such variable scanning:
 
 ```yaml
@@ -67,6 +66,7 @@ any-attribute:
 ```
 
 A Value will always look into the following attributes:
+
 - Text
 - Formula
 - Annunciator parts

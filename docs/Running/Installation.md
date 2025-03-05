@@ -18,12 +18,9 @@ It is good practice to maintain the software you use to the latest, production v
 
 In particular, the X-Plane Cockpitdecks Helper plugin uses and requires the latest version of [XPPython3](https://xppython3.readthedocs.io/en/latest/index.html) plugin to work. This plugin itself requires X-Plane 12 and recent version of X-Plane SDK. Cockpitdecks Helper plugin is strictly not required to run Cockpitdecks but some features will not work without it.
 
-## Enable X-Plane UDP
+## Enable X-Plane Network
 
-> [!NOTE] X-Plane 12 and UDP
-> X-Plane 12 appears to disable UDP networking on new installations. Check Settings -> Network page, and make sure “Accept incoming connections” is enabled.
- 
-(See X-Plane UDP manual. Will provide information here later.)
+(See X-Plane manual. Will provide information here later. Default behavior is OK, there is no action necessary)
 
 # Install Cockpitdecks Application
 
@@ -50,24 +47,7 @@ Valid installable extension packages (between the `[` `]`, comma separated, no s
 | `demoext`     | Add a few Loupedeck and Stream Deck+ demo extensions. Recommended. Add a dimmer representation to control the backlight of decks. This extension can be used as a template for creating other representations. |
 | `development` | For Cockpitdecks developer only, adds testing packages and python types. Useless if you do not develop Cockpitdecks software.                                                                                  |
 
-## Install Cockpitdecks Helper Plugin
-
-> [!WARNING] Cockpitdecks X-Plane Helper Plugin
-> You can do this step later, but some functions will not work or be available inside Cockpitdecks.
-
-Cockpitdecks Helper Plugin is written in the python language. So it needs the [XPPython3](https://xppython3.readthedocs.io/) X-Plane plugin installed. XPPython3 plugin allow for execution of python code *inside* X-Plane.
-
-To install the XPPython3 Cockpitdecks Helper plugin in XPPython3, run the following command:
-
-```sh
-$ cockpitdecks-cli --install-plugin --verbose
-```
-
-This command first checks for the existence of XPPython3 plugin.
-
-Do not forget to ask XPPython3 plugin to reload its scripts if X-Plane is running.
-
-## Install Aircraft Specific `deckconfig` Folders
+## Install Aircraft  `deckconfig` Folders
 
 [Duane](https://github.com/dlicudi), a Cockpitdecks aficionado has realized several configurations for several aircrafts.
 
