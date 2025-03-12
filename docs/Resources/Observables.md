@@ -95,3 +95,25 @@ Most simulators or aircrafts provide a command to save the situation and restore
 ToLiss aircrafts simulate Airbus which have the concept of [flight phase](https://www.aviationhunt.com/airbus-a320-flight-phases/).
 
 We devised an Observable to trigger a situation save on flight phase change. This allows to restart a flight right at the flight phase change.
+
+# Complex Observables
+
+A few packages come with special, coded Observables to serve very particular purpose. In most case, triggers or value changes are impossible to map with simple formula operation and require further coding.
+
+Complex Obervables are automatically loaded on startup and are accessible through the rendez-vous internal variable.
+
+## Weather Station
+
+The Weather Station observable determine the ICAO code of the weather station that is the closest to the aircraft.
+
+The Observable receives the aircrat latitude and longitude and determine the closest weather station. The ICAO code is written in an internal variable `weather-station`.
+
+The Observable is available in the X-Plane package as it requires the aircraft location.
+
+## Daytime
+
+The Daytime obsrvable receives the simulated date, time, and position of the aircraft and determine whether it is day or night time. Day is assumed between sunrise and sunset as computed for the location and time of year. `Daytime` or `nighttime` keyword is written in an internal variable `daytime`.
+
+The internal variable can be used to declare another Observable that, for instance, changes the theme of the deck interfaces from light to day or vice-versa.
+
+The Observable is available in the X-Plane package as it requires the aircraft location and the currently simulated date and time.

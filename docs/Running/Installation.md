@@ -12,15 +12,13 @@ Therefore, Cockpitdecks will work better with the latest production release of X
 
 Same occurs with aircrafts. Aircrafts are pieces of software that are regularly updated. It is a good practice to include the X-Plane and aircraft version information as comments in the `deckconfig` files, to precise which version of X-Plane or an aircraft is required to run properly.
 
-As a practical example, X-Plane recently opened access to internal data through a new channel: [A Web REST API access](https://developer.x-plane.com/article/x-plane-web-api/). This is offered in X-Plane release 12.1.1 or newer. Immediately, Cockpitdecks has taken benefit from this new, simplified mean to access simulator values.
+As a practical example, X-Plane recently opened access to internal data through a new channel: [A Web API access](https://developer.x-plane.com/article/x-plane-web-api/). This is offered in X-Plane release 12.1.4 or newer. Immediately, Cockpitdecks has taken benefit from this new, simplified mean to access simulator values.
 
 It is good practice to maintain the software you use to the latest, production version. Cockpitdecks is no exception to this advise.
 
-In particular, the X-Plane Cockpitdecks Helper plugin uses and requires the latest version of [XPPython3](https://xppython3.readthedocs.io/en/latest/index.html) plugin to work. This plugin itself requires X-Plane 12 and recent version of X-Plane SDK. Cockpitdecks Helper plugin is strictly not required to run Cockpitdecks but some features will not work without it.
-
 ## Enable X-Plane Network
 
-(See X-Plane manual. Will provide information here later. Default behavior is OK, there is no action necessary)
+(See X-Plane manual. Will provide information here later. *Default behavior* is OK, there is no action necessary.)
 
 # Install Cockpitdecks Application
 
@@ -60,3 +58,9 @@ Cockpitdecks `deckconfig` folder must be placed in the folder of the X-Plane air
 ```
 
 Now you are ready to [[Usage|start Cockpitdecks]].
+
+# Running Cockpitdecks from a Remote Computer
+
+If you run Cockpitdecks from a remote computer you will need to install a websocket proxy server on the host where X-Plane runs. The reason is that, currently, X-Plane does not allow remote connection. The simplest solution is to setup an `nginx` web server and make it behave like [a HTTP proxy server](https://gist.github.com/devleaks/729bda6db10007b844111178694c7971).
+
+![[2computers.png]]

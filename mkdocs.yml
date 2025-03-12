@@ -59,20 +59,22 @@ nav:
   - Welcome: index.md
 
   - Cockpitdecks:
+
     - Concepts: Concepts/Introduction.md
 
     - Cockpit: Concepts/Cockpit.md
+
     - Deck: Concepts/Deck.md
     - Layout: Concepts/Layout.md
     - Page: Concepts/Page.md
     - Button: Concepts/Button.md
 
+    - Simulator: Concepts/Simulator.md
+
     - Resources:
       - Resources: Concepts/Resources.md
       - Themes: Resources/Themes.md
       - Observables: Resources/Observables.md
-
-    - Simulator: Concepts/Simulator.md
 
     - Buttons:
         - Button Index: Button/Button Index.md
@@ -146,7 +148,6 @@ nav:
   - Reference:
     - Concepts: Concepts/Introduction.md
     - Glossary: Extending/Development/Reference/Glossary.md
-    - Environment: Extending/Development/Reference/Environment.md
     - Configuration Files and Attributes: Extending/Development/Internals/Configuration Files and Attributes.md
     - Activation: Extending/Development/Reference/Activation.md
     - Representation: Extending/Development/Reference/Representation.md

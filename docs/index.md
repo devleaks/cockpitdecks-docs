@@ -16,6 +16,9 @@ Cockpitdecks also provides *Web Decks*, an emulator of the above decks in a web 
 
 Cockpitdecks can run on the same computer as X-Plane, or a remote computer, network-connected to X-Plane.
 
+> [!WARNING]
+> The latest version of Cockpitdecks (release 15 and above) **requires** the latest version of X-Plane, 12.1.4, because Cockpitdecks now exclusively relies on the new Web API (and no longer on UDP). Please make sure you update X-Plane to the latest release before installing and using Cockpitdecks.
+
 You can now proceed to the discovery of Cockpitdecks [[Introduction]], or directly jump to the [[Cockpit]] that holds all your decks. If you are impatient to try Cockpitdecks, head for [[Installation]]. If you want to learn more about Cockpitdecks and why it exists, head [[History|here]].
 
 **Post Scriptum**

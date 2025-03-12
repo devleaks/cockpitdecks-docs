@@ -56,21 +56,8 @@ Start X-Plane, load the aircraft where you created your Cockpitdecks configurati
 
 Disconnect all software that access your deck.
 
-### Create an Environment File
-
-If every runs on the same computer, you only need to supply X-Plane home directory. You can supply the folder either through a operating system environment variable `SIMULATOR_HOME`, or through the Cockpitdecks environment file. A `myenviron.yaml` file with the following content is sufficient:
-
 ```
-SIMULATOR_NAME: X-Plane
-SIMULATOR_HOME: /Applications/X-Plane 12
-```
-
-If you do not supply a SIMULATOR_HOME environment variable, Cockpitdecks will try to locate X-Plane on the host computer.
-
-### Start Cockpitdecks
-
-```
-$ cockpitdecks-cli --env myenviron.yaml
+$ cockpitdecks-cli --verbose
 ```
 
 Cockpitdecks will start immediately in demonstration mode, and connect to the simulator. Once it is connected to the simulator, it will try to collect the information about the aircraft that is currently loaded. This may take a few seconds. Once Cockpitdecks has the information about the aircraft currently being used, it will search for the deckconfig folder in the folder of the aircraft, and if found, will load the configuration it finds there.
