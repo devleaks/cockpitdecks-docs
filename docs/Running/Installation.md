@@ -8,13 +8,15 @@ It is recommended to create a dedicated environment and run Cockpitdecks within 
 
 Cockpitdecks is a modern software that takes benefit from all available possibilities. While being developed, it is constantly updated to use the latest packages and features.
 
-Therefore, Cockpitdecks will work better with the latest production release of X-Plane. It may not work properly, or some feature may not be available when using older versions of X-Plane. We do not have the engineering resources to maintain working versions of Cockpitdecks for all versions of X-Plane. While most features should still work in X-Plane 11, they were never tested, and we will not provide any support to make it work on older release.
+Therefore, Cockpitdecks will work better with the latest production release of X-Plane. It may not work properly, or some feature may not be available when using older versions of X-Plane. We do not have the engineering resources to maintain working versions of Cockpitdecks for all versions of X-Plane.
 
 Same occurs with aircrafts. Aircrafts are pieces of software that are regularly updated. It is a good practice to include the X-Plane and aircraft version information as comments in the `deckconfig` files, to precise which version of X-Plane or an aircraft is required to run properly.
 
 As a practical example, X-Plane recently opened access to internal data through a new channel: [A Web API access](https://developer.x-plane.com/article/x-plane-web-api/). This is offered in X-Plane release 12.1.4 or newer. Immediately, Cockpitdecks has taken benefit from this new, simplified mean to access simulator values.
 
 It is good practice to maintain the software you use to the latest, production version. Cockpitdecks is no exception to this advise.
+
+If you do not upgrade X-Plane to the latest release, [this older release](https://github.com/devleaks/cockpitdecks/tree/BEFORE-XP120104) may help. Please be aware that this older release will no longer be maintained. It relies on X-Plane UDP API and XPPython3 plugin to circumvent X-Plane UDP API limitations.
 
 ## Enable X-Plane Network
 

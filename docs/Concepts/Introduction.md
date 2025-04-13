@@ -27,11 +27,13 @@ A *button* is the general term for a key, knob, rotary encoder, slider cursor, o
 ### Activation
 
 The activation of a button determine what it will do when pressed, turned or slid, when it is manipulated.
+
 When this button is pressed, we instructifs the simulation software to lower the landing gear.
 
 ### Representation
 
-The representation of a Button determine what the button will display on the deck device. This depends on the capabilities of the button on the deck: monochrome LED, image, colored led, vibration, sound... 
+The representation of a Button determine what the button will display on the deck device. This depends on the capabilities of the button on the deck: monochrome LED, image, colored led, vibration, sound...
+
 When the landing gear is lowered, we turn this LED green.
 
 ## Cockpit
@@ -68,9 +70,23 @@ Simulator variable is a value coming from the simulation software. Each time it 
 
 Each variable has listeners associated with it. Each time the value of a Variable changes, the listeners are notified of the updated value and can perform some tasks on their own to take into account the new value.
 
+### String With Variables
+
+A StringWithVariable is a character string Variable that contains variables to be substituted.
+
+```
+text: Current pressure is ${sim/weather/region/pressure} hPa.
+```
+
+`sim/weather/region/pressure` is a (simulator) variable, it’s value will be fetch from the simulator and substituted in the string. `${…}` is a marker to frame variables to be substituted.
+
+The value of a StringWithVariable is the string with all values substituted:
+
+Current pressure is 1013 hPa.
+
 ### Formula
 
-A Formula is an expression that uses Variables to compute a new value.
+A Formula is an expression that uses Variables to compute a new value. It is a string variable, but after substitution of the values, it is evaluated as a RPN expression.
 
 A Formula is a Variable, and its value result from the evaluation of its expression.
 

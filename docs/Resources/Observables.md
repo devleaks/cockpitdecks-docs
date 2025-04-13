@@ -2,13 +2,19 @@ Observables are data that is constantly monitored. When the data matches a crite
 
 For people familiar with the concept, it can be considered a *if-this-then-that* instruction. For example: If the weather data from the simulator indicates rain is falling on the aircraft, we can set the windshield wipers automatically.
 
-Observables are defined at three levels:
+There are two types of observables.
+
+**Permanent Observables** are coded observable serving a very specific purpose. The purpose often includes complex data transformation before it can be used by Cockpitdecks. Permanent Observables are derived from the Observable class. When identified, they all are instantiated and started. Permanent observables are part of extensions.
+
+Example of a Permanent Observable convert (latitude, longitude) into the closest weather station ICAO code. This cannot be done by simple calculations in a Formula.
+
+**Configured Observables**, or simply Observables, are entities that monitor one or more variables and perform instructions when observable conditions are met. Configured Observables are defined at three levels:
 
 1. the cockpit level, available for the entire application, mostly all the time,
 2. the simulator level, available to monitor simulator-specific variables,
 3. the aircraft level, available to monitor aircraft-specific variables.
 
-Observables are defined in `resources` folder of the entity in a `observables.yaml` file. All observables are loaded at once in an Observables entity which contains them all and report their use .
+Configured Observables are defined in `resources` folder of the entity in a `observables.yaml` file. All observables are loaded at once in an Observables entity which contains them all and report their use .
 
 # Definition of Observables
 
@@ -42,7 +48,7 @@ What triggers the observable.
 
 `type: trigger`
 
-The list of action is carried over when the value of the observable is True (or non zero).
+The list of action is carried over when the *value* of the observable is True (or non zero).
 
 #### Value Changed
 
@@ -50,13 +56,19 @@ The list of action is carried over when the value of the observable is True (or 
 
 Another method to trigger the flow of action(s) is to select the *value changed* mode. Actions get executed as the value of the dataref or of the computation has changed.
 
-#### Event
+#### Activity
 
-`type: event`
+`type: activity`
 
 The observable will look for the `event` or `events` attributes and register interest in the events listed under these attributes.
 
 Each time the simulator software will report those events, the actions will be carried over.
+
+#### Repeat
+
+`type: repeat`
+
+The observable will automatically be triggered every `replay` seconds after a `delay` seconds at the start
 
 ### Actions
 
@@ -117,3 +129,9 @@ The Daytime obsrvable receives the simulated date, time, and position of the air
 The internal variable can be used to declare another Observable that, for instance, changes the theme of the deck interfaces from light to day or vice-versa.
 
 The Observable is available in the X-Plane package as it requires the aircraft location and the currently simulated date and time.
+
+## Command Activation
+
+The newer X-Plane Web API allows for reporting when a command is activated. It is possible to capture when some action was executed by the user and, through observable, start another set of commands.
+
+For exemple, when a warning alarm is triggered (an event that can be captured through dataref value change), when the pilot or co-pilot presses the warning button to acknowledge it, we can capture the press of the button and start new action like performing a situation save.

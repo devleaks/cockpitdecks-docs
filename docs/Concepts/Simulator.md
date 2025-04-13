@@ -12,6 +12,14 @@ The simulation software presents to Cockpitdecks all its reachable « values �
 
 For example, Laminar X-Plane extensively uses « *datarefs* », while Microsoft Flight Simulator uses « *simvars* ». They both are values coming from the simulator, and they both can be used in Cockpitdecks.
 
+# Simulator Activity
+
+A Simulator activity is the occurence of an event reported by the simulator software to an external entity, Cockpitdecks in our case.
+
+For exemple, X-Plane can report when a command is executed. When a given command is executed (activated) it reports when the command started (active=True) and ended (active=False). Microsoft Flight Simulator can similarly send notifications when a button is pressed on the cockpit.
+
+These events that occur in the simulation software and a "broadcast" on demand to external entities (external to the simulation software) are called *Activities* in Cockpitdecks. (The word was choosedn to distinguish from synonyms like events, action, trigger, etc.)
+
 # Instructions
 
 Cockpitdecks offers the Instruction, an action that must be carried out in the simulator software, provided that the simulation software allows for « external action » to be accepted.
