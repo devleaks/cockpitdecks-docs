@@ -36,9 +36,12 @@ nav:
 
   - Development:
       - Reference/Extending/Extending Cockpitdecks.md
+      - Extending:
+        - "Reference/Extending/Development/*.md"
       - Entities:
         - Reference/Simulator.md
         - Reference/Cockpit.md
+        - Reference/Extending/Development/Internals/Events.md
       - Internals:
         - "Reference/Extending/Development/Internals/*.md"
 
