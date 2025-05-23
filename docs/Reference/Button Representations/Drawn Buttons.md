@@ -112,7 +112,7 @@ If a `set-dataref` is present, the aircraft representation increases the value o
 
 # Weather
 
-(Please refer to the dedicated [[Weather|Weather Representation]] page.)
+(Please refer to the dedicated [[Reference/Button Representations/Weather|Weather Representation]] page.)
 
 ## METAR
 

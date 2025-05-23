@@ -27,7 +27,7 @@ Cockpitdecks is split into a core package, called `cockpitdecks`, and a few addi
 
 # Special Purpose Packages
 
-`cockpitdecks_tl`: Extension for ToLiss Airbus aircrafts simulated in the X-Plane flight simulator.
+`cockpitdecks_tl`: Extension for [ToLiss Airbus](https://toliss.com) aircrafts simulated in the X-Plane flight simulator.
 
 # Installation of Packages
 

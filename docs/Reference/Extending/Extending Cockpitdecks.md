@@ -4,7 +4,7 @@ Cockpitdecks can be extended in several directions.
 
 The most common extension will be [[Adding Representations|adding custom Representations]].
 
-A Cockpitdecks developer may add a new type of feedback, very much like the [[Weather]] buttons. Those buttons do not exist in aircrafts, they were created to artificially enhance the simulation experience and ease other parts of the simulation. Similarly, there are endless opportunities to create other types of buttons and materialize them on a deck though Cockpitdecks. In Cockpitdecks, this is performed by mainly creating new *Representations*.
+A Cockpitdecks developer may add a new type of feedback, very much like the [[Reference/Button Representations/Weather]] buttons. Those buttons do not exist in aircrafts, they were created to artificially enhance the simulation experience and ease other parts of the simulation. Similarly, there are endless opportunities to create other types of buttons and materialize them on a deck though Cockpitdecks. In Cockpitdecks, this is performed by mainly creating new *Representations*.
 
 # New Deck Model, New Activations
 
