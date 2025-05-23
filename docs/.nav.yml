@@ -1,0 +1,50 @@
+nav:
+
+  - Welcome: index.md
+
+  - Getting started: Design/Deck Design.md
+
+  - Installation/Installation.md
+
+  - Extensions:
+      - Extensions/About Extensions.md
+      - Simulators:
+        - Extensions/Simulators/X-Plane/Laminar Research X-Plane.md
+      - Decks:
+        - Extensions/Decks/Elgato.md
+        - Extensions/Decks/Loupedeck.md
+        - Berhinger X-Touch Mini: Extensions/Decks/Berhinger.md
+      - Others:
+        - Extensions/Others/Weather.md
+        - Extensions/Others/ToLiss Airbus Aircrafts.md
+
+  - Reference:
+      - Buttons:
+        - Reference/Button.md
+        - Value: Reference/Button Value.md
+        - Attribute Default Values: Reference/Button Attribute Default Values.md
+        - Reference/Activations.md
+        - Reference/Representations.md
+      - Reference/Page.md
+      - Reference/Layout.md
+      - Reference/Resources.md
+      - Reference/Deck.md
+      - Reference/Observables.md
+      - Reference/deckconfig Folder.md
+      - Reference/Activations.md
+      - Reference/Representations.md
+
+  - Development:
+      - Reference/Extending/Extending Cockpitdecks.md
+      - Extending:
+        - "Reference/Extending/Development/*.md"
+      - Entities:
+        - Reference/Simulator.md
+        - Reference/Cockpit.md
+        - Reference/Extending/Development/Internals/Events.md
+      - Internals:
+        - "Reference/Extending/Development/Internals/*.md"
+
+  - About:
+     - History of Cockpitdecks: About/History.md
+     - Glossary of Cockpitdecks Terms: Reference/Glossary.md

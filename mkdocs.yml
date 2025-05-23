@@ -54,112 +54,10 @@ theme:
 #
 # T A B L E   O F  C O N T E N T
 #
-nav:
-
-  - Welcome: index.md
-
-  - Cockpitdecks:
-
-    - Concepts: Concepts/Introduction.md
-
-    - Cockpit: Concepts/Cockpit.md
-
-    - Deck: Concepts/Deck.md
-    - Layout: Concepts/Layout.md
-    - Page: Concepts/Page.md
-    - Button: Concepts/Button.md
-
-    - Simulator: Concepts/Simulator.md
-
-    - Resources:
-      - Resources: Concepts/Resources.md
-      - Themes: Resources/Themes.md
-      - Observables: Resources/Observables.md
-
-    - Buttons:
-        - Button Index: Button/Button Index.md
-        - Button Attributes: Button/Button Attribute Default Values.md
-        - Button Value: Button/Button Value.md
-        - Button Activation: Button/Button Activation.md
-        - Button Representation:
-            - Button Representation: Button/Button Representation.md
-            - Basic Buttons: Button/Button Representations/Basic.md
-            - Drawn Buttons: Button/Button Representations/Drawn Buttons.md
-            - Annunciators: Button/Button Representations/Annunciator.md
-            - Switches: Button/Button Representations/Drawn Buttons – Switches.md
-            - Data Buttons Charts, Indicators, Gauges: Button/Button Representations/Drawn Buttons – Charts.md
-            - Advanced Representations:
-                - Mosaic (Large LCD Touchscreen): Button/Button Representations/Multi-Buttons and Mosaic.md
-                - Deck Specific Representations – Stream Deck: Button/Button Representations/Deck Specific – Stream Deck.md
-                - Deck Specific Representations – Loupedeck: Button/Button Representations/Deck Specific – Loupedeck.md
-                - Deck Specific Representations – X-Touch Mini: Button/Button Representations/Deck Specific – X-Touch Mini.md
-                - Aircraft Specific Representations – Toliss Airbus: Button/Button Representations/Toliss Specific Representations.md
-                - Weather Representations: Button/Button Representations/Weather.md
-                - Animated Buttons: Button/Button Representations/Animations.md
-                - « Hardware » Representations: Extending/Development/Internals/Hardware Representation.md
-        - Data Value Change: Button/Set Dataref.md
-
-  - Running:
-    - Installation: Running/Installation.md
-    - Usage: Running/Usage.md
-    - Examples:
-      - Extending/Examples.md
-
-  - Tutorials:
-    - Adding a Page of Buttons to a Deck: Running/Adding a Page of Buttons to a Deck.md
-    - Adding a Web Deck: Extending/Adding a Web Deck.md
-
-  - Extending:
-    - Adding web decks: Extending/Web Decks.md
-    - Adding new physical deck models: Extending/Adding New Deck Models.md
-
-    - Developments:
-      - Extending Cockpitdecks: Extending/Extending Cockpitdecks.md
-      - (Python) Packaging: Extending/Development/Packaging.md
-      - Adding activations: Extending/Development/Adding Activations.md
-      - Adding representations: Extending/Development/Adding Representations.md
-      - Adding a simulator: Extending/Development/Adding a Simulator.md
-
-      - Activation for developers: Extending/Development/Button Activations for Developers.md
-      - Web Deck Designer Tools: Extending/Development/Internals/Design Helper.md
-      - Workflow for Web Deck Design: Extending/Development/Internals/Workflow for Web Deck Design.md
-
-#      - Application Programming Interfaces: Extending/Development/API/index.md
-
-      - Internals:
-        - Cockpitdecks Internals: Extending/Development/Internals/Cockpitdecks Internals.md
-        - Deck Internals: Extending/Development/Internals/Deck Internals.md
-        - Events: Extending/Development/Internals/Events.md
-        - Instructions: Extending/Development/Internals/Instruction.md
-        - Value: Extending/Development/Internals/Value.md
-        - Simulator Data Collection: Extending/Development/Internals/Dataref Scanning.md
-        - Cockpitdecks Internal Data: Extending/Development/Internals/Internal Datarefs.md
-        - Deck Event Processing: Extending/Development/Internals/Deck Event Processing.md
-        - Web Decks Internals: Extending/Development/Internals/Web Decks Internals.md
-
-        - Replay: Extending/Development/Internals/Replay.md
-
-        - X-Plane Simulator:
-          - X-Plane: Extending/Development/Reference/X-Plane/X-Plane.md
-          - X-Plane Interaction: Extending/Development/Reference/X-Plane/X-Plane Interaction.md
-
-      - To Do: Extending/Development/Internals/To do.md
-
-  - Reference:
-    - Concepts: Concepts/Introduction.md
-    - Glossary: Extending/Development/Reference/Glossary.md
-    - Configuration Files and Attributes: Extending/Development/Internals/Configuration Files and Attributes.md
-    - Activation: Extending/Development/Reference/Activation.md
-    - Representation: Extending/Development/Reference/Representation.md
-    - Switch Drawing Attributes: Extending/Development/Reference/Switch Drawing Attributes.md
-    - Deck Type: Extending/Development/Reference/Deck Type.md
-    - Simulator: Concepts/Simulator.md
-
-  - History: History.md
+# nav: now moved into .nav.yml file for awesome-nav plug in
 #
-# ===============================================
-
-
+#
+#
 # ###############################################
 #
 # Plugins
@@ -167,6 +65,7 @@ nav:
 plugins:
 #  - markdown-exec # this adds ```tree representation support
   - search
+  - awesome-nav
   - roamlinks
   - callouts
   - charts
