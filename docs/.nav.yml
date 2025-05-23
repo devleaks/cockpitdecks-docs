@@ -9,7 +9,9 @@ nav:
   - Extensions:
       - Extensions/About Extensions.md
       - Simulators:
-        - Extensions/Simulators/X-Plane/Laminar Research X-Plane.md
+        - Laminar Research X-Plane:
+          - Extensions/Simulators/X-Plane/Laminar Research X-Plane.md
+          - Extensions/Simulators/X-Plane/X-Plane Observables.md
       - Decks:
         - Extensions/Decks/Elgato.md
         - Extensions/Decks/Loupedeck.md
