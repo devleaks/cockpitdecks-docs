@@ -121,3 +121,25 @@ Usually, the resources folder contains the following sub-folders:
 Next to the the above *resources* folder, there will be one folder per Layout for a deck.
 
 [[Layout|Layout folders]] are explained later.
+
+# About Configuration Files: Yaml
+
+All configuration files are Yaml formatted. Yaml is simple, structured, and readable.
+
+Yaml is loaded and interpreted by the python Yaml parser. Users must be aware that some *keywords* are sometimes interpreted by some parser. To prevent this interpretation, keywords should be placed between quotes.
+
+For example:
+
+`variable: on`
+
+will be interpreted as boolean value *true*.
+
+`variable: "on"`
+
+will be interpreted as string `on`.
+
+The following keywords have been noticeably discovered:
+
+on, off, true, false, yes, no (all mapped to Boolean values True or False).
+
+Cockpitdecks uses a Yaml 1.2 compliant parser ([ruamel.yaml](https://sourceforge.net/projects/ruamel-yaml/)) that refuse those interpretation as describe in the Yaml 1.2 specifications.

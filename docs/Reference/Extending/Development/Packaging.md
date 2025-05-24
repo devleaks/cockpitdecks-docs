@@ -41,3 +41,18 @@ Each extension lives its own evolution and maintenance part. Requirements are pr
 # Note about Deck Extensions
 
 Deck-specific extensions contain both physical deck and virtual web decks. The reason is that some virtual web deck extensions extensively rely on deck device drivers.
+
+# Package and Extension Discovery
+
+There is no black magic in automatic discovery. Packages and extensions are discovered
+
+- either because the extension inherit from a monitored class (example: Observables, Simulator, Deck, Activation, Representation),
+- or because configuration files are found at expected rendez-vous location (example `resources/decks`).
+
+## Class Extension
+
+Classes are found because they are loaded and inherit from a formal base class.
+
+## Configuration Extension
+
+New resources are found because they are located in required folder structures. Nous resources are loaded and either added or merged with existing ones.

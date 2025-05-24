@@ -215,9 +215,9 @@ As seen above, the Deck Type also contains a few additional attributes necessary
 
 # Correspondance
 
-When creating an Activation, the activation will specify which **action** it requires. For example, an activation that requires an encoder dial to work will require the `encoder` or `encoder-push` action on the button.
+When creating an [[Adding Activations|Activation]], the activation will specify which **action** it requires. For example, an activation that requires an encoder dial to work will require the `encoder` or `encoder-push` action on the button.
 
-Similarly, a Representation will specify which **feedback** it requires. A representation that displays an image (icon, drawing, animation...) will require the `image` feedback in the button definition.
+Similarly, a [[Adding Representations|Representation]] will specify which **feedback** it requires. A representation that displays an image (icon, drawing, animation...) will require the `image` feedback in the button definition.
 
 # See Also
 
