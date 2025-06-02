@@ -2,6 +2,8 @@ In the definition of the button, the `type` attribute determine what the button 
 
 For a given button on a deck, the action that the button will be able to carry over is limited to a set of valid types. A push button is not capable of rotations of an encoder.
 
+On the other hand, a button that can be pressed can offer different types of usage: simple press, long, continuous press, emulation of rotation switch… all this can be activated from a button with a simple press capability.
+
 When interaction occurs on a button on a deck, Cockpitdecks creates a typed Event, and passes it for activation.
 
 Each activation is designed to handle one or more [[Events]] types. For example a EncoderPush activation is capable of handling both PressEvent and EncoderEvent. What is does with those event is left to the activation.

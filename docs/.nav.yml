@@ -46,6 +46,8 @@ nav:
         - Reference/Extending/Development/Internals/Events.md
       - Internals:
         - "Reference/Extending/Development/Internals/*.md"
+      - API:
+        - "Reference/Extending/Development/API/*.md"
 
   - About:
      - History of Cockpitdecks: About/History.md

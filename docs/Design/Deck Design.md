@@ -12,7 +12,9 @@ As an alternative to desktop (physical) decks, Cockpitdecks also offer (virtual)
 
 # Configuration File Organisation
 
-The overall structure of configuration files is as follow:
+All configuration files are grouped into a single folder always named `deckconfig`. The content of the folder must conform to some conventions.
+
+The overall structure of configuration files and folders into the `deckconfig` folder is as follow:
 
 ``` hl_lines="8"
 XPlaneAircraftFolder
@@ -47,11 +49,11 @@ Please refer to the [[Reference/Resources|reference documentation]] for a formal
 
 ## Layout Folders
 
-Layout folders are used to group all things related to one precise deck. In the main configuration file that lists all deck devices that will be used, each deck device will have a mandatory layout folder assigned to it. That is where the deck will find its own particular configuration files and be able to determine what it has to do and display when used.
+Layout folders are used to group all things related to one precise deck. In the main configuration file that lists all deck devices that will be used, each deck device must have a layout folder assigned to it. That is where the deck will find its own particular configuration files and be able to determine what it has to do and display when used.
 
 ### Page
 
-The layout folder contains at least one file, called a Page. The default name of the file that contains the first Page is `index.yaml`.
+The layout folder contains files, called Pages. The name of the file that contains the first Page is `index.yaml`.
 
 It is inside this file that the deck will discover what is has to do and display.
 
