@@ -81,7 +81,7 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: ["/Users/pierre/Developer/fs/cockpitdecks"]
+          paths: ["cockpitdecks"]
           options:
             docstring_style: google
             docstring_options:
