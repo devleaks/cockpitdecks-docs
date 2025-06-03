@@ -75,19 +75,15 @@ plugins:
       base_path: docs
       encoding: utf-8
       file_extension: .mm.md
-  - git-revision-date-localized:
-      type: timeago
-      fallback_to_build_date: true
   - mkdocstrings:
       handlers:
         python:
           paths: ["cockpitdecks"]
           options:
-            docstring_style: google
+            # docstring_style: google
             docstring_options:
               ignore_init_summary: true
             docstring_section_style: list
-            # extensions: [scripts/griffe_extensions.py]
             filters: public
             heading_level: 1
             inherited_members: true
@@ -112,6 +108,7 @@ plugins:
   - git-revision-date-localized:
       enable_creation_date: true
       type: timeago
+      fallback_to_build_date: true
       default_handler: python
 
 
