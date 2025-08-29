@@ -1,0 +1,33 @@
+/* Devleaks personal preference for heading and emphasis
+ * (matches some Obsidian Dracula Theme at https://draculatheme.com/contribute)
+ *
+ * Last updated: 25-MAR-2024
+ * 
+ * I apologize for illegal use of one of the nicest font I ever encountered.
+ * You can find it here: https://abcdinamo.com/typefaces/arizona.
+ * Requested the demo file and use it here.
+ * I simply cannot afford it.
+ * If you think I really , please send a kind mail and I'll remove it right away.
+ * I'm very respectful of copyright, own a valid licence of all software I use,
+ * I even bought fonts in the past, but I cannot afford the 1750€ to get the full set.
+ *
+ */
+@font-face {
+  font-family: "ABCArizona";
+  src: url("../fonts/ABCArizonaPlusVariable-Trial.woff2") format('woff2-variations');
+}
+:root {
+    --md-text-font: "ABCArizona";
+    --md-text-font-family: "ABCArizona";
+    --font-variation-weight: 400;
+    --font-variation-italic: 0;
+    --font-variation-serif: 0.2;
+}
+aside, body, input {
+    font-family: var(--md-text-font-family);
+    font-variation-settings: "wght" var(--font-variation-weight),"ital" var(--font-variation-italic),"SRFF" var(--font-variation-serif);
+}
+@font-face {
+  font-family: "Fira Mono";
+  src: url("../fonts/FiraMono-Regular.woff2") format('woff2');
+}

@@ -1,0 +1,3700 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for Cockpitdecks X-Plane Application and Plugin">
+      
+      
+      
+        <link rel="canonical" href="https://devleaks.github.io/cockpitdecks-docs/Reference/Extending/Development/Internals/Deck%20Internals/">
+      
+      
+        <link rel="prev" href="../Deck%20Event%20Processing/">
+      
+      
+        <link rel="next" href="../Design%20Helper/">
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Deck Internals - Cockpitdecks Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+
+      
+    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+<script src="../../../../../assets/js/material-extra-theme.js" type="text/javascript"></script>
+<script src="../../../../../assets/js/material-extra-3rdparty.js" type="text/javascript"></script>
+
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/extra.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/fonts.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/dracula-colors.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/css/image-align.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="dracula" data-md-color-primary="deep-purple" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-deck-user-interactions-enter-cockpitdecks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+
+<header class="md-header" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="header.title"
+  >
+    <a
+      href="https://devleaks.github.io/cockpitdecks-docs/"
+      title="Cockpitdecks Documentation"
+      class="md-header__button md-logo"
+      aria-label="Cockpitdecks Documentation"
+    >
+      
+  <img src="../../../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cockpitdecks Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deck Internals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <!--div class="md-header__options">
+      <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon">
+          <a
+            href="javascript:toggleScheme();"
+            title="Light mode"
+            class="light-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+          </a>
+          <a
+            href="javascript:toggleScheme();"
+            title="Dark mode"
+            class="dark-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+          </a>
+          <a
+            href="javascript:toggleScheme();"
+            title="System preference"
+            class="system-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07zm-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13zm-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87zM19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35zm4.33-2.7 1.15-2.77 2.2 2.54zm1.15-4.96-1.14-2.78 3.34.24zM9.63 18.93l2.77 1.15-2.53 2.19z"/></svg>
+          </a>
+           <a
+            href="javascript:toggleScheme();"
+            title="Unknown scheme"
+            class="unknown-mode"
+          >
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg>
+          </a>
+      </div>
+    </div -->
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/devleaks/cockpitdecks" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../Design/Deck%20Design/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../Installation/Installation/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../Design/Demonstration%20Web%20Deck/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Usage
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../Extensions/About%20Extensions/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Extensions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Button/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../Extending%20Cockpitdecks/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../About/History/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Cockpitdecks Documentation" class="md-nav__button md-logo" aria-label="Cockpitdecks Documentation" data-md-component="logo">
+      
+  <img src="../../../../../assets/images/favicon.png" alt="logo">
+
+    </a>
+    Cockpitdecks Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/devleaks/cockpitdecks" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Design/Deck%20Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Installation/Installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Usage
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Design/Demonstration%20Web%20Deck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Demonstration web deck
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Design/Deck%20Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Design/Adding%20a%20Page%20of%20Buttons%20to%20a%20Deck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Defining buttons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Design/Web%20Decks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web decks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Extensions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Extensions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Extensions/About%20Extensions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About Extensions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Simulators
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Simulators
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_1" id="__nav_5_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Laminar Research X-Plane
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Laminar Research X-Plane
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Extensions/Simulators/X-Plane/Laminar%20Research%20X-Plane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Laminar Research X Plane
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Extensions/Simulators/X-Plane/X-Plane%20Observables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Daytime
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Decks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Decks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Extensions/Decks/Elgato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Elgato
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Extensions/Decks/Loupedeck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Loupedeck
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Extensions/Decks/Berhinger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Berhinger X-Touch Mini
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Extensions/Others/Weather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Weather
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Extensions/Others/ToLiss%20Airbus%20Aircrafts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ToLiss Airbus Aircrafts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Buttons
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            Buttons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Button/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Button
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Button%20Value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Button%20Attribute%20Default%20Values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Attribute Default Values
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Activations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Activations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Representations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Representations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Layout
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Deck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Observables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Observables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../deckconfig%20Folder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    The deckconfig Folder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Activations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Activations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Representations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Representations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Extending%20Cockpitdecks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending Cockpitdecks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Creating your extensions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Creating your extensions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Activation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Activation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Activations%20for%20Developers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Activations for Developers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Adding%20Activations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adding Activations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Adding%20a%20Simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adding a Simulator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Adding%20Instruction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adding Instruction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Adding%20New%20Deck%20Models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adding New Deck Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Adding%20Representations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core Button
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Hardware%20Representation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hardware Representation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Instruction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instruction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Internal%20Datarefs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Internal Datarefs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Packaging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Packaging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Rendez-Vous%20Variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rendez Vous Variables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Representation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Representation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Variable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variable
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%C2%ABHardware%C2%BB%20Representation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    «Hardware» Representation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Core Entities
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Core Entities
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Cockpit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cockpit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Events
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Internals
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Internals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../About%20Internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About Internals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Activation%20Mechanism/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Activation Mechanism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cockpitdecks%20as%20a%20Framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cockpitdecks as a Framework
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cockpitdecks%20Internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cockpitdecks Internals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Configuration%20Files%20and%20Attributes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Files and Attributes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dataref%20Scanning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dataref Scanning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Deck%20Event%20Processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck Event Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck Internals
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Design%20Helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Design Helper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Event%20Handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck Events
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../How%20Cockpitdecks%20Works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start-Up and Initialisation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rendering%20Mechanism/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rendering Mechanism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Replay/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Replay
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Set%20Dataref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Set Dataref
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Text%20Strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Text Strings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Value
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Variable%20and%20Value%20Changes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variable and Value Changes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Weather%20Representation%20Internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Weather Representation Internals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Web%20Decks%20Internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Decks Internals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Workflow%20for%20Web%20Deck%20Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workflow for Web Deck Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../API/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Python API for core entities
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            Python API for core entities
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/activation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Activation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/deck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deck
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/instruction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Instruction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/representation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Representation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API/simulator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../About/History/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    History of Cockpitdecks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary of Cockpitdecks Terms
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+
+  
+  
+
+
+<p>Deck Internals explains how Cockpitdecks discovers about miscellaneous deck hardware capabilities and how user interactions on a physical deck device enter Cockpitdecks.</p>
+<h1 id="how-deck-user-interactions-enter-cockpitdecks">How Deck User Interactions Enter Cockpitdecks<a class="headerlink" href="#how-deck-user-interactions-enter-cockpitdecks" title="Permanent link"></a></h1>
+<p>When a user want to use a deck with Cockpitdecks, it is necessary to have a python package available to interact with it. This python package is not provided by Cockpitdecks but by other developers who bridged the physical deck hardware with the python language.</p>
+<p>By design and coïncidence, all three deck brands currently used by Cockpitdecks (Elgato, Loupedeck, and Berhinger) proceed with a similar mechanism: The python package that interfaces the physical deck to the python language request to supply a callback function. That function is called each time an <em>interaction</em> occurs on the physical deck device.</p>
+<p>When Cockpitdecks is started, its scans for available devices, checks whether the interfacing software package is available, and if it is, installs its callback function into the python package for that deck.</p>
+<p>From that moment on, each time something occurs on the physical deck device, Cockpitdecks' callback function gets called. In that callback function, Cockpitdecks tries to spend a minimum time. From the data it receives from the interfacing python package, it creates an <a href="../Events/">Event</a> with all necessary data and enqueues it in Cockpitdecks for later processing. The Event the callback function creates is aptly called a Deck Event.</p>
+<p>The Deck Event contains information about the deck, of course, but also the precise button, knob, encoder, slider, screen… that was manipulated and the type of interaction that occurred (pushed, turned, swiped…) All that information is in the Deck Event and is sent to Cockpitdecks.</p>
+<p>That's how physical deck interaction enters Cockpitdecks.</p>
+<p>Cockpitdecks processes events that enter its queue. Cockpitdecks instruct the event to <em>run</em>. That's how and when actions are actually performed, like sending a command to the simulator or changing the value of a dataref.</p>
+<h1 id="deck-type">Deck Type<a class="headerlink" href="#deck-type" title="Permanent link"></a></h1>
+<p>Cockpitdecks discovers about deck capabilities through a Deck Type structure.</p>
+<p>A deck is presented to Cockpitdecks through a deck definition file called a Deck Type. The deck definition file describes the deck capabilities:</p>
+<ul>
+<li>How many buttons and how they can be manipulated,</li>
+<li>How many dials, if they can be turned, or pushed</li>
+<li>Feedback LCD screens for icons</li>
+<li>Feedback LED, optionally colored</li>
+<li>Ability to emit vibration or sound</li>
+<li>etc.</li>
+</ul>
+<h2 id="deck-definition">Deck Definition<a class="headerlink" href="#deck-definition" title="Permanent link"></a></h2>
+<p>Here is for example, a deck configuration file for a Loupedeck LoupedeckLive device.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># This is the description of a deck's capabilities for a Loupedeck LoupedeckLive device</span>
+<span class="c1">#</span>
+<span class="nn">---</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoupedeckLive</span>
+<span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loupedeck</span>
+<span class="nt">buttons</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
+<span class="w">    </span><span class="nt">feedback</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">image</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">90</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">90</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">repeat</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">left</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">swipe</span>
+<span class="w">    </span><span class="nt">feedback</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">image</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">60</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">270</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">right</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">swipe</span>
+<span class="w">    </span><span class="nt">feedback</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">image</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">60</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">270</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">420</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">e</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">encoder</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">push</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">feedback</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">    </span><span class="nt">repeat</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">b</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push</span>
+<span class="w">    </span><span class="nt">feedback</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">colored-led</span>
+<span class="w">    </span><span class="nt">repeat</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">buzzer</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">    </span><span class="nt">feedback</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vibrate</span>
+</code></pre></div>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link"></a></h2>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>Name used inside Cockpitdecks to identifying the deck model.</td>
+</tr>
+<tr>
+<td>driver</td>
+<td>Keyword identifying the deck software driver class. (See main drivers class above.)</td>
+</tr>
+<tr>
+<td>background</td>
+<td>The <code>background</code> attribute is an optional attribute only used by web decks. It specifies a background color and/or image to use for web deck representation. See explanation and exemple below.</td>
+</tr>
+<tr>
+<td>buttons</td>
+<td>The <code>Buttons</code> contains a list of <em>Deck Button Type Block</em> descriptions.<br/><br/>This attribute is named Buttons, with Button having the same meaning as in Cockpitdecks. A Deck Type Button is a generic term for all possible means of interaction on the deck:<br/><br/>1. Keys to press,<br/>2. Encoders to turn,<br/>3. Touchscreens to tap or swipe<br/>4. Cursors to slide<br/><br/>A list of button types, each ButtonType leading to one or more individual buttons identified by their index, built from the <code>prefix</code>, <code>repeat</code>, and <code>name</code> attribute. See below.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deck-type-button-block">Deck Type Button Block<a class="headerlink" href="#deck-type-button-block" title="Permanent link"></a></h3>
+<p>A Deck Type Button Block defines either a single button, or a group of identical buttons. For example, if a deck has a special, unique, «Escape» button, it can be defined alone in a Deck Type Button Block. Similarly, if a deck consist of a grid of regularly spaced 6 by 4 keys that are all the same, they can also be defined in a single Deck Type Button Block.</p>
+<h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Defintion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>Name of the button type.<br/><br/>The name of the button type is<br/><br/>- either the final name of the button, like <code>touchscreen</code>, when there is a single button with that name on the deck,<br/>- or an <em>integer value</em> that will be used to build the button names, in the case the block defines a sets of identical buttons.</td>
+</tr>
+<tr>
+<td>actions</td>
+<td>Interaction with the button. Interaction can be:<br/><br/>- <code>none</code>: There is no interaction with the button. It is only used for display purpose. (<code>none</code> interaction can be omitted.)<br/>- <code>press</code>: Simple press button that only reports when it is pressed (one event)<br/>- <code>push</code>: Press button that reports 2 events, when it is pushed, and when it is released. This allow for "long press" events.<br/>- <code>swipe</code>: A surface swipe event, with a starting touch and a raise events.<br/>- <code>encoder</code>: A rotating encoder, that can turn both clockwise and counter-clockwise<br/>- <code>cursor</code>: A linear cursor (straight or circular) delivering values in a finite range.<br/><br/>Action can ba a single interaction or an array of interactions like <code>[encoder, push]</code> if a button combines both ways of interacting with it.</td>
+</tr>
+<tr>
+<td>feedbacks</td>
+<td>Feedback ability of the button. Feedback can be:<br/><br/>- <code>none</code>: No feedback on device, or direct feedback provided by some marks on the deck device. (<code>none</code> feedback can be omitted.)<br/>- <code>image</code>: Small LCD iconic image.<br/>- <code>led</code>: Simple On/Off LED light.<br/>- <code>colored-led</code>: A single LED that can be colored.<br/>- <code>multi-leds</code>: Several, single color, LED on a ramp.<br/>- <code>encoder-leds</code>: Special encoder led ramp for X-Touch Mini (4 modes)<br/>- <code>vibrate</code>: emit a buzzer sound.</td>
+</tr>
+<tr>
+<td>repeat</td>
+<td>In case of a set if identical buttons, <code>repeat</code> if the number of time the same button is replicated along width (x) and height (y) axis.<br/><br/>If only one value is supplied, it is supposed to be <code>[value, 1]</code> array. For vertical layout, specify <code>[1, value]</code> instead.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="examples-of-button-names">Examples of button names<a class="headerlink" href="#examples-of-button-names" title="Permanent link"></a></h5>
+<p>In the case of a single button, the name of the button will be <code>touchscreen</code> and that name needs to be unique for the deck type.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">touchscreen</span>
+</code></pre></div>
+<p>In the case of a set of identical buttons, the name of the button will be built from other attributes:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k</span>
+<span class="nt">repeat</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>Names of buttons will be: <code>k5</code>, <code>k6</code>, <code>k7</code>, … <code>k16</code>.</p>
+<h5 id="feedback-trick">Feedback Trick<a class="headerlink" href="#feedback-trick" title="Permanent link"></a></h5>
+<div class="admonition note">
+<p class="admonition-title">Trick</p>
+<p>If a deck has a vibrate capability, it is advisable to declare it as a separate button of interaction, and use that button like any other. Vibrate is a feedback mechanism.</p>
+</div>
+<h3 id="deck-type-button-block-additional-attributes-for-web-decks">Deck Type Button Block: Additional Attributes for Web Decks<a class="headerlink" href="#deck-type-button-block-additional-attributes-for-web-decks" title="Permanent link"></a></h3>
+<p>The above Deck Type Button Block attributes are necessary for all decks, both physical and web decks. Web Decks also contain an additional series of attributes that drive the drawing of the deck in a web navigator window.</p>
+<div class="admonition note">
+<p class="admonition-title">Web Deck Drawings</p>
+<p>For simplicity, Web Deck Drivers are drawn on an HTML Canvas, which is a pixel-driven drawing space. Web Decks are drawn with images and drawing instructions that use the pixel as a unit for display.</p>
+</div>
+<p>Web decks can have the following types of interactive buttons:</p>
+<ol>
+<li>Keys (simple press, long press, etc.)</li>
+<li>Encoders (turned clockwise, counter clockwise)</li>
+<li>Touchscreen (pressed, swiped)</li>
+<li>Slider (slid between 2 range values)</li>
+</ol>
+<p>When rendered in a browser window, web deck interaction means are materialised through a changing pointer cursor (arrow, curved arrow (encode), single dot (push), double dot (pull), etc.)</p>
+<div class="admonition note">
+<p class="admonition-title">Background Deck Type Attribute</p>
+<p>Please read above in this page the <code>background</code> Deck Type attribute used to specify a background image to use for web deck display.</p>
+</div>
+<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dimension</td>
+<td>The dimension attribute can be a single integer value or a list of two values.<br/><br/>It determine the size of the button has drawn on the Web deck.<br/><br/>If the feedback visualisation is an <code>image</code>, the <code>image</code> attribute specifies the characteristics of the image. <code>X</code>is horizontal and correspond to the <code>width</code>, <code>Y</code> is vertical and correspond to the <code>height</code>.</td>
+</tr>
+<tr>
+<td>layout</td>
+<td>Layout of the buttons on the web deck canvas.<br/>- Offset<br/>- Spacing<br/>Buttons will be arranged at regular interval, starting from Offset, with supplied spacing between the buttons. Button sizes are specified in the Dimension attribute.</td>
+</tr>
+<tr>
+<td>hardware</td>
+<td>Configuration information for a specific drawing representation of this hardware button.</td>
+</tr>
+<tr>
+<td>empty-button</td>
+<td>Minimal Button definition to create an empty, dummy button. This dummy button will becreated and used to generate an "empty" hardware representation (completely <code>off</code>). (In other words, if a button with hardware representation is not defined, this definition will be used to create a button.) See below.</td>
+</tr>
+<tr>
+<td>options</td>
+<td>Comma-separated list of options, a single option can either be a name=value, or just a name, in which case the value is assumed to be True.<br/><br/><code>options: count=8,active</code><br/><br/>sets options <code>count</code>to value 8, and <code>active</code> to True. <code>active</code> is equivalent to <code>active=true</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="deck-type-background">Deck  Type <code>background</code><a class="headerlink" href="#deck-type-background" title="Permanent link"></a></h3>
+<p>In addition to the above button definitions, a deck type may contain a <code>background</code> attribute. This attribute is only used by web decks. The background attribute defines the background of the web page where the web deck will be rendered. The background can either be</p>
+<ol>
+<li>A PNG image,</li>
+<li>A solid color and size information.<br>
+In the case of a PNG image, the size is deduced from the size of the image.</br></li>
+</ol>
+<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>image</code></td>
+<td>Name of a PNG image, with extension. No default.</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>Color of the background of the web page. No default.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>Array of two values with width and height of the web canvas. Defaults to (200, 100) pixels.</td>
+</tr>
+<tr>
+<td><code>overlay</code></td>
+<td>Static text or image overlay. Not implemented yet.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="special-button--hardware--representation">Special Button « Hardware » Representation<a class="headerlink" href="#special-button--hardware--representation" title="Permanent link"></a></h3>
+<p>Some deck buttons need a special representation or drawing to visually reproduce the physical deck equivalent button. Examples of such special representations are</p>
+<ul>
+<li>LoupedeckLive « colored » numbered buttons,</li>
+<li>X-Touch Mini LEDs around the encoders.</li>
+</ul>
+<p>These highly specific « drawings » are performed on side representations called <em>Hardware Representations</em>.</p>
+<p>Technically speaking, they behave very much like LCD representations:</p>
+<ul>
+<li>Some screen space is reserved on the canvas to host the representation,</li>
+<li>The hardware representation driver produces an image that mimics the hardware button on the send,</li>
+<li>Cockpitdecks « sends » the hardware representation image to the web deck for display in the reserved space,</li>
+<li>Like any other representation, the hardware representation gets updated each time the underlying values gets updated.<br>
+Hardware representation only exists for web decks to draw a very specific button.</br></li>
+</ul>
+<h4 id="empty-button-definition">Empty Button Definition<a class="headerlink" href="#empty-button-definition" title="Permanent link"></a></h4>
+<p>Hardware Representations need to know how to represent themselves in case they are not used or defined on a page. To present nicely, Cockpitdecks needs to know how to draw an "undefined", unused Hardware Representation. To do this, Cockpitdecks uses a trick: It dynamically create an dummy placeholder button from the Empty Button Definition for its Hardware Representation. Basically, only two attributes need to be defined: A type (often set to none) and an attribute that tells its Hardware Representation. Optionally, a default, initial value can be supplied. Sometimes, some mandatory or optional Hardware Representation attributes need to be supplied as well. Here is an exemple of a simple LED representation.</p>
+<div class="highlight"><pre><span></span><code>hardware:
+	type: virtual-xtm-led
+	empty-button:
+		type: none
+		led: single
+		initial-value: 1
+</code></pre></div>
+<p><img alt="hardware-representation-empty.png" src="../../../../../images/hardware-representation-empty.png" width="400"/></p>
+<h3 id="examples-of-deck-type-button-definition-block">Examples of Deck Type Button Definition Block<a class="headerlink" href="#examples-of-deck-type-button-definition-block" title="Permanent link"></a></h3>
+<h4 id="single-button-definition">Single Button Definition<a class="headerlink" href="#single-button-definition" title="Permanent link"></a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Virtual Deck</span>
+<span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtualdeck</span>
+<span class="nt">buttons</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">left</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">swipe</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">feedback</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">image</span>
+<span class="w">    </span><span class="nt">dimension</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">52</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">270</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">layout</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">offset</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">96</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">78</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">corner_radius=4</span>
+</code></pre></div>
+<h4 id="multiple-button-definition">Multiple Button Definition<a class="headerlink" href="#multiple-button-definition" title="Permanent link"></a></h4>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Virtual Deck</span>
+<span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtualdeck</span>
+<span class="nt">buttons</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">e</span>
+<span class="w">    </span><span class="nt">repeat</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">encoder</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">push</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">dimension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">27</span>
+<span class="w">    </span><span class="nt">layout</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">offset</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">45</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">115</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">spacing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">41</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">prefix</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">e</span>
+<span class="w">    </span><span class="nt">repeat</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">encoder</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">push</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">dimension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">27</span>
+<span class="w">    </span><span class="nt">layout</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">offset</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">624</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">115</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">spacing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">41</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<h2 id="installed-deck-types">Installed Deck Types<a class="headerlink" href="#installed-deck-types" title="Permanent link"></a></h2>
+<p>On startup, Cockpitdecks reports which deck types are available:</p>
+<div class="highlight"><pre><span></span><code>Cockpitdecks 12.7.2.20241209 © 2022-2024 Pierre M &lt;pierre@devleaks.be&gt;
+Elgato Stream Decks, Loupedeck decks, Berhinger X-Touch Mini, and web decks to X-Plane 12.1+
+
+INFO MainThread start.py:&lt;module&gt;:315: Initializing Cockpitdecks..
+INFO MainThread cockpit.py:add_extensions:610: loaded extensions cockpitdecks_xp, cockpitdecks_wm, cockpitdecks_ld, cockpitdecks_ext, s_sd, cockpitdecks_bx
+INFO MainThread cockpit.py:init:466: available simulators: X-Plane
+INFO MainThread cockpit.py:init:469: available deck drivers: virtualdeck, loupedeck, xtouchmini, streamdeck
+WARNING MainThread xplane.py:add_datarefs_to_monitor:1189: no connection
+INFO MainThread xplane.py:add_cockpit_datarefs:819: monitoring 1 cockpit datarefs
+WARNING MainThread xplane.py:add_datarefs_to_monitor:1189: no connection
+INFO MainThread xplane.py:add_simulator_datarefs:832: monitoring 7 simulator datarefs
+INFO MainThread cockpit.py:init_simulator:497: simulator driver XPlane 1.4.0 installed
+INFO MainThread cockpit.py:init_simulator:501: COCKPITDECKS_PATH=/Users/xplane/X-Plane 12/Aircraft/Laminar Research:/Users/xplane/X-Plane 12xtra Aircraft
+INFO MainThread cockpit.py:load_cd_fonts:1494: 18 fonts loaded, default font=D-DIN.otf, default label font=D-DIN.otf
+INFO MainThread cockpit.py:load_cd_icons:1369: 18 icons loaded from cache
+INFO MainThread cockpit.py:load_cd_sounds:1543: 8 sounds loaded
+DEBUG MainThread observable.py:init:130: observable Aircraft loaded: listening to {'sim/aircraft/view/acf_livery_path'}
+INFO MainThread cockpit.py:load_cd_observables:1284: loaded 1 observables
+INFO MainThread cockpit.py:load_deck_types:1336: loaded 19 deck types (Virtual Deck for Development, LoupedeckLive, virtual loupedeck.ct, pedeck.live.s, Virtual LoupedeckLive with Mosaic, Virtual LoupedeckLive, Stream Deck Original, Stream Deck Mini, Stream Deck Neo, Stream eam Deck XL, Streamdeck, Virtual Streamdeck Mini, Virtual Streamdeck MK.2, Virtual Stream Deck Neo, Virtual Streamdeck +, Virtual XL, X-Touch Mini, Virtual X-Touch Mini), 11 are virtual deck types
+INFO MainThread cockpit.py:scan_devices:800: device drivers installed for virtualdeck (included), loupedeck 1.4.5, xtouchmini 1.3.6, 0.9.6; scanning for decks and initializing them (this may take a few seconds)..
+INFO MainThread cockpit.py:scan_devices:825: found 1 loupedeck
+INFO MainThread cockpit.py:scan_devices:825: found 1 xtouchmini
+INFO MainThread cockpit.py:scan_devices:825: found 3 streamdeck
+INFO MainThread start.py:&lt;module&gt;:317: ..initialized
+</code></pre></div>
+<h1 id="deck-driver">Deck Driver<a class="headerlink" href="#deck-driver" title="Permanent link"></a></h1>
+<p>A particular deck will come with software that interfaces it with the python language. That piece of software is a deck <em>device driver</em>. It is necessary to</p>
+<ol>
+<li>Collect interactions from the device (which button has been pressed, how long?, which encoder has been turned, how fast?)</li>
+<li>Send feedback visualisation instruction to the device to reflect the state change, instruct to draw an image, emit a sound, etc.<br>
+Device drivers are very specific and particular software. To further isolate their specificities, Cockpitdecks uses a <em>Deck Driver</em> interface, a bridge between Cockpitdecks and the device driver that controls the deck.</br></li>
+</ol>
+<p>Currently, this require the coding of a single python class derived from the <code>cockpitdecks.deck</code> class, with the following functions:</p>
+<p><strong>General</strong>:</p>
+<ul>
+<li>make_default_page</li>
+<li>render</li>
+</ul>
+<p><strong>Interaction control</strong>:</p>
+<ul>
+<li>key_change_callback</li>
+</ul>
+<p>In some drivers, there sometimes is a callback function per interaction type:</p>
+<ul>
+<li>key_change_call_back,</li>
+<li>dial_change_callback</li>
+<li>touch_callback…</li>
+</ul>
+<p><strong>Feedback</strong>:</p>
+<p><em>If the deck has image capabilities</em>:</p>
+<p>See list below.</p>
+<p><em>If the deck has sound and/or vibrating capabilities</em>:</p>
+<ul>
+<li>vibrate</li>
+</ul>
+<p><em>If the deck has lit button with color capabilities</em>:</p>
+<ul>
+<li>set_button_color</li>
+</ul>
+<p><em>If the deck has lit button without color capabilities</em>:</p>
+<ul>
+<li>set_button_led</li>
+</ul>
+<p><em>If the deck has lit button with several led capabilities</em> (led ramps, etc.):</p>
+<ul>
+<li>set_button_encoder_led</li>
+</ul>
+<p>The following functions are also necessary and can be overwritten if necessary.</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">cockpit</span><span class="p">:</span> <span class="s2">"Cockpit"</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_deck_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">is_virtual_deck</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_deck_button_definition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_deck_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeckType</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_attribute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silence</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">change_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reload_page</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_home_page</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_home_page</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_default_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">get_button_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">get_index_prefix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_index_numeric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">valid_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">with_icon</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">valid_activations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">valid_representations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">inspect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">what</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page</span><span class="p">:</span> <span class="n">Page</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">vibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brightness</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">:</span> <span class="n">Button</span><span class="p">)</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">fill_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</code></pre></div>
+<p>For deck with iconic display capabilities:</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">get_image_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_empty_icon_for_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_icon_background</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">texture_in</span><span class="p">,</span>
+        <span class="n">color_in</span><span class="p">,</span>
+        <span class="n">use_texture</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">who</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Deck"</span><span class="p">,</span>
+    <span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_icon_for_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">texture</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale_icon_for_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fill_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_key_icon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 29, 2025 18:58:53 UTC"><span class="timeago" datetime="2025-08-29T18:58:53+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 29, 2025 18:58:53 UTC">2025-08-29</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 29, 2025 18:58:53 UTC"><span class="timeago" datetime="2025-08-29T18:58:53+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 29, 2025 18:58:53 UTC">2025-08-29</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+  
+
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+
+<footer class="md-footer">
+  
+    <nav
+      class="md-footer__inner md-grid"
+      aria-label="footer.title"
+    >
+      
+        <a
+          href="../Deck%20Event%20Processing/"
+          class="md-footer__link md-footer__link--prev"
+          rel="prev"
+        >
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>&nbsp;&nbsp;
+              Deck Event Processing
+            </div>
+          </div>
+        </a>
+      
+      
+        <a
+          href="../Design%20Helper/"
+          class="md-footer__link md-footer__link--next"
+          rel="next"
+        >
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>&nbsp;&nbsp;
+              Design Helper
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2022 - 2025 <a href="https://github.com/devleaks"  target="_blank" rel="noopener">Pierre M</a>
+
+          </div>
+        
+        Made with MkDocs, Dracula color scheme
+        by
+        <a href="https://github.com/facelessuser/" target="_blank" rel="noopener">
+          facelessuser
+        </a>
+      </div>
+      
+<div class="md-social">
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../../..", "features": ["announce.dismiss", "navigation.tabs", "navigation.top", "navigation.instant", "navigation.indexes", "toc.follow", "content.tabs.link", "search.share", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotations"], "search": "../../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+        <script src="../../../../../js/timeago.min.js"></script>
+      
+        <script src="../../../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../../../js/mkdocs-charts-plugin.js"></script>
+      
+        <script src="../../../../../assets/js/extra-loader.js"></script>
+      
+        <script src="../../../../../assets/js/material-extra-3rdparty.js"></script>
+      
+        <script src="../../../../../assets/js/material-extra-theme.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      
+    
+  </body>
+</html>
