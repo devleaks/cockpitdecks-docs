@@ -1,4 +1,6 @@
-Cockpitdecks is split into a core package, called `cockpitdecks`, and a few additional optional packages.
+Cockpitdecks is split into a core package, called `cockpitdecks`, and optional extension packages.
+
+This page lists available extensions. To install and extension, it’s name need to be added to the installation command line.
 
 # Flight Simulator Packages
 

@@ -27,7 +27,7 @@ If you own a desktop deck device, it must be one of these devices:
 
 ## Software Requirements
 
-Cockpitdecks is a python application and will run under python 3.10, or newer. Python language need to be installed and available on the host that will run Cockpitdecks. We highly recommend using the latest python release.
+Cockpitdecks is a python application and will run under python 3.12, or newer. Python language need to be installed and available on the host that will run Cockpitdecks. We highly recommend using the latest python release.
 
 It is recommended to create a dedicated environment and run Cockpitdecks within that environment.
 
@@ -101,7 +101,7 @@ The demonstration mode does not require a simulator. It provides a single web de
 
 ![[demo-deck.png|500]]
 
-To exit the demonstration deck, go on the second page, press the guarded button "STOP" for two seconds at least to "lift" the guard. If the guard was listed, press again the button to stop.
+To exit the demonstration deck, go on the second page, press the guarded button "STOP" for two seconds at least to "lift" the guard. If the guard was lifted, press again the button to stop.
 
 ## Install Aircraft Configurations
 

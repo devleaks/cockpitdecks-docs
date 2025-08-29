@@ -6,6 +6,12 @@ nav:
 
   - Installation/Installation.md
 
+  - Usage:
+      - Demonstration web deck: Design/Demonstration Web Deck.md
+      - Installing a new deck: Design/Deck Design.md
+      - Defining buttons: Design/Adding a Page of Buttons to a Deck.md
+      - Web decks: Web Decks.md
+
   - Extensions:
       - Extensions/About Extensions.md
       - Simulators:
@@ -38,15 +44,15 @@ nav:
 
   - Development:
       - Reference/Extending/Extending Cockpitdecks.md
-      - Extending:
+      - Creating your extensions:
         - "Reference/Extending/Development/*.md"
-      - Entities:
+      - Core Entities:
         - Reference/Simulator.md
         - Reference/Cockpit.md
         - Reference/Extending/Development/Internals/Events.md
       - Internals:
         - "Reference/Extending/Development/Internals/*.md"
-      - API:
+      - Python API for core entities:
         - "Reference/Extending/Development/API/*.md"
 
   - About:

@@ -11,10 +11,16 @@ copyright: |
 # Theme and appearance
 #
 theme:
+  # TERMINAL:
+  # name: terminal # material # Must use Material theme
+  # palette: dark
+  # logo: assets/images/favicon.png
+  # icon:
+  #   logo: assets/images/favicon.png
+
   name: material # Must use Material theme
   custom_dir: docs/.theme # If you have overrides, specify where to find them
   logo: assets/images/favicon.png
-  # favicon: assets/images/favicon.png
   icon:
     logo: assets/images/favicon.png
   palette:
